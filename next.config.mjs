@@ -1,7 +1,9 @@
 /** @type {import('next').NextConfig} */
-const nextConfig = {  // Output standalone untuk Docker optimization 
-  output: 'standalone',
-  
+const nextConfig = {
+  // Note: standalone output removed due to Windows symlink permission issues
+  // For Docker deployment, consider using npm instead of pnpm, or run with elevated permissions
+  // output: "standalone",
+
   eslint: {
     ignoreDuringBuilds: true,
   },
@@ -11,9 +13,9 @@ const nextConfig = {  // Output standalone untuk Docker optimization
   images: {
     unoptimized: true,
   },
-    // Optimisasi untuk production
+  // Optimisasi untuk production
   poweredByHeader: false,
-  
+
   // Compress static files
   compress: true,
 };
