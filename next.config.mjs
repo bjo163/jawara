@@ -1,6 +1,5 @@
 /** @type {import('next').NextConfig} */
-const nextConfig = {
-  // Output standalone untuk Docker optimization
+const nextConfig = {  // Output standalone untuk Docker optimization 
   output: 'standalone',
   
   eslint: {
@@ -12,9 +11,7 @@ const nextConfig = {
   images: {
     unoptimized: true,
   },
-  
-  // Optimisasi untuk production
-  swcMinify: true,
+    // Optimisasi untuk production
   poweredByHeader: false,
   
   // Compress static files
