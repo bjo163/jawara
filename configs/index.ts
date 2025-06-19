@@ -8,11 +8,18 @@
  */
 
 // Export semua konfigurasi utama
-export * from './content'
-export * from './ui'
-export * from './api'
-export * from './navigation'
-export * from './site'
+export * from './content/index'
+export * from './ui/index'
+export * from './api/index'
+export * from './navigation/index'
+export * from './site/index'
+
+// Re-export untuk kemudahan akses
+export { contentConfig } from './content/index'
+export { uiConfig } from './ui/index'
+export { apiConfig } from './api/index'
+export { navigationConfig } from './navigation/index'
+export { siteConfig } from './site/index'
 
 // Types untuk konfigurasi
 export interface ConfigBase {

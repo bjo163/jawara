@@ -6,9 +6,13 @@
  * Organized by feature/section untuk memudahkan maintenance.
  */
 
+// Import loading configuration
+export * from './loading'
+export { loadingConfig } from './loading'
+
 // Placeholder exports - akan diisi setelah migration content selesai
 export const contentConfig = {
-  loading: {}, // loading.ts
+  loading: {}, // loading.ts - ✅ COMPLETED
   packages: {}, // packages.ts  
   contact: {}, // contact.ts
   testimonials: {}, // testimonials.ts

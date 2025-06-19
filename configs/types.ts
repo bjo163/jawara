@@ -1,0 +1,202 @@
+/**
+ * JAWARA-NET CONFIGURATION TYPES
+ * ==============================
+ * 
+ * Global TypeScript definitions untuk semua konfigurasi.
+ * Ensures type safety across configuration system.
+ */
+
+// Base configuration interface
+export interface ConfigBase {
+  id: string
+  name: string
+  description?: string
+  enabled: boolean
+  lastUpdated: string
+}
+
+// Navigation types
+export interface NavItem {
+  id: string
+  label: string
+  icon: string
+  href?: string
+}
+
+export interface NavSection {
+  title: string
+  items: NavItem[]
+}
+
+// Content types
+export interface TestimonialData {
+  name: string
+  role: string
+  location: string
+  image: string
+  rating: number
+  comment: string
+  package: string
+}
+
+export interface PackageData {
+  name: string
+  icon: string
+  speed: string
+  quota: string
+  price: string
+  originalPrice: string
+  features: string[]
+  popular: boolean
+  color: string
+  character: string
+}
+
+export interface ServiceData {
+  icon: any // Lucide icon component
+  title: string
+  description: string
+  features: string[]
+  color: string
+}
+
+export interface FAQData {
+  question: string
+  answer: string
+}
+
+export interface ChatResponse {
+  [key: string]: string
+}
+
+// Contact types
+export interface ContactInfo {
+  phone: string
+  whatsapp: string
+  email: string
+  address: {
+    street: string
+    city: string
+    postal: string
+    country: string
+  }
+}
+
+// Loading types
+export interface LoadingStage {
+  text: string
+  icon: string
+  progress: number
+}
+
+export interface LoadingStat {
+  icon: any // Lucide icon component
+  value: string
+  label: string
+  color: string
+  textColor: string
+}
+
+export interface BackgroundElement {
+  icon: string
+  position: string
+  size: string
+  animation: string
+  opacity: string
+}
+
+export interface LoadingBrand {
+  title: string
+  tagline: string
+  description: string
+  decorativeIcons: string[]
+}
+
+export interface LoadingConfig {
+  stages: LoadingStage[]
+  brand: LoadingBrand
+  stats: LoadingStat[]
+  progress: {
+    labels: {
+      title: string
+      percentage: (progress: number) => string
+    }
+    styling: {
+      barGradient: string
+      backgroundColor: string
+      height: string
+    }
+    animation: {
+      duration: string
+      easing: string
+    }
+  }
+  dots: Array<{
+    gradient: string
+    delay: string
+  }>
+  timing: {
+    stageInterval: number
+    progressUpdateInterval: number
+    finalDelay: number
+  }
+  background: BackgroundElement[]
+}
+
+// UI types
+export interface ThemeColors {
+  [key: string]: string
+}
+
+export interface AnimationConfig {
+  enabled: boolean
+  duration: {
+    fast: string
+    normal: string
+    slow: string
+  }
+}
+
+// Site types
+export interface BrandInfo {
+  name: string
+  fullName: string
+  tagline: string
+  description: string
+  logo: string
+  favicon: string
+}
+
+export interface SEOConfig {
+  defaultTitle: string
+  titleTemplate: string
+  description: string
+  keywords: string[]
+  image: string
+  url: string
+}
+
+// Export combined types
+export interface JawaraNetConfig {
+  content: {
+    loading: LoadingStage[]
+    packages: PackageData[]
+    testimonials: TestimonialData[]
+    services: ServiceData[]
+    faq: FAQData[]
+    chat: ChatResponse
+  }
+  navigation: {
+    navbar: NavItem[]
+    footer: NavSection[]
+  }
+  site: {
+    brand: BrandInfo
+    seo: SEOConfig
+    contact: ContactInfo
+  }
+  ui: {
+    theme: ThemeColors
+    animations: AnimationConfig
+  }
+}

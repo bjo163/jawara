@@ -18,6 +18,7 @@ import { NavigationLoader } from "@/components/navigation-loader"
 import { GamingHUD } from "@/components/gaming-hud"
 import { GamingCursor } from "@/components/gaming-cursor"
 import { AchievementSystem } from "@/components/achievement-system"
+import { loadingConfig } from "@/configs/content/loading"
 
 export default function HomePage() {
   const [activeSection, setActiveSection] = useState("hero")
@@ -27,40 +28,36 @@ export default function HomePage() {
   const [navigationLoading, setNavigationLoading] = useState(false)
   const [targetSection, setTargetSection] = useState("")
 
-  const loadingStages = [
-    { text: "Menyiapkan koneksi super ngebut...", icon: "🦅", progress: 25 },
-    { text: "Mengaktifkan mode warrior digital...", icon: "⚔️", progress: 50 },
-    { text: "Membangun benteng internet Nusantara...", icon: "🏛️", progress: 75 },
-    { text: "Menyelesaikan persiapan jagoan...", icon: "👑", progress: 100 },
-  ]
+  // Use loading config instead of hardcoded data
+  const { stages: loadingStages, timing, brand, stats, background } = loadingConfig
 
   useEffect(() => {
-    // Enhanced loading with stages
+    // Enhanced loading with stages using config timing
     const stageInterval = setInterval(() => {
       setLoadingStage((prev) => {
         if (prev >= loadingStages.length - 1) {
           clearInterval(stageInterval)
-          setTimeout(() => setIsLoading(false), 1000)
+          setTimeout(() => setIsLoading(false), timing.finalDelay)
           return prev
         }
         return prev + 1
       })
-    }, 1500)
+    }, timing.stageInterval)
 
-    // Smooth progress animation
+    // Smooth progress animation using config timing
     const progressInterval = setInterval(() => {
       setLoadingProgress((prev) => {
         const targetProgress = loadingStages[loadingStage]?.progress || 100
         if (prev >= targetProgress) return prev
         return Math.min(prev + Math.random() * 8, targetProgress)
       })
-    }, 100)
+    }, timing.progressUpdateInterval)
 
     return () => {
       clearInterval(stageInterval)
       clearInterval(progressInterval)
     }
-  }, [loadingStage])
+  }, [loadingStage, loadingStages, timing])
 
   const handleNavigation = (sectionId: string) => {
     setNavigationLoading(true)
@@ -116,15 +113,16 @@ export default function HomePage() {
         {/* EPIC BACKGROUND ELEMENTS */}
         <div className="absolute inset-0 mega-grid opacity-20"></div>
 
-        {/* FLOATING ELEMENTS */}
+        {/* FLOATING ELEMENTS - from config */}
         <div className="absolute inset-0 pointer-events-none">
-          <div className="absolute top-20 left-20 text-8xl garuda-soar opacity-30">🦅</div>
-          <div className="absolute top-40 right-20 text-7xl indonesian-wave opacity-25">⚔️</div>
-          <div className="absolute bottom-40 left-20 text-6xl particle-float opacity-30">🏛️</div>
-          <div className="absolute bottom-20 right-20 text-8xl garuda-soar opacity-25">🛡️</div>
-          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-9xl indonesian-wave opacity-10">
-            🇮🇩
-          </div>
+          {background.map((element, index) => (
+            <div 
+              key={index}
+              className={`absolute ${element.position} ${element.size} ${element.animation} ${element.opacity}`}
+            >
+              {element.icon}
+            </div>
+          ))}
         </div>
 
         <div className="text-center relative z-10 max-w-4xl mx-auto px-4">
@@ -140,18 +138,21 @@ export default function HomePage() {
             <Sword className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 h-16 w-16 text-red-500 opacity-50 particle-float" />
           </div>
 
-          {/* EPIC LOADING TITLE */}
+          {/* EPIC LOADING TITLE - from config */}
           <div className="mega-card p-16 mega-hover mega-glow mb-16">
-            <h1 className="mega-title text-6xl md:text-7xl mb-6">⚔️ JAWARA-NET ⚔️</h1>
-            <p className="mega-text text-3xl text-orange-400 mb-4 font-black">INTERNET NUSANTARA RAYA</p>
+            <h1 className="mega-title text-6xl md:text-7xl mb-6">{brand.title}</h1>
+            <p className="mega-text text-3xl text-orange-400 mb-4 font-black">{brand.tagline}</p>
             <div className="flex justify-center space-x-8 mb-8">
-              <span className="text-5xl garuda-soar">🦅</span>
-              <span className="text-5xl indonesian-wave">⚔️</span>
-              <span className="text-5xl particle-float">🏛️</span>
-              <span className="text-5xl garuda-soar">🎭</span>
-              <span className="text-5xl indonesian-wave">🐉</span>
+              {brand.decorativeIcons.map((icon, index) => (
+                <span 
+                  key={index}
+                  className={`text-5xl ${index % 2 === 0 ? 'garuda-soar' : 'indonesian-wave'}`}
+                >
+                  {icon}
+                </span>
+              ))}
             </div>
-            <p className="mega-text text-gray-400 text-xl">Memuat pengalaman internet terbaik Indonesia...</p>
+            <p className="mega-text text-gray-400 text-xl">{brand.description}</p>
           </div>
 
           {/* EPIC STAGE INDICATOR */}
@@ -167,16 +168,18 @@ export default function HomePage() {
             </div>
           </div>
 
-          {/* EPIC PROGRESS BAR */}
+          {/* EPIC PROGRESS BAR - from config */}
           <div className="max-w-2xl mx-auto mb-12">
             <div className="mega-card p-8">
               <div className="flex items-center justify-between mb-6">
-                <span className="mega-text text-white font-bold text-xl">Loading Progress</span>
-                <span className="mega-text text-orange-400 font-bold text-xl">{Math.round(loadingProgress)}%</span>
+                <span className="mega-text text-white font-bold text-xl">{loadingConfig.progress.labels.title}</span>
+                <span className="mega-text text-orange-400 font-bold text-xl">
+                  {loadingConfig.progress.labels.percentage(loadingProgress)}
+                </span>
               </div>
-              <div className="w-full bg-slate-700 rounded-full h-6 overflow-hidden mega-glow">
+              <div className={`w-full ${loadingConfig.progress.styling.backgroundColor} rounded-full ${loadingConfig.progress.styling.height} overflow-hidden mega-glow`}>
                 <div
-                  className="h-full bg-gradient-to-r from-orange-500 via-red-500 to-pink-500 rounded-full transition-all duration-500 ease-out mega-glow relative overflow-hidden"
+                  className={`h-full bg-gradient-to-r ${loadingConfig.progress.styling.barGradient} rounded-full transition-all ${loadingConfig.progress.animation.duration} ${loadingConfig.progress.animation.easing} mega-glow relative overflow-hidden`}
                   style={{ width: `${loadingProgress}%` }}
                 >
                   <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent animate-pulse"></div>
@@ -185,49 +188,28 @@ export default function HomePage() {
             </div>
           </div>
 
-          {/* EPIC LOADING DOTS */}
+          {/* EPIC LOADING DOTS - from config */}
           <div className="flex justify-center space-x-4 mb-12">
-            <div className="w-6 h-6 bg-gradient-to-r from-orange-500 to-red-500 rounded-full animate-bounce"></div>
-            <div
-              className="w-6 h-6 bg-gradient-to-r from-red-500 to-pink-500 rounded-full animate-bounce"
-              style={{ animationDelay: "0.1s" }}
-            ></div>
-            <div
-              className="w-6 h-6 bg-gradient-to-r from-pink-500 to-purple-500 rounded-full animate-bounce"
-              style={{ animationDelay: "0.2s" }}
-            ></div>
+            {loadingConfig.dots.map((dot, index) => (
+              <div
+                key={index}
+                className={`w-6 h-6 bg-gradient-to-r ${dot.gradient} rounded-full animate-bounce`}
+                style={{ animationDelay: dot.delay }}
+              ></div>
+            ))}
           </div>
 
-          {/* EPIC LOADING STATS */}
+          {/* EPIC LOADING STATS - from config */}
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-4xl mx-auto">
-            <div className="mega-card p-8 text-center mega-hover">
-              <div className="w-16 h-16 bg-gradient-to-br from-orange-500 to-red-500 rounded-xl flex items-center justify-center mx-auto mb-4 mega-glow">
-                <Crown className="h-8 w-8 text-white" />
+            {stats.map((stat, index) => (
+              <div key={index} className="mega-card p-8 text-center mega-hover">
+                <div className={`w-16 h-16 bg-gradient-to-br ${stat.color} rounded-xl flex items-center justify-center mx-auto mb-4 mega-glow`}>
+                  <stat.icon className="h-8 w-8 text-white" />
+                </div>
+                <div className={`text-3xl font-black ${stat.textColor} mb-2 mega-title`}>{stat.value}</div>
+                <div className="mega-text text-gray-400 text-sm font-bold">{stat.label}</div>
               </div>
-              <div className="text-3xl font-black text-orange-500 mb-2 mega-title">1000+</div>
-              <div className="mega-text text-gray-400 text-sm font-bold">Jagoan Setia</div>
-            </div>
-            <div className="mega-card p-8 text-center mega-hover">
-              <div className="w-16 h-16 bg-gradient-to-br from-blue-500 to-cyan-500 rounded-xl flex items-center justify-center mx-auto mb-4 mega-glow">
-                <Globe className="h-8 w-8 text-white" />
-              </div>
-              <div className="text-3xl font-black text-blue-500 mb-2 mega-title">50+</div>
-              <div className="mega-text text-gray-400 text-sm font-bold">Kota Taklukan</div>
-            </div>
-            <div className="mega-card p-8 text-center mega-hover">
-              <div className="w-16 h-16 bg-gradient-to-br from-green-500 to-emerald-500 rounded-xl flex items-center justify-center mx-auto mb-4 mega-glow">
-                <Shield className="h-8 w-8 text-white" />
-              </div>
-              <div className="text-3xl font-black text-green-500 mb-2 mega-title">99.9%</div>
-              <div className="mega-text text-gray-400 text-sm font-bold">Uptime</div>
-            </div>
-            <div className="mega-card p-8 text-center mega-hover">
-              <div className="w-16 h-16 bg-gradient-to-br from-purple-500 to-pink-500 rounded-xl flex items-center justify-center mx-auto mb-4 mega-glow">
-                <Sparkles className="h-8 w-8 text-white" />
-              </div>
-              <div className="text-3xl font-black text-purple-500 mb-2 mega-title">24/7</div>
-              <div className="mega-text text-gray-400 text-sm font-bold">Support</div>
-            </div>
+            ))}
           </div>
         </div>
       </div>
