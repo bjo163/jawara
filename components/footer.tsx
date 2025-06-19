@@ -1,8 +1,11 @@
 "use client"
 
 import { Facebook, Instagram, Twitter, Youtube, Crown, Sword, Sparkles } from "lucide-react"
+import { navigationConfig } from "@/configs/navigation/menu"
 
 export function Footer() {
+  // Use navigation config
+  const { menus, social, legal, brand } = navigationConfig.footer
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId)
     if (element) {
@@ -45,51 +48,30 @@ export function Footer() {
               </p>
             </div>
             <div className="flex space-x-4">
-              <a
-                href="#"
-                className="w-12 h-12 bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl flex items-center justify-center mega-hover mega-glow"
-              >
-                <Facebook className="h-6 w-6 text-white" />
-              </a>
-              <a
-                href="#"
-                className="w-12 h-12 bg-gradient-to-br from-pink-500 to-rose-500 rounded-xl flex items-center justify-center mega-hover mega-glow"
-              >
-                <Instagram className="h-6 w-6 text-white" />
-              </a>
-              <a
-                href="#"
-                className="w-12 h-12 bg-gradient-to-br from-blue-400 to-cyan-500 rounded-xl flex items-center justify-center mega-hover mega-glow"
-              >
-                <Twitter className="h-6 w-6 text-white" />
-              </a>
-              <a
-                href="#"
-                className="w-12 h-12 bg-gradient-to-br from-red-500 to-red-600 rounded-xl flex items-center justify-center mega-hover mega-glow"
-              >
-                <Youtube className="h-6 w-6 text-white" />
-              </a>
+              {social.map((link) => (
+                <a
+                  key={link.name}
+                  href={link.href}
+                  className={`w-12 h-12 bg-gradient-to-br ${link.gradient} rounded-xl flex items-center justify-center mega-hover mega-glow`}
+                >
+                  <link.icon className="h-6 w-6 text-white" />
+                </a>
+              ))}
             </div>
           </div>
 
-          {/* MENU UTAMA */}
+          {/* MENU UTAMA - from config */}
           <div className="mega-card p-8 mega-hover">
-            <h4 className="mega-title text-2xl text-orange-400 mb-6 flex items-center space-x-2">
-              <Sword className="h-6 w-6" />
-              <span>Menu Utama</span>
+            <h4 className={`mega-title text-2xl ${menus.main.iconColor} mb-6 flex items-center space-x-2`}>
+              <menus.main.icon className="h-6 w-6" />
+              <span>{menus.main.title}</span>
             </h4>
             <ul className="space-y-4">
-              {[
-                { id: "hero", label: "🏠 Beranda" },
-                { id: "about", label: "📖 Tentang Kami" },
-                { id: "services", label: "⚔️ Layanan" },
-                { id: "packages", label: "💎 Paket Internet" },
-                { id: "coverage", label: "🗺️ Area Coverage" },
-              ].map((item) => (
-                <li key={item.id}>
+              {menus.main.items.map((item) => (
+                <li key={item.id || item.label}>
                   <button
-                    onClick={() => scrollToSection(item.id)}
-                    className="mega-text text-gray-400 hover:text-orange-400 transition-colors font-bold text-lg mega-hover"
+                    onClick={() => item.id && scrollToSection(item.id)}
+                    className={`mega-text text-gray-400 ${menus.main.hoverColor} transition-colors font-bold text-lg mega-hover`}
                   >
                     {item.label}
                   </button>
@@ -98,32 +80,26 @@ export function Footer() {
             </ul>
           </div>
 
-          {/* BANTUAN */}
+          {/* BANTUAN - from config */}
           <div className="mega-card p-8 mega-hover">
-            <h4 className="mega-title text-2xl text-blue-400 mb-6 flex items-center space-x-2">
-              <Crown className="h-6 w-6" />
-              <span>Bantuan</span>
+            <h4 className={`mega-title text-2xl ${menus.support.iconColor} mb-6 flex items-center space-x-2`}>
+              <menus.support.icon className="h-6 w-6" />
+              <span>{menus.support.title}</span>
             </h4>
             <ul className="space-y-4">
-              {[
-                { id: "faq", label: "❓ FAQ" },
-                { id: "contact", label: "📞 Hubungi Kami" },
-                { label: "📋 Panduan Instalasi", href: "#" },
-                { label: "🔧 Troubleshooting", href: "#" },
-                { label: "📊 Status Jaringan", href: "#" },
-              ].map((item, index) => (
+              {menus.support.items.map((item, index) => (
                 <li key={index}>
                   {item.id ? (
                     <button
                       onClick={() => scrollToSection(item.id)}
-                      className="mega-text text-gray-400 hover:text-blue-400 transition-colors font-bold text-lg mega-hover"
+                      className={`mega-text text-gray-400 ${menus.support.hoverColor} transition-colors font-bold text-lg mega-hover`}
                     >
                       {item.label}
                     </button>
                   ) : (
                     <a
                       href={item.href}
-                      className="mega-text text-gray-400 hover:text-blue-400 transition-colors font-bold text-lg mega-hover"
+                      className={`mega-text text-gray-400 ${menus.support.hoverColor} transition-colors font-bold text-lg mega-hover`}
                     >
                       {item.label}
                     </a>
@@ -164,20 +140,20 @@ export function Footer() {
           <div className="mega-card p-8 mega-hover mega-glow">
             <div className="flex flex-col md:flex-row justify-between items-center space-y-6 md:space-y-0">
               <div className="mega-text text-gray-400 text-lg text-center md:text-left">
-                © {new Date().getFullYear()} Jawara-Net - Internet Nusantara.
-                <span className="text-orange-400 font-black"> Dibuat dengan ❤️ untuk Indonesia Raya! </span>
-                <span className="text-2xl">🇮🇩</span>
+                © {new Date().getFullYear()} {brand.copyright.text}
+                <span className="text-orange-400 font-black"> {brand.copyright.suffix} </span>
+                <span className="text-2xl">{brand.copyright.flag}</span>
               </div>
               <div className="flex flex-wrap justify-center gap-6 mega-text">
-                <a href="#" className="text-gray-400 hover:text-orange-400 transition-colors font-bold">
-                  📋 Syarat & Ketentuan
-                </a>
-                <a href="#" className="text-gray-400 hover:text-orange-400 transition-colors font-bold">
-                  🔒 Kebijakan Privasi
-                </a>
-                <a href="#" className="text-gray-400 hover:text-orange-400 transition-colors font-bold">
-                  ⚠️ Disclaimer
-                </a>
+                {legal.map((link, index) => (
+                  <a
+                    key={index}
+                    href={link.href}
+                    className="text-gray-400 hover:text-orange-400 transition-colors font-bold"
+                  >
+                    {link.label}
+                  </a>
+                ))}
               </div>
             </div>
           </div>

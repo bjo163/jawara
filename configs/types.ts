@@ -17,15 +17,65 @@ export interface ConfigBase {
 
 // Navigation types
 export interface NavItem {
-  id: string
+  id?: string
   label: string
-  icon: string
+  icon?: string
   href?: string
 }
 
-export interface NavSection {
+export interface FooterMenu {
   title: string
+  icon: any // Lucide icon component
+  iconColor: string
+  hoverColor: string
   items: NavItem[]
+}
+
+export interface SocialLink {
+  name: string
+  icon: any // Lucide icon component
+  href: string
+  gradient: string
+}
+
+export interface BrandNav {
+  name: string
+  tagline: string
+  copyright: {
+    text: string
+    suffix: string
+    flag: string
+  }
+}
+
+export interface NavigationBehavior {
+  scrollOffset: number
+  smoothScroll: boolean
+  scrollBehavior: ScrollBehavior
+}
+
+export interface MobileNav {
+  breakpoint: number
+  animationDuration: number
+  overlayOpacity: number
+}
+
+export interface NavigationConfig {
+  navbar: {
+    brand: BrandNav
+    items: NavItem[]
+    behavior: NavigationBehavior
+    mobile: MobileNav
+  }
+  footer: {
+    brand: BrandNav
+    menus: {
+      main: FooterMenu
+      support: FooterMenu
+    }
+    social: SocialLink[]
+    legal: NavItem[]
+  }
 }
 
 // Content types
@@ -188,7 +238,7 @@ export interface JawaraNetConfig {
   }
   navigation: {
     navbar: NavItem[]
-    footer: NavSection[]
+    footer: FooterMenu[]
   }
   site: {
     brand: BrandInfo

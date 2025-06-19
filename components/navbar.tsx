@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react"
 import { Menu, X, Wifi, Sparkles } from "lucide-react"
 import { Button } from "@/components/ui/button"
+import { navigationConfig } from "@/configs/navigation/menu"
 
 interface NavbarProps {
   activeSection: string
@@ -13,6 +14,9 @@ export function Navbar({ activeSection, onNavigate }: NavbarProps) {
   const [isOpen, setIsOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
 
+  // Use navigation config instead of hardcoded data
+  const { items: navItems } = navigationConfig.navbar
+
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 20)
@@ -20,15 +24,6 @@ export function Navbar({ activeSection, onNavigate }: NavbarProps) {
     window.addEventListener("scroll", handleScroll)
     return () => window.removeEventListener("scroll", handleScroll)
   }, [])
-
-  const navItems = [
-    { id: "hero", label: "Beranda", icon: "🏛️" },
-    { id: "about", label: "Tentang", icon: "🛡️" },
-    { id: "services", label: "Layanan", icon: "⚔️" },
-    { id: "packages", label: "Paket", icon: "👑" },
-    { id: "testimonials", label: "Testimoni", icon: "🏆" },
-    { id: "contact", label: "Kontak", icon: "📞" },
-  ]
 
   const scrollToSection = (sectionId: string) => {
     if (onNavigate) {

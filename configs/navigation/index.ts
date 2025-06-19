@@ -6,7 +6,12 @@
  * Includes navbar items, footer links, dan breadcrumb settings.
  */
 
-export const navigationConfig = {
+// Import menu configuration
+export * from './menu'
+export { navigationConfig, type NavigationConfigType } from './menu'
+
+// Legacy navigation config (akan dihapus setelah migration)
+export const legacyNavigationConfig = {
   navbar: {
     brand: {
       name: 'JAWARA-NET',
@@ -46,4 +51,4 @@ export const navigationConfig = {
   },
 }
 
-export type NavigationConfigType = typeof navigationConfig
+export type NavigationConfigType = typeof legacyNavigationConfig
