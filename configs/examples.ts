@@ -1,7 +1,7 @@
 /**
  * CONFIGURATION USAGE EXAMPLES
  * ============================
- * 
+ *
  * Contoh cara menggunakan sistem konfigurasi tersentralisasi
  * untuk berbagai komponen di aplikasi Jawara-Net.
  */
@@ -16,12 +16,12 @@
 // import { contentConfig } from '@/configs/content'
 
 // Import all configs at once
-// import { 
-//   siteConfig, 
-//   navigationConfig, 
-//   contentConfig, 
-//   uiConfig, 
-//   apiConfig 
+// import {
+//   siteConfig,
+//   navigationConfig,
+//   contentConfig,
+//   uiConfig,
+//   apiConfig
 // } from '@/configs'
 
 // ===============================
@@ -32,7 +32,7 @@
 // const { navbar } = navigationConfig
 // navbar.items.map(item => ({ id: item.id, label: item.label }))
 
-// 2. Contact info dari siteConfig  
+// 2. Contact info dari siteConfig
 // const { contact } = siteConfig.company
 // `Telepon: ${contact.phone}, Email: ${contact.email}`
 
@@ -65,11 +65,6 @@ const navItems = navigationConfig.navbar.items
 */
 
 export const configExamples = {
-  info: 'Configuration examples - Ready for implementation',
-  nextSteps: [
-    'Import configs in components',
-    'Replace hardcoded values',
-    'Test type safety',
-    'Verify consistency'
-  ]
-}
+  info: "Configuration examples - Ready for implementation",
+  nextSteps: ["Import configs in components", "Replace hardcoded values", "Test type safety", "Verify consistency"],
+};

@@ -1,8 +1,8 @@
-"use client"
+"use client";
 
-import { SectionTitle } from "@/components/section-title"
-import { TechTimeline } from "@/components/tech-timeline"
-import { FileText, MapPin, Wrench, Wifi, Crown, Sparkles, Sword } from "lucide-react"
+import { SectionTitle } from "@/components/section-title";
+import { TechTimeline } from "@/components/tech-timeline";
+import { FileText, MapPin, Wrench, Wifi, Crown, Sparkles, Sword } from "lucide-react";
 
 export function ProcessSection() {
   const steps = [
@@ -42,7 +42,7 @@ export function ProcessSection() {
       character: "🚀",
       epicTitle: "👑 TAKLUKKAN DUNIA MAYA 👑",
     },
-  ]
+  ];
 
   return (
     <section id="process" className="py-24 nusantara-bg relative overflow-hidden">
@@ -129,8 +129,8 @@ export function ProcessSection() {
             </p>
             <button
               onClick={() => {
-                const element = document.getElementById("contact")
-                if (element) element.scrollIntoView({ behavior: "smooth" })
+                const element = document.getElementById("contact");
+                if (element) element.scrollIntoView({ behavior: "smooth" });
               }}
               className="mega-button px-16 py-8 text-3xl font-black text-white mega-text mega-hover flex items-center space-x-6 mx-auto"
             >
@@ -142,5 +142,5 @@ export function ProcessSection() {
         </div>
       </div>
     </section>
-  )
+  );
 }

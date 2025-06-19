@@ -1,14 +1,14 @@
-"use client"
+"use client";
 
-import type React from "react"
+import type React from "react";
 
-import { useState } from "react"
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
-import { Textarea } from "@/components/ui/textarea"
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
-import { Crown, Sparkles, Sword, Shield } from "lucide-react"
+import { useState } from "react";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Textarea } from "@/components/ui/textarea";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { Crown, Sparkles, Sword, Shield } from "lucide-react";
 
 export function ContactForm() {
   const [formData, setFormData] = useState({
@@ -21,18 +21,18 @@ export function ContactForm() {
     idpelanggan: "",
     lokasi: "",
     pesan: "",
-  })
+  });
 
   const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault()
+    e.preventDefault();
     // Handle form submission here
-    console.log("Form submitted:", formData)
-    alert("Pesan berhasil dikirim! Tim kami akan segera menghubungi kamu seperti Garuda yang menyambar! 🦅")
-  }
+    console.log("Form submitted:", formData);
+    alert("Pesan berhasil dikirim! Tim kami akan segera menghubungi kamu seperti Garuda yang menyambar! 🦅");
+  };
 
   const handleChange = (field: string, value: string) => {
-    setFormData((prev) => ({ ...prev, [field]: value }))
-  }
+    setFormData((prev) => ({ ...prev, [field]: value }));
+  };
 
   return (
     <div className="mega-card p-10 mega-hover mega-glow nusantara-glow">
@@ -272,5 +272,5 @@ export function ContactForm() {
         </div>
       </div>
     </div>
-  )
+  );
 }

@@ -1,11 +1,11 @@
-"use client"
+"use client";
 
-import { useState, useEffect } from "react"
-import { ArrowRight, Sparkles, Sword, Crown, ChevronLeft, ChevronRight } from "lucide-react"
+import { useState, useEffect } from "react";
+import { ArrowRight, Sparkles, Sword, Crown, ChevronLeft, ChevronRight } from "lucide-react";
 
 export function HeroSlideshow() {
-  const [currentSlide, setCurrentSlide] = useState(0)
-  const [isAutoPlaying, setIsAutoPlaying] = useState(true)
+  const [currentSlide, setCurrentSlide] = useState(0);
+  const [isAutoPlaying, setIsAutoPlaying] = useState(true);
 
   const slides = [
     {
@@ -44,40 +44,38 @@ export function HeroSlideshow() {
       character: "🎭",
       color: "from-purple-400 via-pink-500 to-rose-600",
     },
-  ]
+  ];
 
   useEffect(() => {
     if (isAutoPlaying) {
       const interval = setInterval(() => {
-        setCurrentSlide((prev) => (prev + 1) % slides.length)
-      }, 5000)
-      return () => clearInterval(interval)
+        setCurrentSlide((prev) => (prev + 1) % slides.length);
+      }, 5000);
+      return () => clearInterval(interval);
     }
-  }, [isAutoPlaying, slides.length])
+  }, [isAutoPlaying, slides.length]);
 
   const nextSlide = () => {
-    setCurrentSlide((prev) => (prev + 1) % slides.length)
-    setIsAutoPlaying(false)
-  }
+    setCurrentSlide((prev) => (prev + 1) % slides.length);
+    setIsAutoPlaying(false);
+  };
 
   const prevSlide = () => {
-    setCurrentSlide((prev) => (prev - 1 + slides.length) % slides.length)
-    setIsAutoPlaying(false)
-  }
+    setCurrentSlide((prev) => (prev - 1 + slides.length) % slides.length);
+    setIsAutoPlaying(false);
+  };
 
   const goToSlide = (index: number) => {
-    setCurrentSlide(index)
-    setIsAutoPlaying(false)
-  }
+    setCurrentSlide(index);
+    setIsAutoPlaying(false);
+  };
 
   const scrollToSection = (sectionId: string) => {
-    const element = document.getElementById(sectionId)
+    const element = document.getElementById(sectionId);
     if (element) {
-      element.scrollIntoView({ behavior: "smooth" })
+      element.scrollIntoView({ behavior: "smooth" });
     }
-  }
-
-  const currentSlideData = slides[currentSlide]
+  };
 
   return (
     <div className="relative w-full">
@@ -87,7 +85,7 @@ export function HeroSlideshow() {
           className="flex transition-transform duration-700 ease-in-out"
           style={{ transform: `translateX(-${currentSlide * 100}%)` }}
         >
-          {slides.map((slide, index) => (
+          {slides.map((slide, _index) => (
             <div key={slide.id} className="w-full flex-shrink-0">
               <div className="space-y-8 md:space-y-16">
                 {/* MAIN HERO CARD */}
@@ -204,5 +202,5 @@ export function HeroSlideshow() {
         </button>
       </div>
     </div>
-  )
+  );
 }

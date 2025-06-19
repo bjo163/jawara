@@ -1,17 +1,17 @@
-"use client"
+"use client";
 
-import { useState, useEffect } from "react"
-import { Trophy } from "lucide-react"
+import { useState, useEffect } from "react";
+import { Trophy } from "lucide-react";
 
 interface Achievement {
-  id: string
-  title: string
-  description: string
-  icon: string
-  rarity: "common" | "rare" | "epic" | "legendary"
-  unlocked: boolean
-  progress: number
-  maxProgress: number
+  id: string;
+  title: string;
+  description: string;
+  icon: string;
+  rarity: "common" | "rare" | "epic" | "legendary";
+  unlocked: boolean;
+  progress: number;
+  maxProgress: number;
 }
 
 export function AchievementSystem() {
@@ -66,40 +66,41 @@ export function AchievementSystem() {
       progress: 0,
       maxProgress: 1,
     },
-  ])
+  ]);
 
-  const [showAchievement, setShowAchievement] = useState<Achievement | null>(null)
+  const [showAchievement, setShowAchievement] = useState<Achievement | null>(null);
 
   const rarityColors = {
     common: "from-gray-500 to-gray-600",
     rare: "from-blue-500 to-blue-600",
     epic: "from-purple-500 to-purple-600",
     legendary: "from-yellow-500 to-orange-600",
-  }
+  };
 
   const rarityGlow = {
     common: "shadow-gray-500/50",
     rare: "shadow-blue-500/50",
     epic: "shadow-purple-500/50",
     legendary: "shadow-yellow-500/50",
-  }
+  };
 
   useEffect(() => {
     // Simulate achievement unlock
     const timer = setTimeout(() => {
-      const unlockedAchievement = achievements.find((a) => a.id === "scroll-master" && !a.unlocked)
+      const unlockedAchievement = achievements.find((a) => a.id === "scroll-master" && !a.unlocked);
       if (unlockedAchievement) {
         setAchievements((prev) =>
-          prev.map((a) => (a.id === "scroll-master" ? { ...a, unlocked: true, progress: 5 } : a)),
-        )
-        setShowAchievement({ ...unlockedAchievement, unlocked: true, progress: 5 })
+          prev.map((a) => (a.id === "scroll-master" ? { ...a, unlocked: true, progress: 5 } : a))
+        );
+        setShowAchievement({ ...unlockedAchievement, unlocked: true, progress: 5 });
 
-        setTimeout(() => setShowAchievement(null), 5000)
+        setTimeout(() => setShowAchievement(null), 5000);
       }
-    }, 10000)
+    }, 10000);
 
-    return () => clearTimeout(timer)
-  }, [])
+    return () => clearTimeout(timer);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <>
@@ -153,7 +154,7 @@ export function AchievementSystem() {
               <div className="flex items-center space-x-3">
                 <div
                   className={`w-12 h-12 rounded-full flex items-center justify-center text-2xl ${
-                    achievement.unlocked ? "bg-gradient-to-r " + rarityColors[achievement.rarity] : "bg-gray-700"
+                    achievement.unlocked ? `bg-gradient-to-r ${rarityColors[achievement.rarity]}` : "bg-gray-700"
                   }`}
                 >
                   {achievement.unlocked ? achievement.icon : "🔒"}
@@ -182,5 +183,5 @@ export function AchievementSystem() {
         </div>
       </div>
     </>
-  )
+  );
 }

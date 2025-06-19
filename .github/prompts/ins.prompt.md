@@ -27,7 +27,9 @@ mode: agent
 
 ## 🎯 TUJUAN
 
-Lakukan audit dan analisis menyeluruh terhadap project Web Apps milik KJB. Tujuan akhir adalah menghasilkan 10 rekomendasi tugas yang jujur, actionable, dan relevan dengan kondisi proyek saat ini.
+Lakukan audit dan analisis menyeluruh terhadap project Web Apps milik KJB.
+Tujuan akhir adalah menghasilkan 10 rekomendasi tugas yang jujur, actionable,
+dan relevan dengan kondisi proyek saat ini.
 
 ---
 
@@ -46,11 +48,10 @@ Lakukan audit dan analisis menyeluruh terhadap project Web Apps milik KJB. Tujua
 
 ---
 
-=======================
-✅ INSTRUKSI UTAMA
-=======================
+======================= ✅ INSTRUKSI UTAMA =======================
 
-1. Baca dan analisa seluruh struktur folder & file (_.js, _.ts, _.jsx, _.tsx, _.vue, _.html, _.css, _.scss, _.json, _.env)
+1. Baca dan analisa seluruh struktur folder & file (_.js, _.ts, _.jsx, _.tsx,
+   _.vue, _.html, _.css, _.scss, _.json, _.env)
 2. Identifikasi fitur utama
 3. Pahami tampilan & antarmuka pengguna
    - Gunakan tools seperti Chrome DevTools untuk inspeksi elemen
@@ -60,7 +61,8 @@ Lakukan audit dan analisis menyeluruh terhadap project Web Apps milik KJB. Tujua
 6. Pelajari proses login, routing, dan komunikasi backend
 7. Simak semua integrasi pihak ketiga (API eksternal, auth, dsb)
 8. **📡 Kunjungi dan telusuri tampilan situs live:** https://kjbonline.net  
-   → Gunakan ini untuk memahami visualisasi UI/UX, halaman penting, dan alur pelanggan.
+   → Gunakan ini untuk memahami visualisasi UI/UX, halaman penting, dan alur
+   pelanggan.
 
 ---
 
@@ -80,10 +82,8 @@ Lakukan audit dan analisis menyeluruh terhadap project Web Apps milik KJB. Tujua
 
 ---
 
-===============================
-💡 CODING RULES & KONVENSI DEV
-===============================
-📦 Struktur Folder:
+=============================== 💡 CODING RULES & KONVENSI DEV
+=============================== 📦 Struktur Folder:
 
 - Modular (pages, components, api, lib, utils)
 

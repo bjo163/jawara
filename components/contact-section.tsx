@@ -1,8 +1,8 @@
-"use client"
+"use client";
 
-import { SectionTitle } from "@/components/section-title"
-import { ContactForm } from "@/components/contact-form"
-import { Phone, Mail, MapPin, Clock, Crown, Sparkles, Sword, Shield } from "lucide-react"
+import { SectionTitle } from "@/components/section-title";
+import { ContactForm } from "@/components/contact-form";
+import { Phone, Mail, MapPin, Clock, Crown, Sparkles, Sword, Shield } from "lucide-react";
 
 export function ContactSection() {
   return (
@@ -134,7 +134,9 @@ export function ContactSection() {
                       <div className="space-y-2">
                         <p className="mega-text text-yellow-400 text-lg font-bold">Customer Service: 24/7 🛡️</p>
                         <p className="mega-text text-yellow-400 text-lg font-bold">Technical Support: 24/7 ⚔️</p>
-                        <p className="mega-text text-yellow-400 text-lg font-bold">Kantor: Senin-Sabtu 08:00-17:00 🏛️</p>
+                        <p className="mega-text text-yellow-400 text-lg font-bold">
+                          Kantor: Senin-Sabtu 08:00-17:00 🏛️
+                        </p>
                       </div>
                     </div>
                   </div>
@@ -216,5 +218,5 @@ export function ContactSection() {
         </div>
       </div>
     </section>
-  )
+  );
 }

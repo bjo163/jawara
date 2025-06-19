@@ -1,8 +1,8 @@
-"use client"
+"use client";
 
-import { SectionTitle } from "@/components/section-title"
-import { ContactFormImproved } from "@/components/contact-form-improved"
-import { Phone, Mail, MapPin, Sparkles } from "lucide-react"
+import { SectionTitle } from "@/components/section-title";
+import { ContactFormImproved } from "@/components/contact-form-improved";
+import { Phone, Mail, MapPin, Sparkles } from "lucide-react";
 
 export function ContactSectionImproved() {
   return (
@@ -111,5 +111,5 @@ export function ContactSectionImproved() {
         </div>
       </div>
     </section>
-  )
+  );
 }

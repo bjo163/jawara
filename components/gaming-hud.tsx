@@ -1,18 +1,18 @@
-"use client"
+"use client";
 
-import { useState, useEffect } from "react"
-import { Zap, Shield, Crown, Sword, Star, Trophy, Target, Wifi, Volume2, VolumeX, Map, Settings } from "lucide-react"
+import { useState, useEffect } from "react";
+import { Zap, Shield, Crown, Sword, Star, Trophy, Target, Wifi, Volume2, VolumeX, Map, Settings } from "lucide-react";
 
 interface GameStats {
-  level: number
-  experience: number
-  maxExperience: number
-  health: number
-  maxHealth: number
-  mana: number
-  maxMana: number
-  coins: number
-  achievements: number
+  level: number;
+  experience: number;
+  maxExperience: number;
+  health: number;
+  maxHealth: number;
+  mana: number;
+  maxMana: number;
+  coins: number;
+  achievements: number;
 }
 
 export function GamingHUD() {
@@ -26,21 +26,21 @@ export function GamingHUD() {
     maxMana: 100,
     coins: 2500,
     achievements: 12,
-  })
+  });
 
-  const [soundEnabled, setSoundEnabled] = useState(true)
+  const [soundEnabled, setSoundEnabled] = useState(true);
   const [notifications, setNotifications] = useState([
     { id: 1, text: "🏆 Achievement: Jagoan Sejati unlocked!", type: "achievement" },
     { id: 2, text: "⚡ Koneksi stabil seperti Benteng Majapahit!", type: "status" },
-  ])
-  const [currentTime, setCurrentTime] = useState(new Date())
+  ]);
+  const [currentTime, setCurrentTime] = useState(new Date());
 
   useEffect(() => {
     const timer = setInterval(() => {
-      setCurrentTime(new Date())
-    }, 1000)
-    return () => clearInterval(timer)
-  }, [])
+      setCurrentTime(new Date());
+    }, 1000);
+    return () => clearInterval(timer);
+  }, []);
 
   useEffect(() => {
     // Simulate experience gain
@@ -48,14 +48,14 @@ export function GamingHUD() {
       setGameStats((prev) => ({
         ...prev,
         experience: Math.min(prev.experience + Math.random() * 5, prev.maxExperience),
-      }))
-    }, 3000)
-    return () => clearInterval(expTimer)
-  }, [])
+      }));
+    }, 3000);
+    return () => clearInterval(expTimer);
+  }, []);
 
   const dismissNotification = (id: number) => {
-    setNotifications((prev) => prev.filter((n) => n.id !== id))
-  }
+    setNotifications((prev) => prev.filter((n) => n.id !== id));
+  };
 
   return (
     <div className="gaming-hud fixed inset-0 pointer-events-none z-40">
@@ -289,5 +289,5 @@ export function GamingHUD() {
         </div>
       </div>
     </div>
-  )
+  );
 }

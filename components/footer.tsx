@@ -1,17 +1,17 @@
-"use client"
+"use client";
 
-import { Facebook, Instagram, Twitter, Youtube, Crown, Sword, Sparkles } from "lucide-react"
-import { navigationConfig } from "@/configs/navigation/menu"
+import { Crown, Sparkles } from "lucide-react";
+import { navigationConfig } from "@/configs/navigation/menu";
 
 export function Footer() {
   // Use navigation config
-  const { menus, social, legal, brand } = navigationConfig.footer
+  const { menus, social, legal, brand } = navigationConfig.footer;
   const scrollToSection = (sectionId: string) => {
-    const element = document.getElementById(sectionId)
+    const element = document.getElementById(sectionId);
     if (element) {
-      element.scrollIntoView({ behavior: "smooth" })
+      element.scrollIntoView({ behavior: "smooth" });
     }
-  }
+  };
 
   return (
     <footer className="nusantara-bg relative overflow-hidden border-t-4 border-orange-500/50">
@@ -160,5 +160,5 @@ export function Footer() {
         </div>
       </div>
     </footer>
-  )
+  );
 }

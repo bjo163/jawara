@@ -87,12 +87,19 @@ section {
 }
 
 .gaming-panel {
-  background: linear-gradient(145deg, rgba(15, 23, 42, 0.95) 0%, rgba(30, 41, 59, 0.9) 50%, rgba(15, 23, 42, 0.95) 100%);
+  background: linear-gradient(
+    145deg,
+    rgba(15, 23, 42, 0.95) 0%,
+    rgba(30, 41, 59, 0.9) 50%,
+    rgba(15, 23, 42, 0.95) 100%
+  );
   border: 2px solid rgba(249, 115, 22, 0.6);
   border-radius: 12px;
   backdrop-filter: blur(20px);
-  box-shadow: 0 0 30px rgba(249, 115, 22, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.1), inset 0 -1px 0
-    rgba(0, 0, 0, 0.2);
+  box-shadow:
+    0 0 30px rgba(249, 115, 22, 0.4),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.2);
   position: relative;
   overflow: hidden;
 }
@@ -620,7 +627,9 @@ section {
 ::-webkit-scrollbar-track {
   background: linear-gradient(180deg, #0f172a 0%, #1e293b 25%, #7c2d12 50%, #1e293b 75%, #0f172a 100%);
   border-radius: 8px;
-  box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.8), inset 0 0 40px rgba(124, 45, 18, 0.3);
+  box-shadow:
+    inset 0 0 20px rgba(0, 0, 0, 0.8),
+    inset 0 0 40px rgba(124, 45, 18, 0.3);
   border: 2px solid #7c2d12;
 }
 
@@ -628,13 +637,17 @@ section {
   background: linear-gradient(180deg, #dc2626 0%, #f97316 25%, #eab308 50%, #f97316 75%, #dc2626 100%);
   border-radius: 8px;
   border: 3px solid #0f172a;
-  box-shadow: 0 0 30px rgba(249, 115, 22, 0.8), inset 0 0 20px rgba(255, 255, 255, 0.2);
+  box-shadow:
+    0 0 30px rgba(249, 115, 22, 0.8),
+    inset 0 0 20px rgba(255, 255, 255, 0.2);
   position: relative;
 }
 
 ::-webkit-scrollbar-thumb:hover {
   background: linear-gradient(180deg, #b91c1c 0%, #ea580c 25%, #ca8a04 50%, #ea580c 75%, #b91c1c 100%);
-  box-shadow: 0 0 50px rgba(249, 115, 22, 1), inset 0 0 30px rgba(255, 255, 255, 0.3);
+  box-shadow:
+    0 0 50px rgba(249, 115, 22, 1),
+    inset 0 0 30px rgba(255, 255, 255, 0.3);
 }
 
 /* EPIC INDONESIAN WARRIOR ANIMATIONS */
@@ -728,25 +741,59 @@ section {
 
 .nusantara-bg {
   /* Floating Particles */
-  background: radial-gradient(circle at 20% 20%, rgba(220, 38, 38, 0.15) 1px, transparent 1px),
+  background:
+    radial-gradient(circle at 20% 20%, rgba(220, 38, 38, 0.15) 1px, transparent 1px),
     radial-gradient(circle at 80% 80%, rgba(249, 115, 22, 0.15) 1px, transparent 1px),
     radial-gradient(circle at 40% 60%, rgba(234, 179, 8, 0.1) 1px, transparent 1px),
     radial-gradient(circle at 70% 30%, rgba(34, 197, 94, 0.1) 1px, transparent 1px),
-    radial-gradient(circle at 30% 80%, rgba(59, 130, 246, 0.1) 1px, transparent 1px), /* Grid Pattern */
-    linear-gradient(rgba(249, 115, 22, 0.05) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(249, 115, 22, 0.05) 1px, transparent 1px), /* Main Gradient */
-    linear-gradient(135deg, #0f172a 0%, #1e293b 20%, #334155 40%, #1e293b 60%, #0f172a 80%, #7c2d12 100%);
-  background-size: 60px 60px, 80px 80px, 100px 100px, 120px 120px, 90px 90px, 40px 40px, 40px 40px, 100% 100%;
-  background-position: 0 0, 30px 30px, 50px 50px, 70px 70px, 20px 20px, 0 0, 0 0, 0 0;
+    radial-gradient(circle at 30% 80%, rgba(59, 130, 246, 0.1) 1px, transparent 1px),
+    /* Grid Pattern */ linear-gradient(rgba(249, 115, 22, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(249, 115, 22, 0.05) 1px, transparent 1px),
+    /* Main Gradient */
+      linear-gradient(135deg, #0f172a 0%, #1e293b 20%, #334155 40%, #1e293b 60%, #0f172a 80%, #7c2d12 100%);
+  background-size:
+    60px 60px,
+    80px 80px,
+    100px 100px,
+    120px 120px,
+    90px 90px,
+    40px 40px,
+    40px 40px,
+    100% 100%;
+  background-position:
+    0 0,
+    30px 30px,
+    50px 50px,
+    70px 70px,
+    20px 20px,
+    0 0,
+    0 0,
+    0 0;
   animation: nusantara-flow 20s linear infinite;
 }
 
 @keyframes nusantara-flow {
   0% {
-    background-position: 0 0, 30px 30px, 50px 50px, 70px 70px, 20px 20px, 0 0, 0 0, 0 0;
+    background-position:
+      0 0,
+      30px 30px,
+      50px 50px,
+      70px 70px,
+      20px 20px,
+      0 0,
+      0 0,
+      0 0;
   }
   100% {
-    background-position: 60px 60px, 110px 110px, 150px 150px, 190px 190px, 110px 110px, 40px 40px, 40px 40px, 0 0;
+    background-position:
+      60px 60px,
+      110px 110px,
+      150px 150px,
+      190px 190px,
+      110px 110px,
+      40px 40px,
+      40px 40px,
+      0 0;
   }
 }
 
@@ -767,8 +814,11 @@ section {
   position: relative;
   overflow: hidden;
   transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-  box-shadow: 0 0 30px rgba(220, 38, 38, 0.3), 0 0 60px rgba(249, 115, 22, 0.2), 0 20px 40px rgba(0, 0, 0, 0.4), inset 0
-    1px 0 rgba(255, 255, 255, 0.1);
+  box-shadow:
+    0 0 30px rgba(220, 38, 38, 0.3),
+    0 0 60px rgba(249, 115, 22, 0.2),
+    0 20px 40px rgba(0, 0, 0, 0.4),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
 }
 
 @media (min-width: 768px) {
@@ -811,8 +861,11 @@ section {
 .mega-hover:hover {
   transform: translateY(-8px) rotateX(4deg) rotateY(4deg) scale(1.01);
   border-color: rgba(249, 115, 22, 0.8);
-  box-shadow: 0 0 50px rgba(220, 38, 38, 0.5), 0 0 100px rgba(249, 115, 22, 0.4), 0 30px 60px rgba(0, 0, 0, 0.6), inset
-    0 2px 0 rgba(255, 255, 255, 0.3);
+  box-shadow:
+    0 0 50px rgba(220, 38, 38, 0.5),
+    0 0 100px rgba(249, 115, 22, 0.4),
+    0 30px 60px rgba(0, 0, 0, 0.6),
+    inset 0 2px 0 rgba(255, 255, 255, 0.3);
 }
 
 @media (min-width: 768px) {
@@ -830,7 +883,10 @@ section {
   position: relative;
   overflow: hidden;
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-  box-shadow: 0 0 30px rgba(220, 38, 38, 0.6), 0 10px 30px rgba(0, 0, 0, 0.4), inset 0 2px 0 rgba(255, 255, 255, 0.3),
+  box-shadow:
+    0 0 30px rgba(220, 38, 38, 0.6),
+    0 10px 30px rgba(0, 0, 0, 0.4),
+    inset 0 2px 0 rgba(255, 255, 255, 0.3),
     inset 0 -2px 0 rgba(0, 0, 0, 0.2);
 }
 
@@ -931,60 +987,103 @@ section {
 }
 
 .mega-glow {
-  box-shadow: 0 0 40px rgba(220, 38, 38, 0.5), 0 0 80px rgba(249, 115, 22, 0.3), 0 0 120px rgba(234, 179, 8, 0.2), 0 0
-    160px rgba(34, 197, 94, 0.1), 0 20px 50px rgba(0, 0, 0, 0.5);
+  box-shadow:
+    0 0 40px rgba(220, 38, 38, 0.5),
+    0 0 80px rgba(249, 115, 22, 0.3),
+    0 0 120px rgba(234, 179, 8, 0.2),
+    0 0 160px rgba(34, 197, 94, 0.1),
+    0 20px 50px rgba(0, 0, 0, 0.5);
   animation: mega-glow-pulse 6s ease-in-out infinite;
 }
 
 @keyframes mega-glow-pulse {
   0%,
   100% {
-    box-shadow: 0 0 40px rgba(220, 38, 38, 0.5), 0 0 80px rgba(249, 115, 22, 0.3), 0 0 120px rgba(234, 179, 8, 0.2), 0
-      20px 50px rgba(0, 0, 0, 0.5);
+    box-shadow:
+      0 0 40px rgba(220, 38, 38, 0.5),
+      0 0 80px rgba(249, 115, 22, 0.3),
+      0 0 120px rgba(234, 179, 8, 0.2),
+      0 20px 50px rgba(0, 0, 0, 0.5);
   }
   33% {
-    box-shadow: 0 0 60px rgba(249, 115, 22, 0.6), 0 0 100px rgba(234, 179, 8, 0.4), 0 0 140px rgba(34, 197, 94, 0.3), 0
-      25px 60px rgba(0, 0, 0, 0.6);
+    box-shadow:
+      0 0 60px rgba(249, 115, 22, 0.6),
+      0 0 100px rgba(234, 179, 8, 0.4),
+      0 0 140px rgba(34, 197, 94, 0.3),
+      0 25px 60px rgba(0, 0, 0, 0.6);
   }
   66% {
-    box-shadow: 0 0 50px rgba(234, 179, 8, 0.5), 0 0 90px rgba(34, 197, 94, 0.3), 0 0 130px rgba(59, 130, 246, 0.2), 0
-      22px 55px rgba(0, 0, 0, 0.55);
+    box-shadow:
+      0 0 50px rgba(234, 179, 8, 0.5),
+      0 0 90px rgba(34, 197, 94, 0.3),
+      0 0 130px rgba(59, 130, 246, 0.2),
+      0 22px 55px rgba(0, 0, 0, 0.55);
   }
 }
 
 .mega-grid {
-  background-image: linear-gradient(45deg, rgba(220, 38, 38, 0.15) 1px, transparent 1px),
+  background-image:
+    linear-gradient(45deg, rgba(220, 38, 38, 0.15) 1px, transparent 1px),
     linear-gradient(-45deg, rgba(249, 115, 22, 0.15) 1px, transparent 1px),
     linear-gradient(rgba(234, 179, 8, 0.1) 1px, transparent 1px),
     linear-gradient(90deg, rgba(234, 179, 8, 0.1) 1px, transparent 1px),
     radial-gradient(circle, rgba(220, 38, 38, 0.1) 1px, transparent 1px);
-  background-size: 60px 60px, 60px 60px, 40px 40px, 40px 40px, 20px 20px;
-  background-position: 0 0, 0 0, 0 0, 0 0, 0 0;
+  background-size:
+    60px 60px,
+    60px 60px,
+    40px 40px,
+    40px 40px,
+    20px 20px;
+  background-position:
+    0 0,
+    0 0,
+    0 0,
+    0 0,
+    0 0;
   animation: mega-grid-flow 25s linear infinite;
 }
 
 @keyframes mega-grid-flow {
   0% {
-    background-position: 0 0, 0 0, 0 0, 0 0, 0 0;
+    background-position:
+      0 0,
+      0 0,
+      0 0,
+      0 0,
+      0 0;
   }
   100% {
-    background-position: 60px 60px, -60px 60px, 40px 40px, 40px 40px, 20px 20px;
+    background-position:
+      60px 60px,
+      -60px 60px,
+      40px 40px,
+      40px 40px,
+      20px 20px;
   }
 }
 
 .nusantara-glow {
-  box-shadow: 0 0 50px rgba(220, 38, 38, 0.4), 0 0 100px rgba(249, 115, 22, 0.3), 0 0 150px rgba(234, 179, 8, 0.2), 0 0
-    200px rgba(34, 197, 94, 0.1);
+  box-shadow:
+    0 0 50px rgba(220, 38, 38, 0.4),
+    0 0 100px rgba(249, 115, 22, 0.3),
+    0 0 150px rgba(234, 179, 8, 0.2),
+    0 0 200px rgba(34, 197, 94, 0.1);
   animation: nusantara-glow-pulse 8s ease-in-out infinite;
 }
 
 @keyframes nusantara-glow-pulse {
   0%,
   100% {
-    box-shadow: 0 0 50px rgba(220, 38, 38, 0.4), 0 0 100px rgba(249, 115, 22, 0.3), 0 0 150px rgba(234, 179, 8, 0.2);
+    box-shadow:
+      0 0 50px rgba(220, 38, 38, 0.4),
+      0 0 100px rgba(249, 115, 22, 0.3),
+      0 0 150px rgba(234, 179, 8, 0.2);
   }
   50% {
-    box-shadow: 0 0 80px rgba(220, 38, 38, 0.6), 0 0 140px rgba(249, 115, 22, 0.5), 0 0 200px rgba(234, 179, 8, 0.4);
+    box-shadow:
+      0 0 80px rgba(220, 38, 38, 0.6),
+      0 0 140px rgba(249, 115, 22, 0.5),
+      0 0 200px rgba(234, 179, 8, 0.4);
   }
 }
 

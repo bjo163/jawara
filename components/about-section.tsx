@@ -1,7 +1,7 @@
-"use client"
+"use client";
 
-import { SectionTitle } from "@/components/section-title"
-import { Target, Eye, Award, Users } from "lucide-react"
+import { SectionTitle } from "@/components/section-title";
+import { Target, Eye, Award, Users } from "lucide-react";
 
 export function AboutSection() {
   return (
@@ -129,5 +129,5 @@ export function AboutSection() {
         </div>
       </div>
     </section>
-  )
+  );
 }

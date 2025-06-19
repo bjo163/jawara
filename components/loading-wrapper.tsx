@@ -1,25 +1,25 @@
-"use client"
+"use client";
 
-import type React from "react"
+import type React from "react";
 
-import { useState, useEffect } from "react"
-import { Wifi, Sparkles } from "lucide-react"
+import { useState, useEffect } from "react";
+import { Wifi, Sparkles } from "lucide-react";
 
 interface LoadingWrapperProps {
-  children: React.ReactNode
-  delay?: number
+  children: React.ReactNode;
+  delay?: number;
 }
 
 export function LoadingWrapper({ children, delay = 500 }: LoadingWrapperProps) {
-  const [isLoading, setIsLoading] = useState(true)
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     const timer = setTimeout(() => {
-      setIsLoading(false)
-    }, delay)
+      setIsLoading(false);
+    }, delay);
 
-    return () => clearTimeout(timer)
-  }, [delay])
+    return () => clearTimeout(timer);
+  }, [delay]);
 
   if (isLoading) {
     return (
@@ -39,8 +39,8 @@ export function LoadingWrapper({ children, delay = 500 }: LoadingWrapperProps) {
 
         <p className="jawara-text text-gray-400 text-lg font-semibold">Memuat konten Jawara-Net...</p>
       </div>
-    )
+    );
   }
 
-  return <>{children}</>
+  return <>{children}</>;
 }

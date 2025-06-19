@@ -1,19 +1,19 @@
-"use client"
+"use client";
 
-import { Button } from "@/components/ui/button"
-import { Check, Sparkles, Crown } from "lucide-react"
+import { Button } from "@/components/ui/button";
+import { Check, Sparkles, Crown } from "lucide-react";
 
 interface ProductCardProps {
-  name: string
-  icon: string
-  speed: string
-  quota: string
-  price: string
-  originalPrice?: string
-  features: string[]
-  popular?: boolean
-  color: "orange" | "blue" | "green" | "purple"
-  character?: string
+  name: string;
+  icon: string;
+  speed: string;
+  quota: string;
+  price: string;
+  originalPrice?: string;
+  features: string[];
+  popular?: boolean;
+  color: "orange" | "blue" | "green" | "purple";
+  character?: string;
 }
 
 export function ProductCard({
@@ -49,9 +49,9 @@ export function ProductCard({
       text: "text-purple-400",
       glow: "shadow-purple-500/50",
     },
-  }
+  };
 
-  const colors = colorClasses[color]
+  const colors = colorClasses[color];
 
   return (
     <div
@@ -117,8 +117,8 @@ export function ProductCard({
         <Button
           className={`w-full mega-button bg-gradient-to-r ${colors.gradient} text-white font-black py-4 text-lg mega-text mega-hover flex items-center justify-center space-x-3`}
           onClick={() => {
-            const element = document.getElementById("contact")
-            if (element) element.scrollIntoView({ behavior: "smooth" })
+            const element = document.getElementById("contact");
+            if (element) element.scrollIntoView({ behavior: "smooth" });
           }}
         >
           <Sparkles className="h-5 w-5" />
@@ -137,5 +137,5 @@ export function ProductCard({
       <div className="absolute top-4 right-4 text-2xl particle-float opacity-60">✨</div>
       <div className="absolute bottom-4 left-4 text-xl indonesian-wave opacity-60">⚡</div>
     </div>
-  )
+  );
 }

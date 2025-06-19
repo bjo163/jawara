@@ -1,7 +1,7 @@
-"use client"
+"use client";
 
-import { SectionTitle } from "@/components/section-title"
-import { TestimonialCard } from "@/components/testimonial-card"
+import { SectionTitle } from "@/components/section-title";
+import { TestimonialCard } from "@/components/testimonial-card";
 
 export function TestimonialsSection() {
   const testimonials = [
@@ -65,7 +65,7 @@ export function TestimonialsSection() {
         "Anak-anak sekolah online lancar, suami WFH juga gak ada gangguan. Netflix keluarga juga tanpa hambatan. Satu internet buat semua kebutuhan keluarga! 👨‍👩‍👧‍👦💖",
       package: "Mandor Sakti 25 Mbps",
     },
-  ]
+  ];
 
   return (
     <section id="testimonials" className="py-20 nusantara-bg relative overflow-hidden">
@@ -117,8 +117,8 @@ export function TestimonialsSection() {
             </p>
             <button
               onClick={() => {
-                const element = document.getElementById("packages")
-                if (element) element.scrollIntoView({ behavior: "smooth" })
+                const element = document.getElementById("packages");
+                if (element) element.scrollIntoView({ behavior: "smooth" });
               }}
               className="mega-button px-12 py-6 text-2xl font-black text-white mega-text mega-hover"
             >
@@ -128,5 +128,5 @@ export function TestimonialsSection() {
         </div>
       </div>
     </section>
-  )
+  );
 }

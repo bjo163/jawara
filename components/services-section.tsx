@@ -1,8 +1,8 @@
-"use client"
+"use client";
 
-import { SectionTitle } from "@/components/section-title"
-import { ServiceCard } from "@/components/service-card"
-import { Home, Building, Network, Wrench, Headphones } from "lucide-react"
+import { SectionTitle } from "@/components/section-title";
+import { ServiceCard } from "@/components/service-card";
+import { Home, Building, Network, Wrench, Headphones } from "lucide-react";
 
 export function ServicesSection() {
   const services = [
@@ -46,7 +46,7 @@ export function ServicesSection() {
       features: ["Respon kilat", "Bantuan jarak jauh", "Servis di tempat", "Jaga-jaga terus"],
       color: "pink",
     },
-  ]
+  ];
 
   return (
     <section id="services" className="py-20 nusantara-bg relative overflow-hidden">
@@ -79,8 +79,8 @@ export function ServicesSection() {
             </p>
             <button
               onClick={() => {
-                const element = document.getElementById("contact")
-                if (element) element.scrollIntoView({ behavior: "smooth" })
+                const element = document.getElementById("contact");
+                if (element) element.scrollIntoView({ behavior: "smooth" });
               }}
               className="mega-button px-12 py-6 text-2xl font-black text-white mega-text mega-hover"
             >
@@ -90,5 +90,5 @@ export function ServicesSection() {
         </div>
       </div>
     </section>
-  )
+  );
 }

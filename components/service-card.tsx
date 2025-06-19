@@ -1,14 +1,14 @@
-"use client"
+"use client";
 
-import type { LucideIcon } from "lucide-react"
-import { Check } from "lucide-react"
+import type { LucideIcon } from "lucide-react";
+import { Check } from "lucide-react";
 
 interface ServiceCardProps {
-  icon: LucideIcon
-  title: string
-  description: string
-  features: string[]
-  color: "orange" | "blue" | "green" | "purple" | "pink"
+  icon: LucideIcon;
+  title: string;
+  description: string;
+  features: string[];
+  color: "orange" | "blue" | "green" | "purple" | "pink";
 }
 
 export function ServiceCard({ icon: Icon, title, description, features, color }: ServiceCardProps) {
@@ -33,9 +33,9 @@ export function ServiceCard({ icon: Icon, title, description, features, color }:
       gradient: "from-pink-500 via-rose-500 to-red-500",
       text: "text-pink-400",
     },
-  }
+  };
 
-  const colors = colorClasses[color]
+  const colors = colorClasses[color];
 
   return (
     <div className="mega-card p-8 mega-hover mega-glow">
@@ -60,5 +60,5 @@ export function ServiceCard({ icon: Icon, title, description, features, color }:
         ))}
       </ul>
     </div>
-  )
+  );
 }

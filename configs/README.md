@@ -1,6 +1,8 @@
 # 🏛️ JAWARA-NET CONFIGURATION CENTER
 
-Pusat konfigurasi tersentralisasi untuk seluruh aplikasi Jawara-Net. Semua content, settings, dan data aplikasi diorganisir di sini untuk memudahkan maintenance dan konsistensi.
+Pusat konfigurasi tersentralisasi untuk seluruh aplikasi Jawara-Net. Semua
+content, settings, dan data aplikasi diorganisir di sini untuk memudahkan
+maintenance dan konsistensi.
 
 ## 📁 Struktur Folder
 
@@ -37,6 +39,7 @@ configs/
 ## 🎯 Tujuan Centralisasi
 
 ### ✅ Keuntungan:
+
 - **Konsistensi**: Semua data terpusat, tidak tersebar
 - **Maintenance**: Update content tanpa edit komponen
 - **Scalability**: Mudah menambah bahasa/regional
@@ -55,7 +58,7 @@ import { contentConfig } from '@/configs/content'
 const MyComponent = () => {
   const { brand } = siteConfig
   const { navbar } = navigationConfig
-  
+
   return (
     <header>
       <h1>{brand.name}</h1>
@@ -87,7 +90,7 @@ const MyComponent = () => {
 ## 🚀 Next Steps
 
 1. Mulai migration dari loading screen (Task #2)
-2. Lanjut dengan navigation (Task #3) 
+2. Lanjut dengan navigation (Task #3)
 3. Migrate packages data (Task #4)
 4. Update semua import di komponen
 5. Test konsistensi data
@@ -95,4 +98,5 @@ const MyComponent = () => {
 
 ---
 
-**🏛️ Jawara-Net Configuration Center** - Membangun fondasi yang kuat untuk Internet Nusantara Raya! 🇮🇩
+**🏛️ Jawara-Net Configuration Center** - Membangun fondasi yang kuat untuk
+Internet Nusantara Raya! 🇮🇩

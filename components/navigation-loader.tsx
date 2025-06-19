@@ -1,34 +1,34 @@
-"use client"
+"use client";
 
-import { useEffect, useState } from "react"
-import { Sparkles, Crown, Sword } from "lucide-react"
+import { useEffect, useState } from "react";
+import { Sparkles, Crown, Sword } from "lucide-react";
 
 interface NavigationLoaderProps {
-  isVisible: boolean
-  targetSection: string
+  isVisible: boolean;
+  targetSection: string;
 }
 
 export function NavigationLoader({ isVisible, targetSection }: NavigationLoaderProps) {
-  const [progress, setProgress] = useState(0)
+  const [progress, setProgress] = useState(0);
 
   useEffect(() => {
     if (isVisible) {
-      setProgress(0)
+      setProgress(0);
       const interval = setInterval(() => {
         setProgress((prev) => {
           if (prev >= 100) {
-            clearInterval(interval)
-            return 100
+            clearInterval(interval);
+            return 100;
           }
-          return prev + Math.random() * 25
-        })
-      }, 50)
+          return prev + Math.random() * 25;
+        });
+      }, 50);
 
-      return () => clearInterval(interval)
+      return () => clearInterval(interval);
     }
-  }, [isVisible])
+  }, [isVisible]);
 
-  if (!isVisible) return null
+  if (!isVisible) return null;
 
   const sectionIcons: { [key: string]: string } = {
     hero: "🏠",
@@ -39,7 +39,7 @@ export function NavigationLoader({ isVisible, targetSection }: NavigationLoaderP
     contact: "📞",
     coverage: "🗺️",
     faq: "❓",
-  }
+  };
 
   const sectionNames: { [key: string]: string } = {
     hero: "Beranda",
@@ -50,7 +50,7 @@ export function NavigationLoader({ isVisible, targetSection }: NavigationLoaderP
     contact: "Kontak",
     coverage: "Area Coverage",
     faq: "FAQ",
-  }
+  };
 
   return (
     <div className="navigation-loader nusantara-bg flex items-center justify-center">
@@ -106,5 +106,5 @@ export function NavigationLoader({ isVisible, targetSection }: NavigationLoaderP
         </div>
       </div>
     </div>
-  )
+  );
 }

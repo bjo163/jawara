@@ -1,23 +1,23 @@
-"use client"
+"use client";
 
-import { useState } from "react"
-import { Smartphone, Laptop, Tv, Monitor, Gamepad2, Calculator, CheckCircle } from "lucide-react"
-import { Button } from "@/components/ui/button"
+import { useState } from "react";
+import { Smartphone, Laptop, Tv, Monitor, Gamepad2, Calculator, CheckCircle } from "lucide-react";
+import { Button } from "@/components/ui/button";
 
 interface DeviceCount {
-  smartphone: number
-  laptop: number
-  smartTv: number
-  desktop: number
-  gaming: number
+  smartphone: number;
+  laptop: number;
+  smartTv: number;
+  desktop: number;
+  gaming: number;
 }
 
 interface PackageRecommendation {
-  name: string
-  speed: string
-  price: string
-  description: string
-  suitable: boolean
+  name: string;
+  speed: string;
+  price: string;
+  description: string;
+  suitable: boolean;
 }
 
 export function InternetCalculator() {
@@ -27,10 +27,10 @@ export function InternetCalculator() {
     smartTv: 0,
     desktop: 0,
     gaming: 0,
-  })
+  });
 
-  const [recommendation, setRecommendation] = useState<PackageRecommendation | null>(null)
-  const [showResult, setShowResult] = useState(false)
+  const [recommendation, setRecommendation] = useState<PackageRecommendation | null>(null);
+  const [showResult, setShowResult] = useState(false);
 
   const deviceConfigs = [
     {
@@ -68,7 +68,7 @@ export function InternetCalculator() {
       bandwidth: 10, // Mbps per device
       color: "from-red-500 to-pink-500",
     },
-  ]
+  ];
 
   const packages = [
     {
@@ -103,28 +103,28 @@ export function InternetCalculator() {
       maxBandwidth: 999,
       description: "Ultimate package untuk power user dan gaming pro",
     },
-  ]
+  ];
 
   const updateDeviceCount = (device: keyof DeviceCount, value: number) => {
     setDevices((prev) => ({
       ...prev,
       [device]: Math.max(0, Math.min(10, value)),
-    }))
-  }
+    }));
+  };
 
   const calculateBandwidth = () => {
-    let totalBandwidth = 0
+    let totalBandwidth = 0;
     deviceConfigs.forEach((config) => {
-      totalBandwidth += devices[config.key] * config.bandwidth
-    })
-    return totalBandwidth
-  }
+      totalBandwidth += devices[config.key] * config.bandwidth;
+    });
+    return totalBandwidth;
+  };
 
   const calculateRecommendation = () => {
-    const totalBandwidth = calculateBandwidth()
+    const totalBandwidth = calculateBandwidth();
     const recommendedPackage = packages.find(
-      (pkg) => totalBandwidth >= pkg.minBandwidth && totalBandwidth <= pkg.maxBandwidth,
-    )
+      (pkg) => totalBandwidth >= pkg.minBandwidth && totalBandwidth <= pkg.maxBandwidth
+    );
 
     if (recommendedPackage) {
       setRecommendation({
@@ -133,7 +133,7 @@ export function InternetCalculator() {
         price: recommendedPackage.price,
         description: recommendedPackage.description,
         suitable: true,
-      })
+      });
     } else {
       setRecommendation({
         name: "Sultan",
@@ -141,10 +141,10 @@ export function InternetCalculator() {
         price: "Rp300.000",
         description: "Paket terbaik untuk kebutuhan internet super tinggi",
         suitable: true,
-      })
+      });
     }
-    setShowResult(true)
-  }
+    setShowResult(true);
+  };
 
   return (
     <div className="grid lg:grid-cols-2 gap-12 max-w-7xl mx-auto">
@@ -160,7 +160,7 @@ export function InternetCalculator() {
 
         <div className="space-y-8">
           {deviceConfigs.map((config) => {
-            const Icon = config.icon
+            const Icon = config.icon;
             return (
               <div key={config.key} className="mega-card p-6 mega-hover">
                 <div className="flex items-center justify-between mb-4">
@@ -205,7 +205,7 @@ export function InternetCalculator() {
                   </button>
                 </div>
               </div>
-            )
+            );
           })}
         </div>
 
@@ -270,8 +270,8 @@ export function InternetCalculator() {
 
                 <Button
                   onClick={() => {
-                    const element = document.getElementById("contact")
-                    if (element) element.scrollIntoView({ behavior: "smooth" })
+                    const element = document.getElementById("contact");
+                    if (element) element.scrollIntoView({ behavior: "smooth" });
                   }}
                   className="w-full mega-button px-8 py-6 text-2xl font-black text-white mega-text mega-hover"
                 >
@@ -284,11 +284,11 @@ export function InternetCalculator() {
           <div className="text-center py-20">
             <div className="text-8xl mb-8 garuda-soar opacity-50">🎯</div>
             <p className="mega-text text-gray-400 text-xl">
-              Klik tombol "Hitung Kebutuhan Internet" untuk melihat rekomendasi paket yang cocok untuk kamu!
+              Klik tombol &quot;Hitung Kebutuhan Internet&quot; untuk melihat rekomendasi paket yang cocok untuk kamu!
             </p>
           </div>
         )}
       </div>
     </div>
-  )
+  );
 }

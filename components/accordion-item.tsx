@@ -1,15 +1,15 @@
-"use client"
+"use client";
 
-import { useState } from "react"
-import { ChevronDown } from "lucide-react"
+import { useState } from "react";
+import { ChevronDown } from "lucide-react";
 
 interface AccordionItemProps {
-  question: string
-  answer: string
+  question: string;
+  answer: string;
 }
 
 export function AccordionItem({ question, answer }: AccordionItemProps) {
-  const [isOpen, setIsOpen] = useState(false)
+  const [isOpen, setIsOpen] = useState(false);
 
   return (
     <div className="mega-card overflow-hidden mega-hover">
@@ -33,5 +33,5 @@ export function AccordionItem({ question, answer }: AccordionItemProps) {
         </div>
       )}
     </div>
-  )
+  );
 }

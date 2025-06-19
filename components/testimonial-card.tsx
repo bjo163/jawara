@@ -1,16 +1,16 @@
-"use client"
+"use client";
 
-import { Star } from "lucide-react"
-import Image from "next/image"
+import { Star } from "lucide-react";
+import Image from "next/image";
 
 interface TestimonialCardProps {
-  name: string
-  role: string
-  location: string
-  image: string
-  rating: number
-  comment: string
-  packageName: string
+  name: string;
+  role: string;
+  location: string;
+  image: string;
+  rating: number;
+  comment: string;
+  packageName: string;
 }
 
 export function TestimonialCard({ name, role, location, image, rating, comment, packageName }: TestimonialCardProps) {
@@ -45,7 +45,7 @@ export function TestimonialCard({ name, role, location, image, rating, comment, 
       </div>
 
       {/* Comment */}
-      <p className="mega-text text-gray-300 mb-6 leading-relaxed text-lg">"{comment}"</p>
+      <p className="mega-text text-gray-300 mb-6 leading-relaxed text-lg">&quot;{comment}&quot;</p>
 
       {/* Package */}
       <div className="bg-gradient-to-r from-orange-500/20 to-red-500/20 px-4 py-3 rounded-xl border border-orange-500/30">
@@ -53,5 +53,5 @@ export function TestimonialCard({ name, role, location, image, rating, comment, 
         <span className="mega-text font-black text-orange-400">{packageName}</span>
       </div>
     </div>
-  )
+  );
 }

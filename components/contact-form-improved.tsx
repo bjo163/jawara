@@ -1,14 +1,14 @@
-"use client"
+"use client";
 
-import type React from "react"
+import type React from "react";
 
-import { useState } from "react"
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
-import { Textarea } from "@/components/ui/textarea"
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
-import { Sparkles, Send } from "lucide-react"
+import { useState } from "react";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Textarea } from "@/components/ui/textarea";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { Sparkles, Send } from "lucide-react";
 
 export function ContactFormImproved() {
   const [formData, setFormData] = useState({
@@ -16,17 +16,17 @@ export function ContactFormImproved() {
     whatsapp: "",
     jenispesan: "",
     pesan: "",
-  })
+  });
 
   const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault()
-    console.log("Form submitted:", formData)
-    alert("Pesan berhasil dikirim! Tim kami akan segera menghubungi kamu! 🦅")
-  }
+    e.preventDefault();
+    console.log("Form submitted:", formData);
+    alert("Pesan berhasil dikirim! Tim kami akan segera menghubungi kamu! 🦅");
+  };
 
   const handleChange = (field: string, value: string) => {
-    setFormData((prev) => ({ ...prev, [field]: value }))
-  }
+    setFormData((prev) => ({ ...prev, [field]: value }));
+  };
 
   return (
     <div className="mega-card p-10 mega-hover mega-glow nusantara-glow">
@@ -133,5 +133,5 @@ export function ContactFormImproved() {
         </div>
       </div>
     </div>
-  )
+  );
 }

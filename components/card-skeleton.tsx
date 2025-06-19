@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 export function CardSkeleton() {
   return (
@@ -15,5 +15,5 @@ export function CardSkeleton() {
         </div>
       </div>
     </div>
-  )
+  );
 }

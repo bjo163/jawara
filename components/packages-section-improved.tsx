@@ -1,13 +1,13 @@
-"use client"
+"use client";
 
-import { useState } from "react"
-import { SectionTitle } from "@/components/section-title"
-import { ProductCard } from "@/components/product-card"
-import { Button } from "@/components/ui/button"
-import { Sparkles, Crown, Sword, Check } from "lucide-react"
+import { useState } from "react";
+import { SectionTitle } from "@/components/section-title";
+import { ProductCard } from "@/components/product-card";
+import { Button } from "@/components/ui/button";
+import { Sparkles, Crown, Sword, Check } from "lucide-react";
 
 export function PackagesSectionImproved() {
-  const [activeCategory, setActiveCategory] = useState("rumah")
+  const [activeCategory, setActiveCategory] = useState("rumah");
 
   const packages = {
     rumah: [
@@ -123,7 +123,7 @@ export function PackagesSectionImproved() {
         character: "🐉",
       },
     ],
-  }
+  };
 
   return (
     <section id="packages" className="py-24 nusantara-bg relative overflow-hidden">
@@ -216,8 +216,8 @@ export function PackagesSectionImproved() {
 
           <button
             onClick={() => {
-              const element = document.getElementById("contact")
-              if (element) element.scrollIntoView({ behavior: "smooth" })
+              const element = document.getElementById("contact");
+              if (element) element.scrollIntoView({ behavior: "smooth" });
             }}
             className="mega-button px-12 py-6 text-2xl font-black text-white mega-text mega-hover flex items-center space-x-4 mx-auto"
           >
@@ -228,5 +228,5 @@ export function PackagesSectionImproved() {
         </div>
       </div>
     </section>
-  )
+  );
 }

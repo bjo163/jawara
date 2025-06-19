@@ -1,18 +1,18 @@
-"use client"
-import { useEffect, useState } from "react"
-import { HeroSlideshow } from "@/components/hero-slideshow"
-import { Zap, Shield, Globe } from "lucide-react"
+"use client";
+import { useEffect, useState } from "react";
+import { HeroSlideshow } from "@/components/hero-slideshow";
+import { Zap, Shield, Globe } from "lucide-react";
 
 export function HeroSection() {
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 })
+  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
 
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
-      setMousePosition({ x: e.clientX, y: e.clientY })
-    }
-    window.addEventListener("mousemove", handleMouseMove)
-    return () => window.removeEventListener("mousemove", handleMouseMove)
-  }, [])
+      setMousePosition({ x: e.clientX, y: e.clientY });
+    };
+    window.addEventListener("mousemove", handleMouseMove);
+    return () => window.removeEventListener("mousemove", handleMouseMove);
+  }, []);
 
   return (
     <section
@@ -177,5 +177,5 @@ export function HeroSection() {
         </div>
       </div>
     </section>
-  )
+  );
 }

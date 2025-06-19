@@ -1,20 +1,20 @@
-"use client"
+"use client";
 
-import { useEffect, useState } from "react"
+import { useEffect, useState } from "react";
 
 export function ProgressBar() {
-  const [isVisible, setIsVisible] = useState(false)
+  const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
-    setIsVisible(true)
+    setIsVisible(true);
     const timer = setTimeout(() => {
-      setIsVisible(false)
-    }, 2000)
+      setIsVisible(false);
+    }, 2000);
 
-    return () => clearTimeout(timer)
-  }, [])
+    return () => clearTimeout(timer);
+  }, []);
 
-  if (!isVisible) return null
+  if (!isVisible) return null;
 
-  return <div className="jawara-progress-bar"></div>
+  return <div className="jawara-progress-bar"></div>;
 }

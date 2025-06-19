@@ -1,7 +1,7 @@
-"use client"
+"use client";
 
-import { SectionTitle } from "@/components/section-title"
-import { MapPin, CheckCircle, Clock, Crown, Sparkles, Sword } from "lucide-react"
+import { SectionTitle } from "@/components/section-title";
+import { MapPin, CheckCircle, Clock, Crown, Sparkles, Sword } from "lucide-react";
 
 export function CoverageSection() {
   const coverageAreas = [
@@ -85,7 +85,7 @@ export function CoverageSection() {
       icon: "⛵",
       color: "blue",
     },
-  ]
+  ];
 
   const colorClasses = {
     orange: {
@@ -136,7 +136,7 @@ export function CoverageSection() {
       border: "border-amber-500/30",
       bg: "bg-amber-500/20",
     },
-  }
+  };
 
   return (
     <section id="coverage" className="py-24 nusantara-bg relative overflow-hidden">
@@ -153,7 +153,7 @@ export function CoverageSection() {
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
           {coverageAreas.map((area, index) => {
-            const colors = colorClasses[area.color as keyof typeof colorClasses]
+            const colors = colorClasses[area.color as keyof typeof colorClasses];
 
             return (
               <div
@@ -227,8 +227,8 @@ export function CoverageSection() {
                       </div>
                       <button
                         onClick={() => {
-                          const element = document.getElementById("contact")
-                          if (element) element.scrollIntoView({ behavior: "smooth" })
+                          const element = document.getElementById("contact");
+                          if (element) element.scrollIntoView({ behavior: "smooth" });
                         }}
                         className={`w-full mega-button bg-gradient-to-r ${colors.gradient} text-white font-bold mega-text py-3 mega-hover flex items-center justify-center space-x-2`}
                       >
@@ -244,8 +244,8 @@ export function CoverageSection() {
                       </div>
                       <button
                         onClick={() => {
-                          const element = document.getElementById("contact")
-                          if (element) element.scrollIntoView({ behavior: "smooth" })
+                          const element = document.getElementById("contact");
+                          if (element) element.scrollIntoView({ behavior: "smooth" });
                         }}
                         className="w-full mega-button bg-gradient-to-r from-orange-500 to-red-500 text-white font-bold mega-text py-3 mega-hover flex items-center justify-center space-x-2"
                       >
@@ -256,7 +256,7 @@ export function CoverageSection() {
                   )}
                 </div>
               </div>
-            )
+            );
           })}
         </div>
 
@@ -306,8 +306,8 @@ export function CoverageSection() {
               <div className="flex flex-col sm:flex-row gap-8 justify-center">
                 <button
                   onClick={() => {
-                    const element = document.getElementById("contact")
-                    if (element) element.scrollIntoView({ behavior: "smooth" })
+                    const element = document.getElementById("contact");
+                    if (element) element.scrollIntoView({ behavior: "smooth" });
                   }}
                   className="mega-button px-12 py-6 text-2xl font-black text-white mega-text mega-hover flex items-center space-x-4"
                 >
@@ -328,5 +328,5 @@ export function CoverageSection() {
         </div>
       </div>
     </section>
-  )
+  );
 }

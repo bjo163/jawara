@@ -1,12 +1,12 @@
-"use client"
+"use client";
 
-import { useEffect, useState } from "react"
-import { ArrowRight, Sparkles, Sword, Crown, Play, Pause } from "lucide-react"
+import { useEffect, useState } from "react";
+import { ArrowRight, Sparkles, Sword, Crown, Play, Pause } from "lucide-react";
 
 export function HeroSectionImproved() {
-  const [currentSlide, setCurrentSlide] = useState(0)
-  const [isAutoPlaying, setIsAutoPlaying] = useState(true)
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 })
+  const [currentSlide, setCurrentSlide] = useState(0);
+  const [isAutoPlaying, setIsAutoPlaying] = useState(true);
+  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
 
   // SIMPLIFIED: Hanya 2 slides utama
   const slides = [
@@ -26,33 +26,33 @@ export function HeroSectionImproved() {
       character: "🏛️",
       bgGradient: "from-blue-500 via-cyan-500 to-teal-500",
     },
-  ]
+  ];
 
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
-      setMousePosition({ x: e.clientX, y: e.clientY })
-    }
-    window.addEventListener("mousemove", handleMouseMove)
-    return () => window.removeEventListener("mousemove", handleMouseMove)
-  }, [])
+      setMousePosition({ x: e.clientX, y: e.clientY });
+    };
+    window.addEventListener("mousemove", handleMouseMove);
+    return () => window.removeEventListener("mousemove", handleMouseMove);
+  }, []);
 
   useEffect(() => {
     if (isAutoPlaying) {
       const interval = setInterval(() => {
-        setCurrentSlide((prev) => (prev + 1) % slides.length)
-      }, 6000) // Slower transition
-      return () => clearInterval(interval)
+        setCurrentSlide((prev) => (prev + 1) % slides.length);
+      }, 6000); // Slower transition
+      return () => clearInterval(interval);
     }
-  }, [isAutoPlaying, slides.length])
+  }, [isAutoPlaying, slides.length]);
 
-  const currentSlideData = slides[currentSlide]
+  const currentSlideData = slides[currentSlide];
 
   const scrollToSection = (sectionId: string) => {
-    const element = document.getElementById(sectionId)
+    const element = document.getElementById(sectionId);
     if (element) {
-      element.scrollIntoView({ behavior: "smooth" })
+      element.scrollIntoView({ behavior: "smooth" });
     }
-  }
+  };
 
   return (
     <section
@@ -173,5 +173,5 @@ export function HeroSectionImproved() {
         </div>
       </div>
     </section>
-  )
+  );
 }

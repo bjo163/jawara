@@ -1,7 +1,7 @@
-"use client"
+"use client";
 
-import { SectionTitle } from "@/components/section-title"
-import { AccordionItem } from "@/components/accordion-item"
+import { SectionTitle } from "@/components/section-title";
+import { AccordionItem } from "@/components/accordion-item";
 
 export function FaqSection() {
   const faqs = [
@@ -45,7 +45,7 @@ export function FaqSection() {
       answer:
         "Tentu bisa! Upgrade paket bisa langsung efektif, tinggal bayar selisih harganya. Untuk downgrade, berlaku mulai periode billing berikutnya. Gak ada biaya admin untuk perubahan paket.",
     },
-  ]
+  ];
 
   return (
     <section id="faq" className="py-20 nusantara-bg relative overflow-hidden">
@@ -78,8 +78,8 @@ export function FaqSection() {
             </p>
             <button
               onClick={() => {
-                const element = document.getElementById("contact")
-                if (element) element.scrollIntoView({ behavior: "smooth" })
+                const element = document.getElementById("contact");
+                if (element) element.scrollIntoView({ behavior: "smooth" });
               }}
               className="mega-button px-12 py-6 text-2xl font-black text-white mega-text mega-hover"
             >
@@ -89,5 +89,5 @@ export function FaqSection() {
         </div>
       </div>
     </section>
-  )
+  );
 }

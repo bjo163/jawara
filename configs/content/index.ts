@@ -1,19 +1,19 @@
 /**
  * CONTENT CONFIGURATION
  * ====================
- * 
+ *
  * Semua content text, data, dan media untuk aplikasi Jawara-Net.
  * Organized by feature/section untuk memudahkan maintenance.
  */
 
 // Import loading configuration
-export * from './loading'
-export { loadingConfig } from './loading'
+export * from "./loading";
+export { loadingConfig } from "./loading";
 
 // Placeholder exports - akan diisi setelah migration content selesai
 export const contentConfig = {
   loading: {}, // loading.ts - ✅ COMPLETED
-  packages: {}, // packages.ts  
+  packages: {}, // packages.ts
   contact: {}, // contact.ts
   testimonials: {}, // testimonials.ts
   services: {}, // services.ts
@@ -21,6 +21,6 @@ export const contentConfig = {
   faq: {}, // faq.ts
   hero: {}, // hero.ts
   about: {}, // about.ts
-}
+};
 
-export type ContentConfigType = typeof contentConfig
+export type ContentConfigType = typeof contentConfig;

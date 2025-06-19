@@ -1,11 +1,11 @@
-"use client"
+"use client";
 
-import { Sparkles, Crown, Sword } from "lucide-react"
+import { Sparkles, Crown, Sword } from "lucide-react";
 
 interface SectionTitleProps {
-  title: string
-  subtitle: string
-  centered?: boolean
+  title: string;
+  subtitle: string;
+  centered?: boolean;
 }
 
 export function SectionTitle({ title, subtitle, centered = true }: SectionTitleProps) {
@@ -31,5 +31,5 @@ export function SectionTitle({ title, subtitle, centered = true }: SectionTitleP
         </div>
       </div>
     </div>
-  )
+  );
 }

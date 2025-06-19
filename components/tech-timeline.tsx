@@ -1,20 +1,20 @@
-"use client"
+"use client";
 
-import type { LucideIcon } from "lucide-react"
-import { Check, Sparkles, Sword } from "lucide-react"
+import type { LucideIcon } from "lucide-react";
+import { Check, Sparkles, Sword } from "lucide-react";
 
 interface TimelineStep {
-  icon: LucideIcon
-  title: string
-  description: string
-  details: string[]
-  color: "orange" | "blue" | "green" | "purple"
-  character: string
-  epicTitle: string
+  icon: LucideIcon;
+  title: string;
+  description: string;
+  details: string[];
+  color: "orange" | "blue" | "green" | "purple";
+  character: string;
+  epicTitle: string;
 }
 
 interface TechTimelineProps {
-  steps: TimelineStep[]
+  steps: TimelineStep[];
 }
 
 export function TechTimeline({ steps }: TechTimelineProps) {
@@ -43,7 +43,7 @@ export function TechTimeline({ steps }: TechTimelineProps) {
       bg: "bg-purple-500/20",
       border: "border-purple-500/30",
     },
-  }
+  };
 
   return (
     <div className="relative">
@@ -52,9 +52,9 @@ export function TechTimeline({ steps }: TechTimelineProps) {
 
       <div className="space-y-16">
         {steps.map((step, index) => {
-          const Icon = step.icon
-          const colors = colorClasses[step.color]
-          const isEven = index % 2 === 0
+          const Icon = step.icon;
+          const colors = colorClasses[step.color];
+          const isEven = index % 2 === 0;
 
           return (
             <div
@@ -126,9 +126,9 @@ export function TechTimeline({ steps }: TechTimelineProps) {
               {/* SPACER FOR OPPOSITE SIDE */}
               <div className="hidden md:block w-5/12"></div>
             </div>
-          )
+          );
         })}
       </div>
     </div>
-  )
+  );
 }

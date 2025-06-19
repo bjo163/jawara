@@ -1,38 +1,38 @@
-"use client"
+"use client";
 
-import type React from "react"
+import type React from "react";
 
-import { useEffect, useRef, useState } from "react"
+import { useEffect, useRef, useState } from "react";
 
 interface SectionWrapperProps {
-  children: React.ReactNode
-  className?: string
-  id?: string
-  background?: "primary" | "secondary"
+  children: React.ReactNode;
+  className?: string;
+  id?: string;
+  background?: "primary" | "secondary";
 }
 
 export function SectionWrapper({ children, className = "", id, background = "primary" }: SectionWrapperProps) {
-  const [isVisible, setIsVisible] = useState(false)
-  const sectionRef = useRef<HTMLElement>(null)
+  const [isVisible, setIsVisible] = useState(false);
+  const sectionRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
-          setIsVisible(true)
+          setIsVisible(true);
         }
       },
-      { threshold: 0.1 },
-    )
+      { threshold: 0.1 }
+    );
 
     if (sectionRef.current) {
-      observer.observe(sectionRef.current)
+      observer.observe(sectionRef.current);
     }
 
-    return () => observer.disconnect()
-  }, [])
+    return () => observer.disconnect();
+  }, []);
 
-  const bgClass = background === "secondary" ? "jawara-bg-secondary" : "jawara-bg-primary"
+  const bgClass = background === "secondary" ? "jawara-bg-secondary" : "jawara-bg-primary";
 
   return (
     <section
@@ -51,5 +51,5 @@ export function SectionWrapper({ children, className = "", id, background = "pri
 
       <div className="jawara-container relative z-10">{children}</div>
     </section>
-  )
+  );
 }

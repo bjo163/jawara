@@ -1,40 +1,40 @@
-"use client"
+"use client";
 
-import { useState, useEffect } from "react"
-import { Menu, X, Wifi, Sparkles } from "lucide-react"
-import { Button } from "@/components/ui/button"
-import { navigationConfig } from "@/configs/navigation/menu"
+import { useState, useEffect } from "react";
+import { Menu, X, Wifi, Sparkles } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { navigationConfig } from "@/configs/navigation/menu";
 
 interface NavbarProps {
-  activeSection: string
-  onNavigate?: (section: string) => void
+  activeSection: string;
+  onNavigate?: (section: string) => void;
 }
 
 export function Navbar({ activeSection, onNavigate }: NavbarProps) {
-  const [isOpen, setIsOpen] = useState(false)
-  const [scrolled, setScrolled] = useState(false)
+  const [isOpen, setIsOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
 
   // Use navigation config instead of hardcoded data
-  const { items: navItems } = navigationConfig.navbar
+  const { items: navItems } = navigationConfig.navbar;
 
   useEffect(() => {
     const handleScroll = () => {
-      setScrolled(window.scrollY > 20)
-    }
-    window.addEventListener("scroll", handleScroll)
-    return () => window.removeEventListener("scroll", handleScroll)
-  }, [])
+      setScrolled(window.scrollY > 20);
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   const scrollToSection = (sectionId: string) => {
     if (onNavigate) {
-      onNavigate(sectionId)
+      onNavigate(sectionId);
     }
-    const element = document.getElementById(sectionId)
+    const element = document.getElementById(sectionId);
     if (element) {
-      element.scrollIntoView({ behavior: "smooth" })
+      element.scrollIntoView({ behavior: "smooth" });
     }
-    setIsOpen(false)
-  }
+    setIsOpen(false);
+  };
 
   return (
     <nav
@@ -148,5 +148,5 @@ export function Navbar({ activeSection, onNavigate }: NavbarProps) {
         )}
       </div>
     </nav>
-  )
+  );
 }

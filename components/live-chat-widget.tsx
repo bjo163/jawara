@@ -1,6 +1,6 @@
-"use client"
+"use client";
 
-import { useState, useEffect, useRef } from "react"
+import { useState, useEffect, useRef } from "react";
 import {
   MessageCircle,
   X,
@@ -14,14 +14,14 @@ import {
   ImageIcon,
   Paperclip,
   Star,
-} from "lucide-react"
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
+} from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
 
 export function LiveChatWidget() {
-  const [isOpen, setIsOpen] = useState(false)
-  const [message, setMessage] = useState("")
-  const [isTyping, setIsTyping] = useState(false)
+  const [isOpen, setIsOpen] = useState(false);
+  const [message, setMessage] = useState("");
+  const [isTyping, setIsTyping] = useState(false);
   const [messages, setMessages] = useState([
     {
       id: 1,
@@ -30,16 +30,16 @@ export function LiveChatWidget() {
       time: "Baru saja",
       avatar: "👩‍💼",
     },
-  ])
-  const messagesEndRef = useRef<HTMLDivElement>(null)
+  ]);
+  const messagesEndRef = useRef<HTMLDivElement>(null);
 
   const scrollToBottom = () => {
-    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" })
-  }
+    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+  };
 
   useEffect(() => {
-    scrollToBottom()
-  }, [messages])
+    scrollToBottom();
+  }, [messages]);
 
   const quickReplies = [
     "🏠 Info paket rumahan",
@@ -48,7 +48,7 @@ export function LiveChatWidget() {
     "💰 Harga berlangganan",
     "🔧 Bantuan teknis",
     "📞 Hubungi teknisi",
-  ]
+  ];
 
   const handleSendMessage = () => {
     if (message.trim()) {
@@ -58,30 +58,30 @@ export function LiveChatWidget() {
         sender: "user",
         time: "Baru saja",
         avatar: "🧑‍💻",
-      }
-      setMessages([...messages, newMessage])
-      setMessage("")
-      setIsTyping(true)
+      };
+      setMessages([...messages, newMessage]);
+      setMessage("");
+      setIsTyping(true);
 
       // Enhanced auto reply with Indonesian context
       setTimeout(() => {
-        setIsTyping(false)
+        setIsTyping(false);
         const responses = [
           "Terima kasih sudah menghubungi kami! Tim ahli Jawara-Net akan segera membantu. Untuk respon kilat seperti Garuda, langsung chat WhatsApp ya! 🦅",
           "Wah, pertanyaan yang bagus! Biar lebih mantap, saya hubungkan dengan specialist kami. Atau mau langsung video call via WhatsApp? 📞",
           "Siap jagoan! Saya catat dulu kebutuhannya. Tim teknisi kita yang berpengalaman akan follow up dalam 5 menit! ⚡",
-        ]
+        ];
         const autoReply = {
           id: messages.length + 2,
           text: responses[Math.floor(Math.random() * responses.length)],
           sender: "support",
           time: "Baru saja",
           avatar: "👩‍💼",
-        }
-        setMessages((prev) => [...prev, autoReply])
-      }, 2000)
+        };
+        setMessages((prev) => [...prev, autoReply]);
+      }, 2000);
     }
-  }
+  };
 
   const handleQuickReply = (reply: string) => {
     const newMessage = {
@@ -90,12 +90,12 @@ export function LiveChatWidget() {
       sender: "user",
       time: "Baru saja",
       avatar: "🧑‍💻",
-    }
-    setMessages([...messages, newMessage])
-    setIsTyping(true)
+    };
+    setMessages([...messages, newMessage]);
+    setIsTyping(true);
 
     setTimeout(() => {
-      setIsTyping(false)
+      setIsTyping(false);
       const contextualReplies: { [key: string]: string } = {
         "🏠 Info paket rumahan":
           "Paket rumahan kami ada 4 pilihan jagoan: Jagoan Neon (10Mbps), Mandor Sakti (25Mbps), Wiro Sableng (35Mbps), dan Sultan (50Mbps). Mau yang mana nih? 🏠",
@@ -109,7 +109,7 @@ export function LiveChatWidget() {
           "Tim teknisi Jawara-Net siap membantu 24/7! Mau troubleshooting sekarang atau jadwalkan kunjungan teknisi? 🛠️",
         "📞 Hubungi teknisi":
           "Langsung hubungi teknisi senior kami di WhatsApp +62 812-3456-7890 atau mau saya buatkan tiket support? 📱",
-      }
+      };
 
       const autoReply = {
         id: messages.length + 2,
@@ -117,10 +117,10 @@ export function LiveChatWidget() {
         sender: "support",
         time: "Baru saja",
         avatar: "👩‍💼",
-      }
-      setMessages((prev) => [...prev, autoReply])
-    }, 1500)
-  }
+      };
+      setMessages((prev) => [...prev, autoReply]);
+    }, 1500);
+  };
 
   return (
     <>
@@ -214,9 +214,9 @@ export function LiveChatWidget() {
                 </button>
                 <button
                   onClick={() => {
-                    const element = document.getElementById("faq")
-                    if (element) element.scrollIntoView({ behavior: "smooth" })
-                    setIsOpen(false)
+                    const element = document.getElementById("faq");
+                    if (element) element.scrollIntoView({ behavior: "smooth" });
+                    setIsOpen(false);
                   }}
                   className="mega-card p-2 md:p-3 text-center mega-hover bg-purple-500/20 border border-purple-500/30 group"
                 >
@@ -331,5 +331,5 @@ export function LiveChatWidget() {
         </div>
       )}
     </>
-  )
+  );
 }

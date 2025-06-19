@@ -1,76 +1,76 @@
-"use client"
+"use client";
 
-import { useState, useEffect } from "react"
-import { Navbar } from "@/components/navbar"
-import { HeroSection } from "@/components/hero-section"
-import { AboutSection } from "@/components/about-section"
-import { ServicesSection } from "@/components/services-section"
-import { ProcessSection } from "@/components/process-section"
-import { PackagesSection } from "@/components/packages-section"
-import { TestimonialsSection } from "@/components/testimonials-section"
-import { FaqSection } from "@/components/faq-section"
-import { ContactSection } from "@/components/contact-section"
-import { CoverageSection } from "@/components/coverage-section"
-import { Footer } from "@/components/footer"
-import { LiveChatWidget } from "@/components/live-chat-widget"
-import { Wifi, Sparkles, Crown, Sword, Shield, Globe } from "lucide-react"
-import { NavigationLoader } from "@/components/navigation-loader"
-import { GamingHUD } from "@/components/gaming-hud"
-import { GamingCursor } from "@/components/gaming-cursor"
-import { AchievementSystem } from "@/components/achievement-system"
-import { loadingConfig } from "@/configs/content/loading"
+import { useState, useEffect } from "react";
+import { Navbar } from "@/components/navbar";
+import { HeroSection } from "@/components/hero-section";
+import { AboutSection } from "@/components/about-section";
+import { ServicesSection } from "@/components/services-section";
+import { ProcessSection } from "@/components/process-section";
+import { PackagesSection } from "@/components/packages-section";
+import { TestimonialsSection } from "@/components/testimonials-section";
+import { FaqSection } from "@/components/faq-section";
+import { ContactSection } from "@/components/contact-section";
+import { CoverageSection } from "@/components/coverage-section";
+import { Footer } from "@/components/footer";
+import { LiveChatWidget } from "@/components/live-chat-widget";
+import { Wifi, Sparkles, Crown, Sword } from "lucide-react";
+import { NavigationLoader } from "@/components/navigation-loader";
+import { GamingHUD } from "@/components/gaming-hud";
+import { GamingCursor } from "@/components/gaming-cursor";
+import { AchievementSystem } from "@/components/achievement-system";
+import { loadingConfig } from "@/configs/content/loading";
 
 export default function HomePage() {
-  const [activeSection, setActiveSection] = useState("hero")
-  const [isLoading, setIsLoading] = useState(true)
-  const [loadingProgress, setLoadingProgress] = useState(0)
-  const [loadingStage, setLoadingStage] = useState(0)
-  const [navigationLoading, setNavigationLoading] = useState(false)
-  const [targetSection, setTargetSection] = useState("")
+  const [activeSection, setActiveSection] = useState("hero");
+  const [isLoading, setIsLoading] = useState(true);
+  const [loadingProgress, setLoadingProgress] = useState(0);
+  const [loadingStage, setLoadingStage] = useState(0);
+  const [navigationLoading, setNavigationLoading] = useState(false);
+  const [targetSection, setTargetSection] = useState("");
 
   // Use loading config instead of hardcoded data
-  const { stages: loadingStages, timing, brand, stats, background } = loadingConfig
+  const { stages: loadingStages, timing, brand, stats, background } = loadingConfig;
 
   useEffect(() => {
     // Enhanced loading with stages using config timing
     const stageInterval = setInterval(() => {
       setLoadingStage((prev) => {
         if (prev >= loadingStages.length - 1) {
-          clearInterval(stageInterval)
-          setTimeout(() => setIsLoading(false), timing.finalDelay)
-          return prev
+          clearInterval(stageInterval);
+          setTimeout(() => setIsLoading(false), timing.finalDelay);
+          return prev;
         }
-        return prev + 1
-      })
-    }, timing.stageInterval)
+        return prev + 1;
+      });
+    }, timing.stageInterval);
 
     // Smooth progress animation using config timing
     const progressInterval = setInterval(() => {
       setLoadingProgress((prev) => {
-        const targetProgress = loadingStages[loadingStage]?.progress || 100
-        if (prev >= targetProgress) return prev
-        return Math.min(prev + Math.random() * 8, targetProgress)
-      })
-    }, timing.progressUpdateInterval)
+        const targetProgress = loadingStages[loadingStage]?.progress || 100;
+        if (prev >= targetProgress) return prev;
+        return Math.min(prev + Math.random() * 8, targetProgress);
+      });
+    }, timing.progressUpdateInterval);
 
     return () => {
-      clearInterval(stageInterval)
-      clearInterval(progressInterval)
-    }
-  }, [loadingStage, loadingStages, timing])
+      clearInterval(stageInterval);
+      clearInterval(progressInterval);
+    };
+  }, [loadingStage, loadingStages, timing]);
 
   const handleNavigation = (sectionId: string) => {
-    setNavigationLoading(true)
-    setTargetSection(sectionId)
+    setNavigationLoading(true);
+    setTargetSection(sectionId);
 
     setTimeout(() => {
-      setNavigationLoading(false)
-      const element = document.getElementById(sectionId)
+      setNavigationLoading(false);
+      const element = document.getElementById(sectionId);
       if (element) {
-        element.scrollIntoView({ behavior: "smooth" })
+        element.scrollIntoView({ behavior: "smooth" });
       }
-    }, 1500)
-  }
+    }, 1500);
+  };
 
   useEffect(() => {
     const handleScroll = () => {
@@ -84,29 +84,29 @@ export default function HomePage() {
         "faq",
         "contact",
         "coverage",
-      ]
-      const scrollPosition = window.scrollY + 100
+      ];
+      const scrollPosition = window.scrollY + 100;
 
       for (const section of sections) {
-        const element = document.getElementById(section)
+        const element = document.getElementById(section);
         if (element) {
-          const { offsetTop, offsetHeight } = element
+          const { offsetTop, offsetHeight } = element;
           if (scrollPosition >= offsetTop && scrollPosition < offsetTop + offsetHeight) {
-            setActiveSection(section)
-            break
+            setActiveSection(section);
+            break;
           }
         }
       }
-    }
+    };
 
-    window.addEventListener("scroll", handleScroll)
-    handleScroll()
+    window.addEventListener("scroll", handleScroll);
+    handleScroll();
 
-    return () => window.removeEventListener("scroll", handleScroll)
-  }, [])
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   if (isLoading) {
-    const currentStage = loadingStages[loadingStage]
+    const currentStage = loadingStages[loadingStage];
 
     return (
       <div className="loading-overlay min-h-screen nusantara-bg flex items-center justify-center relative overflow-hidden">
@@ -116,7 +116,7 @@ export default function HomePage() {
         {/* FLOATING ELEMENTS - from config */}
         <div className="absolute inset-0 pointer-events-none">
           {background.map((element, index) => (
-            <div 
+            <div
               key={index}
               className={`absolute ${element.position} ${element.size} ${element.animation} ${element.opacity}`}
             >
@@ -144,10 +144,7 @@ export default function HomePage() {
             <p className="mega-text text-3xl text-orange-400 mb-4 font-black">{brand.tagline}</p>
             <div className="flex justify-center space-x-8 mb-8">
               {brand.decorativeIcons.map((icon, index) => (
-                <span 
-                  key={index}
-                  className={`text-5xl ${index % 2 === 0 ? 'garuda-soar' : 'indonesian-wave'}`}
-                >
+                <span key={index} className={`text-5xl ${index % 2 === 0 ? "garuda-soar" : "indonesian-wave"}`}>
                   {icon}
                 </span>
               ))}
@@ -177,7 +174,9 @@ export default function HomePage() {
                   {loadingConfig.progress.labels.percentage(loadingProgress)}
                 </span>
               </div>
-              <div className={`w-full ${loadingConfig.progress.styling.backgroundColor} rounded-full ${loadingConfig.progress.styling.height} overflow-hidden mega-glow`}>
+              <div
+                className={`w-full ${loadingConfig.progress.styling.backgroundColor} rounded-full ${loadingConfig.progress.styling.height} overflow-hidden mega-glow`}
+              >
                 <div
                   className={`h-full bg-gradient-to-r ${loadingConfig.progress.styling.barGradient} rounded-full transition-all ${loadingConfig.progress.animation.duration} ${loadingConfig.progress.animation.easing} mega-glow relative overflow-hidden`}
                   style={{ width: `${loadingProgress}%` }}
@@ -203,7 +202,9 @@ export default function HomePage() {
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-4xl mx-auto">
             {stats.map((stat, index) => (
               <div key={index} className="mega-card p-8 text-center mega-hover">
-                <div className={`w-16 h-16 bg-gradient-to-br ${stat.color} rounded-xl flex items-center justify-center mx-auto mb-4 mega-glow`}>
+                <div
+                  className={`w-16 h-16 bg-gradient-to-br ${stat.color} rounded-xl flex items-center justify-center mx-auto mb-4 mega-glow`}
+                >
                   <stat.icon className="h-8 w-8 text-white" />
                 </div>
                 <div className={`text-3xl font-black ${stat.textColor} mb-2 mega-title`}>{stat.value}</div>
@@ -213,7 +214,7 @@ export default function HomePage() {
           </div>
         </div>
       </div>
-    )
+    );
   }
 
   return (
@@ -239,5 +240,5 @@ export default function HomePage() {
 
       <Footer />
     </div>
-  )
+  );
 }
