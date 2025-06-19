@@ -1,21 +1,23 @@
 version: "3.8"
 
 services:
-  web:
+  # Production service
+  jawara-web:
     build:
       context: .
       dockerfile: Dockerfile
     ports:
-      - "3000"
+      - "3000:3000"
     environment:
       - NODE_ENV=production
+      - NEXT_TELEMETRY_DISABLED=1
     restart: unless-stopped
-
-  # Development version with volume mounting (uncomment for development)
-  # web-dev:
+    
+  # Development service (uncomment untuk development)
+  # jawara-dev:
   #   build:
   #     context: .
-  #     dockerfile: Dockerfile
+  #     dockerfile: Dockerfile.dev
   #   ports:
   #     - "3000:3000"
   #   environment:
