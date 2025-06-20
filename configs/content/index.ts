@@ -49,6 +49,9 @@ export { calculatorConfig } from "./calculator";
 // Import navbar configuration
 export { navbarConfig } from "./navbar";
 
+// Import coverage configuration
+export { coverageConfig } from "./coverage";
+
 // Import achievement configuration
 export { achievementConfig } from "./achievements";
 
