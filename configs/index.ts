@@ -13,6 +13,7 @@ export * from "./ui/index";
 export * from "./api/index";
 export * from "./navigation/index";
 export * from "./site/index";
+export * from "./animations/index";
 
 // Re-export untuk kemudahan akses
 export { contentConfig } from "./content/index";
@@ -20,6 +21,7 @@ export { uiConfig } from "./ui/index";
 export { apiConfig } from "./api/index";
 export { navigationConfig } from "./navigation/index";
 export { siteConfig } from "./site/index";
+export { default as animationsConfig } from "./animations/index";
 
 // Types untuk konfigurasi
 export interface ConfigBase {

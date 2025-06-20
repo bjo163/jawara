@@ -55,6 +55,12 @@ export { coverageConfig } from "./coverage";
 // Import achievement configuration
 export { achievementConfig } from "./achievements";
 
+// Import hero configuration
+export { heroConfig } from "./hero";
+
+// Import gaming HUD configuration
+export { gamingHudConfig } from "./gaming";
+
 // Placeholder exports - akan diisi setelah migration content selesai
 export const contentConfig = {
   loading: {}, // loading.ts - ✅ COMPLETED

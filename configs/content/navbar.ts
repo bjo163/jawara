@@ -6,6 +6,8 @@
  * Includes brand info, navigation items, CTA buttons, mobile settings, dan visual configuration.
  */
 
+import { COMPONENT_ANIMATIONS, TRANSITION_CLASSES, HOVER_EFFECTS } from "../animations/index.js";
+
 // Navbar brand configuration
 export interface NavbarBrand {
   name: {
@@ -162,7 +164,7 @@ export const navbarConfig: NavbarConfig = {
         style: {
           gradient: "from-orange-500 to-red-500",
           size: "px-2 lg:px-3 py-1",
-          hover: "mega-hover",
+          hover: HOVER_EFFECTS.mega,
         },
         priority: 1,
       },
@@ -177,18 +179,17 @@ export const navbarConfig: NavbarConfig = {
         style: {
           gradient: "from-green-500 to-emerald-500",
           size: "px-2 lg:px-3 py-1",
-          hover: "mega-hover",
+          hover: HOVER_EFFECTS.mega,
         },
         priority: 2,
       },
     ],
     spacing: "space-x-1 lg:space-x-2",
   },
-
   mobile: {
     breakpoint: 1024, // lg breakpoint
     animation: {
-      duration: "duration-300",
+      duration: TRANSITION_CLASSES.duration300,
       easing: "ease-in-out",
     },
     overlay: {
@@ -256,7 +257,7 @@ export const mobileMenuConfig = {
   },
   itemStyling: {
     container: "mega-card m-3 p-4 space-y-3 mega-glow",
-    item: "w-full text-left px-4 py-3 rounded-xl font-bold mega-text transition-all duration-500 flex items-center space-x-3 mega-hover text-sm",
+    item: `w-full text-left px-4 py-3 rounded-xl font-bold mega-text ${COMPONENT_ANIMATIONS.navbar.item} flex items-center space-x-3 text-sm`,
     activeItem: "mega-button text-white",
     inactiveItem: "text-gray-300 hover:text-white hover:bg-white/10",
   },

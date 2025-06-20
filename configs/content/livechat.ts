@@ -6,6 +6,8 @@
  * Includes chat messages, responses, assistant profile, dan UI settings.
  */
 
+import { TAILWIND_ANIMATIONS } from "../animations/index.js";
+
 // Assistant profile configuration
 export const chatAssistant = {
   name: "Sari",
@@ -113,9 +115,9 @@ export const chatWidgetUI = {
     position: "fixed bottom-6 right-6 z-50",
     animations: {
       hover: "mega-hover mega-glow nusantara-glow",
-      notification: "animate-pulse",
-      sparkles: "animate-spin",
-      crown: "indonesian-wave",
+      notification: TAILWIND_ANIMATIONS.pulse,
+      sparkles: TAILWIND_ANIMATIONS.spin,
+      crown: TAILWIND_ANIMATIONS.indonesianWave,
     },
     decorativeElements: {
       notification: {
@@ -158,7 +160,7 @@ export const chatWidgetUI = {
   floatingText: {
     show: true,
     text: "💬 Ada yang bisa dibantu?",
-    className: "absolute bottom-full right-0 mb-4 mega-card p-3 whitespace-nowrap animate-bounce",
+    className: `absolute bottom-full right-0 mb-4 mega-card p-3 whitespace-nowrap ${TAILWIND_ANIMATIONS.bounce}`,
   },
 };
 

@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { Menu, X, Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { navbarConfig } from "@/configs/content/navbar";
+import { COMPONENT_ANIMATIONS } from "@/configs/animations";
 
 interface NavbarProps {
   activeSection: string;
@@ -44,7 +45,7 @@ export function Navbar({ activeSection, onNavigate }: NavbarProps) {
   };
   return (
     <nav
-      className={`fixed top-0 w-full ${styling.zIndex} transition-all duration-700 ${
+      className={`fixed top-0 w-full ${styling.zIndex} ${COMPONENT_ANIMATIONS.navbar.container} ${
         scrolled
           ? `${styling.background.scrolled} ${styling.border.scrolled}`
           : `${styling.background.default} ${styling.border.default}`
