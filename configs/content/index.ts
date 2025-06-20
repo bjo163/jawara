@@ -46,6 +46,12 @@ export { processConfig } from "./process";
 // Import calculator configuration
 export { calculatorConfig } from "./calculator";
 
+// Import navbar configuration
+export { navbarConfig } from "./navbar";
+
+// Import achievement configuration
+export { achievementConfig } from "./achievements";
+
 // Placeholder exports - akan diisi setelah migration content selesai
 export const contentConfig = {
   loading: {}, // loading.ts - ✅ COMPLETED
