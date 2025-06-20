@@ -8,6 +8,9 @@
 
 import { Sword, Crown, Facebook, Instagram, Twitter, Youtube } from "lucide-react";
 
+// Define types for better TypeScript support
+export type IconComponent = typeof Sword; // All Lucide icons have same type structure
+
 // Main navigation items untuk navbar
 export const navbarItems = [
   { id: "hero", label: "Beranda", icon: "🏛️" },
@@ -87,11 +90,50 @@ export const legalLinks = [
 export const brandNav = {
   name: "JAWARA-NET",
   tagline: "INTERNET NUSANTARA",
+  description:
+    "Internet Service Provider yang menguasai nusantara dengan koneksi secepat kilat petir! Untuk para jagoan digital Indonesia! 🇮🇩",
+  highlights: [
+    { text: "menguasai nusantara", color: "text-orange-400" },
+    { text: "secepat kilat petir", color: "text-red-400" },
+  ],
   copyright: {
     text: "Jawara-Net - Internet Nusantara.",
     suffix: "Dibuat dengan ❤️ untuk Indonesia Raya!",
     flag: "🇮🇩",
   },
+};
+
+// Footer contact information
+export const footerContactInfo = {
+  title: "Kontak",
+  icon: "📞", // Using emoji instead of component
+  iconColor: "text-green-400",
+  sections: [
+    {
+      id: "customer-service",
+      title: "📞 Customer Service",
+      items: [
+        { type: "whatsapp", label: "WhatsApp", value: "+62 812-3456-7890" },
+        { type: "phone", label: "Telepon", value: "021-1234-5678" },
+      ],
+    },
+    {
+      id: "email",
+      title: "📧 Email",
+      items: [
+        { type: "email", label: "Info", value: "info@jawara-net.com" },
+        { type: "email", label: "Support", value: "support@jawara-net.com" },
+      ],
+    },
+    {
+      id: "address",
+      title: "📍 Alamat",
+      items: [
+        { type: "address", label: "Street", value: "Jl. Teknologi No. 123" },
+        { type: "address", label: "City", value: "Jakarta Selatan 12345" },
+      ],
+    },
+  ],
 };
 
 // Navigation configuration untuk scroll behavior
@@ -119,6 +161,7 @@ export const navigationConfig = {
   footer: {
     brand: brandNav,
     menus: footerMenus,
+    contact: footerContactInfo,
     social: socialMediaLinks,
     legal: legalLinks,
   },
@@ -134,7 +177,7 @@ export interface NavItem {
 
 export interface FooterMenu {
   title: string;
-  icon: any;
+  icon: IconComponent;
   iconColor: string;
   hoverColor: string;
   items: NavItem[];
@@ -142,7 +185,7 @@ export interface FooterMenu {
 
 export interface SocialLink {
   name: string;
-  icon: any;
+  icon: IconComponent;
   href: string;
   gradient: string;
 }

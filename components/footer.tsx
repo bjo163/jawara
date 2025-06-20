@@ -5,7 +5,7 @@ import { navigationConfig } from "@/configs/navigation/menu";
 
 export function Footer() {
   // Use navigation config
-  const { menus, social, legal, brand } = navigationConfig.footer;
+  const { menus, contact, social, legal, brand } = navigationConfig.footer;
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId);
     if (element) {
@@ -39,12 +39,20 @@ export function Footer() {
                 </div>
                 <span className="mega-text text-sm text-gray-400 font-bold">INTERNET NUSANTARA</span>
               </div>
-            </div>
+            </div>{" "}
             <div className="mega-card p-6 mega-hover">
               <p className="mega-text text-gray-300 leading-relaxed font-bold text-lg">
-                Internet Service Provider yang <span className="text-orange-400 font-black">menguasai nusantara</span>{" "}
-                dengan koneksi <span className="text-red-400 font-black">secepat kilat petir</span>! Untuk para jagoan
-                digital Indonesia! 🇮🇩
+                {brand.description.split(" ").map((word, index) => {
+                  const highlight = brand.highlights?.find((h) => word.includes(h.text.replace(/\s+/g, "")));
+                  if (highlight) {
+                    return (
+                      <span key={index} className={`${highlight.color} font-black`}>
+                        {word}{" "}
+                      </span>
+                    );
+                  }
+                  return <span key={index}>{word} </span>;
+                })}
               </p>
             </div>
             <div className="flex space-x-4">
@@ -59,7 +67,6 @@ export function Footer() {
               ))}
             </div>
           </div>
-
           {/* MENU UTAMA - from config */}
           <div className="mega-card p-8 mega-hover">
             <h4 className={`mega-title text-2xl ${menus.main.iconColor} mb-6 flex items-center space-x-2`}>
@@ -79,7 +86,6 @@ export function Footer() {
               ))}
             </ul>
           </div>
-
           {/* BANTUAN - from config */}
           <div className="mega-card p-8 mega-hover">
             <h4 className={`mega-title text-2xl ${menus.support.iconColor} mb-6 flex items-center space-x-2`}>
@@ -107,30 +113,24 @@ export function Footer() {
                 </li>
               ))}
             </ul>
-          </div>
-
-          {/* KONTAK */}
+          </div>{" "}
+          {/* KONTAK - from config */}
           <div className="mega-card p-8 mega-hover">
-            <h4 className="mega-title text-2xl text-green-400 mb-6 flex items-center space-x-2">
-              <Sparkles className="h-6 w-6" />
-              <span>Kontak</span>
+            <h4 className={`mega-title text-2xl ${contact.iconColor} mb-6 flex items-center space-x-2`}>
+              <span className="text-2xl">{contact.icon}</span>
+              <span>{contact.title}</span>
             </h4>
             <div className="space-y-6 mega-text text-gray-400">
-              <div>
-                <p className="font-black text-white text-lg mb-2">📞 Customer Service</p>
-                <p className="font-bold">WhatsApp: +62 812-3456-7890</p>
-                <p className="font-bold">Telepon: 021-1234-5678</p>
-              </div>
-              <div>
-                <p className="font-black text-white text-lg mb-2">📧 Email</p>
-                <p className="font-bold">info@jawara-net.com</p>
-                <p className="font-bold">support@jawara-net.com</p>
-              </div>
-              <div>
-                <p className="font-black text-white text-lg mb-2">📍 Alamat</p>
-                <p className="font-bold">Jl. Teknologi No. 123</p>
-                <p className="font-bold">Jakarta Selatan 12345</p>
-              </div>
+              {contact.sections.map((section) => (
+                <div key={section.id}>
+                  <p className="font-black text-white text-lg mb-2">{section.title}</p>
+                  {section.items.map((item, index) => (
+                    <p key={index} className="font-bold">
+                      {item.label}: {item.value}
+                    </p>
+                  ))}
+                </div>
+              ))}
             </div>
           </div>
         </div>
