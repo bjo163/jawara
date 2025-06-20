@@ -1,8 +1,9 @@
 "use client";
 
 import { useState } from "react";
-import { Smartphone, Laptop, Tv, Monitor, Gamepad2, Calculator, CheckCircle } from "lucide-react";
+import { Calculator, CheckCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { calculatorConfig } from "@/configs/content/calculator";
 
 interface DeviceCount {
   smartphone: number;
@@ -30,80 +31,8 @@ export function InternetCalculator() {
   });
 
   const [recommendation, setRecommendation] = useState<PackageRecommendation | null>(null);
-  const [showResult, setShowResult] = useState(false);
-
-  const deviceConfigs = [
-    {
-      key: "smartphone" as keyof DeviceCount,
-      label: "📱 Smartphone",
-      icon: Smartphone,
-      bandwidth: 2, // Mbps per device
-      color: "from-blue-500 to-cyan-500",
-    },
-    {
-      key: "laptop" as keyof DeviceCount,
-      label: "💻 Laptop",
-      icon: Laptop,
-      bandwidth: 5, // Mbps per device
-      color: "from-purple-500 to-pink-500",
-    },
-    {
-      key: "smartTv" as keyof DeviceCount,
-      label: "📺 Smart TV",
-      icon: Tv,
-      bandwidth: 8, // Mbps per device
-      color: "from-green-500 to-emerald-500",
-    },
-    {
-      key: "desktop" as keyof DeviceCount,
-      label: "🖥️ Desktop PC",
-      icon: Monitor,
-      bandwidth: 6, // Mbps per device
-      color: "from-orange-500 to-red-500",
-    },
-    {
-      key: "gaming" as keyof DeviceCount,
-      label: "🎮 Gaming Console",
-      icon: Gamepad2,
-      bandwidth: 10, // Mbps per device
-      color: "from-red-500 to-pink-500",
-    },
-  ];
-
-  const packages = [
-    {
-      name: "Jagoan Neon",
-      speed: "10 Mbps",
-      price: "Rp150.000",
-      minBandwidth: 0,
-      maxBandwidth: 12,
-      description: "Cocok untuk kebutuhan internet ringan dan browsing sehari-hari",
-    },
-    {
-      name: "Mandor Sakti",
-      speed: "25 Mbps",
-      price: "Rp200.000",
-      minBandwidth: 13,
-      maxBandwidth: 30,
-      description: "Perfect untuk WFH, streaming HD, dan gaming casual",
-    },
-    {
-      name: "Wiro Sableng",
-      speed: "35 Mbps",
-      price: "Rp250.000",
-      minBandwidth: 31,
-      maxBandwidth: 40,
-      description: "Ideal untuk keluarga besar dengan banyak device dan streaming 4K",
-    },
-    {
-      name: "Sultan",
-      speed: "50 Mbps",
-      price: "Rp300.000",
-      minBandwidth: 41,
-      maxBandwidth: 999,
-      description: "Ultimate package untuk power user dan gaming pro",
-    },
-  ];
+  const [showResult, setShowResult] = useState(false); // Use config data
+  const { devices: deviceConfigs, packages, ui } = calculatorConfig;
 
   const updateDeviceCount = (device: keyof DeviceCount, value: number) => {
     setDevices((prev) => ({
@@ -153,9 +82,9 @@ export function InternetCalculator() {
         <div className="text-center mb-10">
           <div className="w-20 h-20 bg-gradient-to-br from-cyan-500 to-blue-500 rounded-2xl flex items-center justify-center mx-auto mb-6 mega-glow nusantara-glow">
             <Calculator className="h-10 w-10 text-white" />
-          </div>
-          <h3 className="mega-title text-3xl mb-4">🧮 Kalkulator Kecepatan Internet 🧮</h3>
-          <p className="mega-text text-gray-300 text-lg">Tentukan paket internet yang tepat untuk kebutuhanmu</p>
+          </div>{" "}
+          <h3 className="mega-title text-3xl mb-4">{ui.title}</h3>
+          <p className="mega-text text-gray-300 text-lg">{ui.subtitle}</p>
         </div>
 
         <div className="space-y-8">

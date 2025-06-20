@@ -2,60 +2,29 @@
 
 import { SectionTitle } from "@/components/section-title";
 import { TechTimeline } from "@/components/tech-timeline";
-import { FileText, MapPin, Wrench, Wifi, Crown, Sparkles, Sword } from "lucide-react";
+import { Crown, Sparkles, Sword } from "lucide-react";
+import { processConfig } from "@/configs/content/process";
 
 export function ProcessSection() {
-  const steps = [
-    {
-      icon: FileText,
-      title: "Isi Form Pendaftaran",
-      description: "Daftar online atau via WhatsApp. Cuma butuh 2 menit, gampang banget!",
-      details: ["Data diri lengkap", "Pilih paket internet", "Tentukan jadwal survey"],
-      color: "orange",
-      character: "📝",
-      epicTitle: "🗡️ DAFTAR SEBAGAI JAGOAN 🗡️",
-    },
-    {
-      icon: MapPin,
-      title: "Survey Lokasi",
-      description: "Tim teknisi datang ke lokasi untuk cek kelayakan dan jarak dari tower terdekat.",
-      details: ["Cek sinyal coverage", "Ukur jarak kabel", "Tentukan titik instalasi"],
-      color: "blue",
-      character: "🗺️",
-      epicTitle: "🏛️ PEMETAAN WILAYAH 🏛️",
-    },
-    {
-      icon: Wrench,
-      title: "Instalasi Perangkat",
-      description: "Pemasangan kabel fiber optic dan konfigurasi router. Dikerjain sama teknisi berpengalaman!",
-      details: ["Pasang kabel fiber", "Setup router WiFi", "Testing koneksi"],
-      color: "green",
-      character: "🔧",
-      epicTitle: "⚔️ PEMASANGAN SENJATA ⚔️",
-    },
-    {
-      icon: Wifi,
-      title: "Aktif & Terhubung",
-      description: "Internet siap dipakai! Selamat menikmati koneksi super cepat tanpa buffering.",
-      details: ["Aktivasi akun", "Serah terima password", "Panduan penggunaan"],
-      color: "purple",
-      character: "🚀",
-      epicTitle: "👑 TAKLUKKAN DUNIA MAYA 👑",
-    },
-  ];
+  const { header, steps, background, cta } = processConfig;
 
   return (
     <section id="process" className="py-24 nusantara-bg relative overflow-hidden">
-      {/* EPIC BACKGROUND ELEMENTS */}
+      {" "}
+      {/* EPIC BACKGROUND ELEMENTS - from config */}
       <div className="absolute inset-0 mega-grid opacity-30"></div>
-      <div className="absolute top-20 left-10 text-6xl indonesian-wave opacity-20">⚔️</div>
-      <div className="absolute bottom-20 right-10 text-6xl garuda-soar opacity-20">🏛️</div>
-
+      <div
+        className={`absolute ${background.topLeft.position} ${background.topLeft.size} ${background.topLeft.animation} ${background.topLeft.opacity}`}
+      >
+        {background.topLeft.icon}
+      </div>
+      <div
+        className={`absolute ${background.bottomRight.position} ${background.bottomRight.size} ${background.bottomRight.animation} ${background.bottomRight.opacity}`}
+      >
+        {background.bottomRight.icon}
+      </div>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <SectionTitle
-          title="⚔️ PROSES AKTIVASI JAGOAN ⚔️"
-          subtitle="Dari daftar sampai menaklukkan dunia maya, cuma 4 langkah mudah!"
-        />
+        <SectionTitle title={header.title} subtitle={header.subtitle} />
 
         <TechTimeline steps={steps} />
 
@@ -114,28 +83,28 @@ export function ProcessSection() {
         <div className="mt-16 text-center">
           <div className="mega-card p-12 mega-hover mega-glow nusantara-glow scroll-reveal">
             <div className="relative mb-8">
-              <h3 className="mega-title text-4xl md:text-5xl font-black text-white mb-6">
-                🚀 SIAP MEMULAI PETUALANGAN DIGITAL? 🚀
-              </h3>
+              {" "}
+              <h3 className="mega-title text-4xl md:text-5xl font-black text-white mb-6">{cta.title}</h3>
               <div className="flex justify-center space-x-8 mb-8">
                 <span className="text-6xl garuda-soar">🦅</span>
                 <span className="text-6xl indonesian-wave">⚔️</span>
                 <span className="text-6xl particle-float">🏛️</span>
               </div>
-            </div>
+            </div>{" "}
             <p className="mega-text text-gray-300 mb-10 max-w-4xl mx-auto text-2xl leading-relaxed font-bold">
-              Bergabunglah dengan ribuan jagoan digital yang sudah merasakan kekuatan internet{" "}
-              <span className="text-orange-400 font-black">super ngebut</span> Jawara-Net!
+              {cta.subtitle}
             </p>
             <button
               onClick={() => {
-                const element = document.getElementById("contact");
+                const element = document.getElementById(cta.primaryButton.target);
                 if (element) element.scrollIntoView({ behavior: "smooth" });
               }}
               className="mega-button px-16 py-8 text-3xl font-black text-white mega-text mega-hover flex items-center space-x-6 mx-auto"
             >
               <Crown className="h-10 w-10" />
-              <span>👑 MULAI PROSES PENDAFTARAN 👑</span>
+              <span>
+                {cta.primaryButton.icon} {cta.primaryButton.text} {cta.primaryButton.icon}
+              </span>
               <Sparkles className="h-10 w-10" />
             </button>
           </div>

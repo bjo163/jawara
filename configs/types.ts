@@ -311,6 +311,129 @@ export interface GamingCursorConfig {
   };
 }
 
+// Live Chat Widget types
+export interface ChatMessage {
+  id: number;
+  text: string;
+  sender: "user" | "support";
+  time: string;
+  avatar: string;
+}
+
+export interface ChatAssistant {
+  name: string;
+  title: string;
+  role: string;
+  avatar: string;
+  status: {
+    online: boolean;
+    statusText: string;
+    responseTime: string;
+  };
+  rating: {
+    score: number;
+    maxScore: number;
+    totalStars: number;
+  };
+  availability: string;
+}
+
+export interface ChatAction {
+  id: string;
+  label: string;
+  icon: string;
+  action: "whatsapp" | "email" | "scroll";
+  url?: string;
+  target?: string;
+  className: string;
+  iconColor: string;
+  hoverEffect: string;
+}
+
+export interface ChatWidgetUI {
+  button: {
+    size: {
+      mobile: string;
+      desktop: string;
+    };
+    position: string;
+    animations: {
+      hover: string;
+      notification: string;
+      sparkles: string;
+      crown: string;
+    };
+    decorativeElements: {
+      notification: {
+        show: boolean;
+        text: string;
+        className: string;
+      };
+      sparkles: {
+        show: boolean;
+        className: string;
+      };
+      crown: {
+        show: boolean;
+        className: string;
+      };
+    };
+  };
+  window: {
+    size: string;
+    position: string;
+    className: string;
+    maxHeight: string;
+  };
+  header: {
+    background: string;
+    decorativeElements: {
+      topRight: string;
+      bottomLeft: string;
+    };
+  };
+  messages: {
+    scrollBehavior: string;
+    typingDelay: {
+      general: number;
+      contextual: number;
+    };
+    userAvatar: string;
+    supportAvatar: string;
+  };
+  floatingText: {
+    show: boolean;
+    text: string;
+    className: string;
+  };
+}
+
+export interface ChatBehavior {
+  autoScroll: boolean;
+  typingIndicator: boolean;
+  responseDelay: {
+    min: number;
+    max: number;
+  };
+  fallbackResponse: string;
+  maxMessages: number;
+  persistChat: boolean;
+}
+
+export interface LiveChatConfig {
+  assistant: ChatAssistant;
+  welcome: ChatMessage;
+  quickReplies: string[];
+  autoResponses: string[];
+  contextualResponses: { [key: string]: string };
+  quickActions: ChatAction[];
+  ui: ChatWidgetUI;
+  behavior: ChatBehavior;
+  contacts: {
+    [key: string]: string;
+  };
+}
+
 // Export combined types
 export interface JawaraNetConfig {
   content: {
