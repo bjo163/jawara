@@ -7,9 +7,13 @@ import { Button } from "@/components/ui/button";
 import { Sparkles } from "lucide-react";
 import { InternetCalculator } from "@/components/internet-calculator";
 import { packagesConfig } from "@/configs/content/packages";
+import { useDevValidation } from "@/configs/schemas/hooks";
 
 export function PackagesSection() {
   const [activeCategory, setActiveCategory] = useState("rumah");
+
+  // Development validation untuk package data
+  const devValidator = useDevValidation();
 
   // Use packages config instead of hardcoded data
   const { header, categories, packages, calculator, bonusFeatures, cta, background } = packagesConfig;
@@ -53,11 +57,17 @@ export function PackagesSection() {
         </div>
         {/* SPECTACULAR PACKAGE CARDS */}
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-10">
-          {packages[activeCategory as keyof typeof packages].map((pkg, index) => (
-            <div key={index} className="scroll-reveal" style={{ animationDelay: `${index * 0.1}s` }}>
-              <ProductCard {...pkg} />
-            </div>
-          ))}
+          {" "}
+          {packages[activeCategory as keyof typeof packages].map((pkg, index) => {
+            // Validate package data in development
+            const validatedPkg = devValidator?.validatePackage?.(pkg);
+
+            return (
+              <div key={index} className="scroll-reveal" style={{ animationDelay: `${index * 0.1}s` }}>
+                <ProductCard {...(validatedPkg || pkg)} />
+              </div>
+            );
+          })}
         </div>{" "}
         {/* INTERNET CALCULATOR SECTION */}
         <div className="mt-20">

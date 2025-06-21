@@ -2,19 +2,7 @@
 
 import { Button } from "@/components/ui/button";
 import { Check, Sparkles, Crown } from "lucide-react";
-
-interface ProductCardProps {
-  name: string;
-  icon: string;
-  speed: string;
-  quota: string;
-  price: string;
-  originalPrice?: string;
-  features: string[];
-  popular?: boolean;
-  color: "orange" | "blue" | "green" | "purple";
-  character?: string;
-}
+import type { ProductCardProps, ColorVariant } from "@/types/components";
 
 export function ProductCard({
   name,
@@ -28,7 +16,7 @@ export function ProductCard({
   color,
   character = "🦸‍♂️",
 }: ProductCardProps) {
-  const colorClasses = {
+  const colorClasses: Record<ColorVariant, { gradient: string; text: string; glow: string }> = {
     orange: {
       gradient: "from-orange-500 via-red-500 to-pink-500",
       text: "text-orange-400",
@@ -48,6 +36,11 @@ export function ProductCard({
       gradient: "from-purple-500 via-pink-500 to-rose-500",
       text: "text-purple-400",
       glow: "shadow-purple-500/50",
+    },
+    pink: {
+      gradient: "from-pink-500 via-rose-500 to-red-500",
+      text: "text-pink-400",
+      glow: "shadow-pink-500/50",
     },
   };
 

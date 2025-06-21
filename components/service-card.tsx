@@ -1,18 +1,10 @@
 "use client";
 
-import type { LucideIcon } from "lucide-react";
 import { Check } from "lucide-react";
-
-interface ServiceCardProps {
-  icon: LucideIcon;
-  title: string;
-  description: string;
-  features: string[];
-  color: "orange" | "blue" | "green" | "purple" | "pink";
-}
+import type { ServiceCardProps, ColorVariant } from "@/types/components";
 
 export function ServiceCard({ icon: Icon, title, description, features, color }: ServiceCardProps) {
-  const colorClasses = {
+  const colorClasses: Record<ColorVariant, { gradient: string; text: string }> = {
     orange: {
       gradient: "from-orange-500 via-red-500 to-pink-500",
       text: "text-orange-400",

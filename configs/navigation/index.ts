@@ -8,7 +8,6 @@
 
 // Import menu configuration
 export * from "./menu";
-export { navigationConfig, type NavigationConfigType } from "./menu";
 
 // Legacy navigation config (akan dihapus setelah migration)
 export const legacyNavigationConfig = {

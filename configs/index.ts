@@ -14,6 +14,9 @@ export * from "./api/index";
 export * from "./navigation/index";
 export * from "./site/index";
 export * from "./animations/index";
+export * from "./env/index";
+export * from "./schemas/index";
+export * from "./schemas/validator";
 
 // Re-export untuk kemudahan akses
 export { contentConfig } from "./content/index";
@@ -22,28 +25,9 @@ export { apiConfig } from "./api/index";
 export { navigationConfig } from "./navigation/index";
 export { siteConfig } from "./site/index";
 export { default as animationsConfig } from "./animations/index";
+export { default as env, envUtils } from "./env/index";
+export { schemas } from "./schemas/index";
+export { validators, validateConfig, safeValidateConfig } from "./schemas/validator";
 
-// Types untuk konfigurasi
-export interface ConfigBase {
-  id: string;
-  name: string;
-  description?: string;
-  enabled: boolean;
-  lastUpdated: string;
-}
-
-export interface ContentConfig extends ConfigBase {
-  language: "id" | "en";
-  version: string;
-}
-
-export interface UIConfig extends ConfigBase {
-  theme: "dark" | "light" | "auto";
-  animations: boolean;
-}
-
-export interface APIConfig extends ConfigBase {
-  baseUrl: string;
-  timeout: number;
-  retries: number;
-}
+// Re-export types from centralized types directory
+export type { ConfigBase, ContentConfig, UIConfig, APIConfig, BackgroundElement } from "../types";

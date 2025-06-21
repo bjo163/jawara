@@ -5,125 +5,12 @@ import { SectionTitle } from "@/components/section-title";
 import { ProductCard } from "@/components/product-card";
 import { Button } from "@/components/ui/button";
 import { Sparkles, Crown, Sword, Check } from "lucide-react";
+import { packagesConfig } from "@/configs/content/packages";
 
 export function PackagesSectionImproved() {
   const [activeCategory, setActiveCategory] = useState("rumah");
 
-  const packages = {
-    rumah: [
-      {
-        name: "Jagoan Neon",
-        icon: "🌟",
-        speed: "10 Mbps",
-        quota: "Unlimited FUP",
-        price: "Rp150.000",
-        originalPrice: "Rp200.000",
-        features: [
-          "Gratis instalasi & router WiFi",
-          "Cocok untuk 3-5 device",
-          "Streaming HD lancar",
-          "Customer support 24/7",
-        ],
-        popular: false,
-        color: "orange",
-        character: "🧙‍♂️",
-      },
-      {
-        name: "Mandor Sakti",
-        icon: "🔨",
-        speed: "25 Mbps",
-        quota: "Unlimited FUP",
-        price: "Rp200.000",
-        originalPrice: "Rp250.000",
-        features: [
-          "Perfect untuk WFH & gaming",
-          "Video call HD tanpa lag",
-          "Support 8-12 device",
-          "Priority customer support",
-        ],
-        popular: true,
-        color: "blue",
-        character: "👷‍♂️",
-      },
-      {
-        name: "Wiro Sableng",
-        icon: "⚔️",
-        speed: "35 Mbps",
-        quota: "Unlimited FUP",
-        price: "Rp250.000",
-        originalPrice: "Rp300.000",
-        features: [
-          "4K streaming tanpa buffering",
-          "Upload file besar cepat",
-          "Support 15-20 device",
-          "Dedicated customer support",
-        ],
-        popular: false,
-        color: "green",
-        character: "🥷",
-      },
-      {
-        name: "Sultan",
-        icon: "👑",
-        speed: "50 Mbps",
-        quota: "Unlimited Full",
-        price: "Rp300.000",
-        originalPrice: "Rp400.000",
-        features: [
-          "Unlimited tanpa FUP",
-          "Gaming pro & streaming 4K",
-          "Support unlimited device",
-          "VIP customer support",
-        ],
-        popular: false,
-        color: "purple",
-        character: "🤴",
-      },
-    ],
-    bisnis: [
-      {
-        name: "Startup Warrior",
-        icon: "🚀",
-        speed: "50 Mbps",
-        quota: "Dedicated",
-        price: "Rp500.000",
-        originalPrice: "Rp650.000",
-        features: ["Bandwidth dedicated", "Static IP address", "SLA 99.9% uptime", "Priority technical support"],
-        popular: false,
-        color: "orange",
-        character: "🦸‍♂️",
-      },
-      {
-        name: "Corporate Beast",
-        icon: "🏢",
-        speed: "100 Mbps",
-        quota: "Dedicated",
-        price: "Rp800.000",
-        originalPrice: "Rp1.000.000",
-        features: ["Bandwidth dedicated full", "Multiple static IP", "24/7 monitoring", "On-site technical support"],
-        popular: true,
-        color: "blue",
-        character: "🦁",
-      },
-      {
-        name: "Enterprise King",
-        icon: "👑",
-        speed: "200 Mbps",
-        quota: "Dedicated",
-        price: "Rp1.500.000",
-        originalPrice: "Rp2.000.000",
-        features: [
-          "Ultra-fast dedicated connection",
-          "Subnet IP allocation",
-          "Redundant connection",
-          "Dedicated account manager",
-        ],
-        popular: false,
-        color: "purple",
-        character: "🐉",
-      },
-    ],
-  };
+  const packages = packagesConfig.packages;
 
   return (
     <section id="packages" className="py-24 nusantara-bg relative overflow-hidden">

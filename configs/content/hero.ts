@@ -6,7 +6,7 @@
  * Includes slideshow data, floating elements, feature cards, stats, dan CTA configurations.
  */
 
-import { TAILWIND_ANIMATIONS } from "../animations/index.js";
+import { TAILWIND_ANIMATIONS } from "../animations";
 
 // Hero slide interface
 export interface HeroSlide {

@@ -6,7 +6,7 @@
  * Includes brand info, navigation items, CTA buttons, mobile settings, dan visual configuration.
  */
 
-import { COMPONENT_ANIMATIONS, TRANSITION_CLASSES, HOVER_EFFECTS } from "../animations/index.js";
+import { COMPONENT_ANIMATIONS, TRANSITION_CLASSES, HOVER_EFFECTS } from "../animations";
 
 // Navbar brand configuration
 export interface NavbarBrand {

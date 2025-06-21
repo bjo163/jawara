@@ -6,7 +6,7 @@
  * Includes chat messages, responses, assistant profile, dan UI settings.
  */
 
-import { TAILWIND_ANIMATIONS } from "../animations/index.js";
+import { TAILWIND_ANIMATIONS } from "../animations";
 
 // Assistant profile configuration
 export const chatAssistant = {

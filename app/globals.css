@@ -1087,92 +1087,398 @@ section {
   }
 }
 
-/* RESPONSIVE DESIGN - Enhanced */
-@media (max-width: 768px) {
+/* ===============================================
+   ENHANCED MOBILE-FIRST RESPONSIVE DESIGN
+   =============================================== */
+
+/* Base Mobile Styles (320px+) */
+@layer base {
+  /* Touch-friendly interactions */
+  button,
+  [role="button"],
+  .mega-button {
+    min-height: 44px; /* iOS recommended touch target */
+    min-width: 44px;
+    touch-action: manipulation; /* Disable double-tap zoom */
+  }
+
+  /* Improved text readability on mobile */
+  body {
+    -webkit-text-size-adjust: 100%; /* Prevent text size adjustment on iOS */
+    text-size-adjust: 100%;
+  }
+
+  /* Better scrolling on mobile */
+  html {
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  /* Optimize for mobile devices */
+  * {
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    -webkit-touch-callout: none;
+  }
+}
+
+/* Enhanced Mobile Typography (Mobile First) */
+.mega-title {
+  font-size: 1.5rem; /* 24px */
+  line-height: 1.3;
+}
+
+.mega-text {
+  font-size: 0.875rem; /* 14px */
+  line-height: 1.5;
+}
+
+.mega-card {
+  padding: 1rem; /* 16px */
+  border-radius: 12px;
+  margin-bottom: 1rem;
+}
+
+.mega-button {
+  padding: 0.75rem 1.25rem; /* 12px 20px */
+  border-radius: 8px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+/* Container Improvements */
+.container-mobile {
+  padding-left: 1rem;
+  padding-right: 1rem;
+  max-width: 100%;
+}
+
+/* Navigation Mobile Improvements */
+.navbar-mobile {
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+}
+
+/* Form Elements Mobile Optimization */
+input,
+textarea,
+select {
+  font-size: 16px; /* Prevent zoom on iOS */
+  border-radius: 8px;
+  padding: 0.75rem;
+  min-height: 44px;
+}
+
+/* Gaming Elements Mobile Scaling */
+.gaming-panel {
+  padding: 0.5rem;
+  font-size: 0.75rem;
+  border-radius: 8px;
+}
+
+.gaming-skill-slot {
+  width: 32px;
+  height: 32px;
+  border-radius: 6px;
+}
+
+/* Small Mobile (375px+) */
+@media (min-width: 375px) {
+  .mega-title {
+    font-size: 1.75rem; /* 28px */
+  }
+
+  .mega-text {
+    font-size: 0.9375rem; /* 15px */
+  }
+
   .mega-card {
-    border-radius: 16px;
-    padding: 16px;
+    padding: 1.25rem; /* 20px */
+    border-radius: 14px;
   }
 
   .mega-button {
-    border-radius: 12px;
+    padding: 0.875rem 1.5rem; /* 14px 24px */
+    font-size: 0.9375rem;
+  }
+}
+
+/* Large Mobile (480px+) */
+@media (min-width: 480px) {
+  .mega-title {
+    font-size: 2rem; /* 32px */
   }
 
-  /* Mobile specific adjustments */
-  .text-6xl {
-    font-size: 2.5rem;
-  }
-  .text-7xl {
-    font-size: 3rem;
-  }
-  .text-8xl {
-    font-size: 3.5rem;
-  }
-  .text-9xl {
-    font-size: 4rem;
+  .mega-text {
+    font-size: 1rem; /* 16px */
   }
 
-  /* Gaming HUD Mobile Adjustments */
+  .mega-card {
+    padding: 1.5rem; /* 24px */
+    border-radius: 16px;
+  }
+
+  .mega-button {
+    padding: 1rem 2rem; /* 16px 32px */
+    font-size: 1rem;
+    border-radius: 10px;
+  }
+
   .gaming-panel {
-    padding: 8px;
-    font-size: 12px;
+    padding: 0.75rem;
+    font-size: 0.875rem;
   }
 
   .gaming-skill-slot {
     width: 36px;
     height: 36px;
   }
-
-  .gaming-compass {
-    width: 45px;
-    height: 45px;
-  }
-
-  .gaming-minimap {
-    height: 80px;
-  }
 }
 
-@media (max-width: 640px) {
+/* Tablet (768px+) */
+@media (min-width: 768px) {
+  .mega-title {
+    font-size: 2.5rem; /* 40px */
+  }
+
+  .mega-text {
+    font-size: 1.125rem; /* 18px */
+  }
+
   .mega-card {
-    padding: 12px;
+    padding: 2rem; /* 32px */
+    border-radius: 20px;
   }
 
-  /* Small mobile adjustments */
-  .text-4xl {
-    font-size: 1.875rem;
-  }
-  .text-5xl {
-    font-size: 2.25rem;
-  }
-  .text-6xl {
-    font-size: 2.5rem;
+  .mega-button {
+    padding: 1.25rem 2.5rem; /* 20px 40px */
+    font-size: 1.125rem;
+    border-radius: 12px;
   }
 
-  /* Gaming HUD Small Mobile */
   .gaming-panel {
-    padding: 6px;
-    font-size: 10px;
+    padding: 1rem;
+    font-size: 1rem;
   }
 
-  .gaming-notification {
-    max-width: 250px;
-    padding: 8px 12px;
+  .gaming-skill-slot {
+    width: 40px;
+    height: 40px;
   }
 }
 
-/* Chat Widget Mobile Optimization */
-@media (max-width: 768px) {
-  .fixed.bottom-28.right-6 {
-    bottom: 6rem;
-    right: 1rem;
-    left: 1rem;
-    width: auto;
-    max-width: none;
+/* Desktop (1024px+) */
+@media (min-width: 1024px) {
+  .mega-title {
+    font-size: 3rem; /* 48px */
   }
 
-  .fixed.bottom-6.right-6 {
-    bottom: 1.5rem;
-    right: 1.5rem;
+  .mega-text {
+    font-size: 1.25rem; /* 20px */
   }
+
+  .mega-card {
+    padding: 2.5rem; /* 40px */
+    border-radius: 24px;
+  }
+
+  .mega-button {
+    padding: 1.5rem 3rem; /* 24px 48px */
+    font-size: 1.25rem;
+    border-radius: 14px;
+  }
+}
+
+/* Large Desktop (1280px+) */
+@media (min-width: 1280px) {
+  .mega-title {
+    font-size: 3.5rem; /* 56px */
+  }
+
+  .mega-card {
+    padding: 3rem; /* 48px */
+  }
+
+  .mega-button {
+    padding: 2rem 4rem; /* 32px 64px */
+    font-size: 1.5rem;
+    border-radius: 16px;
+  }
+}
+
+/* Mobile-Specific Touch Interactions */
+@media (hover: none) and (pointer: coarse) {
+  .mega-hover:active {
+    transform: scale(0.98);
+    transition: transform 0.1s ease;
+  }
+
+  .mega-button:active {
+    transform: scale(0.96);
+    transition: transform 0.1s ease;
+  }
+
+  /* Disable hover effects on touch devices */
+  .mega-hover:hover {
+    transform: none;
+  }
+}
+
+/* High DPI / Retina Display Optimization */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  .mega-glow {
+    filter: blur(0px); /* Reduce blur on high DPI */
+  }
+
+  .nusantara-glow {
+    box-shadow:
+      0 0 20px rgba(249, 115, 22, 0.3),
+      0 0 40px rgba(59, 130, 246, 0.2),
+      0 0 60px rgba(168, 85, 247, 0.1);
+  }
+}
+
+/* Landscape Mobile Optimization */
+@media (max-height: 500px) and (orientation: landscape) {
+  .mega-card {
+    padding: 0.75rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .mega-button {
+    padding: 0.5rem 1rem;
+    min-height: 36px;
+  }
+
+  .gaming-panel {
+    padding: 0.25rem;
+    font-size: 0.625rem;
+  }
+}
+
+/* Dark Mode Mobile Enhancements */
+@media (prefers-color-scheme: dark) {
+  .mega-card {
+    background: rgba(15, 23, 42, 0.95);
+    border: 1px solid rgba(51, 65, 85, 0.4);
+  }
+
+  .mega-button {
+    background: linear-gradient(135deg, rgba(249, 115, 22, 0.9), rgba(234, 88, 12, 0.9));
+    box-shadow: 0 4px 20px rgba(249, 115, 22, 0.3);
+  }
+}
+
+/* Accessibility Improvements */
+@media (prefers-reduced-motion: reduce) {
+  .mega-hover,
+  .mega-button,
+  .gaming-panel,
+  .animate-spin,
+  .animate-bounce {
+    animation: none;
+    transition: none;
+  }
+
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+/* Print Styles */
+@media print {
+  .gaming-hud,
+  .gaming-cursor,
+  .live-chat-widget,
+  .api-metrics-display {
+    display: none !important;
+  }
+
+  .mega-card {
+    border: 1px solid #ccc;
+    box-shadow: none;
+    background: white;
+  }
+
+  .mega-text {
+    color: black;
+  }
+}
+
+/* Focus Improvements for Keyboard Navigation */
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
+  outline: 2px solid #f97316;
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* Enhanced Grid Systems for Mobile */
+.grid-mobile-1 {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+}
+
+.grid-mobile-2 {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.75rem;
+}
+
+@media (min-width: 640px) {
+  .grid-mobile-1 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .grid-mobile-2 {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .grid-mobile-1 {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .grid-mobile-2 {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+/* Mobile Navigation Enhancements */
+.mobile-nav-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(8px);
+  z-index: 9998;
+}
+
+.mobile-nav-panel {
+  position: fixed;
+  top: 0;
+  right: 0;
+  height: 100vh;
+  width: 280px;
+  max-width: 80vw;
+  background: linear-gradient(135deg, rgba(15, 23, 42, 0.98), rgba(30, 41, 59, 0.98));
+  border-left: 2px solid rgba(249, 115, 22, 0.3);
+  z-index: 9999;
+  transform: translateX(100%);
+  transition: transform 0.3s ease-in-out;
+}
+
+.mobile-nav-panel.open {
+  transform: translateX(0);
 }
