@@ -25,11 +25,11 @@ export function Navbar({ activeSection }: NavbarProps) {
     { id: "hero", label: "Beranda", icon: "🏠", type: "scroll" },
     { id: "about", label: "Tentang", icon: "📖", type: "scroll" },
     { id: "services", label: "Layanan", icon: "⚔️", type: "scroll" },
-    { id: "packages", label: "Paket", icon: "💎", type: "scroll" },
+    { id: "paket", label: "Paket", icon: "💎", type: "link", href: "/paket" },
     { id: "testimonials", label: "Testimoni", icon: "💬", type: "scroll" },
     { id: "berlangganan", label: "Berlangganan", icon: "🗡️", type: "link", href: "/berlangganan" },
     { id: "speedtest", label: "Speed Test", icon: "⚡", type: "link", href: "/speedtest" },
-    { id: "contact", label: "Kontak", icon: "📞", type: "scroll" },
+    { id: "contact-page", label: "Kontak", icon: "📞", type: "link", href: "/contact" },
   ]
 
   const handleNavClick = (item: any) => {

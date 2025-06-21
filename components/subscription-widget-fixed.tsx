@@ -111,32 +111,30 @@ export function SubscriptionWidget() {
       }
     )
   }
-
   return (
     <>
       {/* Subscription Widget Button */}
-      <div className="fixed bottom-6 left-6 z-50">        {!isOpen && (
+      <div className="fixed bottom-20 left-4 md:bottom-6 md:left-6 z-50">
+        {!isOpen && (
           <button
             onClick={() => window.location.href = '/berlangganan'}
-            className="bg-gradient-to-r from-orange-500 to-red-500 hover:from-orange-600 hover:to-red-600 text-white px-6 py-3 rounded-full shadow-2xl transition-all duration-300 hover:scale-110 flex items-center space-x-2"
+            className="bg-gradient-to-r from-orange-500 to-red-500 hover:from-orange-600 hover:to-red-600 text-white px-4 py-2 md:px-6 md:py-3 rounded-full shadow-2xl transition-all duration-300 hover:scale-110 flex items-center space-x-2 text-sm md:text-base"
           >
-            <span className="text-xl">👑</span>
+            <span className="text-lg md:text-xl">👑</span>
             <span className="font-bold">Berlangganan</span>
             <div className="absolute -top-1 -right-1 w-3 h-3 bg-yellow-400 rounded-full animate-pulse"></div>
           </button>
-        )}
-
-        {/* Subscription Window */}
+        )}        {/* Subscription Window */}
         {isOpen && (
-          <div className="bg-slate-900 border border-gray-700 rounded-2xl shadow-2xl w-96 max-h-[500px] flex flex-col overflow-hidden">
+          <div className="bg-slate-900 border border-gray-700 rounded-2xl shadow-2xl w-80 md:w-96 max-h-[400px] md:max-h-[500px] flex flex-col overflow-hidden">
             {/* Header */}
-            <div className="bg-gradient-to-r from-orange-500 to-red-500 p-4 flex items-center justify-between">
-              <div className="flex items-center space-x-3">
-                <div className="w-10 h-10 bg-white/20 rounded-full flex items-center justify-center">
-                  <span className="text-xl">👑</span>
+            <div className="bg-gradient-to-r from-orange-500 to-red-500 p-3 md:p-4 flex items-center justify-between">
+              <div className="flex items-center space-x-2 md:space-x-3">
+                <div className="w-8 h-8 md:w-10 md:h-10 bg-white/20 rounded-full flex items-center justify-center">
+                  <span className="text-lg md:text-xl">👑</span>
                 </div>
                 <div>
-                  <h3 className="font-bold text-white">Gabung Jawara-Net</h3>
+                  <h3 className="font-bold text-white text-sm md:text-base">Gabung Jawara-Net</h3>
                   <p className="text-xs text-orange-100">Cek coverage area Anda</p>
                 </div>
               </div>
@@ -144,19 +142,17 @@ export function SubscriptionWidget() {
                 onClick={() => setIsOpen(false)}
                 className="text-white hover:bg-white/20 p-1 rounded-full transition-colors"
               >
-                <X className="h-5 w-5" />
+                <X className="h-4 w-4 md:h-5 md:w-5" />
               </button>
-            </div>
-
-            {/* Content */}
-            <div className="flex-1 p-6 space-y-4">
+            </div>            {/* Content */}
+            <div className="flex-1 p-4 md:p-6 space-y-4">
               {/* Location Check */}
               <div className="text-center">
-                <div className="w-16 h-16 bg-gradient-to-br from-blue-500 to-purple-500 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <MapPin className="h-8 w-8 text-white" />
+                <div className="w-12 h-12 md:w-16 md:h-16 bg-gradient-to-br from-blue-500 to-purple-500 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <MapPin className="h-6 w-6 md:h-8 md:w-8 text-white" />
                 </div>
-                <h4 className="text-lg font-bold text-white mb-2">Cek Lokasi Anda</h4>
-                <p className="text-gray-400 text-sm mb-4">
+                <h4 className="text-base md:text-lg font-bold text-white mb-2">Cek Lokasi Anda</h4>
+                <p className="text-gray-400 text-xs md:text-sm mb-4">
                   Kami akan mengecek apakah lokasi Anda sudah ter-cover jaringan Jawara-Net dalam radius 10km
                 </p>
                 

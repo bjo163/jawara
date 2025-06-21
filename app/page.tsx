@@ -6,10 +6,8 @@ import { HeroSection } from "@/components/hero-section"
 import { AboutSection } from "@/components/about-section"
 import { ServicesSection } from "@/components/services-section"
 import { ProcessSection } from "@/components/process-section"
-import { PackagesSection } from "@/components/packages-section"
 import { TestimonialsSection } from "@/components/testimonials-section"
 import { FaqSection } from "@/components/faq-section"
-import { ContactSection } from "@/components/contact-section"
 import { CoverageSection } from "@/components/coverage-section"
 import { MapSection } from "@/components/map-section"
 import { Footer } from "@/components/footer"
@@ -26,10 +24,8 @@ export default function HomePage() {
         "about",
         "services",
         "process",
-        "packages",
         "testimonials",
         "faq",
-        "contact",
         "coverage",
         "map",
       ]
@@ -60,10 +56,8 @@ export default function HomePage() {
         <AboutSection />
         <ServicesSection />
         <ProcessSection />
-        <PackagesSection />
         <TestimonialsSection />
         <FaqSection />
-        <ContactSection />
         <CoverageSection />
         <MapSection />
       </main>

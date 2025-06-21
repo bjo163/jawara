@@ -2,6 +2,8 @@
 
 import { Facebook, Instagram, Twitter, Youtube } from "lucide-react"
 import { Logo } from "@/components/logo"
+import { contactInfo, getContactByType } from "@/data/contact"
+import Link from "next/link"
 
 export function Footer() {
   const scrollToSection = (sectionId: string) => {
@@ -68,12 +70,12 @@ export function Footer() {
                 </button>
               </li>
               <li>
-                <button
-                  onClick={() => scrollToSection("packages")}
+                <Link
+                  href="/paket"
                   className="text-gray-400 hover:text-orange-400 transition-colors"
                 >
                   Paket Internet
-                </button>
+                </Link>
               </li>
               <li>
                 <button
@@ -107,12 +109,13 @@ export function Footer() {
                 </button>
               </li>
               <li>
-                <button
-                  onClick={() => scrollToSection("contact")}
-                  className="text-gray-400 hover:text-orange-400 transition-colors"
+                <Link
+                  href="/contact"
+                  className="text-gray-400 hover:text-orange-400 transition-colors flex items-center space-x-1"
                 >
-                  Hubungi Kami
-                </button>
+                  <span>📞</span>
+                  <span>Hubungi Kami</span>
+                </Link>
               </li>
               <li>
                 <a 
@@ -154,20 +157,32 @@ export function Footer() {
           <div>
             <h4 className="text-lg font-semibold text-white mb-4">Kontak</h4>
             <div className="space-y-3 text-gray-400">
+              {/* WhatsApp */}
               <div>
                 <p className="font-semibold text-white">Customer Service</p>
-                <p>WhatsApp: +62 812-9529-5734</p>
-                <p>Telepon: +62 812-9529-5734</p>
+                <p>WhatsApp: {getContactByType('whatsapp')?.value}</p>
+                <p>Telepon: {getContactByType('phone')?.value}</p>
               </div>
+              {/* Email */}
               <div>
                 <p className="font-semibold text-white">Email</p>
-                <p>info@jawara-net.com</p>
-                <p>support@jawara-net.com</p>
+                <p>{getContactByType('email')?.value}</p>
               </div>
+              {/* Address */}
               <div>
                 <p className="font-semibold text-white">Alamat</p>
-                <p>R398+H5H Srimukti</p>
-                <p>Bekasi Regency, West Java</p>
+                <p>{getContactByType('address')?.value}</p>
+                <p>{getContactByType('address')?.secondary}</p>
+              </div>
+              {/* Link to Contact Page */}
+              <div className="pt-2">
+                <Link
+                  href="/contact"
+                  className="inline-flex items-center text-orange-400 hover:text-orange-300 transition-colors font-semibold"
+                >
+                  <span>📍</span>
+                  <span className="ml-1">Lihat Kontak Lengkap</span>
+                </Link>
               </div>
             </div>
           </div>

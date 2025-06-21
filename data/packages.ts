@@ -19,89 +19,97 @@ export interface Package {
 
 export const packages: Package[] = [
   // Paket Rumah - Sesuai dengan SPA Page Screenshots
-  {
-    id: 'paket-pemula',
-    name: 'Paket Pemula',
+    {
+    id: 'jagoan-neon',
+    name: 'Jagoan Neon',
     icon: '🌟',
     character: '🧙‍♂️',
-    speed: '20 Mbps',
-    uploadSpeed: '10 Mbps',
-    quota: 'Unlimited Quota',
-    price: 'Rp 150.000',
+    speed: '10 Mbps',
+    uploadSpeed: '5 Mbps',
+    quota: 'Unlimited FUP',
+    price: 'Rp150.000',
+    originalPrice: 'Rp200.000',
     priceNumeric: 150000,
     category: 'rumah',
     features: [
-      'Download 20 Mbps',
-      'Upload 10 Mbps',
-      'Unlimited Quota', 
-      'Free Instalasi'
+      '🆓 Gratis instalasi',
+      '🍪 Cocok untuk rumahan',
+      '📺 Streaming HD lancar',
+      '📱 Support 5-8 device',
+      '🛠️ Customer support 24/7'
     ],
     popular: false,
     color: 'orange',
-    description: 'Paket internet pemula yang cocok untuk kebutuhan dasar browsing dan streaming'
+    description: 'Paket internet pemula dengan teknologi terdepan'
   },
   {
-    id: 'paket-gaming-pro',
-    name: 'Paket Gaming Pro',
-    icon: '🎮',
-    character: '🎯',
-    speed: '50 Mbps',
-    uploadSpeed: '25 Mbps',
-    quota: 'Unlimited',
-    price: 'Rp 275.000',
-    priceNumeric: 275000,
+    id: 'mandor-sakti',
+    name: 'Mandor Sakti',
+    icon: '👷‍♂️',
+    character: '🔨',
+    speed: '25 Mbps',
+    uploadSpeed: '12 Mbps',
+    quota: 'Unlimited FUP',
+    price: 'Rp200.000',
+    originalPrice: 'Rp250.000',
+    priceNumeric: 200000,
     category: 'rumah',
     features: [
-      'Download 50 Mbps',
-      'Upload 25 Mbps',
-      'Low Latency Gaming',
-      'Priority Support'
+      '🏗️ Stabil buat kerja & belajar dari rumah',
+      '📹 Video call HD tanpa lag',
+      '🎮 Gaming online smooth',
+      '📱 Support 10-15 device',
+      '⭐ Priority customer support'
     ],
     popular: false,
     color: 'blue',
-    description: 'Paket khusus untuk gaming dengan latensi rendah'
+    description: 'Paket andalan untuk professional'
   },
   {
-    id: 'paket-keluarga',
-    name: 'Paket Keluarga',
-    icon: '👨‍👩‍👧‍👦',
-    character: '🏠',
-    speed: '100 Mbps',
-    uploadSpeed: '50 Mbps',
-    quota: 'Unlimited',
-    price: 'Rp 450.000',
-    priceNumeric: 450000,
+    id: 'wiro-sableng',
+    name: 'Wiro Sableng',
+    icon: '🥷',
+    character: '⚔️',
+    speed: '35 Mbps',
+    uploadSpeed: '20 Mbps',
+    quota: 'Unlimited FUP',
+    price: 'Rp250.000',
+    originalPrice: 'Rp300.000',
+    priceNumeric: 250000,
     category: 'rumah',
     features: [
-      'Download 100 Mbps',
-      'Upload 50 Mbps',
-      '4K Streaming Ready',
-      '24/7 Support'
+      '⚡ Ngabut streaming & CCTV',
+      '🎬 4K streaming tanpa buffering',
+      '📤 Upload file besar cepat',
+      '📱 Support 15-20 device',
+      '🛡️ Dedicated support'
     ],
-    popular: true,
+    popular: false,
     color: 'green',
-    description: 'Paket keluarga dengan bandwidth besar untuk streaming dan gaming'
+    description: 'Paket untuk warrior digital'
   },
   {
-    id: 'paket-bisnis-home',
-    name: 'Paket Bisnis',
-    icon: '💼',
-    character: '🏢',
-    speed: '200 Mbps',
-    uploadSpeed: '100 Mbps',
-    quota: 'Unlimited',
-    price: 'Rp 750.000',
-    priceNumeric: 750000,
+    id: 'sultan',
+    name: 'Sultan',
+    icon: '🤴',
+    character: '👑',
+    speed: '50 Mbps',
+    uploadSpeed: '25 Mbps',
+    quota: 'Unlimited Full',
+    price: 'Rp300.000',
+    originalPrice: 'Rp350.000',
+    priceNumeric: 300000,
     category: 'rumah',
     features: [
-      'Download 200 Mbps',
-      'Upload 100 Mbps',
-      'Static IP',
-      'Priority Network'
+      '🔥 Prioritas bandwidth, anti lemot 24 jam',
+      '♾️ Unlimited tanpa FUP',
+      '🎮 Gaming pro & streaming 4K',
+      '📱 Support unlimited device',
+      '👑 VIP customer support'
     ],
     popular: false,
     color: 'purple',
-    description: 'Paket bisnis dengan performa tinggi dan static IP'
+    description: 'Paket premium untuk sultan digital'
   },
 
   // Paket Bisnis Khusus
@@ -139,7 +147,7 @@ export const packages: Package[] = [
     priceNumeric: 650000,
     category: 'bisnis',
     features: [
-      '🏪 Untuk toko/kantor menengah',
+      '🏪 Untuk toko/kantor',
       '📊 Multiple branch connection',
       '🛡️ Security & firewall',
       '📡 Static IP tersedia',
@@ -161,16 +169,39 @@ export const packages: Package[] = [
     priceNumeric: 1200000,
     category: 'bisnis',
     features: [
-      '🏭 Enterprise grade connection',
+      '🏭 Enterprise grade',
       '🔧 Dedicated support engineer',
       '🛡️ Advanced security suite',
       '📡 Multiple static IP',
-      '⚡ SLA 99.9% uptime guarantee'
+      '⚡ SLA 99.9% uptime'
     ],
     popular: false,
     color: 'purple',
     description: 'Paket enterprise untuk kebutuhan bisnis skala besar'
-  }
+  },
+    // Paket Bisnis - Sesuai dengan SPA Page Screenshots
+    {
+        id: 'bisnis-ultimate',
+        name: 'Bisnis Ultimate',
+        icon: '🏢',
+        character: '👨‍💼',
+        speed: '150 Mbps',
+        uploadSpeed: '75 Mbps',
+        quota: 'Unlimited',
+        price: 'Rp 2.000.000',
+        priceNumeric: 2000000,
+        category: 'bisnis',
+        features: [
+        '🏢 Untuk perusahaan besar',
+        '📈 High availability connection',
+        '🛡️ Security & firewall',
+        '📡 Multiple static IPs',
+        '⚡ SLA 99.99% uptime'
+        ],
+        popular: false,
+        color: 'orange',
+        description: 'Paket bisnis untuk perusahaan besar dengan kebutuhan kritis'
+    }
 ]
 
 // Helper functions

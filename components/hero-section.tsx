@@ -2,13 +2,6 @@
 import { ArrowRight, Zap, Shield, Globe } from "lucide-react"
 
 export function HeroSection() {
-  const scrollToSection = (sectionId: string) => {
-    const element = document.getElementById(sectionId)
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth" })
-    }
-  }
-
   return (
     <section id="hero" className="relative min-h-screen flex items-center justify-center overflow-hidden">
       {/* Professional Background */}
@@ -102,7 +95,7 @@ export function HeroSection() {
           {/* Professional CTA Buttons */}
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
             <button
-              onClick={() => scrollToSection("packages")}
+              onClick={() => window.location.href = '/paket'}
               className="professional-button px-8 py-4 text-lg font-bold text-white cartoon-text flex items-center space-x-3"
             >
               <span>🗡️ Pilih Paket Internet</span>
@@ -124,10 +117,10 @@ export function HeroSection() {
             </button>
 
             <button
-              onClick={() => scrollToSection("contact")}
+              onClick={() => window.location.href = '/contact'}
               className="professional-button bg-gradient-to-r from-blue-600 to-purple-600 px-8 py-4 text-lg font-bold text-white cartoon-text"
             >
-              <span>� Konsultasi Gratis</span>
+              <span>📞 Konsultasi Gratis</span>
             </button>
           </div>
 

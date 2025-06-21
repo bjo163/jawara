@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react"
 import { MapPin, CheckCircle, AlertCircle, Loader2, X } from "lucide-react"
 import { Button } from "@/components/ui/button"
+import { widgetStateManager } from "@/lib/widget-state"
 
 interface CoverageArea {
   name: string
@@ -13,16 +14,43 @@ interface CoverageArea {
 
 export function SubscriptionWidget() {
   const [isOpen, setIsOpen] = useState(false)
+  const [isForceHidden, setIsForceHidden] = useState(false)
   const [userLocation, setUserLocation] = useState<{lat: number, lng: number} | null>(null)
   const [locationStatus, setLocationStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle')
   const [coverageStatus, setCoverageStatus] = useState<'checking' | 'covered' | 'not-covered' | null>(null)
   const [nearestArea, setNearestArea] = useState<string>('')
   const [distance, setDistance] = useState<number>(0)
 
+  // Subscribe to widget state changes
+  useEffect(() => {
+    const unsubscribe = widgetStateManager.subscribe((activeWidget) => {
+      if (activeWidget === 'chat' && isOpen) {
+        // Jika chat widget dibuka dan subscription widget sedang terbuka, tutup subscription
+        setIsOpen(false)
+        setIsForceHidden(true)
+      } else if (activeWidget === null) {
+        // Jika tidak ada widget yang aktif, reset force hidden
+        setIsForceHidden(false)
+      }
+    })
+
+    return unsubscribe
+  }, [isOpen])
+
+  const handleOpen = () => {
+    setIsOpen(true)
+    setIsForceHidden(false)
+    widgetStateManager.setActiveWidget('subscription')
+  }
+
+  const handleClose = () => {
+    setIsOpen(false)
+    widgetStateManager.setActiveWidget(null)
+  }
   // Function to scroll to contact section
   const scrollToContact = () => {
     console.log('Scrolling to contact section...')
-    setIsOpen(false)
+    handleClose()
     
     setTimeout(() => {
       const element = document.getElementById("contact")
@@ -118,11 +146,10 @@ export function SubscriptionWidget() {
   }
 
   return (
-    <>      {/* Subscription Widget Button */}
-      <div className="fixed bottom-6 left-6 z-50">
-        {!isOpen && (
+    <>      {/* Subscription Widget Button */}      <div className="fixed bottom-6 left-6 z-50">
+        {!isOpen && !isForceHidden && (
           <button
-            onClick={() => setIsOpen(true)}
+            onClick={handleOpen}
             className="bg-gradient-to-r from-orange-500 to-red-500 hover:from-orange-600 hover:to-red-600 text-white px-6 py-3 rounded-full shadow-2xl transition-all duration-300 hover:scale-110 flex items-center space-x-2"
           >
             <span className="text-xl">👑</span>
@@ -144,9 +171,8 @@ export function SubscriptionWidget() {
                   <h3 className="font-bold text-white">Gabung Jawara-Net</h3>
                   <p className="text-xs text-orange-100">Cek coverage area Anda</p>
                 </div>
-              </div>
-              <button
-                onClick={() => setIsOpen(false)}
+              </div>              <button
+                onClick={handleClose}
                 className="text-white hover:bg-white/20 p-1 rounded-full transition-colors"
               >
                 <X className="h-5 w-5" />
@@ -226,9 +252,8 @@ export function SubscriptionWidget() {
                             className="block w-full bg-green-500 hover:bg-green-600 text-white px-6 py-3 rounded-lg font-semibold transition-colors"
                           >
                             📞 Lanjut ke Formulir Kontak
-                          </button>
-                          <a
-                            href={`https://wa.me/6281295295734?text=Halo%20Jawara-Net!%20Saya%20ingin%20berlangganan%20internet.%20Lokasi%20saya:%20${userLocation?.lat.toFixed(6)},%20${userLocation?.lng.toFixed(6)}%20(Jarak%20${distance.toFixed(1)}km%20dari%20kantor)}`
+                          </button>                          <a
+                            href={`https://wa.me/6281295295734?text=Halo%20Jawara-Net!%20Saya%20ingin%20berlangganan%20internet.%20Lokasi%20saya:%20${userLocation?.lat.toFixed(6)},%20${userLocation?.lng.toFixed(6)}%20(Jarak%20${distance.toFixed(1)}km%20dari%20kantor)`}
                             target="_blank"
                             rel="noopener noreferrer"
                             className="block bg-green-600 hover:bg-green-700 text-white px-6 py-2 rounded-lg font-semibold transition-colors text-center"
@@ -258,12 +283,11 @@ export function SubscriptionWidget() {
                             className="block bg-orange-500 hover:bg-orange-600 text-white px-6 py-3 rounded-lg font-semibold transition-colors"
                           >
                             💬 Request Coverage Area
-                          </a>
-                          <button
+                          </a>                          <button
                             onClick={() => {
                               const element = document.getElementById("contact")
                               if (element) element.scrollIntoView({ behavior: "smooth" })
-                              setIsOpen(false)
+                              handleClose()
                             }}
                             className="block w-full bg-blue-500 hover:bg-blue-600 text-white px-6 py-2 rounded-lg font-semibold transition-colors"
                           >
