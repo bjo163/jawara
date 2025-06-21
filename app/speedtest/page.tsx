@@ -5,6 +5,7 @@ import { Download, Upload, Wifi, Zap, ArrowLeft, RotateCcw } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Logo } from "@/components/logo"
+import { Breadcrumb, BackButton } from "@/components/breadcrumb"
 import Link from "next/link"
 
 interface SpeedTestResult {
@@ -263,20 +264,17 @@ export default function SpeedTestPage() {
   }
 
   return (
-    <div className="min-h-screen bg-slate-950 text-white">
-      {/* Header */}
+    <div className="min-h-screen bg-slate-950 text-white">      {/* Header */}
       <header className="border-b border-gray-800 bg-slate-900/50 backdrop-blur-xl">
         <div className="max-w-4xl mx-auto px-4 py-4 flex items-center justify-between">
           <div className="flex items-center space-x-4">
-            <Link href="/">
-              <Button variant="ghost" size="sm" className="text-gray-400 hover:text-white">
-                <ArrowLeft className="h-4 w-4 mr-2" />
-                Kembali
-              </Button>
-            </Link>
+            <BackButton variant="minimal" />
             <Logo size="sm" showSubtext={false} />
           </div>
-          <h1 className="text-xl font-bold">Speed Test Jawara-Net</h1>
+          <div className="flex items-center space-x-4">
+            <Breadcrumb showHome={false} />
+            <h1 className="text-xl font-bold">Speed Test Jawara-Net</h1>
+          </div>
         </div>
       </header>
 

@@ -8,6 +8,7 @@ import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { Logo } from "@/components/logo"
 import { packages, getPackageById, getPackagesByCategory } from "@/data/packages"
+import { Breadcrumb, BackButton } from "@/components/breadcrumb"
 import Link from "next/link"
 
 interface SubscriptionForm {
@@ -153,20 +154,17 @@ ${coverageStatus === 'covered' ? `Status: Area ter-cover (${distance.toFixed(1)}
   }
 
   return (
-    <div className="min-h-screen bg-slate-950 text-white">
-      {/* Header */}
+    <div className="min-h-screen bg-slate-950 text-white">      {/* Header */}
       <header className="border-b border-gray-800 bg-slate-900/50 backdrop-blur-xl">
         <div className="max-w-6xl mx-auto px-4 py-4 flex items-center justify-between">
           <div className="flex items-center space-x-4">
-            <Link href="/">
-              <Button variant="ghost" size="sm" className="text-gray-400 hover:text-white">
-                <ArrowLeft className="h-4 w-4 mr-2" />
-                Kembali
-              </Button>
-            </Link>
+            <BackButton variant="minimal" />
             <Logo size="sm" showSubtext={false} />
           </div>
-          <h1 className="text-xl font-bold">Berlangganan Jawara-Net</h1>
+          <div className="flex items-center space-x-4">
+            <Breadcrumb showHome={false} />
+            <h1 className="text-xl font-bold">Berlangganan Jawara-Net</h1>
+          </div>
         </div>
       </header>
 

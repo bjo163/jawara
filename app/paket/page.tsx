@@ -12,13 +12,8 @@ export default function PaketPage() {
   return (
     <div className="min-h-screen bg-slate-950 text-white overflow-x-hidden">
       <Navbar activeSection="paket" />      <main className="pt-24">
-        {/* Page Header with Breadcrumb & Back */}
-        <PageHeader 
-          breadcrumbItems={[
-            { label: "Paket Internet", active: true }
-          ]}
-          backButton={{ href: "/", label: "Kembali ke Beranda" }}
-        />
+        {/* Auto Breadcrumb & Back Navigation */}
+        <PageHeader />
 
         {/* Header Section */}
         <section className="py-16 px-4">

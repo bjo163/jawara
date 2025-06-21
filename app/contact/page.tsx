@@ -9,6 +9,7 @@ import { Textarea } from "@/components/ui/textarea"
 import { Logo } from "@/components/logo"
 import { ContactForm } from "@/components/contact-form"
 import { contactInfo, officeLocation, quickActions, formatContactForWhatsApp } from "@/data/contact"
+import { Breadcrumb, BackButton } from "@/components/breadcrumb"
 import Link from "next/link"
 
 interface ContactPageState {
