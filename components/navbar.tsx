@@ -70,10 +70,10 @@ export function Navbar({ activeSection }: NavbarProps) {
           {/* CTA Button */}
           <div className="hidden md:flex items-center space-x-4">
             <Button
-              onClick={() => scrollToSection("contact")}
+              onClick={() => window.location.href = '/login'}
               className="professional-button px-6 py-2 text-white font-bold cartoon-text"
             >
-              🚀 Gabung Sekarang
+              � Login
             </Button>
           </div>
 
@@ -109,10 +109,10 @@ export function Navbar({ activeSection }: NavbarProps) {
                 </button>
               ))}
               <Button
-                onClick={() => scrollToSection("contact")}
+                onClick={() => window.location.href = '/login'}
                 className="w-full mt-4 professional-button text-white font-bold cartoon-text"
               >
-                🚀 Gabung Sekarang
+                � Login
               </Button>
             </div>
           </div>

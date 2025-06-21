@@ -14,7 +14,7 @@ import { CoverageSection } from "@/components/coverage-section"
 import { MapSection } from "@/components/map-section"
 import { Footer } from "@/components/footer"
 import { LiveChatWidget } from "@/components/live-chat-widget"
-import { SubscriptionWidget } from "@/components/subscription-widget"
+import { SubscriptionWidget } from "@/components/subscription-widget-fixed"
 
 export default function HomePage() {
   const [activeSection, setActiveSection] = useState("hero")

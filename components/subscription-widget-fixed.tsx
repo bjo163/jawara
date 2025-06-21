@@ -4,13 +4,6 @@ import { useState, useEffect } from "react"
 import { MapPin, CheckCircle, AlertCircle, Loader2, X } from "lucide-react"
 import { Button } from "@/components/ui/button"
 
-interface CoverageArea {
-  name: string
-  lat: number
-  lng: number
-  radius: number // in km
-}
-
 export function SubscriptionWidget() {
   const [isOpen, setIsOpen] = useState(false)
   const [userLocation, setUserLocation] = useState<{lat: number, lng: number} | null>(null)
@@ -18,6 +11,15 @@ export function SubscriptionWidget() {
   const [coverageStatus, setCoverageStatus] = useState<'checking' | 'covered' | 'not-covered' | null>(null)
   const [nearestArea, setNearestArea] = useState<string>('')
   const [distance, setDistance] = useState<number>(0)
+
+  // Jawara-Net Office Location (dari koordinat yang sudah diset sebelumnya)
+  const jawaraNetOffice = {
+    name: "Kantor Jawara-Net",
+    lat: -6.1810747,
+    lng: 107.0654949,
+    address: "R398+H5H Srimukti, Bekasi Regency, West Java",
+    coverageRadius: 10 // 10km radius
+  }
 
   // Function to scroll to contact section
   const scrollToContact = () => {
@@ -53,14 +55,6 @@ export function SubscriptionWidget() {
       }
     }, 200)
   }
-  // Jawara-Net Office Location (dari koordinat yang sudah diset sebelumnya)
-  const jawaraNetOffice = {
-    name: "Kantor Jawara-Net",
-    lat: -6.1810747,
-    lng: 107.0654949,
-    address: "R398+H5H Srimukti, Bekasi Regency, West Java",
-    coverageRadius: 10 // 10km radius
-  }
 
   // Calculate distance between two points (Haversine formula)
   const calculateDistance = (lat1: number, lng1: number, lat2: number, lng2: number): number => {
@@ -74,6 +68,7 @@ export function SubscriptionWidget() {
     const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a))
     return R * c
   }
+
   // Check coverage
   const checkCoverage = (userLat: number, userLng: number) => {
     setCoverageStatus('checking')
@@ -118,7 +113,8 @@ export function SubscriptionWidget() {
   }
 
   return (
-    <>      {/* Subscription Widget Button */}
+    <>
+      {/* Subscription Widget Button */}
       <div className="fixed bottom-6 left-6 z-50">
         {!isOpen && (
           <button
@@ -209,7 +205,9 @@ export function SubscriptionWidget() {
                         <Loader2 className="h-5 w-5 animate-spin" />
                         <span>Mengecek coverage area...</span>
                       </div>
-                    )}                    {coverageStatus === 'covered' && (
+                    )}
+
+                    {coverageStatus === 'covered' && (
                       <div className="text-green-400">
                         <CheckCircle className="h-12 w-12 mx-auto mb-3" />
                         <h5 className="font-bold text-lg mb-2">🎉 Lokasi Anda Ter-cover!</h5>
@@ -228,7 +226,7 @@ export function SubscriptionWidget() {
                             📞 Lanjut ke Formulir Kontak
                           </button>
                           <a
-                            href={`https://wa.me/6281295295734?text=Halo%20Jawara-Net!%20Saya%20ingin%20berlangganan%20internet.%20Lokasi%20saya:%20${userLocation?.lat.toFixed(6)},%20${userLocation?.lng.toFixed(6)}%20(Jarak%20${distance.toFixed(1)}km%20dari%20kantor)}`
+                            href={`https://wa.me/6281295295734?text=Halo%20Jawara-Net!%20Saya%20ingin%20berlangganan%20internet.%20Lokasi%20saya:%20${userLocation?.lat.toFixed(6)},%20${userLocation?.lng.toFixed(6)}%20(Jarak%20${distance.toFixed(1)}km%20dari%20kantor)`}
                             target="_blank"
                             rel="noopener noreferrer"
                             className="block bg-green-600 hover:bg-green-700 text-white px-6 py-2 rounded-lg font-semibold transition-colors text-center"
@@ -237,7 +235,9 @@ export function SubscriptionWidget() {
                           </a>
                         </div>
                       </div>
-                    )}                    {coverageStatus === 'not-covered' && (
+                    )}
+
+                    {coverageStatus === 'not-covered' && (
                       <div className="text-orange-400">
                         <AlertCircle className="h-12 w-12 mx-auto mb-3" />
                         <h5 className="font-bold text-lg mb-2">📍 Belum Ter-cover</h5>
@@ -260,11 +260,7 @@ export function SubscriptionWidget() {
                             💬 Request Coverage Area
                           </a>
                           <button
-                            onClick={() => {
-                              const element = document.getElementById("contact")
-                              if (element) element.scrollIntoView({ behavior: "smooth" })
-                              setIsOpen(false)
-                            }}
+                            onClick={scrollToContact}
                             className="block w-full bg-blue-500 hover:bg-blue-600 text-white px-6 py-2 rounded-lg font-semibold transition-colors"
                           >
                             📞 Hubungi Customer Service
