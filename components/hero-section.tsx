@@ -100,7 +100,7 @@ export function HeroSection() {
           </div>
 
           {/* Professional CTA Buttons */}
-          <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
+          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
             <button
               onClick={() => scrollToSection("packages")}
               className="professional-button px-8 py-4 text-lg font-bold text-white cartoon-text flex items-center space-x-3"
@@ -110,10 +110,24 @@ export function HeroSection() {
             </button>
 
             <button
+              onClick={() => window.location.href = '/berlangganan'}
+              className="professional-button bg-gradient-to-r from-green-500 to-green-600 px-8 py-4 text-lg font-bold text-white cartoon-text flex items-center space-x-3"
+            >
+              <span>👑 Berlangganan Sekarang</span>
+            </button>
+
+            <button
+              onClick={() => window.location.href = '/speedtest'}
+              className="professional-button bg-gradient-to-r from-yellow-500 to-orange-500 px-8 py-4 text-lg font-bold text-white cartoon-text flex items-center space-x-3"
+            >
+              <span>⚡ Speed Test</span>
+            </button>
+
+            <button
               onClick={() => scrollToSection("contact")}
               className="professional-button bg-gradient-to-r from-blue-600 to-purple-600 px-8 py-4 text-lg font-bold text-white cartoon-text"
             >
-              <span>👑 Konsultasi Gratis</span>
+              <span>� Konsultasi Gratis</span>
             </button>
           </div>
 

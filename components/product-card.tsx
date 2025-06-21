@@ -107,17 +107,20 @@ export function ProductCard({
         <Button
           className={`w-full professional-button bg-gradient-to-r ${colors.gradient} text-white font-bold py-3 cartoon-text`}
           onClick={() => {
-            const element = document.getElementById("contact")
-            if (element) element.scrollIntoView({ behavior: "smooth" })
+            window.location.href = "/berlangganan"
           }}
         >
-          🚀 Pilih Paket Ini
+          �️ Berlangganan Sekarang
         </Button>
         <Button
           variant="outline"
           className="w-full cartoon-text border-gray-600 text-gray-300 hover:bg-gray-800 font-semibold py-2 rounded-lg"
+          onClick={() => {
+            const element = document.getElementById("contact")
+            if (element) element.scrollIntoView({ behavior: "smooth" })
+          }}
         >
-          📋 Detail Lengkap
+          📞 Konsultasi Dulu
         </Button>
       </div>
     </div>

@@ -22,13 +22,23 @@ export function Navbar({ activeSection }: NavbarProps) {
   }, [])
 
   const navItems = [
-    { id: "hero", label: "Beranda", icon: "🏠" },
-    { id: "about", label: "Tentang", icon: "📖" },
-    { id: "services", label: "Layanan", icon: "⚔️" },
-    { id: "packages", label: "Paket", icon: "💎" },
-    { id: "testimonials", label: "Testimoni", icon: "💬" },
-    { id: "contact", label: "Kontak", icon: "📞" },
+    { id: "hero", label: "Beranda", icon: "🏠", type: "scroll" },
+    { id: "about", label: "Tentang", icon: "📖", type: "scroll" },
+    { id: "services", label: "Layanan", icon: "⚔️", type: "scroll" },
+    { id: "packages", label: "Paket", icon: "💎", type: "scroll" },
+    { id: "testimonials", label: "Testimoni", icon: "💬", type: "scroll" },
+    { id: "berlangganan", label: "Berlangganan", icon: "🗡️", type: "link", href: "/berlangganan" },
+    { id: "speedtest", label: "Speed Test", icon: "⚡", type: "link", href: "/speedtest" },
+    { id: "contact", label: "Kontak", icon: "📞", type: "scroll" },
   ]
+
+  const handleNavClick = (item: any) => {
+    if (item.type === "link") {
+      window.location.href = item.href
+    } else {
+      scrollToSection(item.id)
+    }
+  }
 
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId)
@@ -54,7 +64,7 @@ export function Navbar({ activeSection }: NavbarProps) {
             {navItems.map((item) => (
               <button
                 key={item.id}
-                onClick={() => scrollToSection(item.id)}
+                onClick={() => handleNavClick(item)}
                 className={`cartoon-text px-4 py-2 rounded-lg font-semibold transition-all duration-300 flex items-center space-x-2 ${
                   activeSection === item.id
                     ? "bg-gradient-to-r from-orange-500 to-red-500 text-white shadow-lg"
@@ -97,7 +107,7 @@ export function Navbar({ activeSection }: NavbarProps) {
               {navItems.map((item) => (
                 <button
                   key={item.id}
-                  onClick={() => scrollToSection(item.id)}
+                  onClick={() => handleNavClick(item)}
                   className={`w-full text-left px-4 py-3 rounded-lg font-semibold cartoon-text transition-all duration-300 flex items-center space-x-3 ${
                     activeSection === item.id
                       ? "bg-gradient-to-r from-orange-500 to-red-500 text-white"

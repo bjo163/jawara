@@ -4,142 +4,15 @@ import { useState } from "react"
 import { SectionTitle } from "@/components/section-title"
 import { ProductCard } from "@/components/product-card"
 import { Button } from "@/components/ui/button"
+import { getPackagesByCategory } from "@/data/packages"
 
 export function PackagesSection() {
-  const [activeCategory, setActiveCategory] = useState("rumah")
+  const [activeCategory, setActiveCategory] = useState<"rumah" | "bisnis">("rumah")
 
-  const packages = {
-    rumah: [
-      {
-        name: "Jagoan Neon",
-        icon: "🌟",
-        speed: "10 Mbps",
-        quota: "Unlimited FUP",
-        price: "Rp150.000",
-        originalPrice: "Rp200.000",
-        features: [
-          "🆓 Gratis instalasi",
-          "🏠 Cocok untuk rumahan",
-          "📺 Streaming HD lancar",
-          "📱 Support 5-8 device",
-          "🛡️ Customer support 24/7",
-        ],
-        popular: false,
-        color: "orange" as const,
-        character: "🧙‍♂️",
-      },
-      {
-        name: "Mandor Sakti",
-        icon: "🔨",
-        speed: "25 Mbps",
-        quota: "Unlimited FUP",
-        price: "Rp200.000",
-        originalPrice: "Rp250.000",
-        features: [
-          "💪 Stabil buat kerja & belajar dari rumah",
-          "📹 Video call HD tanpa lag",
-          "🎮 Gaming online smooth",
-          "📱 Support 10-15 device",
-          "⭐ Priority customer support",
-        ],
-        popular: false,
-        color: "blue" as const,
-        character: "👷‍♂️",
-      },
-      {
-        name: "Wiro Sableng",
-        icon: "⚔️",
-        speed: "35 Mbps",
-        quota: "Unlimited FUP",
-        price: "Rp250.000",
-        originalPrice: "Rp300.000",
-        features: [
-          "🚀 Ngebut buat streaming & CCTV remote",
-          "🎬 4K streaming tanpa buffering",
-          "📤 Upload file besar cepat",
-          "📱 Support 15-20 device",
-          "🎯 Dedicated customer support",
-        ],
-        popular: false,
-        color: "green" as const,
-        character: "🥷",
-      },
-      {
-        name: "Sultan",
-        icon: "👑",
-        speed: "50 Mbps",
-        quota: "Unlimited Full",
-        price: "Rp300.000",
-        originalPrice: "Rp400.000",
-        features: [
-          "⚡ Prioritas bandwidth, anti lemot 24 jam",
-          "♾️ Unlimited tanpa FUP",
-          "🎮 Gaming pro & streaming 4K",
-          "📱 Support unlimited device",
-          "👑 VIP customer support",
-        ],
-        popular: false,
-        color: "purple" as const,
-        character: "🤴",
-      },
-    ],
-    bisnis: [
-      {
-        name: "Startup Warrior",
-        icon: "🚀",
-        speed: "50 Mbps",
-        quota: "Dedicated",
-        price: "Rp500.000",
-        originalPrice: "Rp650.000",
-        features: [
-          "🎯 Bandwidth dedicated",
-          "🏠 Static IP address",
-          "📊 SLA 99.9% uptime",
-          "⚡ Priority technical support",
-          "🌐 Free domain & email hosting",
-        ],
-        popular: false,
-        color: "orange" as const,
-        character: "🦸‍♂️",
-      },
-      {
-        name: "Corporate Beast",
-        icon: "🏢",
-        speed: "100 Mbps",
-        quota: "Dedicated",
-        price: "Rp800.000",
-        originalPrice: "Rp1.000.000",
-        features: [
-          "💎 Bandwidth dedicated full",
-          "🌐 Multiple static IP",
-          "📊 24/7 monitoring",
-          "🛠️ On-site technical support",
-          "🔄 Backup connection",
-        ],
-        popular: true,
-        color: "blue" as const,
-        character: "🦁",
-      },
-      {
-        name: "Enterprise King",
-        icon: "👑",
-        speed: "200 Mbps",
-        quota: "Dedicated",
-        price: "Rp1.500.000",
-        originalPrice: "Rp2.000.000",
-        features: [
-          "⚡ Ultra-fast dedicated connection",
-          "🌐 Subnet IP allocation",
-          "🔄 Redundant connection",
-          "👨‍💼 Dedicated account manager",
-          "🛠️ Custom network solution",
-        ],
-        popular: false,
-        color: "purple" as const,
-        character: "🐉",
-      },
-    ],
-  }
+  const rumahanPackages = getPackagesByCategory("rumah")
+  const bisnisPackages = getPackagesByCategory("bisnis")
+
+  const currentPackages = activeCategory === "rumah" ? rumahanPackages : bisnisPackages
 
   return (
     <section id="packages" className="py-20 bg-gradient-to-br from-slate-900/50 to-purple-900/20">
@@ -179,8 +52,20 @@ export function PackagesSection() {
 
         {/* Package Cards */}
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-          {packages[activeCategory as keyof typeof packages].map((pkg, index) => (
-            <ProductCard key={index} {...pkg} />
+          {currentPackages.map((pkg) => (
+            <ProductCard 
+              key={pkg.id}
+              name={pkg.name}
+              icon={pkg.icon}
+              speed={pkg.speed}
+              quota={pkg.quota}
+              price={pkg.price}
+              originalPrice={pkg.originalPrice}
+              features={pkg.features}
+              popular={pkg.popular}
+              color={pkg.color}
+              character={pkg.character}
+            />
           ))}
         </div>
 

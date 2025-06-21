@@ -73,7 +73,7 @@ export default function HomePage() {
       {/* Live Chat Widget */}
       <LiveChatWidget />
       
-      {/* Subscription Widget */}
+      {/* Subscription Widget - Quick Access */}
       <SubscriptionWidget />
     </div>
   )

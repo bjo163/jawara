@@ -115,14 +115,13 @@ export function SubscriptionWidget() {
   return (
     <>
       {/* Subscription Widget Button */}
-      <div className="fixed bottom-6 left-6 z-50">
-        {!isOpen && (
+      <div className="fixed bottom-6 left-6 z-50">        {!isOpen && (
           <button
-            onClick={() => setIsOpen(true)}
+            onClick={() => window.location.href = '/berlangganan'}
             className="bg-gradient-to-r from-orange-500 to-red-500 hover:from-orange-600 hover:to-red-600 text-white px-6 py-3 rounded-full shadow-2xl transition-all duration-300 hover:scale-110 flex items-center space-x-2"
           >
             <span className="text-xl">👑</span>
-            <span className="font-bold">Gabung Sekarang</span>
+            <span className="font-bold">Berlangganan</span>
             <div className="absolute -top-1 -right-1 w-3 h-3 bg-yellow-400 rounded-full animate-pulse"></div>
           </button>
         )}

@@ -115,6 +115,24 @@ export function Footer() {
                 </button>
               </li>
               <li>
+                <a 
+                  href="/berlangganan" 
+                  className="text-gray-400 hover:text-orange-400 transition-colors flex items-center space-x-1"
+                >
+                  <span>🗡️</span>
+                  <span>Berlangganan</span>
+                </a>
+              </li>
+              <li>
+                <a 
+                  href="/speedtest" 
+                  className="text-gray-400 hover:text-orange-400 transition-colors flex items-center space-x-1"
+                >
+                  <span>⚡</span>
+                  <span>Speed Test</span>
+                </a>
+              </li>
+              <li>
                 <a href="#" className="text-gray-400 hover:text-orange-400 transition-colors">
                   Panduan Instalasi
                 </a>
