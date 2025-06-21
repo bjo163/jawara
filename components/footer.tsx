@@ -1,6 +1,7 @@
 "use client"
 
 import { Facebook, Instagram, Twitter, Youtube } from "lucide-react"
+import { Logo } from "@/components/logo"
 
 export function Footer() {
   const scrollToSection = (sectionId: string) => {
@@ -16,19 +17,7 @@ export function Footer() {
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
           {/* Brand */}
           <div className="space-y-4">
-            <div className="flex items-center space-x-3">
-              <div className="relative">
-                <div className="text-4xl">👑</div>
-                <div className="absolute -top-1 -right-1 w-4 h-4 bg-red-500 rounded-full animate-pulse"></div>
-              </div>
-              <div className="flex flex-col">
-                <div className="flex items-center">
-                  <span className="text-2xl font-black text-red-500">JAWARA</span>
-                  <span className="text-2xl font-black text-yellow-500">NET</span>
-                </div>
-                <span className="text-sm text-gray-400 font-bold">INTERNET NUSANTARA</span>
-              </div>
-            </div>
+            <Logo size="lg" showSubtext={true} />
             <p className="text-gray-300 leading-relaxed font-semibold">
               Internet Service Provider yang <span className="text-red-400 font-bold">menguasai nusantara</span> dengan
               koneksi <span className="text-yellow-400 font-bold">secepat kilat petir</span>! Untuk para jagoan digital
@@ -94,6 +83,14 @@ export function Footer() {
                   Area Coverage
                 </button>
               </li>
+              <li>
+                <button
+                  onClick={() => scrollToSection("map")}
+                  className="text-gray-400 hover:text-orange-400 transition-colors"
+                >
+                  Lokasi Kantor
+                </button>
+              </li>
             </ul>
           </div>
 
@@ -141,8 +138,8 @@ export function Footer() {
             <div className="space-y-3 text-gray-400">
               <div>
                 <p className="font-semibold text-white">Customer Service</p>
-                <p>WhatsApp: +62 812-3456-7890</p>
-                <p>Telepon: 021-1234-5678</p>
+                <p>WhatsApp: +62 812-9529-5734</p>
+                <p>Telepon: +62 812-9529-5734</p>
               </div>
               <div>
                 <p className="font-semibold text-white">Email</p>
@@ -151,8 +148,8 @@ export function Footer() {
               </div>
               <div>
                 <p className="font-semibold text-white">Alamat</p>
-                <p>Jl. Teknologi No. 123</p>
-                <p>Jakarta Selatan 12345</p>
+                <p>R398+H5H Srimukti</p>
+                <p>Bekasi Regency, West Java</p>
               </div>
             </div>
           </div>

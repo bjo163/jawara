@@ -1,8 +1,9 @@
 "use client"
 
 import { useState, useEffect } from "react"
-import { Menu, X, Wifi } from "lucide-react"
+import { Menu, X } from "lucide-react"
 import { Button } from "@/components/ui/button"
+import { Logo } from "@/components/logo"
 
 interface NavbarProps {
   activeSection: string
@@ -45,24 +46,8 @@ export function Navbar({ activeSection }: NavbarProps) {
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16 md:h-20">
-          {/* Professional Logo */}
-          <div className="flex items-center space-x-4">
-            <div className="relative group">
-              <div className="w-12 h-12 bg-gradient-to-br from-orange-500 to-red-500 rounded-xl flex items-center justify-center professional-glow">
-                <Wifi className="h-6 w-6 text-white" />
-              </div>
-              <div className="absolute -top-1 -right-1 w-3 h-3 bg-red-500 rounded-full animate-ping"></div>
-            </div>
-            <div className="flex flex-col">
-              <div className="flex items-center">
-                <span className="cartoon-title text-xl md:text-2xl text-red-500">JAWARA</span>
-                <span className="cartoon-title text-xl md:text-2xl text-orange-500">NET</span>
-              </div>
-              <span className="cartoon-text text-xs text-gray-400 font-semibold hidden md:block">
-                INTERNET NUSANTARA
-              </span>
-            </div>
-          </div>
+          {/* Logo */}
+          <Logo size="md" showSubtext={true} />
 
           {/* Desktop Navigation */}
           <div className="hidden lg:flex items-center space-x-2">

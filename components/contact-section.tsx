@@ -26,7 +26,7 @@ export function ContactSection() {
                   </div>
                   <div>
                     <h4 className="font-semibold text-white mb-1">WhatsApp Customer Service</h4>
-                    <p className="text-gray-300">+62 812-3456-7890</p>
+                    <p className="text-gray-300">+62 812-9529-5734</p>
                     <p className="text-gray-400 text-sm">Respon cepat, chat langsung dengan CS</p>
                   </div>
                 </div>
@@ -37,7 +37,7 @@ export function ContactSection() {
                   </div>
                   <div>
                     <h4 className="font-semibold text-white mb-1">Telepon</h4>
-                    <p className="text-gray-300">021-1234-5678</p>
+                    <p className="text-gray-300">+62 812-9529-5734</p>
                     <p className="text-gray-400 text-sm">Layanan telepon 24 jam</p>
                   </div>
                 </div>
@@ -59,8 +59,8 @@ export function ContactSection() {
                   </div>
                   <div>
                     <h4 className="font-semibold text-white mb-1">Kantor Pusat</h4>
-                    <p className="text-gray-300">Jl. Teknologi No. 123</p>
-                    <p className="text-gray-300">Jakarta Selatan 12345</p>
+                    <p className="text-gray-300">R398+H5H Srimukti</p>
+                    <p className="text-gray-300">Bekasi Regency, West Java</p>
                     <p className="text-gray-400 text-sm">Buka Senin-Sabtu, 08:00-17:00</p>
                   </div>
                 </div>
@@ -84,7 +84,7 @@ export function ContactSection() {
               <h4 className="text-lg font-bold text-white mb-4">Aksi Cepat 🚀</h4>
               <div className="grid grid-cols-2 gap-4">
                 <a
-                  href="https://wa.me/6281234567890"
+                  href="https://wa.me/6281295295734"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded-lg text-center font-semibold transition-colors"
@@ -92,7 +92,7 @@ export function ContactSection() {
                   Chat WhatsApp
                 </a>
                 <a
-                  href="tel:+622112345678"
+                  href="tel:+6281295295734"
                   className="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-lg text-center font-semibold transition-colors"
                 >
                   Telepon Sekarang

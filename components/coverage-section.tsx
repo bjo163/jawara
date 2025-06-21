@@ -31,15 +31,15 @@ export function CoverageSection() {
     },
     {
       city: "Bekasi",
-      areas: ["Bekasi Kota", "Harapan Indah", "Galaxy", "Summarecon", "Kemang Pratama"],
+      areas: ["Bekasi Kota", "Srimukti", "Harapan Indah", "Galaxy", "Summarecon", "Kemang Pratama"],
       status: "active",
-      coverage: "82%",
+      coverage: "95%",
     },
     {
       city: "Bandung",
-      areas: ["Bandung Kota", "Cimahi", "Dago", "Setiabudhi", "Antapani"],
+      areas: ["Bandung Kota", "Cimahi", "Dago", "Setiabudhi", "Antapani", "Cicaheum", "Arcamanik"],
       status: "active",
-      coverage: "75%",
+      coverage: "95%",
     },
     {
       city: "Surabaya",
@@ -178,7 +178,7 @@ export function CoverageSection() {
                 Request Coverage Area
               </button>
               <a
-                href="https://wa.me/6281234567890"
+                href="https://wa.me/6281295295734"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="bg-green-500 hover:bg-green-600 text-white px-8 py-3 rounded-lg font-semibold transition-colors"

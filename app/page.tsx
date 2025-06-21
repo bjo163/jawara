@@ -11,7 +11,10 @@ import { TestimonialsSection } from "@/components/testimonials-section"
 import { FaqSection } from "@/components/faq-section"
 import { ContactSection } from "@/components/contact-section"
 import { CoverageSection } from "@/components/coverage-section"
+import { MapSection } from "@/components/map-section"
 import { Footer } from "@/components/footer"
+import { LiveChatWidget } from "@/components/live-chat-widget"
+import { SubscriptionWidget } from "@/components/subscription-widget"
 
 export default function HomePage() {
   const [activeSection, setActiveSection] = useState("hero")
@@ -28,6 +31,7 @@ export default function HomePage() {
         "faq",
         "contact",
         "coverage",
+        "map",
       ]
       const scrollPosition = window.scrollY + 100
 
@@ -61,9 +65,16 @@ export default function HomePage() {
         <FaqSection />
         <ContactSection />
         <CoverageSection />
+        <MapSection />
       </main>
 
       <Footer />
+      
+      {/* Live Chat Widget */}
+      <LiveChatWidget />
+      
+      {/* Subscription Widget */}
+      <SubscriptionWidget />
     </div>
   )
 }
