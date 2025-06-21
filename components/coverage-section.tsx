@@ -1,194 +1,194 @@
-"use client";
+"use client"
 
-import { SectionTitle } from "@/components/section-title";
-import { MapPin, CheckCircle, Clock, Crown, Sparkles, Sword } from "lucide-react";
-import { coverageConfig } from "@/configs/content/coverage";
+import { SectionTitle } from "@/components/section-title"
+import { MapPin, CheckCircle, Clock } from "lucide-react"
 
 export function CoverageSection() {
-  // Use coverage config
-  const { header, areas, colors, statuses, background, request, grid, styling } = coverageConfig;
-  // Helper functions
-  const scrollToSection = (sectionId: string) => {
-    const element = document.getElementById(sectionId);
-    if (element) element.scrollIntoView({ behavior: "smooth" });
-  };
-
-  const handleCTAAction = (action: string, target: string) => {
-    if (action === "contact" || action === "scroll") {
-      scrollToSection(target);
-    } else if (action === "external") {
-      window.open(target, "_blank");
-    }
-  };
+  const coverageAreas = [
+    {
+      city: "Jakarta",
+      areas: ["Jakarta Pusat", "Jakarta Selatan", "Jakarta Barat", "Jakarta Utara", "Jakarta Timur"],
+      status: "active",
+      coverage: "95%",
+    },
+    {
+      city: "Bogor",
+      areas: ["Bogor Kota", "Cibinong", "Sentul", "Citeureup", "Gunung Putri"],
+      status: "active",
+      coverage: "85%",
+    },
+    {
+      city: "Depok",
+      areas: ["Margonda", "UI Area", "Cinere", "Sawangan", "Beji"],
+      status: "active",
+      coverage: "90%",
+    },
+    {
+      city: "Tangerang",
+      areas: ["Tangerang Kota", "BSD", "Gading Serpong", "Alam Sutera", "Karawaci"],
+      status: "active",
+      coverage: "88%",
+    },
+    {
+      city: "Bekasi",
+      areas: ["Bekasi Kota", "Harapan Indah", "Galaxy", "Summarecon", "Kemang Pratama"],
+      status: "active",
+      coverage: "82%",
+    },
+    {
+      city: "Bandung",
+      areas: ["Bandung Kota", "Cimahi", "Dago", "Setiabudhi", "Antapani"],
+      status: "active",
+      coverage: "75%",
+    },
+    {
+      city: "Surabaya",
+      areas: ["Surabaya Pusat", "Surabaya Barat", "Sidoarjo", "Gresik"],
+      status: "active",
+      coverage: "70%",
+    },
+    {
+      city: "Yogyakarta",
+      areas: ["Yogya Kota", "Sleman", "Bantul", "UGM Area"],
+      status: "active",
+      coverage: "65%",
+    },
+    {
+      city: "Medan",
+      areas: ["Medan Kota", "Medan Barat", "Deli Serdang"],
+      status: "coming-soon",
+      coverage: "Coming Soon",
+    },
+    {
+      city: "Semarang",
+      areas: ["Semarang Kota", "Tembalang", "Banyumanik"],
+      status: "coming-soon",
+      coverage: "Coming Soon",
+    },
+  ]
 
   return (
-    <section id={coverageConfig.sectionId} className={styling.section}>
-      {/* EPIC BACKGROUND ELEMENTS - Config Driven */}
-      {background.grid.enabled && (
-        <div className={`absolute inset-0 ${background.grid.class} opacity-${background.grid.opacity}`}></div>
-      )}
-      {background.decorations.map((decoration, index) => (
-        <div
-          key={index}
-          className={`absolute ${decoration.position} ${decoration.size} ${decoration.animation} opacity-${decoration.opacity}`}
-        >
-          {decoration.icon}
-        </div>
-      ))}
+    <section id="coverage" className="py-20">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <SectionTitle title="Area Coverage" subtitle="Cek apakah lokasi kamu sudah ter-cover jaringan Jawara-Net" />
 
-      <div className={styling.container}>
-        <SectionTitle title={header.title} subtitle={header.subtitle} />
-
-        <div
-          className={`${grid.breakpoints.mobile} ${grid.breakpoints.tablet} ${grid.breakpoints.desktop} ${grid.breakpoints.large} ${grid.gap}`}
-        >
-          {areas.map((area, index) => {
-            const areaColors = colors[area.color];
-            const statusInfo = statuses[area.status];
-
-            return (
-              <div
-                key={area.id}
-                className={styling.card}
-                style={{ animationDelay: `${index * grid.animation.stagger}s` }}
-              >
-                {/* EPIC HEADER - Config Driven */}
-                <div className="text-center mb-8">
-                  <div
-                    className={`w-20 h-20 bg-gradient-to-br ${areaColors.gradient} rounded-2xl flex items-center justify-center mx-auto mb-6 mega-glow nusantara-glow relative`}
-                  >
-                    <span className="text-4xl">{area.icon}</span>
-                    {area.status === "active" ? (
-                      <div className="absolute -top-2 -right-2 w-6 h-6 bg-green-500 rounded-full flex items-center justify-center">
-                        <CheckCircle className="h-4 w-4 text-white" />
-                      </div>
-                    ) : (
-                      <div className="absolute -top-2 -right-2 w-6 h-6 bg-orange-500 rounded-full flex items-center justify-center animate-pulse">
-                        <Clock className="h-4 w-4 text-white" />
-                      </div>
-                    )}
-                  </div>
-
-                  <h3
-                    className={`mega-title text-2xl mb-4 ${areaColors.text} flex items-center justify-center space-x-2`}
-                  >
-                    <MapPin className="h-6 w-6" />
-                    <span>{area.city}</span>
-                  </h3>
-
-                  <div className="mega-card p-4 mb-6">
-                    <div className={`text-3xl font-black mb-2 mega-title ${statusInfo.color}`}>{area.coverage}</div>
-                    <div className="mega-text text-gray-400 font-bold">{statusInfo.label}</div>
-                  </div>
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {coverageAreas.map((area, index) => (
+            <div
+              key={index}
+              className={`bg-slate-800/50 p-6 rounded-xl border transition-all duration-300 hover:transform hover:scale-105 ${
+                area.status === "active"
+                  ? "border-green-500/20 hover:border-green-500/40"
+                  : "border-orange-500/20 hover:border-orange-500/40"
+              }`}
+            >
+              {/* Header */}
+              <div className="flex items-center justify-between mb-4">
+                <div className="flex items-center space-x-3">
+                  <MapPin className={`h-6 w-6 ${area.status === "active" ? "text-green-500" : "text-orange-500"}`} />
+                  <h3 className="text-xl font-bold text-white">{area.city}</h3>
                 </div>
-
-                {/* EPIC AREAS - Config Driven */}
-                <div className="space-y-4 mb-8">
-                  <h4 className="mega-text font-black text-white text-lg mb-4 flex items-center space-x-2">
-                    <Sword className="h-5 w-5" />
-                    <span>Wilayah Kekuasaan:</span>
-                  </h4>
-                  <div className="space-y-3">
-                    {area.areas.map((subArea, subIndex) => (
-                      <div
-                        key={subIndex}
-                        className={`mega-card p-3 ${areaColors.bg} ${areaColors.border} border-2 mega-hover`}
-                      >
-                        <div className="flex items-center space-x-3">
-                          {area.status === "active" ? (
-                            <CheckCircle className="h-5 w-5 text-green-500 flex-shrink-0" />
-                          ) : (
-                            <Clock className="h-5 w-5 text-orange-500 flex-shrink-0" />
-                          )}
-                          <span className={`mega-text font-bold ${areaColors.text}`}>{subArea}</span>
-                        </div>
-                      </div>
-                    ))}
-                  </div>
+                <div className="flex items-center space-x-2">
+                  {area.status === "active" ? (
+                    <CheckCircle className="h-5 w-5 text-green-500" />
+                  ) : (
+                    <Clock className="h-5 w-5 text-orange-500" />
+                  )}
+                  <span
+                    className={`text-sm font-semibold ${
+                      area.status === "active" ? "text-green-400" : "text-orange-400"
+                    }`}
+                  >
+                    {area.coverage}
+                  </span>
                 </div>
+              </div>
 
-                {/* EPIC CTA - Config Driven */}
-                <div className="text-center">
-                  <div className="space-y-4">
-                    <div className={`mega-card p-4 ${areaColors.bg} border-2 ${areaColors.border}`}>
-                      <p className={`mega-text ${statusInfo.color} font-black text-lg mb-2`}>
-                        {statusInfo.icon} {statusInfo.label}
-                      </p>
-                      <p className="mega-text text-gray-300 text-sm">{statusInfo.description}</p>
-                    </div>
-                    <button
-                      onClick={() =>
-                        handleCTAAction(
-                          statusInfo.ctaType,
-                          statusInfo.ctaType === "contact" ? "contact" : "https://wa.me/6281234567890"
-                        )
-                      }
-                      className={`w-full mega-button bg-gradient-to-r ${areaColors.gradient} text-white font-bold mega-text py-3 mega-hover flex items-center justify-center space-x-2`}
+              {/* Areas */}
+              <div className="space-y-2">
+                <h4 className="text-sm font-semibold text-gray-400 mb-2">Area yang dilayani:</h4>
+                <div className="flex flex-wrap gap-2">
+                  {area.areas.map((subArea, subIndex) => (
+                    <span
+                      key={subIndex}
+                      className={`px-3 py-1 rounded-full text-xs font-medium ${
+                        area.status === "active"
+                          ? "bg-green-500/20 text-green-300 border border-green-500/30"
+                          : "bg-orange-500/20 text-orange-300 border border-orange-500/30"
+                      }`}
                     >
-                      <Crown className="h-5 w-5" />
-                      <span>{statusInfo.ctaText}</span>
-                    </button>
-                  </div>
-                </div>
-              </div>
-            );
-          })}{" "}
-        </div>
-
-        {/* EPIC REQUEST SECTION - Config Driven */}
-        <div className="mt-20">
-          <div className="mega-card p-16 mega-hover mega-glow nusantara-glow">
-            <div className="text-center">
-              <div className="relative mb-12">
-                <div className="w-32 h-32 bg-gradient-to-br from-orange-500 via-red-500 to-pink-500 rounded-3xl flex items-center justify-center mx-auto mega-glow nusantara-glow">
-                  <span className="text-6xl">{request.icon}</span>
-                </div>
-                <Sparkles className="absolute -top-4 -right-4 h-12 w-12 text-yellow-400 animate-spin" />
-                <Crown className="absolute -bottom-4 -left-4 h-10 w-10 text-yellow-500 indonesian-wave" />
-                <Sword className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 h-16 w-16 text-red-500 opacity-30 particle-float" />
-              </div>
-
-              <h3 className="mega-title text-4xl md:text-5xl font-black text-white mb-8">{request.title}</h3>
-
-              <div className="mega-card p-10 mb-12 max-w-4xl mx-auto">
-                <p className="mega-text text-gray-300 mb-8 text-2xl leading-relaxed font-bold">
-                  {request.subtitle} Kalau wilayah kamu belum ter-cover, daftar dulu biar kami prioritaskan area kamu
-                  untuk
-                  <span className="text-red-400 font-black"> ekspansi berikutnya</span>!
-                </p>
-
-                <div className="grid md:grid-cols-3 gap-8 mb-10">
-                  {request.features.map((feature, index) => (
-                    <div key={index} className="mega-card p-6 mega-hover" style={{ animationDelay: `${index * 0.1}s` }}>
-                      <div className={`text-5xl mb-4 ${feature.animation || ""}`}>{feature.icon}</div>
-                      <h4 className={`mega-text font-black ${feature.color} text-xl mb-2`}>{feature.title}</h4>
-                      <p className="mega-text text-gray-400">{feature.description}</p>
-                    </div>
+                      {subArea}
+                    </span>
                   ))}
                 </div>
               </div>
 
-              <div className="flex flex-col sm:flex-row gap-8 justify-center">
-                <button
-                  onClick={() => handleCTAAction(request.cta.primary.action, request.cta.primary.target)}
-                  className="mega-button px-12 py-6 text-2xl font-black text-white mega-text mega-hover flex items-center space-x-4"
-                >
-                  <Crown className="h-8 w-8" />
-                  <span>{request.cta.primary.text}</span>
-                  <Sword className="h-8 w-8" />
-                </button>
-                <button
-                  onClick={() => handleCTAAction(request.cta.secondary.action, request.cta.secondary.target)}
-                  className="mega-button bg-gradient-to-r from-green-500 to-emerald-500 px-12 py-6 text-2xl font-black text-white mega-text mega-hover flex items-center space-x-4"
-                >
-                  <Sparkles className="h-8 w-8" />
-                  <span>{request.cta.secondary.text}</span>
-                </button>
+              {/* Status */}
+              <div className="mt-4 pt-4 border-t border-gray-700">
+                {area.status === "active" ? (
+                  <div className="text-center">
+                    <p className="text-green-400 font-semibold mb-2">✅ Siap Melayani!</p>
+                    <button
+                      onClick={() => {
+                        const element = document.getElementById("contact")
+                        if (element) element.scrollIntoView({ behavior: "smooth" })
+                      }}
+                      className="bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded-lg text-sm font-semibold transition-colors"
+                    >
+                      Daftar Sekarang
+                    </button>
+                  </div>
+                ) : (
+                  <div className="text-center">
+                    <p className="text-orange-400 font-semibold mb-2">🚧 Segera Hadir!</p>
+                    <button
+                      onClick={() => {
+                        const element = document.getElementById("contact")
+                        if (element) element.scrollIntoView({ behavior: "smooth" })
+                      }}
+                      className="bg-orange-500 hover:bg-orange-600 text-white px-4 py-2 rounded-lg text-sm font-semibold transition-colors"
+                    >
+                      Notify Me
+                    </button>
+                  </div>
+                )}
               </div>
+            </div>
+          ))}
+        </div>
+
+        {/* Coverage Map Info */}
+        <div className="mt-16 bg-gradient-to-r from-slate-800/50 to-slate-700/30 p-8 rounded-2xl border border-gray-700">
+          <div className="text-center">
+            <h3 className="text-2xl font-bold mb-4 bg-gradient-to-r from-orange-400 to-blue-400 bg-clip-text text-transparent">
+              Lokasi Kamu Belum Ada? 🗺️
+            </h3>
+            <p className="text-gray-300 mb-6 max-w-3xl mx-auto">
+              Kami terus memperluas jangkauan! Kalau lokasi kamu belum ter-cover, daftar dulu biar kami prioritaskan
+              area kamu untuk ekspansi berikutnya.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <button
+                onClick={() => {
+                  const element = document.getElementById("contact")
+                  if (element) element.scrollIntoView({ behavior: "smooth" })
+                }}
+                className="bg-gradient-to-r from-orange-500 to-red-500 hover:from-orange-600 hover:to-red-600 text-white px-8 py-3 rounded-lg font-semibold transition-all duration-300 hover:scale-105"
+              >
+                Request Coverage Area
+              </button>
+              <a
+                href="https://wa.me/6281234567890"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="bg-green-500 hover:bg-green-600 text-white px-8 py-3 rounded-lg font-semibold transition-colors"
+              >
+                Tanya via WhatsApp
+              </a>
             </div>
           </div>
         </div>
       </div>
     </section>
-  );
+  )
 }

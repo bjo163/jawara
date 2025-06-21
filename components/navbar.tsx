@@ -1,151 +1,138 @@
-"use client";
+"use client"
 
-import { useState, useEffect } from "react";
-import { Menu, X, Sparkles } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import { navbarConfig } from "@/configs/content/navbar";
-import { COMPONENT_ANIMATIONS } from "@/configs/animations";
+import { useState, useEffect } from "react"
+import { Menu, X, Wifi } from "lucide-react"
+import { Button } from "@/components/ui/button"
 
 interface NavbarProps {
-  activeSection: string;
-  onNavigate?: (section: string) => void;
+  activeSection: string
 }
 
-export function Navbar({ activeSection, onNavigate }: NavbarProps) {
-  const [isOpen, setIsOpen] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
-  // Use navbar config
-  const { brand, navigation, cta, scroll, styling } = navbarConfig;
+export function Navbar({ activeSection }: NavbarProps) {
+  const [isOpen, setIsOpen] = useState(false)
+  const [scrolled, setScrolled] = useState(false)
 
   useEffect(() => {
     const handleScroll = () => {
-      setScrolled(window.scrollY > scroll.threshold);
-    };
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, [scroll.threshold]);
+      setScrolled(window.scrollY > 20)
+    }
+    window.addEventListener("scroll", handleScroll)
+    return () => window.removeEventListener("scroll", handleScroll)
+  }, [])
+
+  const navItems = [
+    { id: "hero", label: "Beranda", icon: "🏠" },
+    { id: "about", label: "Tentang", icon: "📖" },
+    { id: "services", label: "Layanan", icon: "⚔️" },
+    { id: "packages", label: "Paket", icon: "💎" },
+    { id: "testimonials", label: "Testimoni", icon: "💬" },
+    { id: "contact", label: "Kontak", icon: "📞" },
+  ]
 
   const scrollToSection = (sectionId: string) => {
-    if (onNavigate) {
-      onNavigate(sectionId);
-    }
-    const element = document.getElementById(sectionId);
+    const element = document.getElementById(sectionId)
     if (element) {
-      element.scrollIntoView({ behavior: scroll.behavior });
+      element.scrollIntoView({ behavior: "smooth" })
     }
-    setIsOpen(false);
-  };
+    setIsOpen(false)
+  }
 
-  const handleCtaAction = (ctaButton: (typeof cta.buttons)[0]) => {
-    if (ctaButton.action.type === "scroll") {
-      scrollToSection(ctaButton.action.target);
-    } else if (ctaButton.action.type === "external") {
-      window.open(ctaButton.action.target, "_blank");
-    }
-  };
   return (
     <nav
-      className={`fixed top-0 w-full ${styling.zIndex} ${COMPONENT_ANIMATIONS.navbar.container} ${
-        scrolled
-          ? `${styling.background.scrolled} ${styling.border.scrolled}`
-          : `${styling.background.default} ${styling.border.default}`
+      className={`fixed top-0 w-full z-50 transition-all duration-300 ${
+        scrolled ? "bg-slate-950/95 backdrop-blur-xl border-b border-orange-500/20 shadow-2xl" : "bg-transparent"
       }`}
     >
-      <div className="max-w-7xl mx-auto px-3 sm:px-4 lg:px-6">
-        <div className={`flex justify-between items-center ${styling.height.mobile} ${styling.height.desktop}`}>
-          {/* EPIC WARRIOR LOGO - Config Driven */}
-          <div className="flex items-center space-x-2 mega-hover flex-shrink-0">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex justify-between items-center h-16 md:h-20">
+          {/* Professional Logo */}
+          <div className="flex items-center space-x-4">
             <div className="relative group">
-              <div
-                className={`${brand.logo.size.mobile} md:${brand.logo.size.desktop} bg-gradient-to-br ${brand.logo.gradient} rounded-xl flex items-center justify-center mega-glow nusantara-glow`}
-              >
-                <span className="text-xl md:text-2xl">{brand.logo.icon}</span>
+              <div className="w-12 h-12 bg-gradient-to-br from-orange-500 to-red-500 rounded-xl flex items-center justify-center professional-glow">
+                <Wifi className="h-6 w-6 text-white" />
               </div>
-              <div className="absolute -top-1 -right-1 w-2 h-2 md:w-3 md:h-3 bg-red-500 rounded-full animate-ping"></div>
-              <Sparkles className="absolute -bottom-1 -left-1 h-3 w-3 md:h-4 md:w-4 text-yellow-400 animate-spin" />
+              <div className="absolute -top-1 -right-1 w-3 h-3 bg-red-500 rounded-full animate-ping"></div>
             </div>
             <div className="flex flex-col">
               <div className="flex items-center">
-                <span className="mega-title text-sm md:text-lg lg:text-xl text-orange-500">{brand.name.primary}</span>
-                <span className="mega-title text-sm md:text-lg lg:text-xl text-red-500">{brand.name.secondary}</span>
+                <span className="cartoon-title text-xl md:text-2xl text-red-500">JAWARA</span>
+                <span className="cartoon-title text-xl md:text-2xl text-orange-500">NET</span>
               </div>
-              <span className="mega-text text-xs text-gray-400 font-bold hidden sm:block">{brand.tagline}</span>
+              <span className="cartoon-text text-xs text-gray-400 font-semibold hidden md:block">
+                INTERNET NUSANTARA
+              </span>
             </div>
           </div>
-          {/* EPIC WARRIOR DESKTOP NAVIGATION - Config Driven */}
-          <div className="hidden lg:flex items-center space-x-1">
-            {navigation.items.map((item) => (
+
+          {/* Desktop Navigation */}
+          <div className="hidden lg:flex items-center space-x-2">
+            {navItems.map((item) => (
               <button
                 key={item.id}
                 onClick={() => scrollToSection(item.id)}
-                className={`mega-text px-2 xl:px-3 py-2 rounded-xl font-bold transition-all duration-500 flex items-center space-x-1 mega-hover relative overflow-hidden text-xs xl:text-sm ${
+                className={`cartoon-text px-4 py-2 rounded-lg font-semibold transition-all duration-300 flex items-center space-x-2 ${
                   activeSection === item.id
-                    ? scroll.activeClass
-                    : "text-gray-300 hover:text-white hover:bg-white/10 hover:backdrop-blur-xl"
+                    ? "bg-gradient-to-r from-orange-500 to-red-500 text-white shadow-lg"
+                    : "text-gray-300 hover:text-white hover:bg-white/10"
                 }`}
-                title={item.tooltip}
               >
+                <span className="text-sm">{item.icon}</span>
                 <span>{item.label}</span>
-                <span className="text-sm indonesian-wave">{item.icon}</span>
               </button>
             ))}
           </div>
-          {/* EPIC WARRIOR CTA BUTTONS - Config Driven */}
-          <div className={`hidden md:flex items-center ${cta.spacing} flex-shrink-0`}>
-            {cta.buttons.map((ctaButton) => (
-              <Button
-                key={ctaButton.id}
-                onClick={() => handleCtaAction(ctaButton)}
-                className={`mega-button bg-gradient-to-r ${ctaButton.style.gradient} ${ctaButton.style.size} text-white font-bold mega-text ${ctaButton.style.hover} flex items-center space-x-1 text-xs`}
-              >
-                <span>{ctaButton.label}</span>
-              </Button>
-            ))}
-          </div>{" "}
-          {/* EPIC WARRIOR MOBILE MENU BUTTON */}
-          <div className="lg:hidden flex-shrink-0">
+
+          {/* CTA Button */}
+          <div className="hidden md:flex items-center space-x-4">
+            <Button
+              onClick={() => scrollToSection("contact")}
+              className="professional-button px-6 py-2 text-white font-bold cartoon-text"
+            >
+              🚀 Gabung Sekarang
+            </Button>
+          </div>
+
+          {/* Mobile menu button */}
+          <div className="lg:hidden">
             <Button
               variant="ghost"
               size="sm"
               onClick={() => setIsOpen(!isOpen)}
-              className="text-white hover:bg-white/10 mega-hover p-2 rounded-xl"
+              className="text-white hover:bg-white/10"
             >
-              {isOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+              {isOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
             </Button>
           </div>
         </div>
 
-        {/* EPIC WARRIOR MOBILE NAVIGATION - Config Driven */}
+        {/* Mobile Navigation */}
         {isOpen && (
           <div className="lg:hidden">
-            <div className="mega-card m-3 p-4 space-y-3 mega-glow">
-              {navigation.items.map((item) => (
+            <div className="professional-card m-2 p-4 space-y-2">
+              {navItems.map((item) => (
                 <button
                   key={item.id}
                   onClick={() => scrollToSection(item.id)}
-                  className={`w-full text-left px-4 py-3 rounded-xl font-bold mega-text transition-all duration-500 flex items-center space-x-3 mega-hover text-sm ${
-                    activeSection === item.id ? scroll.activeClass : "text-gray-300 hover:text-white hover:bg-white/10"
+                  className={`w-full text-left px-4 py-3 rounded-lg font-semibold cartoon-text transition-all duration-300 flex items-center space-x-3 ${
+                    activeSection === item.id
+                      ? "bg-gradient-to-r from-orange-500 to-red-500 text-white"
+                      : "text-gray-300 hover:text-white hover:bg-white/10"
                   }`}
                 >
-                  <span className="flex-1">{item.label}</span>
-                  <span className="text-lg indonesian-wave">{item.icon}</span>
+                  <span>{item.icon}</span>
+                  <span>{item.label}</span>
                 </button>
               ))}
-              <div className="pt-3 space-y-2">
-                {cta.buttons.map((ctaButton) => (
-                  <Button
-                    key={ctaButton.id}
-                    onClick={() => handleCtaAction(ctaButton)}
-                    className={`w-full mega-button bg-gradient-to-r ${ctaButton.style.gradient} text-white font-bold mega-text py-2 text-sm`}
-                  >
-                    {ctaButton.label}
-                  </Button>
-                ))}
-              </div>
+              <Button
+                onClick={() => scrollToSection("contact")}
+                className="w-full mt-4 professional-button text-white font-bold cartoon-text"
+              >
+                🚀 Gabung Sekarang
+              </Button>
             </div>
           </div>
         )}
       </div>
     </nav>
-  );
+  )
 }

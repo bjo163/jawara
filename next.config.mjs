@@ -1,9 +1,5 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  // Note: standalone output removed due to Windows symlink permission issues
-  // For Docker deployment, consider using npm instead of pnpm, or run with elevated permissions
-  // output: "standalone",
-
   eslint: {
     ignoreDuringBuilds: true,
   },
@@ -13,11 +9,6 @@ const nextConfig = {
   images: {
     unoptimized: true,
   },
-  // Optimisasi untuk production
-  poweredByHeader: false,
+}
 
-  // Compress static files
-  compress: true,
-};
-
-export default nextConfig;
+export default nextConfig

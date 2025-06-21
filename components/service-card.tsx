@@ -1,56 +1,72 @@
-"use client";
+"use client"
 
-import { Check } from "lucide-react";
-import type { ServiceCardProps, ColorVariant } from "@/types/components";
+import type { LucideIcon } from "lucide-react"
+import { Check } from "lucide-react"
+
+interface ServiceCardProps {
+  icon: LucideIcon
+  title: string
+  description: string
+  features: string[]
+  color: "orange" | "blue" | "green" | "purple" | "pink"
+}
 
 export function ServiceCard({ icon: Icon, title, description, features, color }: ServiceCardProps) {
-  const colorClasses: Record<ColorVariant, { gradient: string; text: string }> = {
+  const colorClasses = {
     orange: {
-      gradient: "from-orange-500 via-red-500 to-pink-500",
-      text: "text-orange-400",
+      border: "border-orange-500/20 hover:border-orange-500/40",
+      iconBg: "bg-orange-500/20",
+      iconColor: "text-orange-500",
+      titleColor: "text-orange-400",
     },
     blue: {
-      gradient: "from-blue-500 via-cyan-500 to-teal-500",
-      text: "text-blue-400",
+      border: "border-blue-500/20 hover:border-blue-500/40",
+      iconBg: "bg-blue-500/20",
+      iconColor: "text-blue-500",
+      titleColor: "text-blue-400",
     },
     green: {
-      gradient: "from-green-500 via-emerald-500 to-lime-500",
-      text: "text-green-400",
+      border: "border-green-500/20 hover:border-green-500/40",
+      iconBg: "bg-green-500/20",
+      iconColor: "text-green-500",
+      titleColor: "text-green-400",
     },
     purple: {
-      gradient: "from-purple-500 via-pink-500 to-rose-500",
-      text: "text-purple-400",
+      border: "border-purple-500/20 hover:border-purple-500/40",
+      iconBg: "bg-purple-500/20",
+      iconColor: "text-purple-500",
+      titleColor: "text-purple-400",
     },
     pink: {
-      gradient: "from-pink-500 via-rose-500 to-red-500",
-      text: "text-pink-400",
+      border: "border-pink-500/20 hover:border-pink-500/40",
+      iconBg: "bg-pink-500/20",
+      iconColor: "text-pink-500",
+      titleColor: "text-pink-400",
     },
-  };
+  }
 
-  const colors = colorClasses[color];
+  const colors = colorClasses[color]
 
   return (
-    <div className="mega-card p-8 mega-hover mega-glow">
-      <div
-        className={`w-20 h-20 bg-gradient-to-br ${colors.gradient} rounded-2xl flex items-center justify-center mb-6 mega-glow nusantara-glow`}
-      >
-        <Icon className="h-10 w-10 text-white" />
+    <div
+      className={`bg-slate-800/50 p-6 rounded-xl border ${colors.border} transition-all duration-300 hover:transform hover:scale-105 hover:bg-slate-800/70`}
+    >
+      <div className={`w-12 h-12 ${colors.iconBg} rounded-lg flex items-center justify-center mb-4`}>
+        <Icon className={`h-6 w-6 ${colors.iconColor}`} />
       </div>
 
-      <h3 className={`mega-title text-2xl mb-4 ${colors.text}`}>{title}</h3>
+      <h3 className={`text-xl font-bold mb-3 ${colors.titleColor}`}>{title}</h3>
 
-      <p className="mega-text text-gray-300 mb-6 leading-relaxed text-lg">{description}</p>
+      <p className="text-gray-300 mb-4 leading-relaxed">{description}</p>
 
-      <ul className="space-y-3">
+      <ul className="space-y-2">
         {features.map((feature, index) => (
-          <li key={index} className="flex items-center space-x-3 mega-text text-gray-400">
-            <div className="w-6 h-6 bg-gradient-to-br from-green-500 to-emerald-500 rounded-full flex items-center justify-center flex-shrink-0 mega-glow">
-              <Check className="h-4 w-4 text-white font-bold" />
-            </div>
-            <span className="text-base">{feature}</span>
+          <li key={index} className="flex items-center space-x-2 text-sm text-gray-400">
+            <Check className="h-4 w-4 text-green-500 flex-shrink-0" />
+            <span>{feature}</span>
           </li>
         ))}
       </ul>
     </div>
-  );
+  )
 }

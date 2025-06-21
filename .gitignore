@@ -18,7 +18,6 @@ yarn-error.log*
 
 # env files
 .env*
-!.env.example
 
 # vercel
 .vercel
@@ -26,19 +25,3 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
-
-# SonarQube
-.sonar/
-.scannerwork/
-
-# Testing
-coverage/
-*.lcov
-
-# IDE
-.vscode/settings.json
-.idea/
-
-# OS
-.DS_Store
-Thumbs.db

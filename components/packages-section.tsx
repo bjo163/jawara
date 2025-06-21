@@ -1,130 +1,229 @@
-"use client";
+"use client"
 
-import { useState } from "react";
-import { SectionTitle } from "@/components/section-title";
-import { ProductCard } from "@/components/product-card";
-import { Button } from "@/components/ui/button";
-import { Sparkles } from "lucide-react";
-import { InternetCalculator } from "@/components/internet-calculator";
-import { packagesConfig } from "@/configs/content/packages";
-import { useDevValidation } from "@/configs/schemas/hooks";
+import { useState } from "react"
+import { SectionTitle } from "@/components/section-title"
+import { ProductCard } from "@/components/product-card"
+import { Button } from "@/components/ui/button"
 
 export function PackagesSection() {
-  const [activeCategory, setActiveCategory] = useState("rumah");
+  const [activeCategory, setActiveCategory] = useState("rumah")
 
-  // Development validation untuk package data
-  const devValidator = useDevValidation();
-
-  // Use packages config instead of hardcoded data
-  const { header, categories, packages, calculator, bonusFeatures, cta, background } = packagesConfig;
+  const packages = {
+    rumah: [
+      {
+        name: "Jagoan Neon",
+        icon: "🌟",
+        speed: "10 Mbps",
+        quota: "Unlimited FUP",
+        price: "Rp150.000",
+        originalPrice: "Rp200.000",
+        features: [
+          "🆓 Gratis instalasi",
+          "🏠 Cocok untuk rumahan",
+          "📺 Streaming HD lancar",
+          "📱 Support 5-8 device",
+          "🛡️ Customer support 24/7",
+        ],
+        popular: false,
+        color: "orange",
+        character: "🧙‍♂️",
+      },
+      {
+        name: "Mandor Sakti",
+        icon: "🔨",
+        speed: "25 Mbps",
+        quota: "Unlimited FUP",
+        price: "Rp200.000",
+        originalPrice: "Rp250.000",
+        features: [
+          "💪 Stabil buat kerja & belajar dari rumah",
+          "📹 Video call HD tanpa lag",
+          "🎮 Gaming online smooth",
+          "📱 Support 10-15 device",
+          "⭐ Priority customer support",
+        ],
+        popular: true,
+        color: "blue",
+        character: "👷‍♂️",
+      },
+      {
+        name: "Wiro Sableng",
+        icon: "⚔️",
+        speed: "35 Mbps",
+        quota: "Unlimited FUP",
+        price: "Rp250.000",
+        originalPrice: "Rp300.000",
+        features: [
+          "🚀 Ngebut buat streaming & CCTV remote",
+          "🎬 4K streaming tanpa buffering",
+          "📤 Upload file besar cepat",
+          "📱 Support 15-20 device",
+          "🎯 Dedicated customer support",
+        ],
+        popular: false,
+        color: "green",
+        character: "🥷",
+      },
+      {
+        name: "Sultan",
+        icon: "👑",
+        speed: "50 Mbps",
+        quota: "Unlimited Full",
+        price: "Rp300.000",
+        originalPrice: "Rp400.000",
+        features: [
+          "⚡ Prioritas bandwidth, anti lemot 24 jam",
+          "♾️ Unlimited tanpa FUP",
+          "🎮 Gaming pro & streaming 4K",
+          "📱 Support unlimited device",
+          "👑 VIP customer support",
+        ],
+        popular: false,
+        color: "purple",
+        character: "🤴",
+      },
+    ],
+    bisnis: [
+      {
+        name: "Startup Warrior",
+        icon: "🚀",
+        speed: "50 Mbps",
+        quota: "Dedicated",
+        price: "Rp500.000",
+        originalPrice: "Rp650.000",
+        features: [
+          "🎯 Bandwidth dedicated",
+          "🏠 Static IP address",
+          "📊 SLA 99.9% uptime",
+          "⚡ Priority technical support",
+          "🌐 Free domain & email hosting",
+        ],
+        popular: false,
+        color: "orange",
+        character: "🦸‍♂️",
+      },
+      {
+        name: "Corporate Beast",
+        icon: "🏢",
+        speed: "100 Mbps",
+        quota: "Dedicated",
+        price: "Rp800.000",
+        originalPrice: "Rp1.000.000",
+        features: [
+          "💎 Bandwidth dedicated full",
+          "🌐 Multiple static IP",
+          "📊 24/7 monitoring",
+          "🛠️ On-site technical support",
+          "🔄 Backup connection",
+        ],
+        popular: true,
+        color: "blue",
+        character: "🦁",
+      },
+      {
+        name: "Enterprise King",
+        icon: "👑",
+        speed: "200 Mbps",
+        quota: "Dedicated",
+        price: "Rp1.500.000",
+        originalPrice: "Rp2.000.000",
+        features: [
+          "⚡ Ultra-fast dedicated connection",
+          "🌐 Subnet IP allocation",
+          "🔄 Redundant connection",
+          "👨‍💼 Dedicated account manager",
+          "🛠️ Custom network solution",
+        ],
+        popular: false,
+        color: "purple",
+        character: "🐉",
+      },
+    ],
+  }
 
   return (
-    <section id="packages" className="py-24 nusantara-bg relative overflow-hidden">
-      {" "}
-      {/* SPECTACULAR BACKGROUND ELEMENTS */}
-      <div className="absolute inset-0 mega-grid opacity-30"></div>
-      <div
-        className={`absolute ${background.topLeft.position} ${background.topLeft.size} ${background.topLeft.animation} ${background.topLeft.opacity}`}
-      >
-        {background.topLeft.icon}
-      </div>
-      <div
-        className={`absolute ${background.bottomRight.position} ${background.bottomRight.size} ${background.bottomRight.animation} ${background.bottomRight.opacity}`}
-      >
-        {background.bottomRight.icon}
-      </div>
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        {" "}
-        <SectionTitle title={header.title} subtitle={header.subtitle} /> {/* SPECTACULAR CATEGORY TABS */}
-        <div className="flex justify-center mb-16">
-          <div className="mega-card p-3 flex rounded-3xl nusantara-glow">
-            {categories.map((category) => (
-              <Button
-                key={category.id}
-                variant={activeCategory === category.id ? "default" : "ghost"}
-                onClick={() => setActiveCategory(category.id)}
-                className={`mega-text px-12 py-6 text-xl font-black rounded-2xl transition-all duration-500 flex items-center space-x-4 mega-hover ${
-                  activeCategory === category.id
-                    ? `mega-button bg-gradient-to-r ${category.gradient} text-white nusantara-glow`
-                    : "text-gray-300 hover:text-white hover:bg-white/10"
-                }`}
-              >
-                <category.icon className="h-6 w-6" />
-                <span>{category.label}</span>
-              </Button>
-            ))}
+    <section id="packages" className="py-20 bg-gradient-to-br from-slate-900/50 to-purple-900/20">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <SectionTitle
+          title="🗡️ Paket Internet Pilihan 🗡️"
+          subtitle="Pilih paket yang tepat untuk kebutuhan digital Anda"
+        />
+
+        {/* Professional Category Tabs */}
+        <div className="flex justify-center mb-12">
+          <div className="professional-card p-2 flex rounded-2xl">
+            <Button
+              variant={activeCategory === "rumah" ? "default" : "ghost"}
+              onClick={() => setActiveCategory("rumah")}
+              className={`cartoon-text px-8 py-3 text-lg font-bold rounded-xl transition-all duration-300 ${
+                activeCategory === "rumah"
+                  ? "professional-button text-white"
+                  : "text-gray-300 hover:text-white hover:bg-white/10"
+              }`}
+            >
+              🏠 Paket Rumah
+            </Button>
+            <Button
+              variant={activeCategory === "bisnis" ? "default" : "ghost"}
+              onClick={() => setActiveCategory("bisnis")}
+              className={`cartoon-text px-8 py-3 text-lg font-bold rounded-xl transition-all duration-300 ${
+                activeCategory === "bisnis"
+                  ? "professional-button bg-gradient-to-r from-blue-600 to-purple-600 text-white"
+                  : "text-gray-300 hover:text-white hover:bg-white/10"
+              }`}
+            >
+              🏢 Paket Bisnis
+            </Button>
           </div>
         </div>
-        {/* SPECTACULAR PACKAGE CARDS */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-10">
-          {" "}
-          {packages[activeCategory as keyof typeof packages].map((pkg, index) => {
-            // Validate package data in development
-            const validatedPkg = devValidator?.validatePackage?.(pkg);
 
-            return (
-              <div key={index} className="scroll-reveal" style={{ animationDelay: `${index * 0.1}s` }}>
-                <ProductCard {...(validatedPkg || pkg)} />
-              </div>
-            );
-          })}
-        </div>{" "}
-        {/* INTERNET CALCULATOR SECTION */}
-        <div className="mt-20">
-          <div className="text-center mb-16">
-            <h3 className="mega-title text-4xl md:text-5xl font-black text-white mb-6">{calculator.title}</h3>
-            <p className="mega-text text-2xl text-gray-300 leading-relaxed font-bold max-w-4xl mx-auto">
-              {calculator.description}
-            </p>
+        {/* Package Cards */}
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+          {packages[activeCategory as keyof typeof packages].map((pkg, index) => (
+            <ProductCard key={index} {...pkg} />
+          ))}
+        </div>
+
+        {/* Professional Additional Info */}
+        <div className="mt-16 professional-card p-8">
+          <div className="text-center mb-8">
+            <h3 className="cartoon-title text-2xl md:text-3xl font-black text-white mb-4">
+              🎁 Bonus Gratis Untuk Semua Paket 🎁
+            </h3>
           </div>
 
-          <InternetCalculator />
-        </div>{" "}
-        {/* SPECTACULAR BONUS SECTION */}
-        <div className="mt-20">
-          <div className="mega-card p-12 nusantara-glow mega-hover">
-            <div className="text-center mb-12">
-              <div className="relative inline-block">
-                <h3 className="mega-title text-4xl md:text-5xl font-black text-white mb-6">{bonusFeatures.title}</h3>
-                <Sparkles className="absolute -top-4 -right-4 h-10 w-10 text-yellow-400 animate-spin" />
-                <div className="absolute -bottom-2 -left-2 w-8 h-8 bg-gradient-to-r from-orange-500 to-red-500 rounded-full animate-pulse"></div>
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div className="text-center">
+              <div className="w-16 h-16 bg-gradient-to-br from-green-500 to-emerald-500 rounded-full flex items-center justify-center mx-auto mb-4 professional-glow">
+                <span className="text-2xl">🆓</span>
               </div>
+              <h4 className="cartoon-text font-bold text-white text-lg mb-2">Gratis Instalasi</h4>
+              <p className="cartoon-text text-gray-400">Pemasangan & konfigurasi</p>
             </div>
-
-            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-              {bonusFeatures.features.map((feature, index) => (
-                <div
-                  key={feature.id}
-                  className="text-center mega-hover"
-                  style={{ animationDelay: feature.animationDelay || `${index * 0.1}s` }}
-                >
-                  <div
-                    className={`w-24 h-24 bg-gradient-to-br ${feature.gradient} rounded-full flex items-center justify-center mx-auto mb-6 mega-glow nusantara-glow`}
-                  >
-                    <span className="text-4xl">{feature.icon}</span>
-                  </div>
-                  <h4 className="mega-text font-black text-white text-xl mb-3">{feature.title}</h4>
-                  <p className="mega-text text-gray-400 font-semibold">{feature.description}</p>
-                </div>
-              ))}
+            <div className="text-center">
+              <div className="w-16 h-16 bg-gradient-to-br from-blue-500 to-cyan-500 rounded-full flex items-center justify-center mx-auto mb-4 professional-glow">
+                <span className="text-2xl">📶</span>
+              </div>
+              <h4 className="cartoon-text font-bold text-white text-lg mb-2">WiFi Router</h4>
+              <p className="cartoon-text text-gray-400">Router WiFi berkualitas</p>
             </div>
-
-            <div className="text-center mt-12">
-              <button
-                onClick={() => {
-                  const element = document.getElementById("contact");
-                  if (element) element.scrollIntoView({ behavior: "smooth" });
-                }}
-                className="mega-button px-12 py-6 text-2xl font-black text-white mega-text mega-hover flex items-center space-x-4 mx-auto"
-              >
-                <Sparkles className="h-8 w-8" />
-                <span>{cta.title}</span>
-                <Sparkles className="h-8 w-8" />
-              </button>
+            <div className="text-center">
+              <div className="w-16 h-16 bg-gradient-to-br from-purple-500 to-pink-500 rounded-full flex items-center justify-center mx-auto mb-4 professional-glow">
+                <span className="text-2xl">🛠️</span>
+              </div>
+              <h4 className="cartoon-text font-bold text-white text-lg mb-2">Maintenance</h4>
+              <p className="cartoon-text text-gray-400">Perawatan rutin gratis</p>
+            </div>
+            <div className="text-center">
+              <div className="w-16 h-16 bg-gradient-to-br from-orange-500 to-red-500 rounded-full flex items-center justify-center mx-auto mb-4 professional-glow">
+                <span className="text-2xl">📞</span>
+              </div>
+              <h4 className="cartoon-text font-bold text-white text-lg mb-2">Support 24/7</h4>
+              <p className="cartoon-text text-gray-400">Bantuan kapan saja</p>
             </div>
           </div>
         </div>
       </div>
     </section>
-  );
+  )
 }
