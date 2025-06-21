@@ -9,6 +9,9 @@ import { Textarea } from "@/components/ui/textarea"
 import { Logo } from "@/components/logo"
 import { packages, getPackageById, getPackagesByCategory } from "@/data/packages"
 import { Breadcrumb, BackButton } from "@/components/breadcrumb"
+import { PageHeader } from "@/components/page-header"
+import { LiveChatWidget } from "@/components/live-chat-widget"
+import { SubscriptionWidget } from "@/components/subscription-widget-fixed"
 import Link from "next/link"
 
 interface SubscriptionForm {
@@ -152,21 +155,10 @@ ${coverageStatus === 'covered' ? `Status: Area ter-cover (${distance.toFixed(1)}
     const whatsappUrl = `https://wa.me/6281295295734?text=${encodeURIComponent(message)}`
     window.open(whatsappUrl, '_blank')
   }
-
   return (
-    <div className="min-h-screen bg-slate-950 text-white">      {/* Header */}
-      <header className="border-b border-gray-800 bg-slate-900/50 backdrop-blur-xl">
-        <div className="max-w-6xl mx-auto px-4 py-4 flex items-center justify-between">
-          <div className="flex items-center space-x-4">
-            <BackButton variant="minimal" />
-            <Logo size="sm" showSubtext={false} />
-          </div>
-          <div className="flex items-center space-x-4">
-            <Breadcrumb showHome={false} />
-            <h1 className="text-xl font-bold">Berlangganan Jawara-Net</h1>
-          </div>
-        </div>
-      </header>
+    <div className="min-h-screen bg-slate-950 text-white">
+      {/* Header */}
+      <PageHeader />
 
       <main className="max-w-6xl mx-auto px-4 py-8">
         {/* Hero Section */}
@@ -524,9 +516,12 @@ ${coverageStatus === 'covered' ? `Status: Area ter-cover (${distance.toFixed(1)}
               <h4 className="font-semibold text-white mb-2">Jam Operasional</h4>
               <p className="text-gray-400">24/7 Support</p>
             </CardContent>
-          </Card>
-        </div>
+          </Card>        </div>
       </main>
+
+      {/* Widgets */}
+      <LiveChatWidget />
+      <SubscriptionWidget />
     </div>
   )
 }

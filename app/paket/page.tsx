@@ -1,20 +1,18 @@
 "use client"
 
-import { Navbar } from "@/components/navbar"
 import { PackagesSection } from "@/components/packages-section"
-import { Footer } from "@/components/footer"
+import { SectionTitle } from "@/components/section-title"
+import { PageHeader } from "@/components/page-header"
 import { LiveChatWidget } from "@/components/live-chat-widget"
 import { SubscriptionWidget } from "@/components/subscription-widget-fixed"
-import { SectionTitle } from "@/components/section-title"
-import { PageHeader } from "@/components/breadcrumb"
 
 export default function PaketPage() {
   return (
-    <div className="min-h-screen bg-slate-950 text-white overflow-x-hidden">
-      <Navbar activeSection="paket" />      <main className="pt-24">
-        {/* Auto Breadcrumb & Back Navigation */}
-        <PageHeader />
+    <div className="min-h-screen bg-slate-950 text-white">
+      {/* Header */}
+      <PageHeader />
 
+      <main>
         {/* Header Section */}
         <section className="py-16 px-4">
           <div className="max-w-6xl mx-auto text-center">
@@ -60,12 +58,8 @@ export default function PaketPage() {
         </section>
       </main>
 
-      <Footer />
-      
-      {/* Live Chat Widget */}
+      {/* Widgets */}
       <LiveChatWidget />
-      
-      {/* Subscription Widget */}
       <SubscriptionWidget />
     </div>
   )

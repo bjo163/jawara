@@ -1,15 +1,15 @@
 "use client"
 
 import { useState, useEffect } from "react"
-import { Menu, X } from "lucide-react"
+import { Menu, X, Wifi, Sparkles } from "lucide-react"
 import { Button } from "@/components/ui/button"
-import { Logo } from "@/components/logo"
 
 interface NavbarProps {
   activeSection: string
+  onNavigate?: (section: string) => void
 }
 
-export function Navbar({ activeSection }: NavbarProps) {
+export function Navbar({ activeSection, onNavigate }: NavbarProps) {
   const [isOpen, setIsOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
 
@@ -17,57 +17,59 @@ export function Navbar({ activeSection }: NavbarProps) {
     const handleScroll = () => {
       setScrolled(window.scrollY > 20)
     }
+
     window.addEventListener("scroll", handleScroll)
     return () => window.removeEventListener("scroll", handleScroll)
   }, [])
 
   const navItems = [
-    { id: "hero", label: "Beranda", icon: "🏠", type: "scroll" },
-    { id: "about", label: "Tentang", icon: "📖", type: "scroll" },
-    { id: "services", label: "Layanan", icon: "⚔️", type: "scroll" },
-    { id: "paket", label: "Paket", icon: "💎", type: "link", href: "/paket" },
-    { id: "testimonials", label: "Testimoni", icon: "💬", type: "scroll" },
-    { id: "berlangganan", label: "Berlangganan", icon: "🗡️", type: "link", href: "/berlangganan" },
-    { id: "speedtest", label: "Speed Test", icon: "⚡", type: "link", href: "/speedtest" },
-    { id: "contact-page", label: "Kontak", icon: "📞", type: "link", href: "/contact" },
+    { id: "beranda", label: "Beranda", icon: "🏛️", href: "/" },
+    { id: "paket", label: "Paket", icon: "👑", href: "/paket" },
+    { id: "speedtest", label: "Speedtest", icon: "⚡", href: "/speedtest" },
+    { id: "contact", label: "Kontak", icon: "📞", href: "/contact" },
+    { id: "faq", label: "FAQ", icon: "❓", href: "/faq" },
   ]
 
-  const handleNavClick = (item: any) => {
-    if (item.type === "link") {
+  const handleNavigation = (item: typeof navItems[0]) => {
+    if (item.href) {
       window.location.href = item.href
-    } else {
-      scrollToSection(item.id)
-    }
-  }
-
-  const scrollToSection = (sectionId: string) => {
-    const element = document.getElementById(sectionId)
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth" })
+    } else if (onNavigate) {
+      onNavigate(item.id)
     }
     setIsOpen(false)
   }
 
   return (
-    <nav
-      className={`fixed top-0 w-full z-50 transition-all duration-300 ${
-        scrolled ? "bg-slate-950/95 backdrop-blur-xl border-b border-orange-500/20 shadow-2xl" : "bg-transparent"
-      }`}
-    >
+    <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+      scrolled 
+        ? "bg-slate-900/95 backdrop-blur-md border-b border-gray-700/50 shadow-lg" 
+        : "bg-transparent"
+    }`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-16 md:h-20">
+        <div className="flex items-center justify-between h-16">
           {/* Logo */}
-          <Logo size="md" showSubtext={true} />
+          <div className="flex items-center space-x-3">
+            <div className="relative">
+              <div className="w-8 h-8 bg-gradient-to-br from-orange-500 to-red-500 rounded-lg flex items-center justify-center shadow-lg">
+                <Wifi className="h-5 w-5 text-white" />
+              </div>
+              <Sparkles className="absolute -top-1 -right-1 h-3 w-3 text-yellow-400" />
+            </div>
+            <div className="flex flex-col">
+              <span className="text-white font-bold text-lg cartoon-text">Jawara-Net</span>
+              <span className="text-xs text-gray-300 leading-none">Raja Internet</span>
+            </div>
+          </div>
 
           {/* Desktop Navigation */}
-          <div className="hidden lg:flex items-center space-x-2">
+          <div className="hidden md:flex items-center space-x-1">
             {navItems.map((item) => (
               <button
                 key={item.id}
-                onClick={() => handleNavClick(item)}
-                className={`cartoon-text px-4 py-2 rounded-lg font-semibold transition-all duration-300 flex items-center space-x-2 ${
+                onClick={() => handleNavigation(item)}
+                className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors duration-200 flex items-center space-x-2 ${
                   activeSection === item.id
-                    ? "bg-gradient-to-r from-orange-500 to-red-500 text-white shadow-lg"
+                    ? "bg-white/10 text-white"
                     : "text-gray-300 hover:text-white hover:bg-white/10"
                 }`}
               >
@@ -79,38 +81,54 @@ export function Navbar({ activeSection }: NavbarProps) {
 
           {/* CTA Button */}
           <div className="hidden md:flex items-center space-x-4">
-            <Button
-              onClick={() => window.location.href = '/login'}
-              className="professional-button px-6 py-2 text-white font-bold cartoon-text"
-            >
-              � Login
-            </Button>
+            <div className="relative group">
+              <Button
+                className="professional-button px-6 py-2 text-white font-bold cartoon-text"
+              >
+                🔐 Login
+              </Button>
+              {/* Dropdown Menu */}
+              <div className="absolute right-0 mt-2 w-48 bg-slate-900 border border-gray-700 rounded-lg shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
+                <div className="py-2">
+                  <button
+                    onClick={() => window.location.href = '/login/pelanggan'}
+                    className="w-full text-left px-4 py-2 text-gray-300 hover:text-white hover:bg-slate-800 transition-colors"
+                  >
+                    👤 Login Pelanggan
+                  </button>
+                  <button
+                    onClick={() => window.location.href = '/login/admin'}
+                    className="w-full text-left px-4 py-2 text-gray-300 hover:text-white hover:bg-slate-800 transition-colors"
+                  >
+                    ⚙️ Login Admin
+                  </button>
+                </div>
+              </div>
+            </div>
           </div>
 
           {/* Mobile menu button */}
-          <div className="lg:hidden">
-            <Button
-              variant="ghost"
-              size="sm"
+          <div className="md:hidden">
+            <button
               onClick={() => setIsOpen(!isOpen)}
-              className="text-white hover:bg-white/10"
+              className="p-2 rounded-lg text-gray-300 hover:text-white hover:bg-white/10 transition-colors"
             >
               {isOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
-            </Button>
+            </button>
           </div>
         </div>
 
         {/* Mobile Navigation */}
         {isOpen && (
-          <div className="lg:hidden">
-            <div className="professional-card m-2 p-4 space-y-2">
+          <div className="md:hidden absolute top-16 left-0 right-0 bg-slate-900/95 backdrop-blur-md border-b border-gray-700/50 shadow-lg">
+            <div className="px-4 py-4 space-y-2">
               {navItems.map((item) => (
                 <button
                   key={item.id}
-                  onClick={() => handleNavClick(item)}
-                  className={`w-full text-left px-4 py-3 rounded-lg font-semibold cartoon-text transition-all duration-300 flex items-center space-x-3 ${
+                  onClick={() => handleNavigation(item)}
+                  className={`w-full text-left px-4 py-3 rounded-lg font-medium transition-colors duration-200 flex items-center space-x-3 ${
                     activeSection === item.id
-                      ? "bg-gradient-to-r from-orange-500 to-red-500 text-white"
+                      ? "bg-white/10 text-white"
                       : "text-gray-300 hover:text-white hover:bg-white/10"
                   }`}
                 >
@@ -118,12 +136,24 @@ export function Navbar({ activeSection }: NavbarProps) {
                   <span>{item.label}</span>
                 </button>
               ))}
-              <Button
-                onClick={() => window.location.href = '/login'}
-                className="w-full mt-4 professional-button text-white font-bold cartoon-text"
-              >
-                � Login
-              </Button>
+              
+              {/* Mobile Login Buttons */}
+              <div className="pt-4 border-t border-gray-700">
+                <button
+                  onClick={() => window.location.href = '/login/pelanggan'}
+                  className="w-full mb-2 px-4 py-3 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-lg transition-colors flex items-center justify-center space-x-2"
+                >
+                  <span>👤</span>
+                  <span>Login Pelanggan</span>
+                </button>
+                <button
+                  onClick={() => window.location.href = '/login/admin'}
+                  className="w-full px-4 py-3 bg-red-600 hover:bg-red-700 text-white font-medium rounded-lg transition-colors flex items-center justify-center space-x-2"
+                >
+                  <span>⚙️</span>
+                  <span>Login Admin</span>
+                </button>
+              </div>
             </div>
           </div>
         )}

@@ -7,7 +7,6 @@ import { AboutSection } from "@/components/about-section"
 import { ServicesSection } from "@/components/services-section"
 import { ProcessSection } from "@/components/process-section"
 import { TestimonialsSection } from "@/components/testimonials-section"
-import { FaqSection } from "@/components/faq-section"
 import { CoverageSection } from "@/components/coverage-section"
 import { MapSection } from "@/components/map-section"
 import { Footer } from "@/components/footer"
@@ -25,7 +24,6 @@ export default function HomePage() {
         "services",
         "process",
         "testimonials",
-        "faq",
         "coverage",
         "map",
       ]
@@ -57,7 +55,6 @@ export default function HomePage() {
         <ServicesSection />
         <ProcessSection />
         <TestimonialsSection />
-        <FaqSection />
         <CoverageSection />
         <MapSection />
       </main>

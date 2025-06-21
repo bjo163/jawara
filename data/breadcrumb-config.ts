@@ -57,8 +57,7 @@ export const pageConfigs: Record<string, PageConfig> = {
       label: 'Kembali ke Beranda'
     },
     description: 'Test kecepatan internet Anda'
-  },
-  '/contact': {
+  },  '/contact': {
     title: 'Kontak',
     breadcrumbs: [
       { label: 'Kontak', active: true, icon: '📞' }
@@ -68,6 +67,38 @@ export const pageConfigs: Record<string, PageConfig> = {
       label: 'Kembali ke Beranda'
     },
     description: 'Hubungi customer service Jawara-Net'
+  },  '/faq': {
+    title: 'FAQ',
+    breadcrumbs: [
+      { label: 'FAQ', active: true, icon: '❓' }
+    ],
+    backButton: {
+      href: '/',
+      label: 'Kembali ke Beranda'
+    },
+    description: 'Pertanyaan yang sering ditanyakan'
+  },
+  '/login/pelanggan': {
+    title: 'Login Pelanggan',
+    breadcrumbs: [
+      { label: 'Login Pelanggan', active: true, icon: '👤' }
+    ],
+    backButton: {
+      href: '/',
+      label: 'Kembali ke Beranda'
+    },
+    description: 'Masuk ke akun pelanggan Jawara-Net'
+  },
+  '/login/admin': {
+    title: 'Login Admin',
+    breadcrumbs: [
+      { label: 'Login Admin', active: true, icon: '🔐' }
+    ],
+    backButton: {
+      href: '/',
+      label: 'Kembali ke Beranda'
+    },
+    description: 'Masuk ke panel admin Jawara-Net'
   }
 }
 

@@ -6,6 +6,9 @@ import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Logo } from "@/components/logo"
 import { Breadcrumb, BackButton } from "@/components/breadcrumb"
+import { PageHeader } from "@/components/page-header"
+import { LiveChatWidget } from "@/components/live-chat-widget"
+import { SubscriptionWidget } from "@/components/subscription-widget-fixed"
 import Link from "next/link"
 
 interface SpeedTestResult {
@@ -262,21 +265,10 @@ export default function SpeedTestPage() {
     if (ping <= 50) return 'text-yellow-400'
     return 'text-red-400'
   }
-
   return (
-    <div className="min-h-screen bg-slate-950 text-white">      {/* Header */}
-      <header className="border-b border-gray-800 bg-slate-900/50 backdrop-blur-xl">
-        <div className="max-w-4xl mx-auto px-4 py-4 flex items-center justify-between">
-          <div className="flex items-center space-x-4">
-            <BackButton variant="minimal" />
-            <Logo size="sm" showSubtext={false} />
-          </div>
-          <div className="flex items-center space-x-4">
-            <Breadcrumb showHome={false} />
-            <h1 className="text-xl font-bold">Speed Test Jawara-Net</h1>
-          </div>
-        </div>
-      </header>
+    <div className="min-h-screen bg-slate-950 text-white">
+      {/* Header */}
+      <PageHeader />
 
       <main className="max-w-4xl mx-auto px-4 py-8">
         {/* Main Speed Test Card */}
@@ -489,14 +481,17 @@ export default function SpeedTestPage() {
                 🎯 Lihat Paket Internet
               </Button>
             </Link>
-            <Link href="/#contact">
-              <Button variant="outline" className="border-orange-500 text-orange-400 hover:bg-orange-500 hover:text-white">
+            <Link href="/#contact">              <Button variant="outline" className="border-orange-500 text-orange-400 hover:bg-orange-500 hover:text-white">
                 📞 Hubungi Kami
               </Button>
             </Link>
           </div>
         </div>
       </main>
+
+      {/* Widgets */}
+      <LiveChatWidget />
+      <SubscriptionWidget />
     </div>
   )
 }

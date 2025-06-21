@@ -1,0 +1,201 @@
+"use client"
+
+import { useEffect, useState } from "react"
+import { LogOut, Users, BarChart3, Settings, Shield, Wifi, DollarSign, TrendingUp } from "lucide-react"
+import { Button } from "@/components/ui/button"
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
+import { getAuthData, clearAuthData, type User as UserType } from "@/data/auth"
+
+export default function AdminDashboard() {
+  const [user, setUser] = useState<UserType | null>(null)
+
+  useEffect(() => {
+    const { user: authUser } = getAuthData()
+    if (!authUser || authUser.role !== 'admin') {
+      window.location.href = '/login/admin'
+      return
+    }
+    setUser(authUser)
+  }, [])
+
+  const handleLogout = () => {
+    clearAuthData()
+    window.location.href = '/login/admin'
+  }
+
+  if (!user) {
+    return (
+      <div className="min-h-screen bg-slate-950 flex items-center justify-center">
+        <div className="text-white">Loading...</div>
+      </div>
+    )
+  }
+
+  const stats = [
+    {
+      title: "Total Pelanggan",
+      value: "1,234",
+      change: "+12%",
+      icon: Users,
+      color: "text-blue-400"
+    },
+    {
+      title: "Revenue Bulan Ini",
+      value: "Rp 125M",
+      change: "+8%",
+      icon: DollarSign,
+      color: "text-green-400"
+    },
+    {
+      title: "Network Uptime",
+      value: "99.8%",
+      change: "+0.2%",
+      icon: Wifi,
+      color: "text-purple-400"
+    },
+    {
+      title: "Growth Rate",
+      value: "15.3%",
+      change: "+3%",
+      icon: TrendingUp,
+      color: "text-orange-400"
+    }
+  ]
+
+  return (
+    <div className="min-h-screen bg-slate-950 text-white">
+      {/* Header */}
+      <header className="bg-slate-900 border-b border-gray-700">
+        <div className="max-w-7xl mx-auto px-4 py-4 flex items-center justify-between">
+          <div className="flex items-center space-x-4">
+            <Shield className="h-8 w-8 text-red-400" />
+            <h1 className="text-xl font-bold">Admin Panel</h1>
+          </div>
+          <div className="flex items-center space-x-4">
+            <span className="text-gray-300">Admin: {user.name}</span>
+            <Button variant="outline" onClick={handleLogout}>
+              <LogOut className="h-4 w-4 mr-2" />
+              Logout
+            </Button>
+          </div>
+        </div>
+      </header>
+
+      <main className="max-w-7xl mx-auto px-4 py-8">
+        {/* Welcome Section */}
+        <div className="mb-8">
+          <h2 className="text-3xl font-bold mb-2">Dashboard Administrator</h2>
+          <p className="text-gray-400">Monitor dan kelola operasional Jawara-Net</p>
+        </div>
+
+        {/* Stats Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+          {stats.map((stat, index) => (
+            <Card key={index} className="bg-slate-900 border-gray-700">
+              <CardHeader className="pb-3">
+                <CardTitle className="text-sm text-gray-400 flex items-center justify-between">
+                  {stat.title}
+                  <stat.icon className={`h-5 w-5 ${stat.color}`} />
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <div className="text-2xl font-bold text-white mb-1">{stat.value}</div>
+                <div className="text-sm text-green-400">{stat.change} dari bulan lalu</div>
+              </CardContent>
+            </Card>
+          ))}
+        </div>
+
+        {/* Quick Actions */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+          <Card className="bg-slate-900 border-gray-700 hover:bg-slate-800 transition-colors cursor-pointer">
+            <CardContent className="p-6 text-center">
+              <Users className="h-12 w-12 text-blue-400 mx-auto mb-4" />
+              <h3 className="font-semibold text-white mb-2">Manajemen Pelanggan</h3>
+              <p className="text-sm text-gray-400">Kelola data pelanggan</p>
+            </CardContent>
+          </Card>
+
+          <Card className="bg-slate-900 border-gray-700 hover:bg-slate-800 transition-colors cursor-pointer">
+            <CardContent className="p-6 text-center">
+              <BarChart3 className="h-12 w-12 text-green-400 mx-auto mb-4" />
+              <h3 className="font-semibold text-white mb-2">Analytics</h3>
+              <p className="text-sm text-gray-400">Laporan dan statistik</p>
+            </CardContent>
+          </Card>
+
+          <Card className="bg-slate-900 border-gray-700 hover:bg-slate-800 transition-colors cursor-pointer">
+            <CardContent className="p-6 text-center">
+              <Wifi className="h-12 w-12 text-orange-400 mx-auto mb-4" />
+              <h3 className="font-semibold text-white mb-2">Network Monitor</h3>
+              <p className="text-sm text-gray-400">Status jaringan</p>
+            </CardContent>
+          </Card>
+
+          <Card className="bg-slate-900 border-gray-700 hover:bg-slate-800 transition-colors cursor-pointer">
+            <CardContent className="p-6 text-center">
+              <Settings className="h-12 w-12 text-purple-400 mx-auto mb-4" />
+              <h3 className="font-semibold text-white mb-2">Pengaturan</h3>
+              <p className="text-sm text-gray-400">Konfigurasi sistem</p>
+            </CardContent>
+          </Card>
+        </div>
+
+        {/* Recent Activity */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+          <Card className="bg-slate-900 border-gray-700">
+            <CardHeader>
+              <CardTitle className="text-white">Aktivitas Sistem</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <div className="space-y-4">
+                <div className="flex items-center space-x-3 text-sm">
+                  <div className="h-2 w-2 bg-green-400 rounded-full"></div>
+                  <span className="text-gray-300">Pelanggan baru: John Smith</span>
+                  <span className="text-gray-500">5 menit lalu</span>
+                </div>
+                <div className="flex items-center space-x-3 text-sm">
+                  <div className="h-2 w-2 bg-blue-400 rounded-full"></div>
+                  <span className="text-gray-300">Maintenance sektor A selesai</span>
+                  <span className="text-gray-500">1 jam lalu</span>
+                </div>
+                <div className="flex items-center space-x-3 text-sm">
+                  <div className="h-2 w-2 bg-yellow-400 rounded-full"></div>
+                  <span className="text-gray-300">Server backup completed</span>
+                  <span className="text-gray-500">3 jam lalu</span>
+                </div>
+                <div className="flex items-center space-x-3 text-sm">
+                  <div className="h-2 w-2 bg-purple-400 rounded-full"></div>
+                  <span className="text-gray-300">Payment gateway update</span>
+                  <span className="text-gray-500">1 hari lalu</span>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+
+          <Card className="bg-slate-900 border-gray-700">
+            <CardHeader>
+              <CardTitle className="text-white">Alerts & Notifications</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <div className="space-y-4">
+                <div className="p-3 bg-red-500/10 border border-red-500/20 rounded-lg">
+                  <div className="text-red-400 font-semibold text-sm">High Priority</div>
+                  <div className="text-gray-300 text-sm">Server CPU usage &gt;90%</div>
+                </div>
+                <div className="p-3 bg-yellow-500/10 border border-yellow-500/20 rounded-lg">
+                  <div className="text-yellow-400 font-semibold text-sm">Medium Priority</div>
+                  <div className="text-gray-300 text-sm">Scheduled maintenance tomorrow</div>
+                </div>
+                <div className="p-3 bg-blue-500/10 border border-blue-500/20 rounded-lg">
+                  <div className="text-blue-400 font-semibold text-sm">Info</div>
+                  <div className="text-gray-300 text-sm">Monthly report ready</div>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+        </div>
+      </main>
+    </div>
+  )
+}

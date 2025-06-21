@@ -101,12 +101,13 @@ export function Footer() {
             <h4 className="text-lg font-semibold text-white mb-4">Bantuan</h4>
             <ul className="space-y-2">
               <li>
-                <button
-                  onClick={() => scrollToSection("faq")}
-                  className="text-gray-400 hover:text-orange-400 transition-colors"
+                <Link
+                  href="/faq"
+                  className="text-gray-400 hover:text-orange-400 transition-colors flex items-center space-x-1"
                 >
-                  FAQ
-                </button>
+                  <span>❓</span>
+                  <span>FAQ</span>
+                </Link>
               </li>
               <li>
                 <Link

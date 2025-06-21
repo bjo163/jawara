@@ -10,6 +10,9 @@ import { Logo } from "@/components/logo"
 import { ContactForm } from "@/components/contact-form"
 import { contactInfo, officeLocation, quickActions, formatContactForWhatsApp } from "@/data/contact"
 import { Breadcrumb, BackButton } from "@/components/breadcrumb"
+import { ContactPageHeader } from "@/components/page-header"
+import { LiveChatWidget } from "@/components/live-chat-widget"
+import { SubscriptionWidget } from "@/components/subscription-widget-fixed"
 import Link from "next/link"
 
 interface ContactPageState {
@@ -110,28 +113,10 @@ export default function ContactPage() {
     }
     return colorMap[color as keyof typeof colorMap] || 'bg-gray-500 hover:bg-gray-600'
   }
-
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900/20 to-slate-900">
       {/* Header */}
-      <div className="bg-slate-900/80 backdrop-blur-md border-b border-gray-800 sticky top-0 z-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between h-16">
-            <div className="flex items-center space-x-4">
-              <Link href="/">
-                <Button variant="ghost" size="sm" className="text-gray-300 hover:text-white">
-                  <ArrowLeft className="h-4 w-4 mr-2" />
-                  Kembali
-                </Button>
-              </Link>
-              <Logo />
-            </div>
-            <h1 className="cartoon-title text-xl font-black text-white">
-              Hubungi Kami 📞
-            </h1>
-          </div>
-        </div>
-      </div>
+      <ContactPageHeader />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         {/* Hero Section */}
@@ -316,14 +301,17 @@ export default function ContactPage() {
 
         {/* Back to Home */}
         <div className="text-center mt-12">
-          <Link href="/">
-            <Button className="professional-button px-8 py-3">
+          <Link href="/">            <Button className="professional-button px-8 py-3">
               <ArrowLeft className="h-4 w-4 mr-2" />
               Kembali ke Beranda
             </Button>
           </Link>
         </div>
       </div>
+
+      {/* Widgets */}
+      <LiveChatWidget />
+      <SubscriptionWidget />
     </div>
   )
 }
