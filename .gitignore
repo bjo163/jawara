@@ -25,3 +25,13 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# SonarQube
+.scannerwork/
+sonar-report.json
+coverage/
+test-report.xml
+
+# IDE
+.vscode/
+.idea/
