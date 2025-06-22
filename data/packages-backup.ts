@@ -34,11 +34,12 @@ export const packages: Package[] = [
       'Download 20 Mbps',
       'Upload 10 Mbps',
       'Unlimited Quota',
-      'Free Instalasi'
+      'Free Instalasi',
     ],
     popular: false,
     color: 'orange',
-    description: 'Paket internet pemula yang cocok untuk kebutuhan dasar browsing dan streaming'
+    description:
+      'Paket internet pemula yang cocok untuk kebutuhan dasar browsing dan streaming',
   },
   {
     id: 'paket-gaming-pro',
@@ -55,11 +56,11 @@ export const packages: Package[] = [
       'Download 50 Mbps',
       'Upload 25 Mbps',
       'Low Latency Gaming',
-      'Priority Support'
+      'Priority Support',
     ],
     popular: false,
     color: 'blue',
-    description: 'Paket khusus untuk gaming dengan latensi rendah'
+    description: 'Paket khusus untuk gaming dengan latensi rendah',
   },
   {
     id: 'paket-keluarga',
@@ -76,11 +77,12 @@ export const packages: Package[] = [
       'Download 100 Mbps',
       'Upload 50 Mbps',
       '4K Streaming Ready',
-      '24/7 Support'
+      '24/7 Support',
     ],
     popular: true,
     color: 'green',
-    description: 'Paket keluarga dengan bandwidth besar untuk streaming dan gaming'
+    description:
+      'Paket keluarga dengan bandwidth besar untuk streaming dan gaming',
   },
   {
     id: 'paket-bisnis-home',
@@ -97,11 +99,11 @@ export const packages: Package[] = [
       'Download 200 Mbps',
       'Upload 100 Mbps',
       'Static IP',
-      'Priority Network'
+      'Priority Network',
     ],
     popular: false,
     color: 'purple',
-    description: 'Paket bisnis dengan performa tinggi dan static IP'
+    description: 'Paket bisnis dengan performa tinggi dan static IP',
   },
 
   // Paket Alternatif - Sesuai Screenshot 2
@@ -122,11 +124,11 @@ export const packages: Package[] = [
       '🍪 Cocok untuk rumahan',
       '📺 Streaming HD lancar',
       '📱 Support 5-8 device',
-      '🛠️ Customer support 24/7'
+      '🛠️ Customer support 24/7',
     ],
     popular: false,
     color: 'orange',
-    description: 'Paket internet pemula dengan teknologi terdepan'
+    description: 'Paket internet pemula dengan teknologi terdepan',
   },
   {
     id: 'mandor-sakti',
@@ -145,11 +147,11 @@ export const packages: Package[] = [
       '📹 Video call HD tanpa lag',
       '🎮 Gaming online smooth',
       '📱 Support 10-15 device',
-      '⭐ Priority customer support'
+      '⭐ Priority customer support',
     ],
     popular: false,
     color: 'blue',
-    description: 'Paket andalan untuk professional'
+    description: 'Paket andalan untuk professional',
   },
   {
     id: 'wiro-sableng',
@@ -168,11 +170,11 @@ export const packages: Package[] = [
       '🎬 4K streaming tanpa buffering',
       '📤 Upload file besar cepat',
       '📱 Support 15-20 device',
-      '🛡️ Dedicated customer support'
+      '🛡️ Dedicated customer support',
     ],
     popular: false,
     color: 'green',
-    description: 'Paket untuk warrior digital'
+    description: 'Paket untuk warrior digital',
   },
   {
     id: 'sultan',
@@ -191,11 +193,11 @@ export const packages: Package[] = [
       '♾️ Unlimited tanpa FUP',
       '🎮 Gaming pro & streaming 4K',
       '📱 Support unlimited device',
-      '👑 VIP customer support'
+      '👑 VIP customer support',
     ],
     popular: false,
     color: 'purple',
-    description: 'Paket premium untuk sultan digital'
+    description: 'Paket premium untuk sultan digital',
   },
 
   // Paket Bisnis Khusus
@@ -215,11 +217,11 @@ export const packages: Package[] = [
       '💻 Video conference HD',
       '☁️ Cloud backup lancar',
       '📧 Email server stabil',
-      '📞 Support prioritas bisnis'
+      '📞 Support prioritas bisnis',
     ],
     popular: false,
     color: 'blue',
-    description: 'Paket internet untuk usaha kecil dan startup'
+    description: 'Paket internet untuk usaha kecil dan startup',
   },
   {
     id: 'bisnis-pro',
@@ -237,11 +239,12 @@ export const packages: Package[] = [
       '📊 Multiple branch connection',
       '🛡️ Security & firewall',
       '📡 Static IP tersedia',
-      '⚡ SLA 99.5% uptime'
+      '⚡ SLA 99.5% uptime',
     ],
     popular: true,
     color: 'green',
-    description: 'Paket bisnis untuk kantor menengah dengan kebutuhan operasional'
+    description:
+      'Paket bisnis untuk kantor menengah dengan kebutuhan operasional',
   },
   {
     id: 'bisnis-enterprise',
@@ -259,12 +262,12 @@ export const packages: Package[] = [
       '🔧 Dedicated support engineer',
       '🛡️ Advanced security suite',
       '📡 Multiple static IP',
-      '⚡ SLA 99.9% uptime guarantee'
+      '⚡ SLA 99.9% uptime guarantee',
     ],
     popular: false,
     color: 'purple',
-    description: 'Paket enterprise untuk kebutuhan bisnis skala besar'
-  }
+    description: 'Paket enterprise untuk kebutuhan bisnis skala besar',
+  },
 ]
 
 // Helper functions
@@ -272,7 +275,9 @@ export const getPackageById = (id: string): Package | undefined => {
   return packages.find(pkg => pkg.id === id)
 }
 
-export const getPackagesByCategory = (category: 'rumah' | 'bisnis'): Package[] => {
+export const getPackagesByCategory = (
+  category: 'rumah' | 'bisnis'
+): Package[] => {
   return packages.filter(pkg => pkg.category === category)
 }
 
@@ -287,12 +292,12 @@ export const formatPrice = (price: string): string => {
 export const getPackageForForm = (id: string) => {
   const pkg = getPackageById(id)
   if (!pkg) return null
-  
+
   return {
     id: pkg.id,
     name: pkg.name,
     speed: pkg.speed,
     price: pkg.price,
-    features: pkg.features
+    features: pkg.features,
   }
 }

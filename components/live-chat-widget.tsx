@@ -1,26 +1,26 @@
-"use client"
+'use client'
 
-import { useState, useEffect } from "react"
-import { MessageCircle, X, Send, Phone, Mail, Clock } from "lucide-react"
-import { Button } from "@/components/ui/button"
-import { widgetStateManager } from "@/lib/widget-state"
+import { useState, useEffect } from 'react'
+import { MessageCircle, X, Send, Phone, Mail, Clock } from 'lucide-react'
+import { Button } from '@/components/ui/button'
+import { widgetStateManager } from '@/lib/widget-state'
 
 export function LiveChatWidget() {
   const [isOpen, setIsOpen] = useState(false)
   const [isForceHidden, setIsForceHidden] = useState(false)
-  const [message, setMessage] = useState("")
+  const [message, setMessage] = useState('')
   const [messages, setMessages] = useState([
     {
       id: 1,
-      text: "Halo! Selamat datang di Jawara-Net! 👋 Ada yang bisa kami bantu?",
+      text: 'Halo! Selamat datang di Jawara-Net! 👋 Ada yang bisa kami bantu?',
       isBot: true,
-      time: "Sekarang"
-    }
+      time: 'Sekarang',
+    },
   ])
 
   // Subscribe to widget state changes
   useEffect(() => {
-    const unsubscribe = widgetStateManager.subscribe((activeWidget) => {
+    const unsubscribe = widgetStateManager.subscribe(activeWidget => {
       if (activeWidget === 'subscription' && isOpen) {
         // Jika subscription widget dibuka dan chat widget sedang terbuka, tutup chat
         setIsOpen(false)
@@ -51,19 +51,19 @@ export function LiveChatWidget() {
         id: messages.length + 1,
         text: message,
         isBot: false,
-        time: "Sekarang"
+        time: 'Sekarang',
       }
-      
+
       setMessages([...messages, newMessage])
-      setMessage("")
-      
+      setMessage('')
+
       // Auto reply dari bot
       setTimeout(() => {
         const botReply = {
           id: messages.length + 2,
-          text: "Terima kasih atas pesan Anda! Tim customer service kami akan segera merespons. Atau hubungi langsung telepon kami di +62 812-9529-5734 untuk respon lebih cepat! 🚀",
+          text: 'Terima kasih atas pesan Anda! Tim customer service kami akan segera merespons. Atau hubungi langsung telepon kami di +62 812-9529-5734 untuk respon lebih cepat! 🚀',
           isBot: true,
-          time: "Sekarang"
+          time: 'Sekarang',
         }
         setMessages(prev => [...prev, botReply])
       }, 1000)
@@ -77,7 +77,9 @@ export function LiveChatWidget() {
     }
   }
   return (
-    <>      {/* Chat Widget Button */}
+    <>
+      {' '}
+      {/* Chat Widget Button */}
       <div className="fixed bottom-4 right-4 md:bottom-6 md:right-6 z-50">
         {!isOpen && !isForceHidden && (
           <button
@@ -87,7 +89,8 @@ export function LiveChatWidget() {
             <MessageCircle className="h-5 w-5 md:h-6 md:w-6" />
             <div className="absolute -top-1 -right-1 w-3 h-3 bg-red-500 rounded-full animate-pulse"></div>
           </button>
-        )}{/* Chat Window */}
+        )}
+        {/* Chat Window */}
         {isOpen && (
           <div className="bg-slate-900 border border-gray-700 rounded-2xl shadow-2xl w-72 md:w-80 h-80 md:h-96 flex flex-col overflow-hidden">
             {/* Header */}
@@ -97,10 +100,15 @@ export function LiveChatWidget() {
                   <span className="text-lg md:text-xl">👑</span>
                 </div>
                 <div>
-                  <h3 className="font-bold text-white text-sm md:text-base">Jawara-Net Support</h3>
-                  <p className="text-xs text-orange-100">Online • Siap membantu 24/7</p>
+                  <h3 className="font-bold text-white text-sm md:text-base">
+                    Jawara-Net Support
+                  </h3>
+                  <p className="text-xs text-orange-100">
+                    Online • Siap membantu 24/7
+                  </p>
                 </div>
-              </div>              <button
+              </div>{' '}
+              <button
                 onClick={handleClose}
                 className="text-white hover:bg-white/20 p-1 rounded-full transition-colors"
               >
@@ -110,7 +118,7 @@ export function LiveChatWidget() {
 
             {/* Messages */}
             <div className="flex-1 p-4 overflow-y-auto space-y-3">
-              {messages.map((msg) => (
+              {messages.map(msg => (
                 <div
                   key={msg.id}
                   className={`flex ${msg.isBot ? 'justify-start' : 'justify-end'}`}
@@ -164,7 +172,7 @@ export function LiveChatWidget() {
                 <input
                   type="text"
                   value={message}
-                  onChange={(e) => setMessage(e.target.value)}
+                  onChange={e => setMessage(e.target.value)}
                   onKeyPress={handleKeyPress}
                   placeholder="Ketik pesan Anda..."
                   className="flex-1 bg-slate-800 border border-gray-600 rounded-lg px-3 py-2 text-white text-sm focus:outline-none focus:ring-2 focus:ring-orange-500"
@@ -179,7 +187,8 @@ export function LiveChatWidget() {
             </div>
           </div>
         )}
-      </div>      {/* Status Indicator */}
+      </div>{' '}
+      {/* Status Indicator */}
       {!isOpen && !isForceHidden && (
         <div className="fixed bottom-16 right-4 md:bottom-20 md:right-6 z-40">
           <div className="bg-slate-900/90 border border-gray-700 rounded-lg px-3 py-2 text-white text-sm backdrop-blur-sm">

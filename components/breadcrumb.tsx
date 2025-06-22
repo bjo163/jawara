@@ -1,9 +1,14 @@
-"use client"
+'use client'
 
-import { Home, ChevronRight, ArrowLeft } from "lucide-react"
-import Link from "next/link"
-import { usePathname } from "next/navigation"
-import { getPageConfig, generateBreadcrumbs, getBackButtonConfig, getPageTitle } from "@/data/breadcrumb-config"
+import { Home, ChevronRight, ArrowLeft } from 'lucide-react'
+import Link from 'next/link'
+import { usePathname } from 'next/navigation'
+import {
+  getPageConfig,
+  generateBreadcrumbs,
+  getBackButtonConfig,
+  getPageTitle,
+} from '@/data/breadcrumb-config'
 
 interface BreadcrumbItem {
   label: string
@@ -18,17 +23,24 @@ interface BreadcrumbProps {
   showHome?: boolean
 }
 
-export function Breadcrumb({ items, className = "", showHome = true }: BreadcrumbProps) {
+export function Breadcrumb({
+  items,
+  className = '',
+  showHome = true,
+}: BreadcrumbProps) {
   const pathname = usePathname()
   const breadcrumbItems = items || generateBreadcrumbs(pathname)
 
   return (
-    <nav className={`flex items-center space-x-2 text-sm ${className}`} aria-label="Breadcrumb">
+    <nav
+      className={`flex items-center space-x-2 text-sm ${className}`}
+      aria-label="Breadcrumb"
+    >
       {/* Home Link */}
       {showHome && (
         <>
-          <Link 
-            href="/" 
+          <Link
+            href="/"
             className="flex items-center space-x-1 text-gray-400 hover:text-orange-400 transition-colors"
           >
             <Home className="h-4 w-4" />
@@ -47,14 +59,20 @@ export function Breadcrumb({ items, className = "", showHome = true }: Breadcrum
           <div className="flex items-center space-x-1">
             {item.icon && <span className="text-xs">{item.icon}</span>}
             {item.href && !item.active ? (
-              <Link 
+              <Link
                 href={item.href}
                 className="text-gray-400 hover:text-orange-400 transition-colors"
               >
                 {item.label}
               </Link>
             ) : (
-              <span className={item.active ? "text-orange-400 font-semibold" : "text-gray-300"}>
+              <span
+                className={
+                  item.active
+                    ? 'text-orange-400 font-semibold'
+                    : 'text-gray-300'
+                }
+              >
                 {item.label}
               </span>
             )}
@@ -72,12 +90,17 @@ interface BackButtonProps {
   variant?: 'default' | 'minimal'
 }
 
-export function BackButton({ href, label, className = "", variant = 'default' }: BackButtonProps) {
+export function BackButton({
+  href,
+  label,
+  className = '',
+  variant = 'default',
+}: BackButtonProps) {
   const pathname = usePathname()
   const backConfig = getBackButtonConfig(pathname)
-  
-  const finalHref = href || backConfig?.href || "/"
-  const finalLabel = label || backConfig?.label || "Kembali"
+
+  const finalHref = href || backConfig?.href || '/'
+  const finalLabel = label || backConfig?.label || 'Kembali'
 
   if (variant === 'minimal') {
     return (
@@ -115,13 +138,13 @@ interface PageHeaderProps {
   className?: string
 }
 
-export function PageHeader({ 
+export function PageHeader({
   title,
   breadcrumbItems,
   backButton,
   showBreadcrumb = true,
   showBackButton = true,
-  className = ""
+  className = '',
 }: PageHeaderProps) {
   const pathname = usePathname()
   const pageConfig = getPageConfig(pathname)
@@ -132,20 +155,18 @@ export function PageHeader({
       <div className="max-w-6xl mx-auto">
         <div className="flex items-center justify-between mb-4">
           {/* Breadcrumb */}
-          {showBreadcrumb && (
-            <Breadcrumb items={breadcrumbItems} />
-          )}
+          {showBreadcrumb && <Breadcrumb items={breadcrumbItems} />}
 
           {/* Back Button */}
           {showBackButton && (
-            <BackButton 
-              href={backButton?.href} 
+            <BackButton
+              href={backButton?.href}
               label={backButton?.label}
               variant={backButton?.variant || 'default'}
             />
           )}
         </div>
-        
+
         {/* Page Title */}
         {finalTitle && (
           <h1 className="text-2xl md:text-3xl font-bold text-white mb-2">
@@ -161,11 +182,11 @@ export function PageHeader({
 export function useBreadcrumb() {
   const pathname = usePathname()
   const config = getPageConfig(pathname)
-  
+
   return {
     breadcrumbs: generateBreadcrumbs(pathname),
     backButton: getBackButtonConfig(pathname),
     title: getPageTitle(pathname),
-    description: config.description
+    description: config.description,
   }
 }

@@ -1,13 +1,13 @@
-"use client"
+'use client'
 
-import { useEffect } from "react"
-import { Shield, BarChart3, Settings, Users } from "lucide-react"
-import { PageHeader } from "@/components/page-header"
-import { LoginForm } from "@/components/login-form"
-import { LiveChatWidget } from "@/components/live-chat-widget"
-import { SubscriptionWidget } from "@/components/subscription-widget-fixed"
-import { Card, CardContent } from "@/components/ui/card"
-import { isAuthenticated, isAdmin } from "@/data/auth"
+import { useEffect } from 'react'
+import { Shield, BarChart3, Settings, Users } from 'lucide-react'
+import { PageHeader } from '@/components/page-header'
+import { LoginForm } from '@/components/login-form'
+import { LiveChatWidget } from '@/components/live-chat-widget'
+import { SubscriptionWidget } from '@/components/subscription-widget-fixed'
+import { Card, CardContent } from '@/components/ui/card'
+import { isAuthenticated, isAdmin } from '@/data/auth'
 
 export default function AdminLoginPage() {
   useEffect(() => {
@@ -20,24 +20,25 @@ export default function AdminLoginPage() {
   const adminFeatures = [
     {
       icon: <BarChart3 className="h-6 w-6 text-blue-400" />,
-      title: "Dashboard Analytics",
-      description: "Monitor performa jaringan, revenue, dan statistik pelanggan"
+      title: 'Dashboard Analytics',
+      description:
+        'Monitor performa jaringan, revenue, dan statistik pelanggan',
     },
     {
       icon: <Users className="h-6 w-6 text-green-400" />,
-      title: "Manajemen Pelanggan",
-      description: "Kelola data pelanggan, paket, dan status berlangganan"
+      title: 'Manajemen Pelanggan',
+      description: 'Kelola data pelanggan, paket, dan status berlangganan',
     },
     {
       icon: <Settings className="h-6 w-6 text-orange-400" />,
-      title: "Konfigurasi Sistem",
-      description: "Atur paket, harga, coverage area, dan pengaturan lainnya"
+      title: 'Konfigurasi Sistem',
+      description: 'Atur paket, harga, coverage area, dan pengaturan lainnya',
     },
     {
       icon: <Shield className="h-6 w-6 text-purple-400" />,
-      title: "Keamanan & Audit",
-      description: "Monitor aktivitas sistem dan log keamanan"
-    }
+      title: 'Keamanan & Audit',
+      description: 'Monitor aktivitas sistem dan log keamanan',
+    },
   ]
 
   return (
@@ -69,18 +70,20 @@ export default function AdminLoginPage() {
                   Panel Administrator
                 </h2>
                 <p className="text-gray-400 mb-8">
-                  Akses lengkap untuk mengelola infrastruktur, pelanggan, dan operasional Jawara-Net
+                  Akses lengkap untuk mengelola infrastruktur, pelanggan, dan
+                  operasional Jawara-Net
                 </p>
               </div>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                 {adminFeatures.map((feature, index) => (
-                  <Card key={index} className="bg-slate-900/50 border-gray-700 hover:bg-slate-800/50 transition-colors">
+                  <Card
+                    key={index}
+                    className="bg-slate-900/50 border-gray-700 hover:bg-slate-800/50 transition-colors"
+                  >
                     <CardContent className="p-6">
                       <div className="flex items-start space-x-4">
-                        <div className="flex-shrink-0">
-                          {feature.icon}
-                        </div>
+                        <div className="flex-shrink-0">{feature.icon}</div>
                         <div>
                           <h3 className="font-semibold text-white mb-2">
                             {feature.title}
@@ -104,8 +107,9 @@ export default function AdminLoginPage() {
                       Akses Terbatas
                     </h3>
                     <p className="text-gray-300 text-sm">
-                      Panel admin hanya untuk authorized personnel. Semua aktivitas akan dilog dan dimonitor. 
-                      Gunakan kredensial yang telah diberikan oleh IT Manager.
+                      Panel admin hanya untuk authorized personnel. Semua
+                      aktivitas akan dilog dan dimonitor. Gunakan kredensial
+                      yang telah diberikan oleh IT Manager.
                     </p>
                   </div>
                 </div>

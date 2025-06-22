@@ -40,7 +40,7 @@ export const demoUsers: User[] = [
     avatar: '/placeholder-user.jpg',
     status: 'active',
     createdAt: new Date('2024-01-01'),
-    lastLogin: new Date()
+    lastLogin: new Date(),
   },
   {
     id: 'admin-002',
@@ -50,7 +50,7 @@ export const demoUsers: User[] = [
     role: 'admin',
     status: 'active',
     createdAt: new Date('2024-01-01'),
-    lastLogin: new Date()
+    lastLogin: new Date(),
   },
   // Customer users
   {
@@ -64,7 +64,7 @@ export const demoUsers: User[] = [
     package: 'Jagoan 50 Mbps',
     status: 'active',
     createdAt: new Date('2024-02-15'),
-    lastLogin: new Date()
+    lastLogin: new Date(),
   },
   {
     id: 'customer-002',
@@ -77,56 +77,56 @@ export const demoUsers: User[] = [
     package: 'Sultan 100 Mbps',
     status: 'active',
     createdAt: new Date('2024-03-10'),
-    lastLogin: new Date()
-  }
+    lastLogin: new Date(),
+  },
 ]
 
 // Demo credentials (password: 'password123' for all)
 export const demoCredentials = {
   // Admin
-  'admin': 'password123',
-  'superadmin': 'password123',
+  admin: 'password123',
+  superadmin: 'password123',
   // Customers
   'john.doe': 'password123',
-  'jane.smith': 'password123'
+  'jane.smith': 'password123',
 }
 
 // Helper functions
 export function authenticateUser(credentials: LoginCredentials): AuthResponse {
   const { username, password } = credentials
-  
+
   // Check credentials
   if (demoCredentials[username as keyof typeof demoCredentials] !== password) {
     return {
       success: false,
-      message: 'Username atau password salah'
+      message: 'Username atau password salah',
     }
   }
-  
+
   // Find user
   const user = demoUsers.find(u => u.username === username)
   if (!user) {
     return {
       success: false,
-      message: 'User tidak ditemukan'
+      message: 'User tidak ditemukan',
     }
   }
-  
+
   if (user.status !== 'active') {
     return {
       success: false,
-      message: 'Akun tidak aktif. Hubungi customer service.'
+      message: 'Akun tidak aktif. Hubungi customer service.',
     }
   }
-  
+
   // Generate token (in real app, use JWT)
   const token = `token_${user.id}_${Date.now()}`
-  
+
   return {
     success: true,
     user,
     token,
-    message: 'Login berhasil'
+    message: 'Login berhasil',
   }
 }
 
@@ -146,17 +146,17 @@ export function saveAuthData(user: User, token: string) {
   }
 }
 
-export function getAuthData(): { user: User | null, token: string | null } {
+export function getAuthData(): { user: User | null; token: string | null } {
   if (typeof window !== 'undefined') {
     const userStr = localStorage.getItem('jawara_user')
     const token = localStorage.getItem('jawara_token')
-    
+
     return {
       user: userStr ? JSON.parse(userStr) : null,
-      token
+      token,
     }
   }
-  
+
   return { user: null, token: null }
 }
 

@@ -23,97 +23,85 @@ export const pageConfigs: Record<string, PageConfig> = {
   '/': {
     title: 'Beranda',
     breadcrumbs: [],
-    description: 'Halaman utama Jawara-Net'
+    description: 'Halaman utama Jawara-Net',
   },
   '/paket': {
     title: 'Paket Internet',
-    breadcrumbs: [
-      { label: 'Paket Internet', active: true, icon: '💎' }
-    ],
+    breadcrumbs: [{ label: 'Paket Internet', active: true, icon: '💎' }],
     backButton: {
       href: '/',
-      label: 'Kembali ke Beranda'
+      label: 'Kembali ke Beranda',
     },
-    description: 'Pilih paket internet terbaik untuk kebutuhan Anda'
+    description: 'Pilih paket internet terbaik untuk kebutuhan Anda',
   },
   '/berlangganan': {
     title: 'Berlangganan',
-    breadcrumbs: [
-      { label: 'Berlangganan', active: true, icon: '🗡️' }
-    ],
+    breadcrumbs: [{ label: 'Berlangganan', active: true, icon: '🗡️' }],
     backButton: {
       href: '/',
-      label: 'Kembali ke Beranda'
+      label: 'Kembali ke Beranda',
     },
-    description: 'Form berlangganan internet Jawara-Net'
+    description: 'Form berlangganan internet Jawara-Net',
   },
   '/speedtest': {
     title: 'Speed Test',
-    breadcrumbs: [
-      { label: 'Speed Test', active: true, icon: '⚡' }
-    ],
+    breadcrumbs: [{ label: 'Speed Test', active: true, icon: '⚡' }],
     backButton: {
       href: '/',
-      label: 'Kembali ke Beranda'
+      label: 'Kembali ke Beranda',
     },
-    description: 'Test kecepatan internet Anda'
-  },  '/contact': {
+    description: 'Test kecepatan internet Anda',
+  },
+  '/contact': {
     title: 'Kontak',
-    breadcrumbs: [
-      { label: 'Kontak', active: true, icon: '📞' }
-    ],
+    breadcrumbs: [{ label: 'Kontak', active: true, icon: '📞' }],
     backButton: {
       href: '/',
-      label: 'Kembali ke Beranda'
+      label: 'Kembali ke Beranda',
     },
-    description: 'Hubungi customer service Jawara-Net'
-  },  '/faq': {
+    description: 'Hubungi customer service Jawara-Net',
+  },
+  '/faq': {
     title: 'FAQ',
-    breadcrumbs: [
-      { label: 'FAQ', active: true, icon: '❓' }
-    ],
+    breadcrumbs: [{ label: 'FAQ', active: true, icon: '❓' }],
     backButton: {
       href: '/',
-      label: 'Kembali ke Beranda'
+      label: 'Kembali ke Beranda',
     },
-    description: 'Pertanyaan yang sering ditanyakan'
+    description: 'Pertanyaan yang sering ditanyakan',
   },
   '/login/pelanggan': {
     title: 'Login Pelanggan',
-    breadcrumbs: [
-      { label: 'Login Pelanggan', active: true, icon: '👤' }
-    ],
+    breadcrumbs: [{ label: 'Login Pelanggan', active: true, icon: '👤' }],
     backButton: {
       href: '/',
-      label: 'Kembali ke Beranda'
+      label: 'Kembali ke Beranda',
     },
-    description: 'Masuk ke akun pelanggan Jawara-Net'
+    description: 'Masuk ke akun pelanggan Jawara-Net',
   },
   '/login/admin': {
     title: 'Login Admin',
-    breadcrumbs: [
-      { label: 'Login Admin', active: true, icon: '🔐' }
-    ],
+    breadcrumbs: [{ label: 'Login Admin', active: true, icon: '🔐' }],
     backButton: {
       href: '/',
-      label: 'Kembali ke Beranda'
+      label: 'Kembali ke Beranda',
     },
-    description: 'Masuk ke panel admin Jawara-Net'
-  }
+    description: 'Masuk ke panel admin Jawara-Net',
+  },
 }
 
 // Helper function untuk mendapatkan konfigurasi halaman
 export function getPageConfig(pathname: string): PageConfig {
-  return pageConfigs[pathname] || {
-    title: 'Halaman',
-    breadcrumbs: [
-      { label: 'Halaman', active: true }
-    ],
-    backButton: {
-      href: '/',
-      label: 'Kembali ke Beranda'
+  return (
+    pageConfigs[pathname] || {
+      title: 'Halaman',
+      breadcrumbs: [{ label: 'Halaman', active: true }],
+      backButton: {
+        href: '/',
+        label: 'Kembali ke Beranda',
+      },
     }
-  }
+  )
 }
 
 // Helper function untuk generate breadcrumb berdasarkan path

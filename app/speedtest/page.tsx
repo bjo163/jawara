@@ -1,15 +1,15 @@
-"use client"
+'use client'
 
-import { useState, useEffect } from "react"
-import { Download, Upload, Wifi, Zap, ArrowLeft, RotateCcw } from "lucide-react"
-import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { Logo } from "@/components/logo"
-import { Breadcrumb, BackButton } from "@/components/breadcrumb"
-import { PageHeader } from "@/components/page-header"
-import { LiveChatWidget } from "@/components/live-chat-widget"
-import { SubscriptionWidget } from "@/components/subscription-widget-fixed"
-import Link from "next/link"
+import { useState, useEffect } from 'react'
+import { Download, Upload, Wifi, Zap, ArrowLeft, RotateCcw } from 'lucide-react'
+import { Button } from '@/components/ui/button'
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
+import { Logo } from '@/components/logo'
+import { Breadcrumb, BackButton } from '@/components/breadcrumb'
+import { PageHeader } from '@/components/page-header'
+import { LiveChatWidget } from '@/components/live-chat-widget'
+import { SubscriptionWidget } from '@/components/subscription-widget-fixed'
+import Link from 'next/link'
 
 interface SpeedTestResult {
   download: number
@@ -21,7 +21,9 @@ interface SpeedTestResult {
 
 export default function SpeedTestPage() {
   const [isTestRunning, setIsTestRunning] = useState(false)
-  const [currentTest, setCurrentTest] = useState<'ping' | 'download' | 'upload' | 'complete' | null>(null)
+  const [currentTest, setCurrentTest] = useState<
+    'ping' | 'download' | 'upload' | 'complete' | null
+  >(null)
   const [results, setResults] = useState<SpeedTestResult | null>(null)
   const [progress, setProgress] = useState(0)
   const [testHistory, setTestHistory] = useState<SpeedTestResult[]>([])
@@ -38,8 +40,11 @@ export default function SpeedTestPage() {
   const saveTestHistory = (newResult: SpeedTestResult) => {
     const updatedHistory = [newResult, ...testHistory].slice(0, 10) // Keep last 10 tests
     setTestHistory(updatedHistory)
-    localStorage.setItem('jawara-speedtest-history', JSON.stringify(updatedHistory))
-  }  // Real speed test implementation using internal Next.js server
+    localStorage.setItem(
+      'jawara-speedtest-history',
+      JSON.stringify(updatedHistory)
+    )
+  } // Real speed test implementation using internal Next.js server
   const runSpeedTest = async () => {
     setIsTestRunning(true)
     setCurrentTest('ping')
@@ -51,7 +56,7 @@ export default function SpeedTestPage() {
       upload: 0,
       ping: 0,
       jitter: 0,
-      timestamp: new Date()
+      timestamp: new Date(),
     }
 
     try {
@@ -64,15 +69,15 @@ export default function SpeedTestPage() {
 
       // Real Download Test using internal server
       setCurrentTest('download')
-      testResult.download = await measureDownloadSpeed((progress) => {
-        setProgress(25 + (progress * 0.4)) // 25% to 65%
+      testResult.download = await measureDownloadSpeed(progress => {
+        setProgress(25 + progress * 0.4) // 25% to 65%
       })
       setProgress(65)
 
       // Real Upload Test using internal server
       setCurrentTest('upload')
-      testResult.upload = await measureUploadSpeed((progress) => {
-        setProgress(65 + (progress * 0.35)) // 65% to 100%
+      testResult.upload = await measureUploadSpeed(progress => {
+        setProgress(65 + progress * 0.35) // 65% to 100%
       })
       setProgress(100)
 
@@ -94,22 +99,25 @@ export default function SpeedTestPage() {
   }
 
   // Real ping measurement using internal Next.js API
-  const measurePing = async (): Promise<{avgPing: number, jitter: number}> => {
+  const measurePing = async (): Promise<{
+    avgPing: number
+    jitter: number
+  }> => {
     const pingResults: number[] = []
 
     // Perform multiple ping tests to internal server
     for (let i = 0; i < 8; i++) {
       try {
         const start = performance.now()
-        
+
         const response = await fetch('/api/speedtest/ping?t=' + Date.now(), {
           method: 'GET',
           cache: 'no-cache',
           headers: {
-            'Cache-Control': 'no-cache'
-          }
+            'Cache-Control': 'no-cache',
+          },
         })
-        
+
         if (response.ok) {
           await response.json()
           const end = performance.now()
@@ -121,20 +129,26 @@ export default function SpeedTestPage() {
       } catch (error) {
         pingResults.push(20) // Fallback ping
       }
-      
+
       // Small delay between pings
       await new Promise(resolve => setTimeout(resolve, 100))
     }
 
-    const avgPing = Math.round(pingResults.reduce((a, b) => a + b, 0) / pingResults.length)
+    const avgPing = Math.round(
+      pingResults.reduce((a, b) => a + b, 0) / pingResults.length
+    )
     const sortedPings = pingResults.sort((a, b) => a - b)
-    const jitter = Math.round(sortedPings[sortedPings.length - 1] - sortedPings[0])
+    const jitter = Math.round(
+      sortedPings[sortedPings.length - 1] - sortedPings[0]
+    )
 
     return { avgPing: Math.max(1, avgPing), jitter: Math.max(1, jitter) }
   }
 
   // Real download speed measurement using internal server
-  const measureDownloadSpeed = async (onProgress: (progress: number) => void): Promise<number> => {
+  const measureDownloadSpeed = async (
+    onProgress: (progress: number) => void
+  ): Promise<number> => {
     // Test with different file sizes from our internal server
     const testFiles = [
       { path: '/speedtest/test-100kb.bin', size: 102400 }, // 100KB
@@ -144,20 +158,20 @@ export default function SpeedTestPage() {
     ]
 
     const speeds: number[] = []
-    
+
     for (let i = 0; i < testFiles.length; i++) {
       const testFile = testFiles[i]
       onProgress((i / testFiles.length) * 100)
-      
+
       try {
         const start = performance.now()
         const response = await fetch(testFile.path + '?t=' + Date.now(), {
           cache: 'no-cache',
           headers: {
-            'Cache-Control': 'no-cache'
-          }
+            'Cache-Control': 'no-cache',
+          },
         })
-        
+
         if (response.ok) {
           await response.blob() // Actually download the data
           const end = performance.now()
@@ -170,7 +184,7 @@ export default function SpeedTestPage() {
         // Add fallback speed if test fails
         speeds.push(30)
       }
-      
+
       // Small delay between tests
       await new Promise(resolve => setTimeout(resolve, 200))
     }
@@ -182,12 +196,14 @@ export default function SpeedTestPage() {
     const sortedSpeeds = validSpeeds.sort((a, b) => b - a)
     const topSpeeds = sortedSpeeds.slice(0, Math.ceil(sortedSpeeds.length / 2))
     const avgSpeed = topSpeeds.reduce((a, b) => a + b, 0) / topSpeeds.length
-    
+
     return Math.round(Math.max(1, avgSpeed))
   }
 
   // Real upload speed measurement using internal server
-  const measureUploadSpeed = async (onProgress: (progress: number) => void): Promise<number> => {
+  const measureUploadSpeed = async (
+    onProgress: (progress: number) => void
+  ): Promise<number> => {
     // Generate test data of different sizes
     const testSizes = [50000, 100000, 200000, 500000] // 50KB to 500KB
     const speeds: number[] = []
@@ -195,7 +211,7 @@ export default function SpeedTestPage() {
     for (let i = 0; i < testSizes.length; i++) {
       const size = testSizes[i]
       onProgress((i / testSizes.length) * 100)
-      
+
       try {
         // Generate random data for upload
         const testData = new Uint8Array(size)
@@ -204,15 +220,15 @@ export default function SpeedTestPage() {
         }
 
         const start = performance.now()
-        
+
         // Upload to internal Next.js API
         const response = await fetch('/api/speedtest/upload', {
           method: 'POST',
           body: testData,
           headers: {
             'Content-Type': 'application/octet-stream',
-            'Cache-Control': 'no-cache'
-          }
+            'Cache-Control': 'no-cache',
+          },
         })
 
         if (response.ok) {
@@ -227,16 +243,17 @@ export default function SpeedTestPage() {
         // Add fallback speed if test fails
         speeds.push(15)
       }
-      
+
       // Small delay between tests
       await new Promise(resolve => setTimeout(resolve, 200))
     }
 
     // Return the average of valid measurements
     const validSpeeds = speeds.filter(speed => speed > 0)
-    const avgSpeed = validSpeeds.length > 0 
-      ? validSpeeds.reduce((a, b) => a + b, 0) / validSpeeds.length 
-      : 15
+    const avgSpeed =
+      validSpeeds.length > 0
+        ? validSpeeds.reduce((a, b) => a + b, 0) / validSpeeds.length
+        : 15
 
     return Math.round(Math.max(1, avgSpeed))
   }
@@ -273,14 +290,19 @@ export default function SpeedTestPage() {
       <main className="max-w-4xl mx-auto px-4 py-8">
         {/* Main Speed Test Card */}
         <Card className="bg-slate-900 border-gray-700 mb-8">
-          <CardHeader className="text-center">            <CardTitle className="text-2xl text-white flex items-center justify-center space-x-2">
+          <CardHeader className="text-center">
+            {' '}
+            <CardTitle className="text-2xl text-white flex items-center justify-center space-x-2">
               <Zap className="h-6 w-6 text-orange-500" />
               <span>Real Speed Test Jawara-Net</span>
-            </CardTitle>            <p className="text-gray-400">
-              Pengukuran kecepatan internet menggunakan server internal Jawara-Net
+            </CardTitle>{' '}
+            <p className="text-gray-400">
+              Pengukuran kecepatan internet menggunakan server internal
+              Jawara-Net
             </p>
             <div className="text-xs text-gray-500 mt-2">
-              📡 Test Server: localhost:3000 (Internal Next.js Server) | 🌐 Real Network Test
+              📡 Test Server: localhost:3000 (Internal Next.js Server) | 🌐 Real
+              Network Test
             </div>
           </CardHeader>
           <CardContent className="space-y-6">
@@ -289,60 +311,85 @@ export default function SpeedTestPage() {
               <h4 className="font-semibold mb-2 text-blue-400 flex items-center space-x-2">
                 <span>🔍</span>
                 <span>Metodologi Real Speed Test</span>
-              </h4>              <div className="text-sm text-gray-300 space-y-1">
-                <div><strong>Ping:</strong> Internal Next.js API endpoint (/api/speedtest/ping)</div>
-                <div><strong>Download:</strong> Static files dari /public/speedtest/ (100KB - 2MB)</div>
-                <div><strong>Upload:</strong> Real data upload ke /api/speedtest/upload</div>
-                <div><strong>Akurasi:</strong> Multiple measurements dengan internal server</div>
+              </h4>{' '}
+              <div className="text-sm text-gray-300 space-y-1">
+                <div>
+                  <strong>Ping:</strong> Internal Next.js API endpoint
+                  (/api/speedtest/ping)
+                </div>
+                <div>
+                  <strong>Download:</strong> Static files dari
+                  /public/speedtest/ (100KB - 2MB)
+                </div>
+                <div>
+                  <strong>Upload:</strong> Real data upload ke
+                  /api/speedtest/upload
+                </div>
+                <div>
+                  <strong>Akurasi:</strong> Multiple measurements dengan
+                  internal server
+                </div>
               </div>
             </div>
-
             {/* Progress Bar */}
             {isTestRunning && (
-              <div className="space-y-2">                <div className="flex justify-between text-sm">
+              <div className="space-y-2">
+                {' '}
+                <div className="flex justify-between text-sm">
                   <span className="text-gray-400">
-                    {currentTest === 'ping' && '📡 Testing Internal Server Ping...'}
-                    {currentTest === 'download' && '⬇️ Downloading Test Files...'}
+                    {currentTest === 'ping' &&
+                      '📡 Testing Internal Server Ping...'}
+                    {currentTest === 'download' &&
+                      '⬇️ Downloading Test Files...'}
                     {currentTest === 'upload' && '⬆️ Uploading Test Data...'}
                   </span>
-                  <span className="text-orange-400">{Math.round(progress)}%</span>
+                  <span className="text-orange-400">
+                    {Math.round(progress)}%
+                  </span>
                 </div>
                 <div className="w-full bg-gray-700 rounded-full h-2">
-                  <div 
+                  <div
                     className="bg-gradient-to-r from-orange-500 to-red-500 h-2 rounded-full transition-all duration-300"
                     style={{ width: `${progress}%` }}
                   ></div>
                 </div>
               </div>
             )}
-
             {/* Results Display */}
             {results ? (
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
                 <div className="text-center p-4 bg-slate-800 rounded-lg">
                   <Download className="h-8 w-8 mx-auto mb-2 text-blue-400" />
-                  <div className={`text-2xl font-bold ${getSpeedColor(results.download, 'download')}`}>
+                  <div
+                    className={`text-2xl font-bold ${getSpeedColor(results.download, 'download')}`}
+                  >
                     {results.download}
                   </div>
                   <div className="text-sm text-gray-400">Mbps Download</div>
                 </div>
                 <div className="text-center p-4 bg-slate-800 rounded-lg">
                   <Upload className="h-8 w-8 mx-auto mb-2 text-green-400" />
-                  <div className={`text-2xl font-bold ${getSpeedColor(results.upload, 'upload')}`}>
+                  <div
+                    className={`text-2xl font-bold ${getSpeedColor(results.upload, 'upload')}`}
+                  >
                     {results.upload}
                   </div>
                   <div className="text-sm text-gray-400">Mbps Upload</div>
                 </div>
                 <div className="text-center p-4 bg-slate-800 rounded-lg">
                   <Wifi className="h-8 w-8 mx-auto mb-2 text-yellow-400" />
-                  <div className={`text-2xl font-bold ${getPingColor(results.ping)}`}>
+                  <div
+                    className={`text-2xl font-bold ${getPingColor(results.ping)}`}
+                  >
                     {results.ping}
                   </div>
                   <div className="text-sm text-gray-400">ms Ping</div>
                 </div>
                 <div className="text-center p-4 bg-slate-800 rounded-lg">
                   <Zap className="h-8 w-8 mx-auto mb-2 text-purple-400" />
-                  <div className={`text-2xl font-bold ${getPingColor(results.jitter)}`}>
+                  <div
+                    className={`text-2xl font-bold ${getPingColor(results.jitter)}`}
+                  >
                     {results.jitter}
                   </div>
                   <div className="text-sm text-gray-400">ms Jitter</div>
@@ -352,15 +399,20 @@ export default function SpeedTestPage() {
               <div className="text-center py-12">
                 <div className="w-24 h-24 mx-auto mb-6 bg-gradient-to-br from-orange-500 to-red-500 rounded-full flex items-center justify-center">
                   <Zap className="h-12 w-12 text-white" />
-                </div>                <h3 className="text-xl font-bold mb-2">Siap untuk Real Speed Test?</h3>                <p className="text-gray-400 mb-6">
-                  Test menggunakan server internal Next.js untuk hasil yang akurat dan cepat
+                </div>{' '}
+                <h3 className="text-xl font-bold mb-2">
+                  Siap untuk Real Speed Test?
+                </h3>{' '}
+                <p className="text-gray-400 mb-6">
+                  Test menggunakan server internal Next.js untuk hasil yang
+                  akurat dan cepat
                 </p>
               </div>
             )}
-
             {/* Action Buttons */}
             <div className="flex justify-center space-x-4">
-              {!isTestRunning && !results && (                <Button
+              {!isTestRunning && !results && (
+                <Button
                   onClick={runSpeedTest}
                   className="px-8 py-3 bg-gradient-to-r from-orange-500 to-red-500 hover:from-orange-600 hover:to-red-600 text-white font-bold text-lg"
                 >
@@ -378,7 +430,8 @@ export default function SpeedTestPage() {
                   Test Ulang
                 </Button>
               )}
-            </div>            {/* Speed Recommendations */}
+            </div>{' '}
+            {/* Speed Recommendations */}
             {results && (
               <div className="mt-6 space-y-4">
                 {/* Real Test Results Info */}
@@ -386,8 +439,10 @@ export default function SpeedTestPage() {
                   <h4 className="font-semibold mb-2 text-green-400 flex items-center space-x-2">
                     <span>✅</span>
                     <span>Hasil Real Network Test</span>
-                  </h4>                  <div className="text-sm text-gray-300">
-                    Test selesai pada: {results.timestamp.toLocaleString('id-ID')}
+                  </h4>{' '}
+                  <div className="text-sm text-gray-300">
+                    Test selesai pada:{' '}
+                    {results.timestamp.toLocaleString('id-ID')}
                     <br />
                     Server ping: Internal Next.js API
                     <br />
@@ -399,36 +454,72 @@ export default function SpeedTestPage() {
 
                 {/* Performance Analysis */}
                 <div className="p-4 bg-slate-800 rounded-lg">
-                  <h4 className="font-semibold mb-3 text-orange-400">📊 Analisis Performa Real-Time</h4>
+                  <h4 className="font-semibold mb-3 text-orange-400">
+                    📊 Analisis Performa Real-Time
+                  </h4>
                   <div className="space-y-2 text-sm">
                     <div className="flex justify-between">
                       <span>Streaming HD (1080p):</span>
-                      <span className={results.download >= 5 ? 'text-green-400' : 'text-red-400'}>
+                      <span
+                        className={
+                          results.download >= 5
+                            ? 'text-green-400'
+                            : 'text-red-400'
+                        }
+                      >
                         {results.download >= 5 ? '✅ Lancar' : '❌ Kurang'}
                       </span>
                     </div>
                     <div className="flex justify-between">
                       <span>Streaming 4K:</span>
-                      <span className={results.download >= 25 ? 'text-green-400' : 'text-red-400'}>
+                      <span
+                        className={
+                          results.download >= 25
+                            ? 'text-green-400'
+                            : 'text-red-400'
+                        }
+                      >
                         {results.download >= 25 ? '✅ Lancar' : '❌ Kurang'}
                       </span>
                     </div>
                     <div className="flex justify-between">
                       <span>Gaming Online:</span>
-                      <span className={results.ping <= 100 ? 'text-green-400' : 'text-red-400'}>
+                      <span
+                        className={
+                          results.ping <= 100
+                            ? 'text-green-400'
+                            : 'text-red-400'
+                        }
+                      >
                         {results.ping <= 100 ? '✅ Optimal' : '❌ Lag'}
                       </span>
                     </div>
                     <div className="flex justify-between">
                       <span>Video Call HD:</span>
-                      <span className={results.upload >= 3 && results.ping <= 150 ? 'text-green-400' : 'text-red-400'}>
-                        {results.upload >= 3 && results.ping <= 150 ? '✅ Lancar' : '❌ Kurang'}
+                      <span
+                        className={
+                          results.upload >= 3 && results.ping <= 150
+                            ? 'text-green-400'
+                            : 'text-red-400'
+                        }
+                      >
+                        {results.upload >= 3 && results.ping <= 150
+                          ? '✅ Lancar'
+                          : '❌ Kurang'}
                       </span>
                     </div>
                     <div className="flex justify-between">
                       <span>Work From Home:</span>
-                      <span className={results.download >= 10 && results.upload >= 5 ? 'text-green-400' : 'text-red-400'}>
-                        {results.download >= 10 && results.upload >= 5 ? '✅ Optimal' : '❌ Kurang'}
+                      <span
+                        className={
+                          results.download >= 10 && results.upload >= 5
+                            ? 'text-green-400'
+                            : 'text-red-400'
+                        }
+                      >
+                        {results.download >= 10 && results.upload >= 5
+                          ? '✅ Optimal'
+                          : '❌ Kurang'}
                       </span>
                     </div>
                   </div>
@@ -447,12 +538,17 @@ export default function SpeedTestPage() {
             <CardContent>
               <div className="space-y-3">
                 {testHistory.slice(0, 5).map((test, index) => (
-                  <div key={index} className="flex items-center justify-between p-3 bg-slate-800 rounded-lg">
+                  <div
+                    key={index}
+                    className="flex items-center justify-between p-3 bg-slate-800 rounded-lg"
+                  >
                     <div className="text-sm text-gray-400">
                       {test.timestamp.toLocaleString('id-ID')}
                     </div>
                     <div className="flex space-x-4 text-sm">
-                      <span className={getSpeedColor(test.download, 'download')}>
+                      <span
+                        className={getSpeedColor(test.download, 'download')}
+                      >
                         ⬇️ {test.download} Mbps
                       </span>
                       <span className={getSpeedColor(test.upload, 'upload')}>
@@ -471,9 +567,12 @@ export default function SpeedTestPage() {
 
         {/* CTA Section */}
         <div className="mt-8 text-center p-6 bg-gradient-to-r from-orange-500/10 to-red-500/10 border border-orange-500/20 rounded-lg">
-          <h3 className="text-xl font-bold mb-2">Tidak Puas dengan Kecepatan Internet Anda?</h3>
+          <h3 className="text-xl font-bold mb-2">
+            Tidak Puas dengan Kecepatan Internet Anda?
+          </h3>
           <p className="text-gray-400 mb-4">
-            Jawara-Net menyediakan koneksi internet super cepat dan stabil untuk kebutuhan rumah dan bisnis Anda
+            Jawara-Net menyediakan koneksi internet super cepat dan stabil untuk
+            kebutuhan rumah dan bisnis Anda
           </p>
           <div className="flex flex-col sm:flex-row gap-3 justify-center">
             <Link href="/#packages">
@@ -481,7 +580,12 @@ export default function SpeedTestPage() {
                 🎯 Lihat Paket Internet
               </Button>
             </Link>
-            <Link href="/#contact">              <Button variant="outline" className="border-orange-500 text-orange-400 hover:bg-orange-500 hover:text-white">
+            <Link href="/#contact">
+              {' '}
+              <Button
+                variant="outline"
+                className="border-orange-500 text-orange-400 hover:bg-orange-500 hover:text-white"
+              >
                 📞 Hubungi Kami
               </Button>
             </Link>

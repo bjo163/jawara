@@ -1,15 +1,25 @@
-"use client"
+'use client'
 
-import { useState } from "react"
-import { MapPin, CheckCircle, AlertCircle, Loader2, Phone, MessageCircle, Clock, Zap, Star } from "lucide-react"
-import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { Input } from "@/components/ui/input"
-import { Textarea } from "@/components/ui/textarea"
-import { getPackageById, getPackagesByCategory } from "@/data/packages"
-import { PageHeader } from "@/components/page-header"
-import { LiveChatWidget } from "@/components/live-chat-widget"
-import { SubscriptionWidget } from "@/components/subscription-widget-fixed"
+import { useState } from 'react'
+import {
+  MapPin,
+  CheckCircle,
+  AlertCircle,
+  Loader2,
+  Phone,
+  MessageCircle,
+  Clock,
+  Zap,
+  Star,
+} from 'lucide-react'
+import { Button } from '@/components/ui/button'
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
+import { Input } from '@/components/ui/input'
+import { Textarea } from '@/components/ui/textarea'
+import { getPackageById, getPackagesByCategory } from '@/data/packages'
+import { PageHeader } from '@/components/page-header'
+import { LiveChatWidget } from '@/components/live-chat-widget'
+import { SubscriptionWidget } from '@/components/subscription-widget-fixed'
 
 interface SubscriptionForm {
   name: string
@@ -21,56 +31,77 @@ interface SubscriptionForm {
 }
 
 export default function BerlanggananPage() {
-  const [userLocation, setUserLocation] = useState<{lat: number, lng: number} | null>(null)
-  const [locationStatus, setLocationStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle')
-  const [coverageStatus, setCoverageStatus] = useState<'checking' | 'covered' | 'not-covered' | null>(null)
+  const [userLocation, setUserLocation] = useState<{
+    lat: number
+    lng: number
+  } | null>(null)
+  const [locationStatus, setLocationStatus] = useState<
+    'idle' | 'loading' | 'success' | 'error'
+  >('idle')
+  const [coverageStatus, setCoverageStatus] = useState<
+    'checking' | 'covered' | 'not-covered' | null
+  >(null)
   const [nearestArea, setNearestArea] = useState<string>('')
   const [distance, setDistance] = useState<number>(0)
   const [showForm, setShowForm] = useState(false)
-  const [activeCategory, setActiveCategory] = useState<'rumah' | 'bisnis'>('rumah')
+  const [activeCategory, setActiveCategory] = useState<'rumah' | 'bisnis'>(
+    'rumah'
+  )
   const [formData, setFormData] = useState<SubscriptionForm>({
     name: '',
     phone: '',
     email: '',
     address: '',
     package: '',
-    notes: ''
+    notes: '',
   })
 
   // Jawara-Net Office Location
   const jawaraNetOffice = {
-    name: "Kantor Jawara-Net",
+    name: 'Kantor Jawara-Net',
     lat: -6.1810747,
     lng: 107.0654949,
-    address: "R398+H5H Srimukti, Bekasi Regency, West Java",
-    coverageRadius: 10 // 10km radius
+    address: 'R398+H5H Srimukti, Bekasi Regency, West Java',
+    coverageRadius: 10, // 10km radius
   }
 
   // Get packages by category
   const currentPackages = getPackagesByCategory(activeCategory)
 
   // Calculate distance between two points (Haversine formula)
-  const calculateDistance = (lat1: number, lng1: number, lat2: number, lng2: number): number => {
+  const calculateDistance = (
+    lat1: number,
+    lng1: number,
+    lat2: number,
+    lng2: number
+  ): number => {
     const R = 6371 // Earth's radius in km
-    const dLat = (lat2 - lat1) * Math.PI / 180
-    const dLng = (lng2 - lng1) * Math.PI / 180
-    const a = 
-      Math.sin(dLat/2) * Math.sin(dLat/2) +
-      Math.cos(lat1 * Math.PI / 180) * Math.cos(lat2 * Math.PI / 180) * 
-      Math.sin(dLng/2) * Math.sin(dLng/2)
-    const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a))
+    const dLat = ((lat2 - lat1) * Math.PI) / 180
+    const dLng = ((lng2 - lng1) * Math.PI) / 180
+    const a =
+      Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+      Math.cos((lat1 * Math.PI) / 180) *
+        Math.cos((lat2 * Math.PI) / 180) *
+        Math.sin(dLng / 2) *
+        Math.sin(dLng / 2)
+    const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a))
     return R * c
   }
 
   // Check coverage
   const checkCoverage = (userLat: number, userLng: number) => {
     setCoverageStatus('checking')
-    
+
     // Calculate distance from Jawara-Net office
-    const distance = calculateDistance(userLat, userLng, jawaraNetOffice.lat, jawaraNetOffice.lng)
+    const distance = calculateDistance(
+      userLat,
+      userLng,
+      jawaraNetOffice.lat,
+      jawaraNetOffice.lng
+    )
     setDistance(distance)
     setNearestArea(jawaraNetOffice.name)
-    
+
     setTimeout(() => {
       if (distance <= jawaraNetOffice.coverageRadius) {
         setCoverageStatus('covered')
@@ -83,23 +114,23 @@ export default function BerlanggananPage() {
   // Get user location
   const getUserLocation = () => {
     setLocationStatus('loading')
-    
+
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(
-        (position) => {
+        position => {
           const { latitude, longitude } = position.coords
           setUserLocation({ lat: latitude, lng: longitude })
           setLocationStatus('success')
           checkCoverage(latitude, longitude)
         },
-        (error) => {
+        error => {
           console.error('Error getting location:', error)
           setLocationStatus('error')
         },
         {
           enableHighAccuracy: true,
           timeout: 10000,
-          maximumAge: 300000
+          maximumAge: 300000,
         }
       )
     } else {
@@ -111,7 +142,7 @@ export default function BerlanggananPage() {
   const handleInputChange = (field: keyof SubscriptionForm, value: string) => {
     setFormData(prev => ({
       ...prev,
-      [field]: value
+      [field]: value,
     }))
   }
 
@@ -119,22 +150,22 @@ export default function BerlanggananPage() {
   const selectPackage = (packageId: string) => {
     setFormData(prev => ({
       ...prev,
-      package: packageId
+      package: packageId,
     }))
     setShowForm(true)
-    
+
     // Auto-fill location if available
     if (userLocation) {
       setFormData(prev => ({
         ...prev,
-        address: `Koordinat: ${userLocation.lat.toFixed(6)}, ${userLocation.lng.toFixed(6)} (Jarak ${distance.toFixed(1)}km dari kantor)`
+        address: `Koordinat: ${userLocation.lat.toFixed(6)}, ${userLocation.lng.toFixed(6)} (Jarak ${distance.toFixed(1)}km dari kantor)`,
       }))
     }
   }
   // Submit form
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
-    
+
     const selectedPackage = getPackageById(formData.package)
     const message = `Halo Jawara-Net! Saya ingin berlangganan internet.
 
@@ -181,7 +212,6 @@ ${coverageStatus === 'covered' ? `Status: Area ter-cover (${distance.toFixed(1)}
             </div>
           </div>
         </div>
-
         {/* Location Check Section */}
         <Card className="bg-slate-900 border-gray-700 mb-8">
           <CardHeader>
@@ -197,7 +227,9 @@ ${coverageStatus === 'covered' ? `Status: Area ter-cover (${distance.toFixed(1)}
                   <div className="w-16 h-16 bg-gradient-to-br from-blue-500 to-purple-500 rounded-full flex items-center justify-center mx-auto mb-4">
                     <MapPin className="h-8 w-8 text-white" />
                   </div>
-                  <h4 className="text-lg font-bold text-white mb-2">Cek Lokasi Anda</h4>
+                  <h4 className="text-lg font-bold text-white mb-2">
+                    Cek Lokasi Anda
+                  </h4>
                   <p className="text-gray-400 text-sm mb-4">
                     Pastikan area Anda ter-cover oleh jaringan Jawara-Net
                   </p>
@@ -220,7 +252,10 @@ ${coverageStatus === 'covered' ? `Status: Area ter-cover (${distance.toFixed(1)}
               {locationStatus === 'error' && (
                 <div className="text-red-400">
                   <AlertCircle className="h-12 w-12 mx-auto mb-3" />
-                  <p>Gagal mendeteksi lokasi. Silakan aktifkan GPS atau input alamat manual.</p>
+                  <p>
+                    Gagal mendeteksi lokasi. Silakan aktifkan GPS atau input
+                    alamat manual.
+                  </p>
                   <Button
                     onClick={() => setShowForm(true)}
                     className="mt-4 bg-blue-500 hover:bg-blue-600"
@@ -233,7 +268,8 @@ ${coverageStatus === 'covered' ? `Status: Area ter-cover (${distance.toFixed(1)}
               {userLocation && (
                 <div>
                   <p className="text-green-400 mb-4">
-                    📍 Koordinat: {userLocation.lat.toFixed(6)}, {userLocation.lng.toFixed(6)}
+                    📍 Koordinat: {userLocation.lat.toFixed(6)},{' '}
+                    {userLocation.lng.toFixed(6)}
                   </p>
 
                   {coverageStatus === 'checking' && (
@@ -246,13 +282,20 @@ ${coverageStatus === 'covered' ? `Status: Area ter-cover (${distance.toFixed(1)}
                   {coverageStatus === 'covered' && (
                     <div className="text-green-400 bg-green-900/20 border border-green-500/30 rounded-lg p-6">
                       <CheckCircle className="h-12 w-12 mx-auto mb-3" />
-                      <h5 className="font-bold text-lg mb-2">🎉 Lokasi Anda Ter-cover!</h5>
+                      <h5 className="font-bold text-lg mb-2">
+                        🎉 Lokasi Anda Ter-cover!
+                      </h5>
                       <p className="text-sm mb-4">
-                        Anda berada dalam coverage area <strong>{nearestArea}</strong>
+                        Anda berada dalam coverage area{' '}
+                        <strong>{nearestArea}</strong>
                         <br />
-                        <span className="text-gray-400">Jarak: {distance.toFixed(1)} km dari kantor kami</span>
+                        <span className="text-gray-400">
+                          Jarak: {distance.toFixed(1)} km dari kantor kami
+                        </span>
                         <br />
-                        <span className="text-green-300 text-xs">📍 {jawaraNetOffice.address}</span>
+                        <span className="text-green-300 text-xs">
+                          📍 {jawaraNetOffice.address}
+                        </span>
                       </p>
                     </div>
                   )}
@@ -260,15 +303,23 @@ ${coverageStatus === 'covered' ? `Status: Area ter-cover (${distance.toFixed(1)}
                   {coverageStatus === 'not-covered' && (
                     <div className="text-orange-400 bg-orange-900/20 border border-orange-500/30 rounded-lg p-6">
                       <AlertCircle className="h-12 w-12 mx-auto mb-3" />
-                      <h5 className="font-bold text-lg mb-2">📍 Belum Ter-cover</h5>
+                      <h5 className="font-bold text-lg mb-2">
+                        📍 Belum Ter-cover
+                      </h5>
                       <p className="text-sm mb-4">
                         Lokasi Anda belum ter-cover jaringan kami.
                         <br />
-                        Jarak dari kantor kami: <strong>{distance.toFixed(1)} km</strong>
+                        Jarak dari kantor kami:{' '}
+                        <strong>{distance.toFixed(1)} km</strong>
                         <br />
-                        <span className="text-gray-400">📍 {jawaraNetOffice.address}</span>
+                        <span className="text-gray-400">
+                          📍 {jawaraNetOffice.address}
+                        </span>
                         <br />
-                        <span className="text-yellow-300 text-xs">⚠️ Coverage radius: {jawaraNetOffice.coverageRadius} km</span>
+                        <span className="text-yellow-300 text-xs">
+                          ⚠️ Coverage radius: {jawaraNetOffice.coverageRadius}{' '}
+                          km
+                        </span>
                       </p>
                       <div className="space-y-2">
                         <a
@@ -286,11 +337,14 @@ ${coverageStatus === 'covered' ? `Status: Area ter-cover (${distance.toFixed(1)}
               )}
             </div>
           </CardContent>
-        </Card>        {/* Packages Section */}
+        </Card>{' '}
+        {/* Packages Section */}
         {(coverageStatus === 'covered' || showForm) && (
           <div className="mb-8">
-            <h3 className="text-2xl font-bold text-center mb-8">⚔️ Pilih Paket Internet Anda</h3>
-            
+            <h3 className="text-2xl font-bold text-center mb-8">
+              ⚔️ Pilih Paket Internet Anda
+            </h3>
+
             {/* Category Tabs */}
             <div className="flex justify-center mb-8">
               <div className="bg-slate-900 p-1 rounded-2xl border border-gray-700">
@@ -318,11 +372,13 @@ ${coverageStatus === 'covered' ? `Status: Area ter-cover (${distance.toFixed(1)}
             </div>
 
             <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-              {currentPackages.map((pkg) => (
-                <Card 
+              {currentPackages.map(pkg => (
+                <Card
                   key={pkg.id}
                   className={`bg-slate-900 border-gray-700 hover:border-orange-500 transition-all cursor-pointer relative ${
-                    formData.package === pkg.id ? 'border-orange-500 bg-orange-900/20' : ''
+                    formData.package === pkg.id
+                      ? 'border-orange-500 bg-orange-900/20'
+                      : ''
                   }`}
                   onClick={() => selectPackage(pkg.id)}
                 >
@@ -333,34 +389,47 @@ ${coverageStatus === 'covered' ? `Status: Area ter-cover (${distance.toFixed(1)}
                       </div>
                     </div>
                   )}
-                  
+
                   <CardHeader className="text-center">
                     <div className="text-4xl mb-2">{pkg.character}</div>
-                    <CardTitle className="text-white text-lg">{pkg.name}</CardTitle>
-                    <div className="text-2xl font-bold text-orange-400">{pkg.speed}</div>
-                    <div className="text-xl text-green-400">{pkg.price}/bulan</div>
+                    <CardTitle className="text-white text-lg">
+                      {pkg.name}
+                    </CardTitle>
+                    <div className="text-2xl font-bold text-orange-400">
+                      {pkg.speed}
+                    </div>
+                    <div className="text-xl text-green-400">
+                      {pkg.price}/bulan
+                    </div>
                     {pkg.originalPrice && (
-                      <div className="text-sm text-gray-500 line-through">{pkg.originalPrice}</div>
+                      <div className="text-sm text-gray-500 line-through">
+                        {pkg.originalPrice}
+                      </div>
                     )}
                   </CardHeader>
                   <CardContent>
                     <ul className="space-y-2 mb-4">
                       {pkg.features.map((feature, index) => (
-                        <li key={index} className="flex items-center space-x-2 text-sm text-gray-300">
+                        <li
+                          key={index}
+                          className="flex items-center space-x-2 text-sm text-gray-300"
+                        >
                           <CheckCircle className="h-4 w-4 text-green-400 flex-shrink-0" />
                           <span>{feature}</span>
                         </li>
                       ))}
                     </ul>
-                    <Button 
+                    <Button
                       className={`w-full ${
-                        formData.package === pkg.id 
-                          ? 'bg-orange-500 hover:bg-orange-600' 
+                        formData.package === pkg.id
+                          ? 'bg-orange-500 hover:bg-orange-600'
                           : `bg-gradient-to-r from-${pkg.color}-500 to-${pkg.color}-600 hover:from-${pkg.color}-600 hover:to-${pkg.color}-700`
                       }`}
                       onClick={() => selectPackage(pkg.id)}
                     >
-                      {formData.package === pkg.id ? '✅ Dipilih' : '🗡️ Pilih Paket'}
+                      {formData.package === pkg.id
+                        ? '✅ Dipilih'
+                        : '🗡️ Pilih Paket'}
                     </Button>
                   </CardContent>
                 </Card>
@@ -368,7 +437,6 @@ ${coverageStatus === 'covered' ? `Status: Area ter-cover (${distance.toFixed(1)}
             </div>
           </div>
         )}
-
         {/* Subscription Form */}
         {showForm && (
           <Card className="bg-slate-900 border-gray-700">
@@ -388,7 +456,7 @@ ${coverageStatus === 'covered' ? `Status: Area ter-cover (${distance.toFixed(1)}
                     <Input
                       required
                       value={formData.name}
-                      onChange={(e) => handleInputChange('name', e.target.value)}
+                      onChange={e => handleInputChange('name', e.target.value)}
                       placeholder="Nama lengkap Anda"
                       className="bg-slate-800 border-gray-600 text-white"
                     />
@@ -400,13 +468,12 @@ ${coverageStatus === 'covered' ? `Status: Area ter-cover (${distance.toFixed(1)}
                     <Input
                       required
                       value={formData.phone}
-                      onChange={(e) => handleInputChange('phone', e.target.value)}
+                      onChange={e => handleInputChange('phone', e.target.value)}
                       placeholder="08xxxxxxxxxx"
                       className="bg-slate-800 border-gray-600 text-white"
                     />
                   </div>
                 </div>
-
                 <div>
                   <label className="block text-sm font-semibold text-gray-300 mb-2">
                     Email
@@ -414,12 +481,11 @@ ${coverageStatus === 'covered' ? `Status: Area ter-cover (${distance.toFixed(1)}
                   <Input
                     type="email"
                     value={formData.email}
-                    onChange={(e) => handleInputChange('email', e.target.value)}
+                    onChange={e => handleInputChange('email', e.target.value)}
                     placeholder="email@domain.com"
                     className="bg-slate-800 border-gray-600 text-white"
                   />
                 </div>
-
                 <div>
                   <label className="block text-sm font-semibold text-gray-300 mb-2">
                     Alamat Lengkap *
@@ -427,46 +493,57 @@ ${coverageStatus === 'covered' ? `Status: Area ter-cover (${distance.toFixed(1)}
                   <Textarea
                     required
                     value={formData.address}
-                    onChange={(e) => handleInputChange('address', e.target.value)}
+                    onChange={e => handleInputChange('address', e.target.value)}
                     placeholder="Alamat lengkap untuk instalasi"
                     className="bg-slate-800 border-gray-600 text-white"
                     rows={3}
                   />
                 </div>
-
                 <div>
                   <label className="block text-sm font-semibold text-gray-300 mb-2">
                     Catatan Tambahan
                   </label>
                   <Textarea
                     value={formData.notes}
-                    onChange={(e) => handleInputChange('notes', e.target.value)}
+                    onChange={e => handleInputChange('notes', e.target.value)}
                     placeholder="Catatan khusus atau pertanyaan"
                     className="bg-slate-800 border-gray-600 text-white"
                     rows={2}
                   />
-                </div>                {formData.package && (
+                </div>{' '}
+                {formData.package && (
                   <div className="bg-blue-900/20 border border-blue-500/30 rounded-lg p-4">
-                    <h4 className="font-semibold text-blue-400 mb-2">Paket yang Dipilih:</h4>
+                    <h4 className="font-semibold text-blue-400 mb-2">
+                      Paket yang Dipilih:
+                    </h4>
                     {(() => {
                       const selectedPkg = getPackageById(formData.package)
                       return selectedPkg ? (
                         <div className="text-sm text-gray-300">
                           <div className="flex items-center space-x-2 mb-2">
-                            <span className="text-2xl">{selectedPkg.character}</span>
+                            <span className="text-2xl">
+                              {selectedPkg.character}
+                            </span>
                             <div>
-                              <div className="font-semibold">{selectedPkg.name}</div>
-                              <div className="text-orange-400">{selectedPkg.speed}</div>
+                              <div className="font-semibold">
+                                {selectedPkg.name}
+                              </div>
+                              <div className="text-orange-400">
+                                {selectedPkg.speed}
+                              </div>
                             </div>
                           </div>
-                          <div className="text-green-400 font-semibold">{selectedPkg.price}/bulan</div>
-                          <div className="text-xs text-gray-400 mt-1">{selectedPkg.description}</div>
+                          <div className="text-green-400 font-semibold">
+                            {selectedPkg.price}/bulan
+                          </div>
+                          <div className="text-xs text-gray-400 mt-1">
+                            {selectedPkg.description}
+                          </div>
                         </div>
                       ) : null
                     })()}
                   </div>
                 )}
-
                 <div className="flex flex-col sm:flex-row gap-4">
                   <Button
                     type="submit"
@@ -488,7 +565,6 @@ ${coverageStatus === 'covered' ? `Status: Area ter-cover (${distance.toFixed(1)}
             </CardContent>
           </Card>
         )}
-
         {/* Contact Information */}
         <div className="mt-12 grid md:grid-cols-3 gap-6">
           <Card className="bg-slate-900 border-gray-700">
@@ -498,7 +574,6 @@ ${coverageStatus === 'covered' ? `Status: Area ter-cover (${distance.toFixed(1)}
               <p className="text-gray-400">+62 812-9529-5734</p>
             </CardContent>
           </Card>
-          
           <Card className="bg-slate-900 border-gray-700">
             <CardContent className="p-6 text-center">
               <MessageCircle className="h-8 w-8 text-blue-400 mx-auto mb-3" />
@@ -506,14 +581,14 @@ ${coverageStatus === 'covered' ? `Status: Area ter-cover (${distance.toFixed(1)}
               <p className="text-gray-400">+62 812-9529-5734</p>
             </CardContent>
           </Card>
-          
           <Card className="bg-slate-900 border-gray-700">
             <CardContent className="p-6 text-center">
               <Clock className="h-8 w-8 text-purple-400 mx-auto mb-3" />
               <h4 className="font-semibold text-white mb-2">Jam Operasional</h4>
               <p className="text-gray-400">24/7 Support</p>
             </CardContent>
-          </Card>        </div>
+          </Card>{' '}
+        </div>
       </main>
 
       {/* Widgets */}

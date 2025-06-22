@@ -1,50 +1,75 @@
-"use client"
+'use client'
 
-import { SectionTitle } from "@/components/section-title"
-import { ServiceCard } from "@/components/service-card"
-import { Home, Building, Network, Wrench, Headphones } from "lucide-react"
+import { SectionTitle } from '@/components/section-title'
+import { ServiceCard } from '@/components/service-card'
+import { Home, Building, Network, Wrench, Headphones } from 'lucide-react'
 
 export function ServicesSection() {
   const services = [
     {
       icon: Home,
-      title: "🏠 Benteng Digital Rumah",
-      description: "Koneksi super ngebut buat streaming, gaming, dan WFH tanpa lag. Bikin rumah jadi istana digital!",
-      features: ["Unlimited seperti lautan", "Kecepatan stabil kayak gunung", "Gratis instalasi", "Penjaga 24/7"],
-      color: "orange",
+      title: '🏠 Benteng Digital Rumah',
+      description:
+        'Koneksi super ngebut buat streaming, gaming, dan WFH tanpa lag. Bikin rumah jadi istana digital!',
+      features: [
+        'Unlimited seperti lautan',
+        'Kecepatan stabil kayak gunung',
+        'Gratis instalasi',
+        'Penjaga 24/7',
+      ],
+      color: 'orange',
     },
     {
       icon: Building,
-      title: "🏢 Kerajaan Bisnis Digital",
-      description: "Solusi internet enterprise dengan bandwidth dedicated. Bikin bisnis makin jaya dan berkuasa!",
+      title: '🏢 Kerajaan Bisnis Digital',
+      description:
+        'Solusi internet enterprise dengan bandwidth dedicated. Bikin bisnis makin jaya dan berkuasa!',
       features: [
-        "Bandwidth khusus raja",
-        "SLA 99.9% seperti janji ksatria",
-        "Support prioritas",
-        "IP tetap seperti tahta",
+        'Bandwidth khusus raja',
+        'SLA 99.9% seperti janji ksatria',
+        'Support prioritas',
+        'IP tetap seperti tahta',
       ],
-      color: "blue",
+      color: 'blue',
     },
     {
       icon: Network,
-      title: "🤝 Jaringan Desa Digital",
-      description: "Paket khusus untuk komunitas. Satu koneksi untuk semua, gotong royong internet!",
-      features: ["Harga bersahabat", "Sistem управленческий keren", "Pembayaran otomatis", "Awasi terus 24/7"],
-      color: "green",
+      title: '🤝 Jaringan Desa Digital',
+      description:
+        'Paket khusus untuk komunitas. Satu koneksi untuk semua, gotong royong internet!',
+      features: [
+        'Harga bersahabat',
+        'Sistem управленческий keren',
+        'Pembayaran otomatis',
+        'Awasi terus 24/7',
+      ],
+      color: 'green',
     },
     {
       icon: Wrench,
-      title: "🛠️ Bangun Jaringan Impian",
-      description: "Jasa instalasi jaringan komputer dan WiFi. Dari gubuk sampai istana, kami siap membangun!",
-      features: ["Survey gratis", "Pemasangan rapi jali", "Testing sakti", "Garansi setahun"],
-      color: "purple",
+      title: '🛠️ Bangun Jaringan Impian',
+      description:
+        'Jasa instalasi jaringan komputer dan WiFi. Dari gubuk sampai istana, kami siap membangun!',
+      features: [
+        'Survey gratis',
+        'Pemasangan rapi jali',
+        'Testing sakti',
+        'Garansi setahun',
+      ],
+      color: 'purple',
     },
     {
       icon: Headphones,
-      title: "📞 Garda Depan Support",
-      description: "Tim teknis siap membantu 24/7. Ada masalah? Kami datang secepat kilat!",
-      features: ["Respon kilat", "Bantuan jarak jauh", "Servis di tempat", "Jaga-jaga terus"],
-      color: "pink",
+      title: '📞 Garda Depan Support',
+      description:
+        'Tim teknis siap membantu 24/7. Ada masalah? Kami datang secepat kilat!',
+      features: [
+        'Respon kilat',
+        'Bantuan jarak jauh',
+        'Servis di tempat',
+        'Jaga-jaga terus',
+      ],
+      color: 'pink',
     },
   ]
 
@@ -69,13 +94,13 @@ export function ServicesSection() {
               Butuh Konsultasi Gratis? 💬
             </h3>
             <p className="text-gray-300 mb-6 max-w-2xl mx-auto">
-              Gak yakin paket mana yang cocok? Tim ahli kami siap bantu kamu pilih solusi internet terbaik sesuai
-              kebutuhan dan budget!
+              Gak yakin paket mana yang cocok? Tim ahli kami siap bantu kamu
+              pilih solusi internet terbaik sesuai kebutuhan dan budget!
             </p>
             <button
               onClick={() => {
-                const element = document.getElementById("contact")
-                if (element) element.scrollIntoView({ behavior: "smooth" })
+                const element = document.getElementById('contact')
+                if (element) element.scrollIntoView({ behavior: 'smooth' })
               }}
               className="bg-gradient-to-r from-orange-500 to-red-500 hover:from-orange-600 hover:to-red-600 text-white px-8 py-3 rounded-lg font-semibold transition-all duration-300 hover:scale-105"
             >

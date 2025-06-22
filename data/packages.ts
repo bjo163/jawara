@@ -19,7 +19,7 @@ export interface Package {
 
 export const packages: Package[] = [
   // Paket Rumah - Sesuai dengan SPA Page Screenshots
-    {
+  {
     id: 'jagoan-neon',
     name: 'Jagoan Neon',
     icon: '🌟',
@@ -36,11 +36,11 @@ export const packages: Package[] = [
       '🍪 Cocok untuk rumahan',
       '📺 Streaming HD lancar',
       '📱 Support 5-8 device',
-      '🛠️ Customer support 24/7'
+      '🛠️ Customer support 24/7',
     ],
     popular: false,
     color: 'orange',
-    description: 'Paket internet pemula dengan teknologi terdepan'
+    description: 'Paket internet pemula dengan teknologi terdepan',
   },
   {
     id: 'mandor-sakti',
@@ -59,11 +59,11 @@ export const packages: Package[] = [
       '📹 Video call HD tanpa lag',
       '🎮 Gaming online smooth',
       '📱 Support 10-15 device',
-      '⭐ Priority customer support'
+      '⭐ Priority customer support',
     ],
     popular: false,
     color: 'blue',
-    description: 'Paket andalan untuk professional'
+    description: 'Paket andalan untuk professional',
   },
   {
     id: 'wiro-sableng',
@@ -82,11 +82,11 @@ export const packages: Package[] = [
       '🎬 4K streaming tanpa buffering',
       '📤 Upload file besar cepat',
       '📱 Support 15-20 device',
-      '🛡️ Dedicated support'
+      '🛡️ Dedicated support',
     ],
     popular: false,
     color: 'green',
-    description: 'Paket untuk warrior digital'
+    description: 'Paket untuk warrior digital',
   },
   {
     id: 'sultan',
@@ -105,11 +105,11 @@ export const packages: Package[] = [
       '♾️ Unlimited tanpa FUP',
       '🎮 Gaming pro & streaming 4K',
       '📱 Support unlimited device',
-      '👑 VIP customer support'
+      '👑 VIP customer support',
     ],
     popular: false,
     color: 'purple',
-    description: 'Paket premium untuk sultan digital'
+    description: 'Paket premium untuk sultan digital',
   },
 
   // Paket Bisnis Khusus
@@ -129,11 +129,11 @@ export const packages: Package[] = [
       '💻 Video conference HD',
       '☁️ Cloud backup lancar',
       '📧 Email server stabil',
-      '📞 Support prioritas bisnis'
+      '📞 Support prioritas bisnis',
     ],
     popular: false,
     color: 'blue',
-    description: 'Paket internet untuk usaha kecil dan startup'
+    description: 'Paket internet untuk usaha kecil dan startup',
   },
   {
     id: 'bisnis-pro',
@@ -151,11 +151,12 @@ export const packages: Package[] = [
       '📊 Multiple branch connection',
       '🛡️ Security & firewall',
       '📡 Static IP tersedia',
-      '⚡ SLA 99.5% uptime'
+      '⚡ SLA 99.5% uptime',
     ],
     popular: true,
     color: 'green',
-    description: 'Paket bisnis untuk kantor menengah dengan kebutuhan operasional'
+    description:
+      'Paket bisnis untuk kantor menengah dengan kebutuhan operasional',
   },
   {
     id: 'bisnis-enterprise',
@@ -173,35 +174,35 @@ export const packages: Package[] = [
       '🔧 Dedicated support engineer',
       '🛡️ Advanced security suite',
       '📡 Multiple static IP',
-      '⚡ SLA 99.9% uptime'
+      '⚡ SLA 99.9% uptime',
     ],
     popular: false,
     color: 'purple',
-    description: 'Paket enterprise untuk kebutuhan bisnis skala besar'
+    description: 'Paket enterprise untuk kebutuhan bisnis skala besar',
   },
-    // Paket Bisnis - Sesuai dengan SPA Page Screenshots
-    {
-        id: 'bisnis-ultimate',
-        name: 'Bisnis Ultimate',
-        icon: '🏢',
-        character: '👨‍💼',
-        speed: '150 Mbps',
-        uploadSpeed: '75 Mbps',
-        quota: 'Unlimited',
-        price: 'Rp 2.000.000',
-        priceNumeric: 2000000,
-        category: 'bisnis',
-        features: [
-        '🏢 Untuk perusahaan besar',
-        '📈 High availability connection',
-        '🛡️ Security & firewall',
-        '📡 Multiple static IPs',
-        '⚡ SLA 99.99% uptime'
-        ],
-        popular: false,
-        color: 'orange',
-        description: 'Paket bisnis untuk perusahaan besar dengan kebutuhan kritis'
-    }
+  // Paket Bisnis - Sesuai dengan SPA Page Screenshots
+  {
+    id: 'bisnis-ultimate',
+    name: 'Bisnis Ultimate',
+    icon: '🏢',
+    character: '👨‍💼',
+    speed: '150 Mbps',
+    uploadSpeed: '75 Mbps',
+    quota: 'Unlimited',
+    price: 'Rp 2.000.000',
+    priceNumeric: 2000000,
+    category: 'bisnis',
+    features: [
+      '🏢 Untuk perusahaan besar',
+      '📈 High availability connection',
+      '🛡️ Security & firewall',
+      '📡 Multiple static IPs',
+      '⚡ SLA 99.99% uptime',
+    ],
+    popular: false,
+    color: 'orange',
+    description: 'Paket bisnis untuk perusahaan besar dengan kebutuhan kritis',
+  },
 ]
 
 // Helper functions
@@ -209,7 +210,9 @@ export const getPackageById = (id: string): Package | undefined => {
   return packages.find(pkg => pkg.id === id)
 }
 
-export const getPackagesByCategory = (category: 'rumah' | 'bisnis'): Package[] => {
+export const getPackagesByCategory = (
+  category: 'rumah' | 'bisnis'
+): Package[] => {
   return packages.filter(pkg => pkg.category === category)
 }
 
@@ -224,12 +227,12 @@ export const formatPrice = (price: string): string => {
 export const getPackageForForm = (id: string) => {
   const pkg = getPackageById(id)
   if (!pkg) return null
-  
+
   return {
     id: pkg.id,
     name: pkg.name,
     speed: pkg.speed,
     price: pkg.price,
-    features: pkg.features
+    features: pkg.features,
   }
 }

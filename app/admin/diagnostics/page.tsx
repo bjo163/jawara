@@ -1,17 +1,26 @@
-"use client"
+'use client'
 
-import { useEffect, useState } from "react"
-import { ArrowLeft, RefreshCw, AlertTriangle, CheckCircle, Info, Wifi, Settings, ExternalLink } from "lucide-react"
-import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { Badge } from "@/components/ui/badge"
+import { useEffect, useState } from 'react'
+import {
+  ArrowLeft,
+  RefreshCw,
+  AlertTriangle,
+  CheckCircle,
+  Info,
+  Wifi,
+  Settings,
+  ExternalLink,
+} from 'lucide-react'
+import { Button } from '@/components/ui/button'
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
+import { Badge } from '@/components/ui/badge'
 
 interface DiagnosticResult {
-  test: string;
-  status: 'pass' | 'fail' | 'warning' | 'checking';
-  message: string;
-  details?: string;
-  url?: string;
+  test: string
+  status: 'pass' | 'fail' | 'warning' | 'checking'
+  message: string
+  details?: string
+  url?: string
 }
 
 export default function WhatsAppDiagnostics() {
@@ -27,31 +36,49 @@ export default function WhatsAppDiagnostics() {
     setResults([])
 
     const tests: DiagnosticResult[] = [
-      { test: 'Environment Configuration', status: 'checking', message: 'Checking environment variables...' },
-      { test: 'API Health Check', status: 'checking', message: 'Testing API health endpoint...' },
-      { test: 'Network Connectivity', status: 'checking', message: 'Testing network connection...' },
-      { test: 'Service Response', status: 'checking', message: 'Checking service response format...' }
+      {
+        test: 'Environment Configuration',
+        status: 'checking',
+        message: 'Checking environment variables...',
+      },
+      {
+        test: 'API Health Check',
+        status: 'checking',
+        message: 'Testing API health endpoint...',
+      },
+      {
+        test: 'Network Connectivity',
+        status: 'checking',
+        message: 'Testing network connection...',
+      },
+      {
+        test: 'Service Response',
+        status: 'checking',
+        message: 'Checking service response format...',
+      },
     ]
 
     setResults([...tests])
 
     // Test 1: Environment Configuration
     try {
-      const envResponse = await fetch('/api/whatsapp/proxy?endpoint=/config', { method: 'GET' })
+      const envResponse = await fetch('/api/whatsapp/proxy?endpoint=/config', {
+        method: 'GET',
+      })
       const envData = await envResponse.json()
-      
+
       tests[0] = {
         test: 'Environment Configuration',
         status: 'pass',
         message: 'Environment variables are configured',
-        details: `API URL configured and accessible`
+        details: `API URL configured and accessible`,
       }
     } catch (error) {
       tests[0] = {
         test: 'Environment Configuration',
         status: 'warning',
         message: 'Environment may have issues',
-        details: 'Could not verify all environment variables'
+        details: 'Could not verify all environment variables',
       }
     }
     setResults([...tests])
@@ -60,14 +87,14 @@ export default function WhatsAppDiagnostics() {
     try {
       const healthResponse = await fetch('/api/whatsapp/health')
       const healthData = await healthResponse.json()
-      
+
       if (healthData.success) {
         tests[1] = {
           test: 'API Health Check',
           status: 'pass',
           message: 'WhatsApp service is responding',
           details: `Response time: ${healthData.timestamp}`,
-          url: healthData.url
+          url: healthData.url,
         }
       } else {
         tests[1] = {
@@ -75,7 +102,7 @@ export default function WhatsAppDiagnostics() {
           status: 'fail',
           message: 'WhatsApp service is not responding',
           details: `${healthData.error} - ${healthData.details}`,
-          url: healthData.url
+          url: healthData.url,
         }
       }
     } catch (error: any) {
@@ -83,7 +110,7 @@ export default function WhatsAppDiagnostics() {
         test: 'API Health Check',
         status: 'fail',
         message: 'Failed to reach health endpoint',
-        details: error.message
+        details: error.message,
       }
     }
     setResults([...tests])
@@ -92,20 +119,20 @@ export default function WhatsAppDiagnostics() {
     try {
       const directResponse = await fetch('/api/whatsapp/proxy?endpoint=/ping')
       const directData = await directResponse.json()
-      
+
       if (directData.success) {
         tests[2] = {
           test: 'Network Connectivity',
           status: 'pass',
           message: 'Direct connection successful',
-          details: 'Network connectivity is working'
+          details: 'Network connectivity is working',
         }
       } else {
         tests[2] = {
           test: 'Network Connectivity',
           status: 'fail',
           message: 'Network connection failed',
-          details: directData.error || 'Unknown network error'
+          details: directData.error || 'Unknown network error',
         }
       }
     } catch (error: any) {
@@ -113,7 +140,7 @@ export default function WhatsAppDiagnostics() {
         test: 'Network Connectivity',
         status: 'fail',
         message: 'Network connectivity issues',
-        details: error.message
+        details: error.message,
       }
     }
     setResults([...tests])
@@ -122,20 +149,20 @@ export default function WhatsAppDiagnostics() {
     try {
       const pingResponse = await fetch('/api/whatsapp/proxy?endpoint=/ping')
       const pingData = await pingResponse.json()
-      
+
       if (pingData.success && pingData.data) {
         tests[3] = {
           test: 'Service Response',
           status: 'pass',
           message: 'Service response format is valid',
-          details: 'API is returning expected data format'
+          details: 'API is returning expected data format',
         }
       } else {
         tests[3] = {
           test: 'Service Response',
           status: 'warning',
           message: 'Unexpected response format',
-          details: 'Service may be using different API version'
+          details: 'Service may be using different API version',
         }
       }
     } catch (error: any) {
@@ -143,7 +170,7 @@ export default function WhatsAppDiagnostics() {
         test: 'Service Response',
         status: 'fail',
         message: 'Invalid service response',
-        details: error.message
+        details: error.message,
       }
     }
     setResults([...tests])
@@ -152,28 +179,44 @@ export default function WhatsAppDiagnostics() {
 
   const getStatusIcon = (status: string) => {
     switch (status) {
-      case 'pass': return <CheckCircle className="h-5 w-5 text-green-400" />
-      case 'fail': return <AlertTriangle className="h-5 w-5 text-red-400" />
-      case 'warning': return <Info className="h-5 w-5 text-yellow-400" />
-      case 'checking': return <div className="h-5 w-5 animate-spin border-2 border-gray-300 border-t-blue-400 rounded-full" />
-      default: return null
+      case 'pass':
+        return <CheckCircle className="h-5 w-5 text-green-400" />
+      case 'fail':
+        return <AlertTriangle className="h-5 w-5 text-red-400" />
+      case 'warning':
+        return <Info className="h-5 w-5 text-yellow-400" />
+      case 'checking':
+        return (
+          <div className="h-5 w-5 animate-spin border-2 border-gray-300 border-t-blue-400 rounded-full" />
+        )
+      default:
+        return null
     }
   }
 
   const getStatusColor = (status: string) => {
     switch (status) {
-      case 'pass': return 'text-green-400'
-      case 'fail': return 'text-red-400'
-      case 'warning': return 'text-yellow-400'
-      case 'checking': return 'text-blue-400'
-      default: return 'text-gray-400'
+      case 'pass':
+        return 'text-green-400'
+      case 'fail':
+        return 'text-red-400'
+      case 'warning':
+        return 'text-yellow-400'
+      case 'checking':
+        return 'text-blue-400'
+      default:
+        return 'text-gray-400'
     }
   }
 
-  const overallStatus = results.length > 0 ? (
-    results.every(r => r.status === 'pass') ? 'healthy' :
-    results.some(r => r.status === 'fail') ? 'unhealthy' : 'warning'
-  ) : 'checking'
+  const overallStatus =
+    results.length > 0
+      ? results.every(r => r.status === 'pass')
+        ? 'healthy'
+        : results.some(r => r.status === 'fail')
+          ? 'unhealthy'
+          : 'warning'
+      : 'checking'
 
   return (
     <div className="min-h-screen bg-slate-950 text-white">
@@ -183,7 +226,7 @@ export default function WhatsAppDiagnostics() {
           <div className="flex items-center space-x-4">
             <Button
               variant="outline"
-              onClick={() => window.location.href = '/admin/dashboard'}
+              onClick={() => (window.location.href = '/admin/dashboard')}
             >
               <ArrowLeft className="h-4 w-4 mr-2" />
               Back to Dashboard
@@ -214,7 +257,13 @@ export default function WhatsAppDiagnostics() {
                 Overall Status
               </span>
               <Badge
-                variant={overallStatus === 'healthy' ? 'default' : overallStatus === 'unhealthy' ? 'destructive' : 'secondary'}
+                variant={
+                  overallStatus === 'healthy'
+                    ? 'default'
+                    : overallStatus === 'unhealthy'
+                      ? 'destructive'
+                      : 'secondary'
+                }
                 className="flex items-center"
               >
                 {getStatusIcon(overallStatus)}
@@ -224,9 +273,12 @@ export default function WhatsAppDiagnostics() {
           </CardHeader>
           <CardContent>
             <p className="text-gray-300">
-              {overallStatus === 'healthy' && 'All systems are functioning normally. WhatsApp integration is ready to use.'}
-              {overallStatus === 'unhealthy' && 'There are issues preventing WhatsApp integration from working properly.'}
-              {overallStatus === 'warning' && 'WhatsApp integration may work with some limitations.'}
+              {overallStatus === 'healthy' &&
+                'All systems are functioning normally. WhatsApp integration is ready to use.'}
+              {overallStatus === 'unhealthy' &&
+                'There are issues preventing WhatsApp integration from working properly.'}
+              {overallStatus === 'warning' &&
+                'WhatsApp integration may work with some limitations.'}
               {overallStatus === 'checking' && 'Running diagnostic tests...'}
             </p>
           </CardContent>
@@ -242,19 +294,23 @@ export default function WhatsAppDiagnostics() {
                     {getStatusIcon(result.status)}
                     <h3 className="font-semibold text-white">{result.test}</h3>
                   </div>
-                  <Badge variant="outline" className={getStatusColor(result.status)}>
-                    {result.status.charAt(0).toUpperCase() + result.status.slice(1)}
+                  <Badge
+                    variant="outline"
+                    className={getStatusColor(result.status)}
+                  >
+                    {result.status.charAt(0).toUpperCase() +
+                      result.status.slice(1)}
                   </Badge>
                 </div>
-                
+
                 <p className="text-gray-300 mb-2">{result.message}</p>
-                
+
                 {result.details && (
                   <p className="text-sm text-gray-400 bg-slate-800 p-2 rounded">
                     {result.details}
                   </p>
                 )}
-                
+
                 {result.url && (
                   <div className="mt-2">
                     <Button
@@ -281,13 +337,25 @@ export default function WhatsAppDiagnostics() {
             <div>
               <h4 className="font-semibold text-white mb-2">Common Issues:</h4>
               <ul className="text-gray-300 space-y-1 text-sm">
-                <li>• <strong>Connection Refused:</strong> WhatsApp service may not be running</li>
-                <li>• <strong>CORS Errors:</strong> Use the API proxy endpoints instead of direct calls</li>
-                <li>• <strong>Timeout:</strong> Service may be slow to respond or unreachable</li>
-                <li>• <strong>Invalid URL:</strong> Check WHATSAPP_API_URL in .env file</li>
+                <li>
+                  • <strong>Connection Refused:</strong> WhatsApp service may
+                  not be running
+                </li>
+                <li>
+                  • <strong>CORS Errors:</strong> Use the API proxy endpoints
+                  instead of direct calls
+                </li>
+                <li>
+                  • <strong>Timeout:</strong> Service may be slow to respond or
+                  unreachable
+                </li>
+                <li>
+                  • <strong>Invalid URL:</strong> Check WHATSAPP_API_URL in .env
+                  file
+                </li>
               </ul>
             </div>
-            
+
             <div>
               <h4 className="font-semibold text-white mb-2">Quick Fixes:</h4>
               <ul className="text-gray-300 space-y-1 text-sm">

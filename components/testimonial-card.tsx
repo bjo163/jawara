@@ -1,7 +1,7 @@
-"use client"
+'use client'
 
-import { Star } from "lucide-react"
-import Image from "next/image"
+import { Star } from 'lucide-react'
+import Image from 'next/image'
 
 interface TestimonialCardProps {
   name: string
@@ -13,13 +13,21 @@ interface TestimonialCardProps {
   packageName: string
 }
 
-export function TestimonialCard({ name, role, location, image, rating, comment, packageName }: TestimonialCardProps) {
+export function TestimonialCard({
+  name,
+  role,
+  location,
+  image,
+  rating,
+  comment,
+  packageName,
+}: TestimonialCardProps) {
   return (
     <div className="bg-slate-800/50 p-6 rounded-xl border border-gray-700 hover:border-gray-600 transition-all duration-300 hover:transform hover:scale-105">
       {/* Header */}
       <div className="flex items-center space-x-4 mb-4">
         <Image
-          src={image || "/placeholder.svg"}
+          src={image || '/placeholder.svg'}
           alt={name}
           width={60}
           height={60}
@@ -40,12 +48,16 @@ export function TestimonialCard({ name, role, location, image, rating, comment, 
       </div>
 
       {/* Comment */}
-      <p className="text-gray-300 mb-4 leading-relaxed">&quot;{comment}&quot;</p>
+      <p className="text-gray-300 mb-4 leading-relaxed">
+        &quot;{comment}&quot;
+      </p>
 
       {/* Package */}
       <div className="bg-slate-700/50 px-3 py-2 rounded-lg">
         <span className="text-xs text-gray-400">Paket: </span>
-        <span className="text-sm font-semibold text-orange-400">{packageName}</span>
+        <span className="text-sm font-semibold text-orange-400">
+          {packageName}
+        </span>
       </div>
     </div>
   )

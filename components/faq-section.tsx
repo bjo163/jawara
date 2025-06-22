@@ -1,9 +1,9 @@
-"use client"
+'use client'
 
-import { SectionTitle } from "@/components/section-title"
-import { AccordionItem } from "@/components/accordion-item"
-import { faqData } from "@/data/faq"
-import Link from "next/link"
+import { SectionTitle } from '@/components/section-title'
+import { AccordionItem } from '@/components/accordion-item'
+import { faqData } from '@/data/faq'
+import Link from 'next/link'
 
 export function FaqSection() {
   // Show only first 5 FAQs as preview
@@ -19,7 +19,11 @@ export function FaqSection() {
 
         <div className="space-y-4 mb-8">
           {previewFAQs.map((faq, index) => (
-            <AccordionItem key={index} question={faq.question} answer={faq.answer} />
+            <AccordionItem
+              key={index}
+              question={faq.question}
+              answer={faq.answer}
+            />
           ))}
         </div>
 
@@ -41,8 +45,8 @@ export function FaqSection() {
               Masih Ada Pertanyaan Lain? 🤔
             </h3>
             <p className="text-gray-300 mb-6">
-              Tim customer service kami siap bantu kamu 24/7! Jangan ragu buat tanya apa aja tentang layanan internet
-              kami.
+              Tim customer service kami siap bantu kamu 24/7! Jangan ragu buat
+              tanya apa aja tentang layanan internet kami.
             </p>
             <Link
               href="/contact"

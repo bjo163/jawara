@@ -1,10 +1,10 @@
-"use client"
+'use client'
 
-import { PackagesSection } from "@/components/packages-section"
-import { SectionTitle } from "@/components/section-title"
-import { PageHeader } from "@/components/page-header"
-import { LiveChatWidget } from "@/components/live-chat-widget"
-import { SubscriptionWidget } from "@/components/subscription-widget-fixed"
+import { PackagesSection } from '@/components/packages-section'
+import { SectionTitle } from '@/components/section-title'
+import { PageHeader } from '@/components/page-header'
+import { LiveChatWidget } from '@/components/live-chat-widget'
+import { SubscriptionWidget } from '@/components/subscription-widget-fixed'
 
 export default function PaketPage() {
   return (
@@ -17,7 +17,9 @@ export default function PaketPage() {
         <section className="py-16 px-4">
           <div className="max-w-6xl mx-auto text-center">
             <div className="professional-bubble inline-block mb-6">
-              <span className="text-orange-500 font-semibold text-sm uppercase tracking-wider">Paket Internet</span>
+              <span className="text-orange-500 font-semibold text-sm uppercase tracking-wider">
+                Paket Internet
+              </span>
             </div>
             <SectionTitle
               title="Pilih Paket Terbaik untuk Kebutuhan Anda"
@@ -36,7 +38,8 @@ export default function PaketPage() {
               Masih Bingung Pilih Paket?
             </h2>
             <p className="text-gray-400 mb-8">
-              Tim customer service kami siap membantu Anda memilih paket yang sesuai dengan kebutuhan dan budget
+              Tim customer service kami siap membantu Anda memilih paket yang
+              sesuai dengan kebutuhan dan budget
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <a

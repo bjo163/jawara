@@ -31,7 +31,7 @@ export const contactInfo: ContactInfo[] = [
     description: 'Layanan telepon 24 jam',
     color: 'blue',
     href: 'tel:+6281295295734',
-    isClickable: true
+    isClickable: true,
   },
   {
     id: 'email',
@@ -42,7 +42,7 @@ export const contactInfo: ContactInfo[] = [
     description: 'Untuk pertanyaan detail & komplain',
     color: 'orange',
     href: 'mailto:info@jawara-net.com',
-    isClickable: true
+    isClickable: true,
   },
   {
     id: 'address',
@@ -53,7 +53,7 @@ export const contactInfo: ContactInfo[] = [
     secondary: 'Bekasi Regency, West Java',
     description: 'Buka Senin-Sabtu, 08:00-17:00',
     color: 'purple',
-    isClickable: false
+    isClickable: false,
   },
   {
     id: 'hours',
@@ -64,21 +64,21 @@ export const contactInfo: ContactInfo[] = [
     secondary: 'Technical Support: 24/7',
     description: 'Kantor: Senin-Sabtu 08:00-17:00',
     color: 'yellow',
-    isClickable: false
-  }
+    isClickable: false,
+  },
 ]
 
 export const officeLocation: OfficeLocation = {
-  name: "Kantor Jawara-Net",
+  name: 'Kantor Jawara-Net',
   lat: -6.1810747,
   lng: 107.0654949,
-  address: "R398+H5H Srimukti, Bekasi Regency, West Java",
+  address: 'R398+H5H Srimukti, Bekasi Regency, West Java',
   coverageRadius: 10, // 10km radius
   hours: [
-    "Customer Service: 24/7",
-    "Technical Support: 24/7", 
-    "Kantor: Senin-Sabtu 08:00-17:00"
-  ]
+    'Customer Service: 24/7',
+    'Technical Support: 24/7',
+    'Kantor: Senin-Sabtu 08:00-17:00',
+  ],
 }
 
 export const quickActions = [
@@ -87,8 +87,8 @@ export const quickActions = [
     title: 'Telepon Sekarang',
     href: 'tel:+6281295295734',
     color: 'blue',
-    icon: '📞'
-  }
+    icon: '📞',
+  },
 ]
 
 // Helper functions

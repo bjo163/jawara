@@ -1,69 +1,69 @@
-"use client"
+'use client'
 
-import { SectionTitle } from "@/components/section-title"
-import { TestimonialCard } from "@/components/testimonial-card"
+import { SectionTitle } from '@/components/section-title'
+import { TestimonialCard } from '@/components/testimonial-card'
 
 export function TestimonialsSection() {
   const testimonials = [
     {
-      name: "Andi Pratama",
-      role: "Content Creator Jagoan",
-      location: "Jakarta Selatan",
-      image: "/placeholder.svg?height=60&width=60",
+      name: 'Andi Pratama',
+      role: 'Content Creator Jagoan',
+      location: 'Jakarta Selatan',
+      image: '/placeholder.svg?height=60&width=60',
       rating: 5,
       comment:
-        "Sejak pakai Jawara-Net, channel YouTube gue jadi makin berkuasa! Upload video ngebut kayak kilat, live streaming lancar jaya tanpa drama. Ini sih internet sultan beneran! 🔥👑",
-      package: "Wiro Sableng 35 Mbps",
+        'Sejak pakai Jawara-Net, channel YouTube gue jadi makin berkuasa! Upload video ngebut kayak kilat, live streaming lancar jaya tanpa drama. Ini sih internet sultan beneran! 🔥👑',
+      package: 'Wiro Sableng 35 Mbps',
     },
     {
-      name: "Sarah Dewi",
-      role: "Remote Worker Tangguh",
-      location: "Bandung",
-      image: "/placeholder.svg?height=60&width=60",
+      name: 'Sarah Dewi',
+      role: 'Remote Worker Tangguh',
+      location: 'Bandung',
+      image: '/placeholder.svg?height=60&width=60',
       rating: 5,
       comment:
-        "WFH jadi medan perang yang bisa gue taklukkin! Video call meeting sekuat baja, gak pernah putus asa. Tim support sigap membantu setiap saat. Jawara-Net emang andalan! 👍💪",
-      package: "Mandor Sakti 25 Mbps",
+        'WFH jadi medan perang yang bisa gue taklukkin! Video call meeting sekuat baja, gak pernah putus asa. Tim support sigap membantu setiap saat. Jawara-Net emang andalan! 👍💪',
+      package: 'Mandor Sakti 25 Mbps',
     },
     {
-      name: "Budi Santoso",
-      role: "Pemilik Warnet Perkasa",
-      location: "Surabaya",
-      image: "/placeholder.svg?height=60&width=60",
+      name: 'Budi Santoso',
+      role: 'Pemilik Warnet Perkasa',
+      location: 'Surabaya',
+      image: '/placeholder.svg?height=60&width=60',
       rating: 5,
       comment:
-        "Warnet gue sekarang jadi arena gladiator internet! Customer puas karena koneksi stabil kayak tembok raksasa. Gaming online tanpa ampun, streaming tanpa batas. Omzet meroket! 💰🚀",
-      package: "Corporate Beast 100 Mbps",
+        'Warnet gue sekarang jadi arena gladiator internet! Customer puas karena koneksi stabil kayak tembok raksasa. Gaming online tanpa ampun, streaming tanpa batas. Omzet meroket! 💰🚀',
+      package: 'Corporate Beast 100 Mbps',
     },
     {
-      name: "Maya Sari",
-      role: "Mahasiswi Cendekiawan",
-      location: "Yogyakarta",
-      image: "/placeholder.svg?height=60&width=60",
+      name: 'Maya Sari',
+      role: 'Mahasiswi Cendekiawan',
+      location: 'Yogyakarta',
+      image: '/placeholder.svg?height=60&width=60',
       rating: 5,
       comment:
-        "Kuliah online jadi petualangan seru, download materi kuliah secepat ninja. Harganya juga bersahabat buat kantong mahasiswa. Jawara-Net emang pahlawan! 🎓🦸‍♀️",
-      package: "Jagoan Neon 10 Mbps",
+        'Kuliah online jadi petualangan seru, download materi kuliah secepat ninja. Harganya juga bersahabat buat kantong mahasiswa. Jawara-Net emang pahlawan! 🎓🦸‍♀️',
+      package: 'Jagoan Neon 10 Mbps',
     },
     {
-      name: "Rizki Firmansyah",
-      role: "Gamer Pro Legendaris",
-      location: "Medan",
-      image: "/placeholder.svg?height=60&width=60",
+      name: 'Rizki Firmansyah',
+      role: 'Gamer Pro Legendaris',
+      location: 'Medan',
+      image: '/placeholder.svg?height=60&width=60',
       rating: 5,
       comment:
-        "Ping serendah rumput, koneksi sekuat baja, perfect buat competitive gaming! Gak ada lagi lag yang menghalangi kemenangan. Jawara-Net emang juara sejati! ⚡🏆",
-      package: "Sultan 50 Mbps",
+        'Ping serendah rumput, koneksi sekuat baja, perfect buat competitive gaming! Gak ada lagi lag yang menghalangi kemenangan. Jawara-Net emang juara sejati! ⚡🏆',
+      package: 'Sultan 50 Mbps',
     },
     {
-      name: "Ibu Sinta",
-      role: "Ibu Rumah Tangga Super",
-      location: "Bekasi",
-      image: "/placeholder.svg?height=60&width=60",
+      name: 'Ibu Sinta',
+      role: 'Ibu Rumah Tangga Super',
+      location: 'Bekasi',
+      image: '/placeholder.svg?height=60&width=60',
       rating: 5,
       comment:
-        "Anak-anak sekolah online lancar, suami WFH juga gak ada gangguan. Netflix keluarga juga tanpa hambatan. Satu internet buat semua kebutuhan keluarga! 👨‍👩‍👧‍👦💖",
-      package: "Mandor Sakti 25 Mbps",
+        'Anak-anak sekolah online lancar, suami WFH juga gak ada gangguan. Netflix keluarga juga tanpa hambatan. Satu internet buat semua kebutuhan keluarga! 👨‍👩‍👧‍👦💖',
+      package: 'Mandor Sakti 25 Mbps',
     },
   ]
 
@@ -108,12 +108,13 @@ export function TestimonialsSection() {
               Mau Jadi Bagian dari Keluarga Jawara-Net? 🚀
             </h3>
             <p className="text-gray-300 mb-6 max-w-2xl mx-auto">
-              Bergabung dengan ribuan pelanggan yang udah merasakan internet super cepat dan stabil!
+              Bergabung dengan ribuan pelanggan yang udah merasakan internet
+              super cepat dan stabil!
             </p>
             <button
               onClick={() => {
-                const element = document.getElementById("packages")
-                if (element) element.scrollIntoView({ behavior: "smooth" })
+                const element = document.getElementById('packages')
+                if (element) element.scrollIntoView({ behavior: 'smooth' })
               }}
               className="bg-gradient-to-r from-orange-500 to-red-500 hover:from-orange-600 hover:to-red-600 text-white px-8 py-3 rounded-lg font-semibold transition-all duration-300 hover:scale-105"
             >

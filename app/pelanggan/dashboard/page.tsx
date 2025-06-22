@@ -1,10 +1,17 @@
-"use client"
+'use client'
 
-import { useEffect, useState } from "react"
-import { LogOut, User, Wifi, CreditCard, HeadphonesIcon, Settings } from "lucide-react"
-import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { getAuthData, clearAuthData, type User as UserType } from "@/data/auth"
+import { useEffect, useState } from 'react'
+import {
+  LogOut,
+  User,
+  Wifi,
+  CreditCard,
+  HeadphonesIcon,
+  Settings,
+} from 'lucide-react'
+import { Button } from '@/components/ui/button'
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
+import { getAuthData, clearAuthData, type User as UserType } from '@/data/auth'
 
 export default function PelangganDashboard() {
   const [user, setUser] = useState<UserType | null>(null)
@@ -52,21 +59,29 @@ export default function PelangganDashboard() {
       <main className="max-w-7xl mx-auto px-4 py-8">
         {/* Welcome Section */}
         <div className="mb-8">
-          <h2 className="text-3xl font-bold mb-2">Selamat Datang, {user.name}!</h2>
-          <p className="text-gray-400">Kelola akun dan berlangganan internet Anda di sini</p>
+          <h2 className="text-3xl font-bold mb-2">
+            Selamat Datang, {user.name}!
+          </h2>
+          <p className="text-gray-400">
+            Kelola akun dan berlangganan internet Anda di sini
+          </p>
         </div>
 
         {/* Quick Stats */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
           <Card className="bg-slate-900 border-gray-700">
             <CardHeader className="pb-3">
-              <CardTitle className="text-sm text-gray-400">Paket Aktif</CardTitle>
+              <CardTitle className="text-sm text-gray-400">
+                Paket Aktif
+              </CardTitle>
             </CardHeader>
             <CardContent>
               <div className="flex items-center space-x-3">
                 <Wifi className="h-8 w-8 text-blue-400" />
                 <div>
-                  <div className="text-xl font-bold text-white">{user.package}</div>
+                  <div className="text-xl font-bold text-white">
+                    {user.package}
+                  </div>
                   <div className="text-sm text-green-400">Aktif</div>
                 </div>
               </div>
@@ -75,14 +90,18 @@ export default function PelangganDashboard() {
 
           <Card className="bg-slate-900 border-gray-700">
             <CardHeader className="pb-3">
-              <CardTitle className="text-sm text-gray-400">Status Pembayaran</CardTitle>
+              <CardTitle className="text-sm text-gray-400">
+                Status Pembayaran
+              </CardTitle>
             </CardHeader>
             <CardContent>
               <div className="flex items-center space-x-3">
                 <CreditCard className="h-8 w-8 text-green-400" />
                 <div>
                   <div className="text-xl font-bold text-white">Lunas</div>
-                  <div className="text-sm text-gray-400">Jatuh tempo: 25 Jan</div>
+                  <div className="text-sm text-gray-400">
+                    Jatuh tempo: 25 Jan
+                  </div>
                 </div>
               </div>
             </CardContent>
@@ -90,7 +109,9 @@ export default function PelangganDashboard() {
 
           <Card className="bg-slate-900 border-gray-700">
             <CardHeader className="pb-3">
-              <CardTitle className="text-sm text-gray-400">Status Koneksi</CardTitle>
+              <CardTitle className="text-sm text-gray-400">
+                Status Koneksi
+              </CardTitle>
             </CardHeader>
             <CardContent>
               <div className="flex items-center space-x-3">
@@ -148,7 +169,9 @@ export default function PelangganDashboard() {
             <div className="space-y-4">
               <div className="flex items-center space-x-3 text-sm">
                 <div className="h-2 w-2 bg-green-400 rounded-full"></div>
-                <span className="text-gray-300">Pembayaran bulan Januari berhasil</span>
+                <span className="text-gray-300">
+                  Pembayaran bulan Januari berhasil
+                </span>
                 <span className="text-gray-500">2 hari lalu</span>
               </div>
               <div className="flex items-center space-x-3 text-sm">
@@ -158,7 +181,9 @@ export default function PelangganDashboard() {
               </div>
               <div className="flex items-center space-x-3 text-sm">
                 <div className="h-2 w-2 bg-yellow-400 rounded-full"></div>
-                <span className="text-gray-300">Maintenance terjadwal selesai</span>
+                <span className="text-gray-300">
+                  Maintenance terjadwal selesai
+                </span>
                 <span className="text-gray-500">2 minggu lalu</span>
               </div>
             </div>

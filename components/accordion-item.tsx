@@ -1,7 +1,7 @@
-"use client"
+'use client'
 
-import { useState } from "react"
-import { ChevronDown } from "lucide-react"
+import { useState } from 'react'
+import { ChevronDown } from 'lucide-react'
 
 interface AccordionItemProps {
   question: string
@@ -20,7 +20,7 @@ export function AccordionItem({ question, answer }: AccordionItemProps) {
         <h3 className="text-lg font-semibold text-white pr-4">{question}</h3>
         <ChevronDown
           className={`h-5 w-5 text-orange-500 transition-transform duration-200 flex-shrink-0 ${
-            isOpen ? "transform rotate-180" : ""
+            isOpen ? 'transform rotate-180' : ''
           }`}
         />
       </button>

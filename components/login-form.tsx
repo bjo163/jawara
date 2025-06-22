@@ -1,12 +1,24 @@
-"use client"
+'use client'
 
-import { useState } from "react"
-import { Eye, EyeOff, Loader2, User, Lock, AlertCircle, CheckCircle } from "lucide-react"
-import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
-import { authenticateUser, saveAuthData, type LoginCredentials } from "@/data/auth"
+import { useState } from 'react'
+import {
+  Eye,
+  EyeOff,
+  Loader2,
+  User,
+  Lock,
+  AlertCircle,
+  CheckCircle,
+} from 'lucide-react'
+import { Button } from '@/components/ui/button'
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
+import { Input } from '@/components/ui/input'
+import { Label } from '@/components/ui/label'
+import {
+  authenticateUser,
+  saveAuthData,
+  type LoginCredentials,
+} from '@/data/auth'
 
 interface LoginFormProps {
   userType: 'pelanggan' | 'admin'
@@ -16,7 +28,7 @@ interface LoginFormProps {
 export function LoginForm({ userType, onSuccess }: LoginFormProps) {
   const [formData, setFormData] = useState<LoginCredentials>({
     username: '',
-    password: ''
+    password: '',
   })
   const [showPassword, setShowPassword] = useState(false)
   const [isLoading, setIsLoading] = useState(false)
@@ -26,7 +38,7 @@ export function LoginForm({ userType, onSuccess }: LoginFormProps) {
   const handleInputChange = (field: keyof LoginCredentials, value: string) => {
     setFormData(prev => ({
       ...prev,
-      [field]: value
+      [field]: value,
     }))
     // Clear error when user starts typing
     if (error) setError('')
@@ -60,7 +72,9 @@ export function LoginForm({ userType, onSuccess }: LoginFormProps) {
 
       // Check user role matches login type
       if (response.user?.role !== userType) {
-        setError(`Akun ini bukan untuk ${userType}. Silakan gunakan halaman login yang sesuai.`)
+        setError(
+          `Akun ini bukan untuk ${userType}. Silakan gunakan halaman login yang sesuai.`
+        )
         setIsLoading(false)
         return
       }
@@ -69,7 +83,7 @@ export function LoginForm({ userType, onSuccess }: LoginFormProps) {
       if (response.user && response.token) {
         saveAuthData(response.user, response.token)
         setSuccess('Login berhasil! Mengalihkan...')
-        
+
         // Call success callback
         if (onSuccess) {
           onSuccess(response.user)
@@ -84,7 +98,6 @@ export function LoginForm({ userType, onSuccess }: LoginFormProps) {
           }
         }, 1500)
       }
-
     } catch (err) {
       setError('Terjadi kesalahan. Silakan coba lagi.')
     } finally {
@@ -95,12 +108,12 @@ export function LoginForm({ userType, onSuccess }: LoginFormProps) {
   const demoCredentials = {
     admin: [
       { username: 'admin', password: 'password123' },
-      { username: 'superadmin', password: 'password123' }
+      { username: 'superadmin', password: 'password123' },
     ],
     pelanggan: [
       { username: 'john.doe', password: 'password123' },
-      { username: 'jane.smith', password: 'password123' }
-    ]
+      { username: 'jane.smith', password: 'password123' },
+    ],
   }
 
   return (
@@ -117,10 +130,9 @@ export function LoginForm({ userType, onSuccess }: LoginFormProps) {
           Login {userType === 'admin' ? 'Admin' : 'Pelanggan'}
         </CardTitle>
         <p className="text-gray-400">
-          {userType === 'admin' 
-            ? 'Masuk ke panel administrator' 
-            : 'Masuk ke akun pelanggan Anda'
-          }
+          {userType === 'admin'
+            ? 'Masuk ke panel administrator'
+            : 'Masuk ke akun pelanggan Anda'}
         </p>
       </CardHeader>
 
@@ -128,7 +140,9 @@ export function LoginForm({ userType, onSuccess }: LoginFormProps) {
         <form onSubmit={handleSubmit} className="space-y-4">
           {/* Username */}
           <div className="space-y-2">
-            <Label htmlFor="username" className="text-white">Username</Label>
+            <Label htmlFor="username" className="text-white">
+              Username
+            </Label>
             <div className="relative">
               <User className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
               <Input
@@ -136,7 +150,7 @@ export function LoginForm({ userType, onSuccess }: LoginFormProps) {
                 type="text"
                 placeholder="Masukkan username"
                 value={formData.username}
-                onChange={(e) => handleInputChange('username', e.target.value)}
+                onChange={e => handleInputChange('username', e.target.value)}
                 className="pl-10 bg-slate-800 border-gray-600 text-white placeholder-gray-400"
                 disabled={isLoading}
               />
@@ -145,15 +159,17 @@ export function LoginForm({ userType, onSuccess }: LoginFormProps) {
 
           {/* Password */}
           <div className="space-y-2">
-            <Label htmlFor="password" className="text-white">Password</Label>
+            <Label htmlFor="password" className="text-white">
+              Password
+            </Label>
             <div className="relative">
               <Lock className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
               <Input
                 id="password"
-                type={showPassword ? "text" : "password"}
+                type={showPassword ? 'text' : 'password'}
                 placeholder="Masukkan password"
                 value={formData.password}
-                onChange={(e) => handleInputChange('password', e.target.value)}
+                onChange={e => handleInputChange('password', e.target.value)}
                 className="pl-10 pr-10 bg-slate-800 border-gray-600 text-white placeholder-gray-400"
                 disabled={isLoading}
               />
@@ -163,7 +179,11 @@ export function LoginForm({ userType, onSuccess }: LoginFormProps) {
                 className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-white"
                 disabled={isLoading}
               >
-                {showPassword ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
+                {showPassword ? (
+                  <EyeOff className="h-4 w-4" />
+                ) : (
+                  <Eye className="h-4 w-4" />
+                )}
               </button>
             </div>
           </div>
@@ -209,8 +229,14 @@ export function LoginForm({ userType, onSuccess }: LoginFormProps) {
           <div className="space-y-2 text-xs text-gray-300">
             {demoCredentials[userType].map((cred, index) => (
               <div key={index} className="flex justify-between">
-                <span>Username: <code className="text-orange-400">{cred.username}</code></span>
-                <span>Password: <code className="text-orange-400">{cred.password}</code></span>
+                <span>
+                  Username:{' '}
+                  <code className="text-orange-400">{cred.username}</code>
+                </span>
+                <span>
+                  Password:{' '}
+                  <code className="text-orange-400">{cred.password}</code>
+                </span>
               </div>
             ))}
           </div>
@@ -220,15 +246,21 @@ export function LoginForm({ userType, onSuccess }: LoginFormProps) {
         <div className="text-center text-sm text-gray-400">
           {userType === 'admin' ? (
             <>
-              Bukan admin? {' '}
-              <a href="/login/pelanggan" className="text-orange-400 hover:text-orange-300">
+              Bukan admin?{' '}
+              <a
+                href="/login/pelanggan"
+                className="text-orange-400 hover:text-orange-300"
+              >
                 Login sebagai Pelanggan
               </a>
             </>
           ) : (
             <>
-              Admin? {' '}
-              <a href="/login/admin" className="text-orange-400 hover:text-orange-300">
+              Admin?{' '}
+              <a
+                href="/login/admin"
+                className="text-orange-400 hover:text-orange-300"
+              >
                 Login sebagai Admin
               </a>
             </>

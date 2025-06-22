@@ -1,21 +1,27 @@
-"use client"
+'use client'
 
-import { useState } from "react"
-import { Search, HelpCircle, MessageCircle, Phone, Mail } from "lucide-react"
-import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { Input } from "@/components/ui/input"
-import { AccordionItem } from "@/components/accordion-item"
-import { PageHeader } from "@/components/page-header"
-import { LiveChatWidget } from "@/components/live-chat-widget"
-import { SubscriptionWidget } from "@/components/subscription-widget-fixed"
-import { SectionTitle } from "@/components/section-title"
-import { faqData, getFAQsByCategory, searchFAQs, getFAQCategories, type FAQItem } from "@/data/faq"
-import { contactInfo, getContactByType } from "@/data/contact"
-import Link from "next/link"
+import { useState } from 'react'
+import { Search, HelpCircle, MessageCircle, Phone, Mail } from 'lucide-react'
+import { Button } from '@/components/ui/button'
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
+import { Input } from '@/components/ui/input'
+import { AccordionItem } from '@/components/accordion-item'
+import { PageHeader } from '@/components/page-header'
+import { LiveChatWidget } from '@/components/live-chat-widget'
+import { SubscriptionWidget } from '@/components/subscription-widget-fixed'
+import { SectionTitle } from '@/components/section-title'
+import {
+  faqData,
+  getFAQsByCategory,
+  searchFAQs,
+  getFAQCategories,
+  type FAQItem,
+} from '@/data/faq'
+import { contactInfo, getContactByType } from '@/data/contact'
+import Link from 'next/link'
 
 export default function FAQPage() {
-  const [searchQuery, setSearchQuery] = useState("")
+  const [searchQuery, setSearchQuery] = useState('')
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null)
   const [filteredFAQs, setFilteredFAQs] = useState<FAQItem[]>(faqData)
 
@@ -24,8 +30,10 @@ export default function FAQPage() {
   // Handle search
   const handleSearch = (query: string) => {
     setSearchQuery(query)
-    if (query.trim() === "") {
-      setFilteredFAQs(selectedCategory ? getFAQsByCategory(selectedCategory) : faqData)
+    if (query.trim() === '') {
+      setFilteredFAQs(
+        selectedCategory ? getFAQsByCategory(selectedCategory) : faqData
+      )
     } else {
       setFilteredFAQs(searchFAQs(query))
     }
@@ -38,29 +46,36 @@ export default function FAQPage() {
       setFilteredFAQs(searchQuery ? searchFAQs(searchQuery) : faqData)
     } else {
       const categoryFAQs = getFAQsByCategory(category)
-      setFilteredFAQs(searchQuery ? categoryFAQs.filter(faq => 
-        faq.question.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        faq.answer.toLowerCase().includes(searchQuery.toLowerCase())
-      ) : categoryFAQs)
+      setFilteredFAQs(
+        searchQuery
+          ? categoryFAQs.filter(
+              faq =>
+                faq.question
+                  .toLowerCase()
+                  .includes(searchQuery.toLowerCase()) ||
+                faq.answer.toLowerCase().includes(searchQuery.toLowerCase())
+            )
+          : categoryFAQs
+      )
     }
   }
 
   const getCategoryIcon = (category: string) => {
     const icons = {
-      'umum': '📋',
-      'teknis': '⚙️',
-      'pembayaran': '💳',
-      'layanan': '🛠️'
+      umum: '📋',
+      teknis: '⚙️',
+      pembayaran: '💳',
+      layanan: '🛠️',
     }
     return icons[category as keyof typeof icons] || '❓'
   }
 
   const getCategoryName = (category: string) => {
     const names = {
-      'umum': 'Umum',
-      'teknis': 'Teknis',
-      'pembayaran': 'Pembayaran',
-      'layanan': 'Layanan'
+      umum: 'Umum',
+      teknis: 'Teknis',
+      pembayaran: 'Pembayaran',
+      layanan: 'Layanan',
     }
     return names[category as keyof typeof names] || category
   }
@@ -94,7 +109,7 @@ export default function FAQPage() {
                 type="text"
                 placeholder="Cari pertanyaan atau kata kunci..."
                 value={searchQuery}
-                onChange={(e) => handleSearch(e.target.value)}
+                onChange={e => handleSearch(e.target.value)}
                 className="pl-10 bg-slate-900 border-gray-700 text-white placeholder-gray-400 h-12"
               />
             </div>
@@ -102,16 +117,18 @@ export default function FAQPage() {
             {/* Category Filter */}
             <div className="flex flex-wrap gap-3 mb-8">
               <Button
-                variant={selectedCategory === null ? "default" : "outline"}
+                variant={selectedCategory === null ? 'default' : 'outline'}
                 onClick={() => handleCategoryFilter(null)}
                 className="rounded-full"
               >
                 🔍 Semua
               </Button>
-              {categories.map((category) => (
+              {categories.map(category => (
                 <Button
                   key={category}
-                  variant={selectedCategory === category ? "default" : "outline"}
+                  variant={
+                    selectedCategory === category ? 'default' : 'outline'
+                  }
                   onClick={() => handleCategoryFilter(category)}
                   className="rounded-full"
                 >
@@ -123,7 +140,8 @@ export default function FAQPage() {
             {/* Results Info */}
             <div className="mb-6 text-gray-400 text-sm">
               Menampilkan {filteredFAQs.length} dari {faqData.length} pertanyaan
-              {selectedCategory && ` dalam kategori "${getCategoryName(selectedCategory)}"`}
+              {selectedCategory &&
+                ` dalam kategori "${getCategoryName(selectedCategory)}"`}
               {searchQuery && ` untuk pencarian "${searchQuery}"`}
             </div>
           </div>
@@ -145,13 +163,15 @@ export default function FAQPage() {
             ) : (
               <div className="text-center py-12">
                 <div className="text-6xl mb-4">🔍</div>
-                <h3 className="text-xl font-semibold mb-2">Tidak ada hasil ditemukan</h3>
+                <h3 className="text-xl font-semibold mb-2">
+                  Tidak ada hasil ditemukan
+                </h3>
                 <p className="text-gray-400 mb-6">
                   Coba gunakan kata kunci lain atau pilih kategori yang berbeda
                 </p>
                 <Button
                   onClick={() => {
-                    setSearchQuery("")
+                    setSearchQuery('')
                     setSelectedCategory(null)
                     setFilteredFAQs(faqData)
                   }}
@@ -173,11 +193,14 @@ export default function FAQPage() {
                   Masih Ada Pertanyaan Lain? 🤔
                 </CardTitle>
                 <p className="text-gray-300">
-                  Tim customer service kami siap bantu kamu 24/7! Jangan ragu buat tanya apa aja tentang layanan internet kami.
+                  Tim customer service kami siap bantu kamu 24/7! Jangan ragu
+                  buat tanya apa aja tentang layanan internet kami.
                 </p>
               </CardHeader>
               <CardContent>
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">                  {/* WhatsApp */}
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                  {' '}
+                  {/* WhatsApp */}
                   <a
                     href={`https://wa.me/${getContactByType('whatsapp')?.value.replace(/\D/g, '')}?text=Halo%20Jawara-Net!%20Saya%20punya%20pertanyaan%20tentang%20layanan%20internet`}
                     target="_blank"
@@ -186,11 +209,12 @@ export default function FAQPage() {
                   >
                     <MessageCircle className="h-6 w-6 text-green-400" />
                     <div>
-                      <div className="font-semibold text-green-400">WhatsApp</div>
+                      <div className="font-semibold text-green-400">
+                        WhatsApp
+                      </div>
                       <div className="text-sm text-gray-300">Chat langsung</div>
                     </div>
                   </a>
-
                   {/* Phone */}
                   <a
                     href={`tel:${getContactByType('phone')?.value}`}
@@ -199,10 +223,11 @@ export default function FAQPage() {
                     <Phone className="h-6 w-6 text-blue-400" />
                     <div>
                       <div className="font-semibold text-blue-400">Telepon</div>
-                      <div className="text-sm text-gray-300">Hubungi langsung</div>
+                      <div className="text-sm text-gray-300">
+                        Hubungi langsung
+                      </div>
                     </div>
                   </a>
-
                   {/* Contact Page */}
                   <Link
                     href="/contact"
@@ -210,7 +235,9 @@ export default function FAQPage() {
                   >
                     <Mail className="h-6 w-6 text-orange-400" />
                     <div>
-                      <div className="font-semibold text-orange-400">Form Kontak</div>
+                      <div className="font-semibold text-orange-400">
+                        Form Kontak
+                      </div>
                       <div className="text-sm text-gray-300">Kirim pesan</div>
                     </div>
                   </Link>

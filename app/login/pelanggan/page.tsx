@@ -1,13 +1,13 @@
-"use client"
+'use client'
 
-import { useEffect } from "react"
-import { Shield, Users, Zap, Clock } from "lucide-react"
-import { PageHeader } from "@/components/page-header"
-import { LoginForm } from "@/components/login-form"
-import { LiveChatWidget } from "@/components/live-chat-widget"
-import { SubscriptionWidget } from "@/components/subscription-widget-fixed"
-import { Card, CardContent } from "@/components/ui/card"
-import { isAuthenticated, isPelanggan } from "@/data/auth"
+import { useEffect } from 'react'
+import { Shield, Users, Zap, Clock } from 'lucide-react'
+import { PageHeader } from '@/components/page-header'
+import { LoginForm } from '@/components/login-form'
+import { LiveChatWidget } from '@/components/live-chat-widget'
+import { SubscriptionWidget } from '@/components/subscription-widget-fixed'
+import { Card, CardContent } from '@/components/ui/card'
+import { isAuthenticated, isPelanggan } from '@/data/auth'
 
 export default function PelangganLoginPage() {
   useEffect(() => {
@@ -20,24 +20,24 @@ export default function PelangganLoginPage() {
   const benefits = [
     {
       icon: <Users className="h-6 w-6 text-blue-400" />,
-      title: "Kelola Akun",
-      description: "Lihat informasi akun, paket, dan riwayat pembayaran"
+      title: 'Kelola Akun',
+      description: 'Lihat informasi akun, paket, dan riwayat pembayaran',
     },
     {
       icon: <Zap className="h-6 w-6 text-yellow-400" />,
-      title: "Monitor Usage",
-      description: "Pantau penggunaan internet dan kecepatan real-time"
+      title: 'Monitor Usage',
+      description: 'Pantau penggunaan internet dan kecepatan real-time',
     },
     {
       icon: <Clock className="h-6 w-6 text-green-400" />,
-      title: "Riwayat Layanan",
-      description: "Akses riwayat tiket support dan maintenance"
+      title: 'Riwayat Layanan',
+      description: 'Akses riwayat tiket support dan maintenance',
     },
     {
       icon: <Shield className="h-6 w-6 text-purple-400" />,
-      title: "Keamanan",
-      description: "Ubah password dan pengaturan keamanan akun"
-    }
+      title: 'Keamanan',
+      description: 'Ubah password dan pengaturan keamanan akun',
+    },
   ]
 
   return (
@@ -55,7 +55,8 @@ export default function PelangganLoginPage() {
                   Portal Pelanggan
                 </h1>
                 <p className="text-xl text-gray-300">
-                  Masuk ke akun Anda untuk mengakses layanan dan informasi berlangganan
+                  Masuk ke akun Anda untuk mengakses layanan dan informasi
+                  berlangganan
                 </p>
               </div>
 
@@ -69,18 +70,20 @@ export default function PelangganLoginPage() {
                   Akses Portal Pelanggan
                 </h2>
                 <p className="text-gray-400 mb-8">
-                  Kelola berlangganan internet Anda dengan mudah melalui portal pelanggan Jawara-Net
+                  Kelola berlangganan internet Anda dengan mudah melalui portal
+                  pelanggan Jawara-Net
                 </p>
               </div>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                 {benefits.map((benefit, index) => (
-                  <Card key={index} className="bg-slate-900/50 border-gray-700 hover:bg-slate-800/50 transition-colors">
+                  <Card
+                    key={index}
+                    className="bg-slate-900/50 border-gray-700 hover:bg-slate-800/50 transition-colors"
+                  >
                     <CardContent className="p-6">
                       <div className="flex items-start space-x-4">
-                        <div className="flex-shrink-0">
-                          {benefit.icon}
-                        </div>
+                        <div className="flex-shrink-0">{benefit.icon}</div>
                         <div>
                           <h3 className="font-semibold text-white mb-2">
                             {benefit.title}

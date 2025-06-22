@@ -1,14 +1,15 @@
-"use client"
+'use client'
 
-import { SectionTitle } from "@/components/section-title"
-import { MapPin, Navigation, Phone, Clock } from "lucide-react"
+import { SectionTitle } from '@/components/section-title'
+import { MapPin, Navigation, Phone, Clock } from 'lucide-react'
 
-export function MapSection() {  const officeLocation = {
+export function MapSection() {
+  const officeLocation = {
     lat: -6.1810747,
     lng: 107.0654949,
-    address: "R398+H5H Srimukti, Bekasi Regency, West Java",
-    phone: "+62 812-9529-5734",
-    hours: "Senin-Sabtu, 08:00-17:00"
+    address: 'R398+H5H Srimukti, Bekasi Regency, West Java',
+    phone: '+62 812-9529-5734',
+    hours: 'Senin-Sabtu, 08:00-17:00',
   }
 
   const openGoogleMaps = () => {
@@ -23,11 +24,12 @@ export function MapSection() {  const officeLocation = {
 
   return (
     <section className="py-20 bg-slate-900/30">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">        <SectionTitle
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        {' '}
+        <SectionTitle
           title="Lokasi Kantor Kami"
           subtitle="Datang langsung ke kantor pusat kami di Bekasi untuk konsultasi dan support langsung!"
         />
-
         <div className="grid lg:grid-cols-2 gap-12">
           {/* Map Container */}
           <div className="relative">
@@ -67,15 +69,19 @@ export function MapSection() {  const officeLocation = {
           {/* Office Info */}
           <div className="space-y-8">
             <div>
-              <h3 className="text-2xl font-bold text-orange-400 mb-6">Informasi Kantor 🏢</h3>
-              
+              <h3 className="text-2xl font-bold text-orange-400 mb-6">
+                Informasi Kantor 🏢
+              </h3>
+
               <div className="space-y-6">
                 <div className="flex items-start space-x-4">
                   <div className="w-12 h-12 bg-purple-500/20 rounded-lg flex items-center justify-center">
                     <MapPin className="h-6 w-6 text-purple-500" />
                   </div>
                   <div>
-                    <h4 className="font-semibold text-white mb-1">Alamat Lengkap</h4>
+                    <h4 className="font-semibold text-white mb-1">
+                      Alamat Lengkap
+                    </h4>
                     <p className="text-gray-300">{officeLocation.address}</p>
                     <div className="flex items-center space-x-2 mt-2">
                       <span className="text-xs bg-green-500/20 text-green-400 px-2 py-1 rounded">
@@ -90,7 +96,9 @@ export function MapSection() {  const officeLocation = {
                     <Phone className="h-6 w-6 text-green-500" />
                   </div>
                   <div>
-                    <h4 className="font-semibold text-white mb-1">Kontak Kantor</h4>
+                    <h4 className="font-semibold text-white mb-1">
+                      Kontak Kantor
+                    </h4>
                     <p className="text-gray-300">{officeLocation.phone}</p>
                     <p className="text-gray-400 text-sm">Telepon tersedia</p>
                   </div>
@@ -101,17 +109,22 @@ export function MapSection() {  const officeLocation = {
                     <Clock className="h-6 w-6 text-yellow-500" />
                   </div>
                   <div>
-                    <h4 className="font-semibold text-white mb-1">Jam Operasional</h4>
+                    <h4 className="font-semibold text-white mb-1">
+                      Jam Operasional
+                    </h4>
                     <p className="text-gray-300">{officeLocation.hours}</p>
-                    <p className="text-gray-400 text-sm">Customer Service online 24/7</p>
+                    <p className="text-gray-400 text-sm">
+                      Customer Service online 24/7
+                    </p>
                   </div>
                 </div>
               </div>
             </div>
-
             {/* Quick Contact */}
             <div className="bg-gradient-to-r from-slate-800/50 to-slate-700/30 p-6 rounded-xl border border-gray-700">
-              <h4 className="text-lg font-bold text-white mb-4">Kontak Cepat 📞</h4>
+              <h4 className="text-lg font-bold text-white mb-4">
+                Kontak Cepat 📞
+              </h4>
               <div className="space-y-4">
                 <a
                   href={`https://wa.me/6281295295734`}
@@ -130,15 +143,28 @@ export function MapSection() {  const officeLocation = {
                   <span>Telepon Sekarang</span>
                 </a>
               </div>
-            </div>            {/* Transportation Info */}
+            </div>{' '}
+            {/* Transportation Info */}
             <div className="bg-gradient-to-r from-blue-500/10 to-purple-500/10 p-6 rounded-xl border border-blue-500/20">
-              <h4 className="text-lg font-bold text-white mb-4">Akses Transportasi 🚗</h4>
+              <h4 className="text-lg font-bold text-white mb-4">
+                Akses Transportasi 🚗
+              </h4>
               <div className="space-y-2 text-gray-300">
-                <p>🚗 <strong>Mobil:</strong> Parkir tersedia di area kantor</p>
-                <p>🏍️ <strong>Motor:</strong> Area parkir motor yang luas</p>
-                <p>🚌 <strong>Angkot:</strong> Jalur angkot Bekasi - Srimukti</p>
-                <p>🚖 <strong>Online:</strong> Gojek, Grab tersedia</p>
-                <p>🚆 <strong>KRL:</strong> Stasiun Bekasi (15 menit berkendara)</p>
+                <p>
+                  🚗 <strong>Mobil:</strong> Parkir tersedia di area kantor
+                </p>
+                <p>
+                  🏍️ <strong>Motor:</strong> Area parkir motor yang luas
+                </p>
+                <p>
+                  🚌 <strong>Angkot:</strong> Jalur angkot Bekasi - Srimukti
+                </p>
+                <p>
+                  🚖 <strong>Online:</strong> Gojek, Grab tersedia
+                </p>
+                <p>
+                  🚆 <strong>KRL:</strong> Stasiun Bekasi (15 menit berkendara)
+                </p>
               </div>
             </div>
           </div>

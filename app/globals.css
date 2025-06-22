@@ -33,20 +33,26 @@
   }
   body {
     @apply bg-background text-foreground;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    font-family:
+      -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue',
+      Arial, sans-serif;
     line-height: 1.6;
   }
 }
 
 /* Professional Cartoon Fonts */
 .cartoon-title {
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  font-family:
+    -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue',
+    Arial, sans-serif;
   font-weight: 800;
   letter-spacing: -0.02em;
 }
 
 .cartoon-text {
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  font-family:
+    -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue',
+    Arial, sans-serif;
   font-weight: 600;
 }
 
@@ -121,26 +127,53 @@ html {
 
 /* Professional Batik Pattern */
 .batik-professional {
-  background-image: radial-gradient(circle at 25% 25%, rgba(249, 115, 22, 0.1) 2px, transparent 2px),
-    radial-gradient(circle at 75% 75%, rgba(59, 130, 246, 0.1) 2px, transparent 2px),
-    radial-gradient(circle at 50% 50%, rgba(220, 38, 38, 0.05) 1px, transparent 1px);
-  background-size: 40px 40px, 40px 40px, 20px 20px;
-  background-position: 0 0, 20px 20px, 10px 10px;
+  background-image:
+    radial-gradient(
+      circle at 25% 25%,
+      rgba(249, 115, 22, 0.1) 2px,
+      transparent 2px
+    ),
+    radial-gradient(
+      circle at 75% 75%,
+      rgba(59, 130, 246, 0.1) 2px,
+      transparent 2px
+    ),
+    radial-gradient(
+      circle at 50% 50%,
+      rgba(220, 38, 38, 0.05) 1px,
+      transparent 1px
+    );
+  background-size:
+    40px 40px,
+    40px 40px,
+    20px 20px;
+  background-position:
+    0 0,
+    20px 20px,
+    10px 10px;
 }
 
 /* Professional Card Design */
 .professional-card {
-  background: linear-gradient(145deg, rgba(30, 41, 59, 0.8) 0%, rgba(15, 23, 42, 0.9) 100%);
+  background: linear-gradient(
+    145deg,
+    rgba(30, 41, 59, 0.8) 0%,
+    rgba(15, 23, 42, 0.9) 100%
+  );
   backdrop-filter: blur(20px);
   border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 16px;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3), 0 1px 0 rgba(255, 255, 255, 0.1) inset;
+  box-shadow:
+    0 8px 32px rgba(0, 0, 0, 0.3),
+    0 1px 0 rgba(255, 255, 255, 0.1) inset;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .professional-card:hover {
   transform: translateY(-4px);
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4), 0 1px 0 rgba(255, 255, 255, 0.2) inset;
+  box-shadow:
+    0 20px 40px rgba(0, 0, 0, 0.4),
+    0 1px 0 rgba(255, 255, 255, 0.2) inset;
   border-color: rgba(249, 115, 22, 0.3);
 }
 
@@ -149,20 +182,27 @@ html {
   background: linear-gradient(135deg, #f97316 0%, #dc2626 100%);
   border: none;
   border-radius: 12px;
-  box-shadow: 0 4px 16px rgba(249, 115, 22, 0.4), 0 1px 0 rgba(255, 255, 255, 0.2) inset;
+  box-shadow:
+    0 4px 16px rgba(249, 115, 22, 0.4),
+    0 1px 0 rgba(255, 255, 255, 0.2) inset;
   transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
   position: relative;
   overflow: hidden;
 }
 
 .professional-button::before {
-  content: "";
+  content: '';
   position: absolute;
   top: 0;
   left: -100%;
   width: 100%;
   height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.2),
+    transparent
+  );
   transition: left 0.5s;
 }
 
@@ -172,12 +212,16 @@ html {
 
 .professional-button:hover {
   transform: translateY(-2px);
-  box-shadow: 0 8px 24px rgba(249, 115, 22, 0.5), 0 1px 0 rgba(255, 255, 255, 0.3) inset;
+  box-shadow:
+    0 8px 24px rgba(249, 115, 22, 0.5),
+    0 1px 0 rgba(255, 255, 255, 0.3) inset;
 }
 
 .professional-button:active {
   transform: translateY(0);
-  box-shadow: 0 2px 8px rgba(249, 115, 22, 0.4), 0 1px 0 rgba(255, 255, 255, 0.1) inset;
+  box-shadow:
+    0 2px 8px rgba(249, 115, 22, 0.4),
+    0 1px 0 rgba(255, 255, 255, 0.1) inset;
 }
 
 /* Professional Speech Bubble */
@@ -186,12 +230,14 @@ html {
   border-radius: 20px;
   padding: 24px 32px;
   position: relative;
-  box-shadow: 0 8px 32px rgba(251, 191, 36, 0.3), 0 1px 0 rgba(255, 255, 255, 0.3) inset;
+  box-shadow:
+    0 8px 32px rgba(251, 191, 36, 0.3),
+    0 1px 0 rgba(255, 255, 255, 0.3) inset;
   border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
 .professional-bubble::after {
-  content: "";
+  content: '';
   position: absolute;
   bottom: -12px;
   left: 32px;
@@ -205,7 +251,10 @@ html {
 
 /* Professional Glow Effect */
 .professional-glow {
-  box-shadow: 0 0 20px rgba(249, 115, 22, 0.3), 0 0 40px rgba(249, 115, 22, 0.1), 0 8px 32px rgba(0, 0, 0, 0.3);
+  box-shadow:
+    0 0 20px rgba(249, 115, 22, 0.3),
+    0 0 40px rgba(249, 115, 22, 0.1),
+    0 8px 32px rgba(0, 0, 0, 0.3);
 }
 
 /* Indonesian Flag Professional */
@@ -218,7 +267,8 @@ html {
 
 /* Professional Grid Pattern */
 .grid-pattern {
-  background-image: linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
     linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
   background-size: 20px 20px;
 }
@@ -255,7 +305,12 @@ html {
 }
 
 .shimmer {
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.1),
+    transparent
+  );
   background-size: 200px 100%;
   animation: shimmer 2s infinite;
 }

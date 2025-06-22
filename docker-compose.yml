@@ -4,11 +4,11 @@ services:
       context: .
       dockerfile: Dockerfile
     ports:
-      - "3000:3000"
+      - '3000:3000'
     environment:
       - NODE_ENV=production
     restart: unless-stopped
-  wwebjs_sessions:
+  # wwebjs_sessions:
   # Development version with volume mounting (uncomment for development)
   # web-dev:
   #   build:

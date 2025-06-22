@@ -1,11 +1,11 @@
-"use client"
+'use client'
 
-import { ReactNode } from "react"
-import { Navbar } from "@/components/navbar"
-import { Footer } from "@/components/footer"
-import { LiveChatWidget } from "@/components/live-chat-widget"
-import { SubscriptionWidget } from "@/components/subscription-widget-fixed"
-import { PageHeader } from "@/components/breadcrumb"
+import { ReactNode } from 'react'
+import { Navbar } from '@/components/navbar'
+import { Footer } from '@/components/footer'
+import { LiveChatWidget } from '@/components/live-chat-widget'
+import { SubscriptionWidget } from '@/components/subscription-widget-fixed'
+import { PageHeader } from '@/components/breadcrumb'
 
 interface PageLayoutProps {
   children: ReactNode
@@ -28,15 +28,17 @@ export function PageLayout({
   showWidgets = true,
   showPageHeader = false,
   pageHeaderProps,
-  className = ""
+  className = '',
 }: PageLayoutProps) {
   return (
-    <div className={`min-h-screen bg-slate-950 text-white overflow-x-hidden ${className}`}>
+    <div
+      className={`min-h-screen bg-slate-950 text-white overflow-x-hidden ${className}`}
+    >
       {showNavbar && <Navbar activeSection="" />}
-      
-      <main className={showNavbar ? "pt-24" : ""}>
+
+      <main className={showNavbar ? 'pt-24' : ''}>
         {showPageHeader && (
-          <PageHeader 
+          <PageHeader
             title={pageHeaderProps?.title}
             showBreadcrumb={pageHeaderProps?.showBreadcrumb}
             showBackButton={pageHeaderProps?.showBackButton}
@@ -46,7 +48,7 @@ export function PageLayout({
       </main>
 
       {showFooter && <Footer />}
-      
+
       {showWidgets && (
         <>
           <LiveChatWidget />
@@ -71,7 +73,7 @@ export function StandardPageLayout({
   title,
   showBreadcrumb = true,
   showBackButton = true,
-  className = ""
+  className = '',
 }: StandardPageProps) {
   return (
     <PageLayout
@@ -79,7 +81,7 @@ export function StandardPageLayout({
       pageHeaderProps={{
         title,
         showBreadcrumb,
-        showBackButton
+        showBackButton,
       }}
       className={className}
     >
@@ -91,17 +93,13 @@ export function StandardPageLayout({
 // Layout khusus untuk halaman dengan header custom (seperti berlangganan, speedtest, contact)
 export function CustomHeaderPageLayout({
   children,
-  className = ""
+  className = '',
 }: {
   children: ReactNode
   className?: string
 }) {
   return (
-    <PageLayout
-      showNavbar={false}
-      showPageHeader={false}
-      className={className}
-    >
+    <PageLayout showNavbar={false} showPageHeader={false} className={className}>
       {children}
     </PageLayout>
   )

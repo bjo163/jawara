@@ -1,22 +1,37 @@
-"use client"
+'use client'
 
-import { useEffect, useState } from "react"
-import { LogOut, Users, BarChart3, Settings, Shield, Wifi, DollarSign, TrendingUp, MessageCircle, AlertTriangle, CheckCircle } from "lucide-react"
-import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { getAuthData, clearAuthData, type User as UserType } from "@/data/auth"
+import { useEffect, useState } from 'react'
+import {
+  LogOut,
+  Users,
+  BarChart3,
+  Settings,
+  Shield,
+  Wifi,
+  DollarSign,
+  TrendingUp,
+  MessageCircle,
+  AlertTriangle,
+  CheckCircle,
+} from 'lucide-react'
+import { Button } from '@/components/ui/button'
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
+import { getAuthData, clearAuthData, type User as UserType } from '@/data/auth'
 
 export default function AdminDashboard() {
   const [user, setUser] = useState<UserType | null>(null)
-  const [whatsappHealth, setWhatsappHealth] = useState<'checking' | 'healthy' | 'unhealthy'>('checking')
+  const [whatsappHealth, setWhatsappHealth] = useState<
+    'checking' | 'healthy' | 'unhealthy'
+  >('checking')
 
   useEffect(() => {
     const { user: authUser } = getAuthData()
     if (!authUser || authUser.role !== 'admin') {
       window.location.href = '/login/admin'
-      return    }
+      return
+    }
     setUser(authUser)
-    
+
     // Check WhatsApp server health on load
     checkWhatsAppHealth()
   }, [])
@@ -27,9 +42,13 @@ export default function AdminDashboard() {
       const response = await fetch('/api/whatsapp/health')
       const result = await response.json()
       setWhatsappHealth(result.success ? 'healthy' : 'unhealthy')
-      
+
       if (!result.success) {
-        console.error('WhatsApp health check failed:', result.error, result.details)
+        console.error(
+          'WhatsApp health check failed:',
+          result.error,
+          result.details
+        )
       }
     } catch (error) {
       console.error('WhatsApp health check failed:', error)
@@ -57,38 +76,42 @@ export default function AdminDashboard() {
 
   const stats = [
     {
-      title: "Total Pelanggan",
-      value: "1,234",
-      change: "+12%",
+      title: 'Total Pelanggan',
+      value: '1,234',
+      change: '+12%',
       icon: Users,
-      color: "text-blue-400"
+      color: 'text-blue-400',
     },
     {
-      title: "Revenue Bulan Ini",
-      value: "Rp 125M",
-      change: "+8%",
+      title: 'Revenue Bulan Ini',
+      value: 'Rp 125M',
+      change: '+8%',
       icon: DollarSign,
-      color: "text-green-400"
+      color: 'text-green-400',
     },
     {
-      title: "Network Uptime",
-      value: "99.8%",
-      change: "+0.2%",
+      title: 'Network Uptime',
+      value: '99.8%',
+      change: '+0.2%',
       icon: Wifi,
-      color: "text-purple-400"
+      color: 'text-purple-400',
     },
     {
-      title: "Growth Rate",
-      value: "15.3%",
-      change: "+3%",
+      title: 'Growth Rate',
+      value: '15.3%',
+      change: '+3%',
       icon: TrendingUp,
-      color: "text-orange-400"
-    }
+      color: 'text-orange-400',
+    },
   ]
 
   const getWhatsAppStatusIcon = () => {
-    if (whatsappHealth === 'checking') return <div className="h-5 w-5 animate-spin border-2 border-gray-300 border-t-blue-400 rounded-full" />
-    if (whatsappHealth === 'healthy') return <CheckCircle className="h-5 w-5 text-green-400" />
+    if (whatsappHealth === 'checking')
+      return (
+        <div className="h-5 w-5 animate-spin border-2 border-gray-300 border-t-blue-400 rounded-full" />
+      )
+    if (whatsappHealth === 'healthy')
+      return <CheckCircle className="h-5 w-5 text-green-400" />
     return <AlertTriangle className="h-5 w-5 text-red-400" />
   }
 
@@ -127,7 +150,9 @@ export default function AdminDashboard() {
         {/* Welcome Section */}
         <div className="mb-8">
           <h2 className="text-3xl font-bold mb-2">Dashboard Administrator</h2>
-          <p className="text-gray-400">Monitor dan kelola operasional Jawara-Net</p>
+          <p className="text-gray-400">
+            Monitor dan kelola operasional Jawara-Net
+          </p>
         </div>
 
         {/* WhatsApp Health Status */}
@@ -148,7 +173,9 @@ export default function AdminDashboard() {
               </Button>
             </CardTitle>
           </CardHeader>
-          <CardContent>            <div className="flex items-center justify-between">
+          <CardContent>
+            {' '}
+            <div className="flex items-center justify-between">
               <div className="flex items-center space-x-3">
                 {getWhatsAppStatusIcon()}
                 <div>
@@ -156,9 +183,12 @@ export default function AdminDashboard() {
                     {getWhatsAppStatusText()}
                   </div>
                   <div className="text-sm text-gray-400">
-                    {whatsappHealth === 'healthy' && 'WhatsApp server is ready for use'}
-                    {whatsappHealth === 'unhealthy' && 'WhatsApp server is not responding'}
-                    {whatsappHealth === 'checking' && 'Checking server status...'}
+                    {whatsappHealth === 'healthy' &&
+                      'WhatsApp server is ready for use'}
+                    {whatsappHealth === 'unhealthy' &&
+                      'WhatsApp server is not responding'}
+                    {whatsappHealth === 'checking' &&
+                      'Checking server status...'}
                   </div>
                 </div>
               </div>
@@ -167,14 +197,18 @@ export default function AdminDashboard() {
                   <Button
                     variant="outline"
                     size="sm"
-                    onClick={() => window.location.href = '/admin/diagnostics'}
+                    onClick={() =>
+                      (window.location.href = '/admin/diagnostics')
+                    }
                   >
                     <Settings className="h-4 w-4 mr-2" />
                     Diagnostics
                   </Button>
                 )}
                 <Button
-                  variant={whatsappHealth === 'healthy' ? 'default' : 'secondary'}
+                  variant={
+                    whatsappHealth === 'healthy' ? 'default' : 'secondary'
+                  }
                   onClick={navigateToWhatsApp}
                   disabled={whatsappHealth !== 'healthy'}
                 >
@@ -197,8 +231,12 @@ export default function AdminDashboard() {
                 </CardTitle>
               </CardHeader>
               <CardContent>
-                <div className="text-2xl font-bold text-white mb-1">{stat.value}</div>
-                <div className="text-sm text-green-400">{stat.change} dari bulan lalu</div>
+                <div className="text-2xl font-bold text-white mb-1">
+                  {stat.value}
+                </div>
+                <div className="text-sm text-green-400">
+                  {stat.change} dari bulan lalu
+                </div>
               </CardContent>
             </Card>
           ))}
@@ -209,14 +247,18 @@ export default function AdminDashboard() {
           <Card className="bg-slate-900 border-gray-700 hover:bg-slate-800 transition-colors cursor-pointer">
             <CardContent className="p-6 text-center">
               <Users className="h-12 w-12 text-blue-400 mx-auto mb-4" />
-              <h3 className="font-semibold text-white mb-2">Manajemen Pelanggan</h3>
+              <h3 className="font-semibold text-white mb-2">
+                Manajemen Pelanggan
+              </h3>
               <p className="text-sm text-gray-400">Kelola data pelanggan</p>
             </CardContent>
           </Card>
 
-          <Card 
+          <Card
             className={`bg-slate-900 border-gray-700 transition-colors cursor-pointer ${
-              whatsappHealth === 'healthy' ? 'hover:bg-slate-800' : 'opacity-50 cursor-not-allowed'
+              whatsappHealth === 'healthy'
+                ? 'hover:bg-slate-800'
+                : 'opacity-50 cursor-not-allowed'
             }`}
             onClick={navigateToWhatsApp}
           >
@@ -224,14 +266,20 @@ export default function AdminDashboard() {
               <div className="relative">
                 <MessageCircle className="h-12 w-12 text-green-400 mx-auto mb-4" />
                 <div className="absolute -top-1 -right-1">
-                  {whatsappHealth === 'healthy' && <CheckCircle className="h-4 w-4 text-green-400" />}
-                  {whatsappHealth === 'unhealthy' && <AlertTriangle className="h-4 w-4 text-red-400" />}
+                  {whatsappHealth === 'healthy' && (
+                    <CheckCircle className="h-4 w-4 text-green-400" />
+                  )}
+                  {whatsappHealth === 'unhealthy' && (
+                    <AlertTriangle className="h-4 w-4 text-red-400" />
+                  )}
                   {whatsappHealth === 'checking' && (
                     <div className="h-4 w-4 animate-spin border border-gray-300 border-t-blue-400 rounded-full" />
                   )}
                 </div>
               </div>
-              <h3 className="font-semibold text-white mb-2">WhatsApp Management</h3>
+              <h3 className="font-semibold text-white mb-2">
+                WhatsApp Management
+              </h3>
               <p className="text-sm text-gray-400">
                 {whatsappHealth === 'healthy' && 'Manage WhatsApp sessions'}
                 {whatsappHealth === 'unhealthy' && 'Service unavailable'}
@@ -275,12 +323,16 @@ export default function AdminDashboard() {
               <div className="space-y-4">
                 <div className="flex items-center space-x-3 text-sm">
                   <div className="h-2 w-2 bg-green-400 rounded-full"></div>
-                  <span className="text-gray-300">Pelanggan baru: John Smith</span>
+                  <span className="text-gray-300">
+                    Pelanggan baru: John Smith
+                  </span>
                   <span className="text-gray-500">5 menit lalu</span>
                 </div>
                 <div className="flex items-center space-x-3 text-sm">
                   <div className="h-2 w-2 bg-blue-400 rounded-full"></div>
-                  <span className="text-gray-300">Maintenance sektor A selesai</span>
+                  <span className="text-gray-300">
+                    Maintenance sektor A selesai
+                  </span>
                   <span className="text-gray-500">1 jam lalu</span>
                 </div>
                 <div className="flex items-center space-x-3 text-sm">
@@ -299,21 +351,35 @@ export default function AdminDashboard() {
 
           <Card className="bg-slate-900 border-gray-700">
             <CardHeader>
-              <CardTitle className="text-white">Alerts & Notifications</CardTitle>
+              <CardTitle className="text-white">
+                Alerts & Notifications
+              </CardTitle>
             </CardHeader>
             <CardContent>
               <div className="space-y-4">
                 <div className="p-3 bg-red-500/10 border border-red-500/20 rounded-lg">
-                  <div className="text-red-400 font-semibold text-sm">High Priority</div>
-                  <div className="text-gray-300 text-sm">Server CPU usage &gt;90%</div>
+                  <div className="text-red-400 font-semibold text-sm">
+                    High Priority
+                  </div>
+                  <div className="text-gray-300 text-sm">
+                    Server CPU usage &gt;90%
+                  </div>
                 </div>
                 <div className="p-3 bg-yellow-500/10 border border-yellow-500/20 rounded-lg">
-                  <div className="text-yellow-400 font-semibold text-sm">Medium Priority</div>
-                  <div className="text-gray-300 text-sm">Scheduled maintenance tomorrow</div>
+                  <div className="text-yellow-400 font-semibold text-sm">
+                    Medium Priority
+                  </div>
+                  <div className="text-gray-300 text-sm">
+                    Scheduled maintenance tomorrow
+                  </div>
                 </div>
                 <div className="p-3 bg-blue-500/10 border border-blue-500/20 rounded-lg">
-                  <div className="text-blue-400 font-semibold text-sm">Info</div>
-                  <div className="text-gray-300 text-sm">Monthly report ready</div>
+                  <div className="text-blue-400 font-semibold text-sm">
+                    Info
+                  </div>
+                  <div className="text-gray-300 text-sm">
+                    Monthly report ready
+                  </div>
                 </div>
               </div>
             </CardContent>
