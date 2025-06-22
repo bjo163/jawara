@@ -5,6 +5,7 @@ import { Menu, X } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Logo } from '@/components/logo'
 import { useBackendStatus } from '@/hooks/use-backend-status'
+import { useAuth } from '@/hooks/use-auth'
 
 interface NavbarProps {
   readonly activeSection: string
@@ -15,6 +16,7 @@ export function Navbar({ activeSection, onNavigate }: NavbarProps) {
   const [isOpen, setIsOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
   const { isOnline: isBackendOnline } = useBackendStatus()
+  const { user, company, logout } = useAuth()
 
   useEffect(() => {
     const handleScroll = () => {
@@ -103,31 +105,51 @@ export function Navbar({ activeSection, onNavigate }: NavbarProps) {
           </div>
           {/* CTA Button */}
           <div className="hidden md:flex items-center space-x-4">
-            {isBackendOnline && (
-              <div className="relative group">
-                <Button className="professional-button px-6 py-2 text-white font-bold cartoon-text">
-                  🔐 Login
-                </Button>
-                {/* Dropdown Menu */}{' '}
-                <div className="absolute right-0 mt-2 w-48 bg-slate-950 border border-gray-800 rounded-lg shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
-                  <div className="py-2">
-                    <button
-                      onClick={() =>
-                        (window.location.href = '/login/pelanggan')
-                      }
-                      className="w-full text-left px-4 py-2 text-gray-300 hover:text-orange-400 hover:bg-orange-500/10 transition-colors"
-                    >
-                      👤 Login Pelanggan
-                    </button>
-                    <button
-                      onClick={() => (window.location.href = '/login/admin')}
-                      className="w-full text-left px-4 py-2 text-gray-300 hover:text-orange-400 hover:bg-orange-500/10 transition-colors"
-                    >
-                      ⚙️ Login Admin
-                    </button>
+            {user ? (
+              <div className="flex flex-col items-end mr-4">
+                <span className="text-sm text-orange-400 font-semibold">
+                  {user.name}
+                </span>
+                {company && (
+                  <span className="text-xs text-gray-400">{company.name}</span>
+                )}
+                <button
+                  onClick={() => {
+                    logout()
+                    window.location.href = '/login/admin'
+                  }}
+                  className="mt-1 px-3 py-1 bg-red-600 hover:bg-red-700 text-white text-xs rounded transition-colors"
+                >
+                  Logout
+                </button>
+              </div>
+            ) : (
+              isBackendOnline && (
+                <div className="relative group">
+                  <Button className="professional-button px-6 py-2 text-white font-bold cartoon-text">
+                    🔐 Login
+                  </Button>
+                  {/* Dropdown Menu */}{' '}
+                  <div className="absolute right-0 mt-2 w-48 bg-slate-950 border border-gray-800 rounded-lg shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
+                    <div className="py-2">
+                      <button
+                        onClick={() =>
+                          (window.location.href = '/login/pelanggan')
+                        }
+                        className="w-full text-left px-4 py-2 text-gray-300 hover:text-orange-400 hover:bg-orange-500/10 transition-colors"
+                      >
+                        👤 Login Pelanggan
+                      </button>
+                      <button
+                        onClick={() => (window.location.href = '/login/admin')}
+                        className="w-full text-left px-4 py-2 text-gray-300 hover:text-orange-400 hover:bg-orange-500/10 transition-colors"
+                      >
+                        ⚙️ Login Admin
+                      </button>
+                    </div>
                   </div>
                 </div>
-              </div>
+              )
             )}
           </div>
           {/* Mobile menu button */}

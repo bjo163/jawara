@@ -85,6 +85,7 @@ export function LoginForm({ userType, onSuccess }: LoginFormProps) {
           body: JSON.stringify(payload),
         })
         const data = await response.json()
+        console.log('LOGIN ADMIN RESPONSE', data)
         if (!response.ok || (data.error ?? null)) {
           setError(
             data.error ?? 'Login gagal. Periksa email dan password Anda.'
@@ -92,7 +93,7 @@ export function LoginForm({ userType, onSuccess }: LoginFormProps) {
           setIsLoading(false)
           return
         }
-        // Simpan token dan user ke localStorage
+        // Simpan token, user, dan company ke localStorage
         const user = {
           id: String(data.user?.id ?? ''),
           username: data.user?.login ?? data.user?.email ?? '',
@@ -102,13 +103,20 @@ export function LoginForm({ userType, onSuccess }: LoginFormProps) {
           status: 'active' as const,
           createdAt: new Date(),
         }
+        const company = data.company ?? null
         const token = data.tokenData?.data?.token ?? ''
+        // Simpan user dan token ke localStorage
         saveAuthData(user, token)
+        if (company) {
+          localStorage.setItem('pdd_company', JSON.stringify(company))
+          const cekCompany = localStorage.getItem('pdd_company')
+          console.log('CEK LOCALSTORAGE COMPANY', cekCompany)
+        }
         setSuccess('Login berhasil! Mengalihkan...')
         if (onSuccess) onSuccess(user)
         setTimeout(() => {
           window.location.href = '/admin/dashboard'
-        }, 1200)
+        }, 1500)
         setIsLoading(false)
         return
       }
@@ -130,7 +138,12 @@ export function LoginForm({ userType, onSuccess }: LoginFormProps) {
         return
       }
       if (response.user && response.token) {
-        saveAuthData(response.user, response.token)
+        saveAuthData(user, token)
+        if (company) {
+          localStorage.setItem('pdd_company', JSON.stringify(company))
+          const cekCompany = localStorage.getItem('pdd_company')
+          console.log('CEK LOCALSTORAGE COMPANY', cekCompany)
+        }
         setSuccess('Login berhasil! Mengalihkan...')
         if (onSuccess) {
           onSuccess(response.user)

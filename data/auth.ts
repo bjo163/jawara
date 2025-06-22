@@ -116,15 +116,15 @@ export function getUserById(id: string): User | undefined {
 // Local storage helpers
 export function saveAuthData(user: User, token: string) {
   if (typeof window !== 'undefined') {
-    localStorage.setItem('jawara_user', JSON.stringify(user))
-    localStorage.setItem('jawara_token', token)
+    localStorage.setItem('pdd_user', JSON.stringify(user))
+    localStorage.setItem('pdd_token', token)
   }
 }
 
 export function getAuthData(): { user: User | null; token: string | null } {
   if (typeof window !== 'undefined') {
-    const userStr = localStorage.getItem('jawara_user')
-    const token = localStorage.getItem('jawara_token')
+    const userStr = localStorage.getItem('pdd_user')
+    const token = localStorage.getItem('pdd_token')
 
     return {
       user: userStr ? JSON.parse(userStr) : null,
@@ -137,8 +137,8 @@ export function getAuthData(): { user: User | null; token: string | null } {
 
 export function clearAuthData() {
   if (typeof window !== 'undefined') {
-    localStorage.removeItem('jawara_user')
-    localStorage.removeItem('jawara_token')
+    localStorage.removeItem('pdd_user')
+    localStorage.removeItem('pdd_token')
   }
 }
 

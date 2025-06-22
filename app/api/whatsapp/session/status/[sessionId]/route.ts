@@ -1,13 +1,12 @@
 import { NextResponse } from 'next/server'
 import type { BackendStatusResponse, WhatsAppApiError } from '@/types/whatsapp'
 
-interface Params {
-  sessionId: string
-}
-
-export async function GET(request: Request, { params }: { params: Params }) {
+export async function GET(
+  request: Request,
+  context: { params: { sessionId: string } }
+) {
   try {
-    const { sessionId } = params
+    const { sessionId } = context.params
 
     const sessionIdRegex = /^[a-zA-Z0-9-]+$/
     if (!sessionIdRegex.test(sessionId)) {
