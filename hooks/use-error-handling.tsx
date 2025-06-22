@@ -111,7 +111,12 @@ export function useApiError() {
           statusCode = 0 // Network error
         }
       } else if (typeof error === 'object' && error !== null) {
-        const errorObj = error as any
+        const errorObj = error as {
+          status?: number
+          statusCode?: number
+          message?: string
+          error?: string
+        }
         statusCode = errorObj.status ?? errorObj.statusCode ?? 500
         message = errorObj.message ?? errorObj.error ?? message
       }
@@ -242,8 +247,8 @@ export function useComponentError(componentName?: string) {
     },
     [reportError, componentName]
   )
-
   const wrapAsync = useCallback(
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     <T extends (...args: any[]) => Promise<any>>(fn: T): T => {
       return ((...args: Parameters<T>) => {
         try {
@@ -263,8 +268,8 @@ export function useComponentError(componentName?: string) {
     },
     [reportComponentError]
   )
-
   const wrapSync = useCallback(
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     <T extends (...args: any[]) => any>(fn: T): T => {
       return ((...args: Parameters<T>) => {
         try {
