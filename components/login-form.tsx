@@ -70,19 +70,58 @@ export function LoginForm({ userType, onSuccess }: LoginFormProps) {
         return
       }
 
+      if (userType === 'admin') {
+        // === INTEGRASI LOGIN ADMIN KE BACKEND API ===
+        const payload = {
+          email: formData.username,
+          password: formData.password,
+        }
+        const response = await fetch(
+          'https://backend-api.apps.pundidigitaldynamics.net/api/v1/auth',
+          {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(payload),
+          }
+        )
+        const data = await response.json()
+        if (!response.ok || (data.error ?? null)) {
+          setError(
+            data.error ?? 'Login gagal. Periksa email dan password Anda.'
+          )
+          setIsLoading(false)
+          return
+        }
+        // Simpan token dan user ke localStorage
+        const user = {
+          id: String(data.user?.id ?? ''),
+          username: data.user?.login ?? data.user?.email ?? '',
+          email: data.user?.email ?? '',
+          name: data.user?.name ?? data.user?.email ?? '',
+          role: 'admin' as const,
+          status: 'active' as const,
+          createdAt: new Date(),
+        }
+        const token = data.tokenData?.data?.token ?? ''
+        saveAuthData(user, token)
+        setSuccess('Login berhasil! Mengalihkan...')
+        if (onSuccess) onSuccess(user)
+        setTimeout(() => {
+          window.location.href = '/admin/dashboard'
+        }, 1200)
+        setIsLoading(false)
+        return
+      }
+
+      // === LOGIN PELANGGAN (LOKAL) ===
       // Simulate API delay
       await new Promise(resolve => setTimeout(resolve, 1000))
-
-      // Authenticate
       const response = authenticateUser(formData)
-
       if (!response.success) {
         setError(response.message)
         setIsLoading(false)
         return
       }
-
-      // Check user role matches login type
       if (response.user?.role !== userType) {
         setError(
           `Akun ini bukan untuk ${userType}. Silakan gunakan halaman login yang sesuai.`
@@ -90,24 +129,14 @@ export function LoginForm({ userType, onSuccess }: LoginFormProps) {
         setIsLoading(false)
         return
       }
-
-      // Save auth data
       if (response.user && response.token) {
         saveAuthData(response.user, response.token)
         setSuccess('Login berhasil! Mengalihkan...')
-
-        // Call success callback
         if (onSuccess) {
           onSuccess(response.user)
         }
-
-        // Redirect after short delay
         setTimeout(() => {
-          if (userType === 'admin') {
-            window.location.href = '/admin/dashboard'
-          } else {
-            window.location.href = '/pelanggan/dashboard'
-          }
+          window.location.href = '/pelanggan/dashboard'
         }, 1500)
       }
     } catch {
