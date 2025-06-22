@@ -24,6 +24,7 @@ const menuItems = [
     icon: Server,
     children: [
       { label: 'Devices', href: '/admin/cloudfttx/devices', icon: Server },
+      { label: 'ONUs', href: '/admin/cloudfttx/onus', icon: Server },
     ],
   },
   {
@@ -48,7 +49,7 @@ export default function AdminSidebar() {
   const { user, company } = useAuth()
   const pathname = usePathname()
   return (
-    <Card className="h-screen w-64 bg-gradient-to-b from-slate-950 to-slate-900 border-r border-slate-800 flex flex-col shadow-xl rounded-none transition-all duration-300">
+    <Card className="h-screen w-64 bg-gradient-to-b from-slate-950 to-slate-900 border-r border-slate-800 flex flex-col shadow-xl rounded-none transition-all duration-300 font-sans text-sm">
       <div className="p-6 border-b border-slate-800 flex flex-col items-center gap-2 bg-slate-950/80 shadow-md">
         <Avatar className="w-16 h-16 mb-2 shadow-lg ring-2 ring-orange-400">
           <AvatarImage src={user?.avatar ?? undefined} alt={user?.name ?? ''} />
@@ -68,7 +69,7 @@ export default function AdminSidebar() {
               // Kelompok menu CloudFTTX
               return (
                 <div key={item.label}>
-                  <button className="flex items-center gap-3 px-3 py-2 rounded font-bold text-gray-200 hover:bg-slate-800 w-full transition justify-between">
+                  <button className="flex items-center gap-3 px-3 py-2 rounded font-bold text-gray-200 hover:bg-slate-800 w-full transition justify-between text-sm font-sans">
                     <span className="flex items-center gap-2">
                       <item.icon className="w-5 h-5 text-gray-400" />
                       {item.label}
@@ -79,7 +80,7 @@ export default function AdminSidebar() {
                       <Link
                         key={sub.href}
                         href={sub.href}
-                        className={`flex items-center gap-2 px-3 py-2 rounded text-gray-200 hover:bg-slate-800 font-medium transition ${pathname === sub.href ? 'bg-slate-800 text-orange-400 font-bold' : ''}`}
+                        className={`flex items-center gap-2 px-3 py-2 rounded text-gray-200 hover:bg-slate-800 font-medium transition text-sm font-sans ${pathname === sub.href ? 'bg-slate-800 text-orange-400 font-bold' : ''}`}
                       >
                         <sub.icon className="w-4 h-4 text-gray-400" />
                         {sub.label}
@@ -96,7 +97,7 @@ export default function AdminSidebar() {
                 <TooltipTrigger asChild>
                   <Link
                     href={item.href}
-                    className={`flex items-center gap-3 px-3 py-2 rounded font-medium transition text-gray-200 hover:bg-slate-800 ${
+                    className={`flex items-center gap-3 px-3 py-2 rounded font-medium transition text-gray-200 hover:bg-slate-800 text-sm font-sans ${
                       active ? 'bg-slate-800 text-orange-400 font-bold' : ''
                     }`}
                   >

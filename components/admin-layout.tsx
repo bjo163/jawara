@@ -48,7 +48,7 @@ export default function AdminLayout({
         </svg>
       </button>
       {/* Main content */}
-      <main className="flex-1 p-8 overflow-auto md:ml-0 ml-0 md:pl-0 pl-0 bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950 min-h-screen text-white font-sans">
+      <main className="flex-1 p-6 md:p-8 overflow-auto md:ml-0 ml-0 md:pl-0 pl-0 bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950 min-h-screen text-white font-sans text-sm">
         {children}
       </main>
     </div>
