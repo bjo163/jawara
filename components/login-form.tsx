@@ -76,14 +76,14 @@ export function LoginForm({ userType, onSuccess }: LoginFormProps) {
           email: formData.username,
           password: formData.password,
         }
-        const response = await fetch(
-          'https://backend-api.apps.pundidigitaldynamics.net/api/v1/auth',
-          {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(payload),
-          }
-        )
+        const backendUrl =
+          process.env.SERVER_BACKEND_URL ??
+          'https://backend-api.apps.pundidigitaldynamics.net'
+        const response = await fetch(backendUrl + '/api/v1/auth', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload),
+        })
         const data = await response.json()
         if (!response.ok || (data.error ?? null)) {
           setError(
