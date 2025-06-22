@@ -2,12 +2,11 @@
 
 import type { LucideIcon } from 'lucide-react'
 import { Check } from 'lucide-react'
+import type { ServiceCardProps } from '@/types'
 
-interface ServiceCardProps {
+// Extend the imported type to include LucideIcon and additional color
+interface ExtendedServiceCardProps extends Omit<ServiceCardProps, 'icon'> {
   icon: LucideIcon
-  title: string
-  description: string
-  features: string[]
   color: 'orange' | 'blue' | 'green' | 'purple' | 'pink'
 }
 
@@ -15,9 +14,9 @@ export function ServiceCard({
   icon: Icon,
   title,
   description,
-  features,
-  color,
-}: ServiceCardProps) {
+  features = [],
+  color = 'blue',
+}: ExtendedServiceCardProps) {
   const colorClasses = {
     orange: {
       border: 'border-orange-500/20 hover:border-orange-500/40',

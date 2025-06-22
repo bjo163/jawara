@@ -2,16 +2,7 @@
 
 import { Star } from 'lucide-react'
 import Image from 'next/image'
-
-interface TestimonialCardProps {
-  name: string
-  role: string
-  location: string
-  image: string
-  rating: number
-  comment: string
-  packageName: string
-}
+import type { TestimonialCardProps } from '@/types'
 
 export function TestimonialCard({
   name,

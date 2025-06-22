@@ -5,7 +5,7 @@ import {
   Eye,
   EyeOff,
   Loader2,
-  User,
+  User as UserIcon,
   Lock,
   AlertCircle,
   CheckCircle,
@@ -19,10 +19,11 @@ import {
   saveAuthData,
   type LoginCredentials,
 } from '@/data/auth'
+import type { User } from '@/types'
 
 interface LoginFormProps {
   userType: 'pelanggan' | 'admin'
-  onSuccess?: (user: any) => void
+  onSuccess?: (user: User) => void
 }
 
 export function LoginForm({ userType, onSuccess }: LoginFormProps) {
@@ -98,7 +99,7 @@ export function LoginForm({ userType, onSuccess }: LoginFormProps) {
           }
         }, 1500)
       }
-    } catch (err) {
+    } catch {
       setError('Terjadi kesalahan. Silakan coba lagi.')
     } finally {
       setIsLoading(false)
@@ -123,7 +124,7 @@ export function LoginForm({ userType, onSuccess }: LoginFormProps) {
           {userType === 'admin' ? (
             <Lock className="h-8 w-8 text-white" />
           ) : (
-            <User className="h-8 w-8 text-white" />
+            <UserIcon className="h-8 w-8 text-white" />
           )}
         </div>
         <CardTitle className="text-2xl font-bold text-white">
@@ -144,7 +145,7 @@ export function LoginForm({ userType, onSuccess }: LoginFormProps) {
               Username
             </Label>
             <div className="relative">
-              <User className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
+              <UserIcon className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
               <Input
                 id="username"
                 type="text"

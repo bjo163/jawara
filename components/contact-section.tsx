@@ -3,7 +3,7 @@
 import { SectionTitle } from '@/components/section-title'
 import { ContactForm } from '@/components/contact-form'
 import { Button } from '@/components/ui/button'
-import { Phone, Mail, MapPin, Clock, ExternalLink } from 'lucide-react'
+import { ExternalLink } from 'lucide-react'
 import { contactInfo, quickActions } from '@/data/contact'
 import Link from 'next/link'
 

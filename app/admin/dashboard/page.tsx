@@ -16,10 +16,11 @@ import {
 } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
-import { getAuthData, clearAuthData, type User as UserType } from '@/data/auth'
+import { getAuthData, clearAuthData } from '@/data/auth'
+import type { User } from '@/types'
 
 export default function AdminDashboard() {
-  const [user, setUser] = useState<UserType | null>(null)
+  const [user, setUser] = useState<User | null>(null)
   const [whatsappHealth, setWhatsappHealth] = useState<
     'checking' | 'healthy' | 'unhealthy'
   >('checking')

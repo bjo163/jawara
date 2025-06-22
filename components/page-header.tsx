@@ -17,7 +17,6 @@ export function PageHeader({
   showLogo = true,
   showBackButton = true,
   showBreadcrumb = true,
-  customTitle,
   className = '',
 }: PageHeaderProps) {
   const pathname = usePathname()
@@ -61,7 +60,6 @@ export function ContactPageHeader({
   showLogo = true,
   showBackButton = true,
   showBreadcrumb = true,
-  customTitle,
   className = '',
 }: ContactPageHeaderProps) {
   const pathname = usePathname()

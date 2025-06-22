@@ -20,15 +20,7 @@ import { getPackageById, getPackagesByCategory } from '@/data/packages'
 import { PageHeader } from '@/components/page-header'
 import { LiveChatWidget } from '@/components/live-chat-widget'
 import { SubscriptionWidget } from '@/components/subscription-widget-fixed'
-
-interface SubscriptionForm {
-  name: string
-  phone: string
-  email: string
-  address: string
-  package: string
-  notes: string
-}
+import type { SubscriptionForm } from '@/types'
 
 export default function BerlanggananPage() {
   const [userLocation, setUserLocation] = useState<{

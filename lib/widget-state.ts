@@ -1,7 +1,7 @@
 // Widget State Management
 // Mengatur koordinasi antar widget agar tidak saling menghalangi
 
-export type WidgetType = 'chat' | 'subscription' | null
+import type { WidgetType } from '@/types'
 
 class WidgetStateManager {
   private activeWidget: WidgetType = null

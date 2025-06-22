@@ -1,21 +1,5 @@
 // Data paket internet Jawara-Net - Centralized Package Data
-export interface Package {
-  id: string
-  name: string
-  icon: string
-  character: string
-  speed: string
-  uploadSpeed: string
-  quota: string
-  price: string
-  originalPrice?: string
-  priceNumeric: number
-  category: 'rumah' | 'bisnis'
-  features: string[]
-  popular?: boolean
-  color: 'orange' | 'blue' | 'green' | 'purple'
-  description: string
-}
+import type { Package } from '@/types'
 
 export const packages: Package[] = [
   // Paket Rumah - Sesuai dengan SPA Page Screenshots

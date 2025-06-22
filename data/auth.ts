@@ -1,32 +1,7 @@
 // Authentication Data and Types
 // Data autentikasi tersentralisasi untuk sistem login
 
-export interface User {
-  id: string
-  username: string
-  email: string
-  name: string
-  role: 'pelanggan' | 'admin'
-  avatar?: string
-  phone?: string
-  address?: string
-  package?: string
-  status: 'active' | 'inactive' | 'suspended'
-  createdAt: Date
-  lastLogin?: Date
-}
-
-export interface LoginCredentials {
-  username: string
-  password: string
-}
-
-export interface AuthResponse {
-  success: boolean
-  user?: User
-  token?: string
-  message: string
-}
+import type { User, LoginCredentials, AuthResponse } from '@/types'
 
 // Demo data for testing (in real app, this would come from API/database)
 export const demoUsers: User[] = [

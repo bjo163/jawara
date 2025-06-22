@@ -1,11 +1,7 @@
 // Centralized FAQ Data
 // Data FAQ tersentralisasi untuk digunakan di seluruh aplikasi
 
-export interface FAQItem {
-  question: string
-  answer: string
-  category?: 'umum' | 'teknis' | 'pembayaran' | 'layanan'
-}
+import type { FAQItem } from '@/types'
 
 export const faqData: FAQItem[] = [
   {

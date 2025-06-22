@@ -17,7 +17,7 @@ import {
   getFAQCategories,
   type FAQItem,
 } from '@/data/faq'
-import { contactInfo, getContactByType } from '@/data/contact'
+import { getContactByType } from '@/data/contact'
 import Link from 'next/link'
 
 export default function FAQPage() {

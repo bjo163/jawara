@@ -5,13 +5,6 @@ import { MapPin, CheckCircle, AlertCircle, Loader2, X } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { widgetStateManager } from '@/lib/widget-state'
 
-interface CoverageArea {
-  name: string
-  lat: number
-  lng: number
-  radius: number // in km
-}
-
 export function SubscriptionWidget() {
   const [isOpen, setIsOpen] = useState(false)
   const [isForceHidden, setIsForceHidden] = useState(false)

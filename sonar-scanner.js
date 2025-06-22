@@ -1,4 +1,4 @@
-const scanner = require('sonarqube-scanner')
+import scanner from 'sonarqube-scanner'
 
 scanner(
   {
@@ -18,11 +18,11 @@ scanner(
         '**/dist/**',
         '**/build/**',
         '**/coverage/**',
-        '**/*.d.ts'
+        '**/*.d.ts',
       ].join(','),
       'sonar.typescript.node': 'node',
-      'sonar.javascript.lcov.reportPaths': 'coverage/lcov.info'
-    }
+      'sonar.javascript.lcov.reportPaths': 'coverage/lcov.info',
+    },
   },
   () => process.exit()
 )

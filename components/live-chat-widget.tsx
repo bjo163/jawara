@@ -1,8 +1,7 @@
 'use client'
 
 import { useState, useEffect } from 'react'
-import { MessageCircle, X, Send, Phone, Mail, Clock } from 'lucide-react'
-import { Button } from '@/components/ui/button'
+import { MessageCircle, X, Send, Phone, Mail } from 'lucide-react'
 import { widgetStateManager } from '@/lib/widget-state'
 
 export function LiveChatWidget() {

@@ -2,7 +2,7 @@
 
 import { Facebook, Instagram, Twitter, Youtube } from 'lucide-react'
 import { Logo } from '@/components/logo'
-import { contactInfo, getContactByType } from '@/data/contact'
+import { getContactByType } from '@/data/contact'
 import Link from 'next/link'
 
 export function Footer() {

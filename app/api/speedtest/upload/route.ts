@@ -19,7 +19,7 @@ export async function POST(request: NextRequest) {
       timestamp: endTime,
       server: 'jawara-net-internal',
     })
-  } catch (error) {
+  } catch {
     return NextResponse.json({ error: 'Upload failed' }, { status: 500 })
   }
 }

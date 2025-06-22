@@ -1,25 +1,5 @@
 // Data kontak Jawara-Net - Centralized Contact Data
-export interface ContactInfo {
-  id: string
-  type: 'phone' | 'email' | 'address' | 'hours'
-  icon: string
-  title: string
-  value: string
-  secondary?: string
-  description: string
-  color: 'green' | 'blue' | 'orange' | 'purple' | 'yellow'
-  href?: string
-  isClickable: boolean
-}
-
-export interface OfficeLocation {
-  name: string
-  lat: number
-  lng: number
-  address: string
-  coverageRadius: number
-  hours: string[]
-}
+import type { ContactInfo, OfficeLocation } from '@/types'
 
 export const contactInfo: ContactInfo[] = [
   {

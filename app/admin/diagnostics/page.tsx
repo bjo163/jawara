@@ -14,14 +14,7 @@ import {
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
-
-interface DiagnosticResult {
-  test: string
-  status: 'pass' | 'fail' | 'warning' | 'checking'
-  message: string
-  details?: string
-  url?: string
-}
+import type { DiagnosticResult } from '@/types'
 
 export default function WhatsAppDiagnostics() {
   const [results, setResults] = useState<DiagnosticResult[]>([])
@@ -65,7 +58,7 @@ export default function WhatsAppDiagnostics() {
       const envResponse = await fetch('/api/whatsapp/proxy?endpoint=/config', {
         method: 'GET',
       })
-      const envData = await envResponse.json()
+      await envResponse.json()
 
       tests[0] = {
         test: 'Environment Configuration',
@@ -73,7 +66,7 @@ export default function WhatsAppDiagnostics() {
         message: 'Environment variables are configured',
         details: `API URL configured and accessible`,
       }
-    } catch (error) {
+    } catch {
       tests[0] = {
         test: 'Environment Configuration',
         status: 'warning',
@@ -105,12 +98,12 @@ export default function WhatsAppDiagnostics() {
           url: healthData.url,
         }
       }
-    } catch (error: any) {
+    } catch (error: unknown) {
       tests[1] = {
         test: 'API Health Check',
         status: 'fail',
         message: 'Failed to reach health endpoint',
-        details: error.message,
+        details: error instanceof Error ? error.message : 'Unknown error',
       }
     }
     setResults([...tests])
@@ -135,12 +128,12 @@ export default function WhatsAppDiagnostics() {
           details: directData.error || 'Unknown network error',
         }
       }
-    } catch (error: any) {
+    } catch (error: unknown) {
       tests[2] = {
         test: 'Network Connectivity',
         status: 'fail',
         message: 'Network connectivity issues',
-        details: error.message,
+        details: error instanceof Error ? error.message : 'Unknown error',
       }
     }
     setResults([...tests])
@@ -165,12 +158,12 @@ export default function WhatsAppDiagnostics() {
           details: 'Service may be using different API version',
         }
       }
-    } catch (error: any) {
+    } catch (error: unknown) {
       tests[3] = {
         test: 'Service Response',
         status: 'fail',
         message: 'Invalid service response',
-        details: error.message,
+        details: error instanceof Error ? error.message : 'Unknown error',
       }
     }
     setResults([...tests])

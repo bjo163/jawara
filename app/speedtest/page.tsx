@@ -1,11 +1,9 @@
 'use client'
 
 import { useState, useEffect } from 'react'
-import { Download, Upload, Wifi, Zap, ArrowLeft, RotateCcw } from 'lucide-react'
+import { Download, Upload, Wifi, Zap, RotateCcw } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
-import { Logo } from '@/components/logo'
-import { Breadcrumb, BackButton } from '@/components/breadcrumb'
 import { PageHeader } from '@/components/page-header'
 import { LiveChatWidget } from '@/components/live-chat-widget'
 import { SubscriptionWidget } from '@/components/subscription-widget-fixed'
@@ -126,7 +124,7 @@ export default function SpeedTestPage() {
         } else {
           pingResults.push(20) // Fallback ping if request fails
         }
-      } catch (error) {
+      } catch {
         pingResults.push(20) // Fallback ping
       }
 
@@ -232,7 +230,7 @@ export default function SpeedTestPage() {
         })
 
         if (response.ok) {
-          const result = await response.json()
+          await response.json()
           const end = performance.now()
           const duration = (end - start) / 1000 // Convert to seconds
           const speedMbps = (size * 8) / (duration * 1000000) // Convert to Mbps

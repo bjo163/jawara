@@ -147,7 +147,7 @@ export function PageHeader({
   className = '',
 }: PageHeaderProps) {
   const pathname = usePathname()
-  const pageConfig = getPageConfig(pathname)
+  getPageConfig(pathname)
   const finalTitle = title || getPageTitle(pathname)
 
   return (

@@ -1,19 +1,7 @@
 'use client'
 
-import type { LucideIcon } from 'lucide-react'
 import { Check } from 'lucide-react'
-
-interface TimelineStep {
-  icon: LucideIcon
-  title: string
-  description: string
-  details: string[]
-  color: 'orange' | 'blue' | 'green' | 'purple'
-}
-
-interface TechTimelineProps {
-  steps: TimelineStep[]
-}
+import type { TechTimelineProps } from '@/types'
 
 export function TechTimeline({ steps }: TechTimelineProps) {
   const colorClasses = {

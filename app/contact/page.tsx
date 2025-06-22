@@ -17,14 +17,7 @@ import { ContactPageHeader } from '@/components/page-header'
 import { LiveChatWidget } from '@/components/live-chat-widget'
 import { SubscriptionWidget } from '@/components/subscription-widget-fixed'
 import Link from 'next/link'
-
-interface ContactPageState {
-  userLocation: { lat: number; lng: number } | null
-  locationStatus: 'idle' | 'loading' | 'success' | 'error'
-  distance: number
-  nearestArea: string
-  coverageStatus: 'checking' | 'covered' | 'not-covered' | null
-}
+import type { ContactPageState } from '@/types'
 
 export default function ContactPage() {
   const [state, setState] = useState<ContactPageState>({

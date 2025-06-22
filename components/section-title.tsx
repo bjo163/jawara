@@ -1,10 +1,6 @@
 'use client'
 
-interface SectionTitleProps {
-  title: string
-  subtitle: string
-  centered?: boolean
-}
+import type { SectionTitleProps } from '@/types'
 
 export function SectionTitle({
   title,

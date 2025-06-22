@@ -1,22 +1,7 @@
 // Centralized Breadcrumb Configuration
 // Konfigurasi breadcrumb untuk semua halaman dalam aplikasi
 
-export interface BreadcrumbItem {
-  label: string
-  href?: string
-  icon?: string
-  active?: boolean
-}
-
-export interface PageConfig {
-  title: string
-  breadcrumbs: BreadcrumbItem[]
-  backButton?: {
-    href: string
-    label: string
-  }
-  description?: string
-}
+import type { BreadcrumbItem, PageConfig } from '@/types'
 
 // Konfigurasi halaman dan breadcrumb
 export const pageConfigs: Record<string, PageConfig> = {
