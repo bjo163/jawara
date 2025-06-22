@@ -226,7 +226,7 @@ export function SubscriptionWidget() {
                             rel="noopener noreferrer"
                             className="block bg-green-600 hover:bg-green-700 text-white px-6 py-2 rounded-lg font-semibold transition-colors text-center"
                           >
-                            💬 Chat WhatsApp Langsung
+                            � Hubungi Kami Langsung
                           </a>
                         </div>
                       </div>

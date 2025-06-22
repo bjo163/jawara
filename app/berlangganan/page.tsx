@@ -1,18 +1,15 @@
 "use client"
 
-import { useState, useEffect } from "react"
-import { MapPin, CheckCircle, AlertCircle, Loader2, ArrowLeft, Phone, MessageCircle, Mail, Clock, Wifi, Zap, Star } from "lucide-react"
+import { useState } from "react"
+import { MapPin, CheckCircle, AlertCircle, Loader2, Phone, MessageCircle, Clock, Zap, Star } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
-import { Logo } from "@/components/logo"
-import { packages, getPackageById, getPackagesByCategory } from "@/data/packages"
-import { Breadcrumb, BackButton } from "@/components/breadcrumb"
+import { getPackageById, getPackagesByCategory } from "@/data/packages"
 import { PageHeader } from "@/components/page-header"
 import { LiveChatWidget } from "@/components/live-chat-widget"
 import { SubscriptionWidget } from "@/components/subscription-widget-fixed"
-import Link from "next/link"
 
 interface SubscriptionForm {
   name: string

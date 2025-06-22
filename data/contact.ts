@@ -1,7 +1,7 @@
 // Data kontak Jawara-Net - Centralized Contact Data
 export interface ContactInfo {
   id: string
-  type: 'whatsapp' | 'phone' | 'email' | 'address' | 'hours'
+  type: 'phone' | 'email' | 'address' | 'hours'
   icon: string
   title: string
   value: string
@@ -22,17 +22,6 @@ export interface OfficeLocation {
 }
 
 export const contactInfo: ContactInfo[] = [
-  {
-    id: 'whatsapp',
-    type: 'whatsapp',
-    icon: '📱',
-    title: 'WhatsApp Customer Service',
-    value: '+62 812-9529-5734',
-    description: 'Respon cepat, chat langsung dengan CS',
-    color: 'green',
-    href: 'https://wa.me/6281295295734',
-    isClickable: true
-  },
   {
     id: 'phone',
     type: 'phone',
@@ -94,13 +83,6 @@ export const officeLocation: OfficeLocation = {
 
 export const quickActions = [
   {
-    id: 'whatsapp-action',
-    title: 'Chat WhatsApp',
-    href: 'https://wa.me/6281295295734',
-    color: 'green',
-    icon: '💬'
-  },
-  {
     id: 'phone-action',
     title: 'Telepon Sekarang',
     href: 'tel:+6281295295734',
@@ -120,11 +102,4 @@ export const getContactById = (id: string): ContactInfo | undefined => {
 
 export const getClickableContacts = (): ContactInfo[] => {
   return contactInfo.filter(contact => contact.isClickable)
-}
-
-export const formatContactForWhatsApp = () => {
-  const message = encodeURIComponent(
-    "Halo Jawara-Net! Saya tertarik untuk berlangganan internet. Mohon informasi lebih lanjut."
-  )
-  return `https://wa.me/6281295295734?text=${message}`
 }

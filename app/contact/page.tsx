@@ -1,15 +1,11 @@
 "use client"
 
-import { useState, useEffect } from "react"
-import { ArrowLeft, MapPin, CheckCircle, AlertCircle, Loader2, Phone, Mail, Clock, ExternalLink } from "lucide-react"
+import { useState, useEffect, useCallback } from "react"
+import { ArrowLeft, MapPin, CheckCircle, AlertCircle, Loader2, ExternalLink } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { Input } from "@/components/ui/input"
-import { Textarea } from "@/components/ui/textarea"
-import { Logo } from "@/components/logo"
 import { ContactForm } from "@/components/contact-form"
-import { contactInfo, officeLocation, quickActions, formatContactForWhatsApp } from "@/data/contact"
-import { Breadcrumb, BackButton } from "@/components/breadcrumb"
+import { contactInfo, officeLocation, quickActions } from "@/data/contact"
 import { ContactPageHeader } from "@/components/page-header"
 import { LiveChatWidget } from "@/components/live-chat-widget"
 import { SubscriptionWidget } from "@/components/subscription-widget-fixed"
@@ -44,9 +40,8 @@ export default function ContactPage() {
     const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a))
     return R * c
   }
-
   // Get user location
-  const getUserLocation = () => {
+  const getUserLocation = useCallback(() => {
     setState(prev => ({ ...prev, locationStatus: 'loading', coverageStatus: 'checking' }))
 
     if (!navigator.geolocation) {
@@ -86,12 +81,11 @@ export default function ContactPage() {
         maximumAge: 300000
       }
     )
-  }
-
+  }, [])
   // Auto-detect location on page load
   useEffect(() => {
     getUserLocation()
-  }, [])
+  }, [getUserLocation])
 
   const getColorClasses = (color: string) => {
     const colorMap = {
@@ -223,13 +217,12 @@ export default function ContactPage() {
                     <div className="flex-1">
                       <h4 className="cartoon-text font-semibold text-white mb-1">
                         {contact.title}
-                      </h4>
-                      {contact.isClickable ? (
+                      </h4>                      {contact.isClickable ? (
                         <a 
                           href={contact.href}
                           className="cartoon-text text-gray-300 hover:text-white transition-colors inline-flex items-center"
-                          target={contact.type === 'whatsapp' ? '_blank' : undefined}
-                          rel={contact.type === 'whatsapp' ? 'noopener noreferrer' : undefined}
+                          target="_blank"
+                          rel="noopener noreferrer"
                         >
                           {contact.value}
                           <ExternalLink className="h-3 w-3 ml-1" />
@@ -268,10 +261,9 @@ export default function ContactPage() {
                       <span>{action.title}</span>
                     </a>
                   ))}
-                </div>
-                <div className="mt-4">
+                </div>                <div className="mt-4">
                   <a
-                    href={formatContactForWhatsApp()}
+                    href="https://wa.me/6285777300000"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="w-full bg-gradient-to-r from-green-500 to-emerald-500 hover:from-green-600 hover:to-emerald-600 text-white px-4 py-3 rounded-lg text-center font-semibold transition-colors flex items-center justify-center space-x-2"

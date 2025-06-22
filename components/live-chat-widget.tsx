@@ -61,7 +61,7 @@ export function LiveChatWidget() {
       setTimeout(() => {
         const botReply = {
           id: messages.length + 2,
-          text: "Terima kasih atas pesan Anda! Tim customer service kami akan segera merespons. Atau hubungi langsung WhatsApp kami di +62 812-9529-5734 untuk respon lebih cepat! 🚀",
+          text: "Terima kasih atas pesan Anda! Tim customer service kami akan segera merespons. Atau hubungi langsung telepon kami di +62 812-9529-5734 untuk respon lebih cepat! 🚀",
           isBot: true,
           time: "Sekarang"
         }
@@ -139,7 +139,7 @@ export function LiveChatWidget() {
                   className="flex items-center space-x-1 bg-green-500 hover:bg-green-600 text-white px-3 py-1 rounded-full text-xs transition-colors"
                 >
                   <Phone className="h-3 w-3" />
-                  <span>WhatsApp</span>
+                  <span>Telepon</span>
                 </a>
                 <a
                   href="tel:+6281295295734"

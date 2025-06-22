@@ -1,26 +1,50 @@
 "use client"
 
 import { useEffect, useState } from "react"
-import { LogOut, Users, BarChart3, Settings, Shield, Wifi, DollarSign, TrendingUp } from "lucide-react"
+import { LogOut, Users, BarChart3, Settings, Shield, Wifi, DollarSign, TrendingUp, MessageCircle, AlertTriangle, CheckCircle } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { getAuthData, clearAuthData, type User as UserType } from "@/data/auth"
 
 export default function AdminDashboard() {
   const [user, setUser] = useState<UserType | null>(null)
+  const [whatsappHealth, setWhatsappHealth] = useState<'checking' | 'healthy' | 'unhealthy'>('checking')
 
   useEffect(() => {
     const { user: authUser } = getAuthData()
     if (!authUser || authUser.role !== 'admin') {
       window.location.href = '/login/admin'
-      return
-    }
+      return    }
     setUser(authUser)
+    
+    // Check WhatsApp server health on load
+    checkWhatsAppHealth()
   }, [])
+
+  const checkWhatsAppHealth = async () => {
+    setWhatsappHealth('checking')
+    try {
+      const response = await fetch('/api/whatsapp/health')
+      const result = await response.json()
+      setWhatsappHealth(result.success ? 'healthy' : 'unhealthy')
+      
+      if (!result.success) {
+        console.error('WhatsApp health check failed:', result.error, result.details)
+      }
+    } catch (error) {
+      console.error('WhatsApp health check failed:', error)
+      setWhatsappHealth('unhealthy')
+    }
+  }
 
   const handleLogout = () => {
     clearAuthData()
     window.location.href = '/login/admin'
+  }
+  const navigateToWhatsApp = () => {
+    if (whatsappHealth === 'healthy') {
+      window.location.href = '/admin/whatsapp-single'
+    }
   }
 
   if (!user) {
@@ -62,6 +86,24 @@ export default function AdminDashboard() {
     }
   ]
 
+  const getWhatsAppStatusIcon = () => {
+    if (whatsappHealth === 'checking') return <div className="h-5 w-5 animate-spin border-2 border-gray-300 border-t-blue-400 rounded-full" />
+    if (whatsappHealth === 'healthy') return <CheckCircle className="h-5 w-5 text-green-400" />
+    return <AlertTriangle className="h-5 w-5 text-red-400" />
+  }
+
+  const getWhatsAppStatusText = () => {
+    if (whatsappHealth === 'checking') return 'Checking...'
+    if (whatsappHealth === 'healthy') return 'Online'
+    return 'Offline'
+  }
+
+  const getWhatsAppStatusColor = () => {
+    if (whatsappHealth === 'checking') return 'text-blue-400'
+    if (whatsappHealth === 'healthy') return 'text-green-400'
+    return 'text-red-400'
+  }
+
   return (
     <div className="min-h-screen bg-slate-950 text-white">
       {/* Header */}
@@ -88,6 +130,62 @@ export default function AdminDashboard() {
           <p className="text-gray-400">Monitor dan kelola operasional Jawara-Net</p>
         </div>
 
+        {/* WhatsApp Health Status */}
+        <Card className="bg-slate-900 border-gray-700 mb-8">
+          <CardHeader>
+            <CardTitle className="text-white flex items-center justify-between">
+              <span className="flex items-center">
+                <MessageCircle className="h-6 w-6 text-green-400 mr-2" />
+                WhatsApp Service Status
+              </span>
+              <Button
+                variant="outline"
+                size="sm"
+                onClick={checkWhatsAppHealth}
+                disabled={whatsappHealth === 'checking'}
+              >
+                Refresh
+              </Button>
+            </CardTitle>
+          </CardHeader>
+          <CardContent>            <div className="flex items-center justify-between">
+              <div className="flex items-center space-x-3">
+                {getWhatsAppStatusIcon()}
+                <div>
+                  <div className={`font-semibold ${getWhatsAppStatusColor()}`}>
+                    {getWhatsAppStatusText()}
+                  </div>
+                  <div className="text-sm text-gray-400">
+                    {whatsappHealth === 'healthy' && 'WhatsApp server is ready for use'}
+                    {whatsappHealth === 'unhealthy' && 'WhatsApp server is not responding'}
+                    {whatsappHealth === 'checking' && 'Checking server status...'}
+                  </div>
+                </div>
+              </div>
+              <div className="flex space-x-2">
+                {whatsappHealth === 'unhealthy' && (
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    onClick={() => window.location.href = '/admin/diagnostics'}
+                  >
+                    <Settings className="h-4 w-4 mr-2" />
+                    Diagnostics
+                  </Button>
+                )}
+                <Button
+                  variant={whatsappHealth === 'healthy' ? 'default' : 'secondary'}
+                  onClick={navigateToWhatsApp}
+                  disabled={whatsappHealth !== 'healthy'}
+                >
+                  <MessageCircle className="h-4 w-4 mr-2" />
+                  Manage WhatsApp
+                </Button>
+              </div>
+            </div>
+          </CardContent>
+        </Card>
+
         {/* Stats Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
           {stats.map((stat, index) => (
@@ -113,6 +211,32 @@ export default function AdminDashboard() {
               <Users className="h-12 w-12 text-blue-400 mx-auto mb-4" />
               <h3 className="font-semibold text-white mb-2">Manajemen Pelanggan</h3>
               <p className="text-sm text-gray-400">Kelola data pelanggan</p>
+            </CardContent>
+          </Card>
+
+          <Card 
+            className={`bg-slate-900 border-gray-700 transition-colors cursor-pointer ${
+              whatsappHealth === 'healthy' ? 'hover:bg-slate-800' : 'opacity-50 cursor-not-allowed'
+            }`}
+            onClick={navigateToWhatsApp}
+          >
+            <CardContent className="p-6 text-center">
+              <div className="relative">
+                <MessageCircle className="h-12 w-12 text-green-400 mx-auto mb-4" />
+                <div className="absolute -top-1 -right-1">
+                  {whatsappHealth === 'healthy' && <CheckCircle className="h-4 w-4 text-green-400" />}
+                  {whatsappHealth === 'unhealthy' && <AlertTriangle className="h-4 w-4 text-red-400" />}
+                  {whatsappHealth === 'checking' && (
+                    <div className="h-4 w-4 animate-spin border border-gray-300 border-t-blue-400 rounded-full" />
+                  )}
+                </div>
+              </div>
+              <h3 className="font-semibold text-white mb-2">WhatsApp Management</h3>
+              <p className="text-sm text-gray-400">
+                {whatsappHealth === 'healthy' && 'Manage WhatsApp sessions'}
+                {whatsappHealth === 'unhealthy' && 'Service unavailable'}
+                {whatsappHealth === 'checking' && 'Checking status...'}
+              </p>
             </CardContent>
           </Card>
 

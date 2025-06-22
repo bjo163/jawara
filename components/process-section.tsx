@@ -9,7 +9,7 @@ export function ProcessSection() {
     {
       icon: FileText,
       title: "Isi Form Pendaftaran",
-      description: "Daftar online atau via WhatsApp. Cuma butuh 2 menit, gampang banget!",
+      description: "Daftar online atau via telepon. Cuma butuh 2 menit, gampang banget!",
       details: ["Data diri lengkap", "Pilih paket internet", "Tentukan jadwal survey"],
       color: "orange",
     },

@@ -17,20 +17,18 @@ export const faqData: FAQItem[] = [
     question: "Berapa lama proses aktivasi internet?",
     answer: "Proses aktivasi biasanya 1-3 hari kerja setelah survey lokasi. Tahapannya: (1) Daftar online, (2) Survey lokasi (gratis), (3) Instalasi perangkat, (4) Internet aktif dan siap dipakai! Tim teknisi kami akan koordinasi jadwal yang sesuai dengan kamu.",
     category: 'layanan'
-  },
-  {
+  },  {
     question: "Bagaimana sistem pembayarannya?",
-    answer: "Pembayaran bisa dilakukan bulanan via transfer bank, e-wallet (OVO, GoPay, DANA), atau datang langsung ke kantor. Kami juga menyediakan sistem auto-debit untuk kemudahan. Tagihan akan dikirim via WhatsApp setiap bulannya.",
+    answer: "Pembayaran bisa dilakukan bulanan via transfer bank, e-wallet (OVO, GoPay, DANA), atau datang langsung ke kantor. Kami juga menyediakan sistem auto-debit untuk kemudahan. Tagihan akan dikirim via SMS/email setiap bulannya.",
     category: 'pembayaran'
   },
   {
     question: "Apakah ada biaya instalasi?",
     answer: "Untuk semua paket rumahan, instalasi 100% GRATIS! Termasuk pemasangan kabel fiber, konfigurasi router WiFi, dan testing koneksi. Untuk paket bisnis, ada biaya instalasi khusus tergantung kompleksitas jaringan yang dibutuhkan.",
     category: 'pembayaran'
-  },
-  {
+  },  {
     question: "Bagaimana jika internet bermasalah?",
-    answer: "Tim technical support kami siap membantu 24/7! Bisa hubungi via WhatsApp, telepon, atau aplikasi customer service. Untuk masalah ringan, kami bisa remote troubleshooting. Kalau perlu teknisi datang, biasanya dalam 2-4 jam sudah ditangani.",
+    answer: "Tim technical support kami siap membantu 24/7! Bisa hubungi via telepon, email, atau aplikasi customer service. Untuk masalah ringan, kami bisa remote troubleshooting. Kalau perlu teknisi datang, biasanya dalam 2-4 jam sudah ditangani.",
     category: 'teknis'
   },
   {

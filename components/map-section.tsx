@@ -92,7 +92,7 @@ export function MapSection() {  const officeLocation = {
                   <div>
                     <h4 className="font-semibold text-white mb-1">Kontak Kantor</h4>
                     <p className="text-gray-300">{officeLocation.phone}</p>
-                    <p className="text-gray-400 text-sm">WhatsApp & Telepon tersedia</p>
+                    <p className="text-gray-400 text-sm">Telepon tersedia</p>
                   </div>
                 </div>
 
@@ -120,7 +120,7 @@ export function MapSection() {  const officeLocation = {
                   className="flex items-center justify-center space-x-2 bg-green-500 hover:bg-green-600 text-white px-6 py-3 rounded-lg font-semibold transition-colors"
                 >
                   <span>💬</span>
-                  <span>Chat WhatsApp</span>
+                  <span>Hubungi Kami</span>
                 </a>
                 <a
                   href={`tel:${officeLocation.phone}`}

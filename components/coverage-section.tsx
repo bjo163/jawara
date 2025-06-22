@@ -183,7 +183,7 @@ export function CoverageSection() {
                 rel="noopener noreferrer"
                 className="bg-green-500 hover:bg-green-600 text-white px-8 py-3 rounded-lg font-semibold transition-colors"
               >
-                Tanya via WhatsApp
+                Tanya via Telepon
               </a>
             </div>
           </div>
