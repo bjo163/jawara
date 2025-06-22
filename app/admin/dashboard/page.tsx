@@ -10,19 +10,37 @@ import {
   MessageCircle,
   AlertTriangle,
   CheckCircle,
+  Plus,
 } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
-import { WhatsAppQuickPanel } from '@/components/whatsapp-quick-panel-simple'
 import { clearAuthData } from '@/data/auth'
 import { useAuth } from '@/hooks/use-auth'
-import type { BackendStatusResponse } from '@/types/whatsapp'
+import { useToast } from '@/hooks/use-toast'
+import AdminLayout from '@/components/admin-layout'
+import { Skeleton } from '@/components/ui/skeleton'
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogFooter,
+  DialogTitle,
+  DialogDescription,
+} from '@/components/ui/dialog'
+import {
+  Breadcrumb,
+  BreadcrumbList,
+  BreadcrumbItem,
+  BreadcrumbLink,
+} from '@/components/ui/breadcrumb'
 
 export default function AdminDashboard() {
   const { user, company, loading } = useAuth()
+  const { toast } = useToast()
   const [whatsappHealth, setWhatsappHealth] = useState<
     'checking' | 'healthy' | 'unhealthy'
   >('checking')
+  const [logoutDialogOpen, setLogoutDialogOpen] = useState(false)
 
   useEffect(() => {
     if (!loading) {
@@ -53,19 +71,17 @@ export default function AdminDashboard() {
       setWhatsappHealth('unhealthy')
     }
   }
-  const handleLogout = () => {
+  const handleLogout = () => setLogoutDialogOpen(true)
+  const confirmLogout = () => {
     clearAuthData()
-    window.location.href = '/login/admin'
-  }
-
-  const handleWhatsAppStatusChange = (status: BackendStatusResponse | null) => {
-    console.log('WhatsApp status updated:', status)
-    // Update health status based on session status
-    if (status?.status === 'AUTHENTICATED') {
-      setWhatsappHealth('healthy')
-    } else {
-      setWhatsappHealth('unhealthy')
-    }
+    toast({
+      title: 'Logout Berhasil',
+      description: 'Anda telah keluar dari admin panel.',
+      variant: 'default',
+    })
+    setTimeout(() => {
+      window.location.href = '/login/admin'
+    }, 1200)
   }
 
   // Dummy statistik, ganti dengan data asli jika sudah ada
@@ -81,9 +97,20 @@ export default function AdminDashboard() {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-slate-950 flex items-center justify-center">
-        <div className="text-white">Loading...</div>
-      </div>
+      <AdminLayout>
+        <div className="min-h-screen flex flex-col gap-8 items-center justify-center">
+          <div className="w-full max-w-2xl grid grid-cols-1 md:grid-cols-2 gap-8">
+            <Skeleton className="h-40 w-full" />
+            <Skeleton className="h-40 w-full" />
+          </div>
+          <div className="w-full max-w-4xl grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mt-8">
+            <Skeleton className="h-24 w-full" />
+            <Skeleton className="h-24 w-full" />
+            <Skeleton className="h-24 w-full" />
+            <Skeleton className="h-24 w-full" />
+          </div>
+        </div>
+      </AdminLayout>
     )
   }
   if (!user) {
@@ -91,8 +118,8 @@ export default function AdminDashboard() {
   }
 
   return (
-    <div className="min-h-screen bg-slate-950 p-6">
-      <div className="mb-6 flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+    <AdminLayout>
+      <div className="mb-8 flex flex-col md:flex-row md:items-center md:justify-between gap-6">
         <div>
           <h1 className="text-2xl font-bold text-white mb-1">
             Selamat datang, {user.name}
@@ -108,25 +135,56 @@ export default function AdminDashboard() {
             </div>
           )}
         </div>
-        <Button variant="outline" onClick={handleLogout}>
+        <Button
+          variant="outline"
+          onClick={handleLogout}
+          className="font-semibold"
+        >
           <LogOut className="h-4 w-4 mr-2" />
           Logout
         </Button>
+        <Dialog open={logoutDialogOpen} onOpenChange={setLogoutDialogOpen}>
+          <DialogContent>
+            <DialogHeader>
+              <DialogTitle>Konfirmasi Logout</DialogTitle>
+              <DialogDescription>
+                Apakah Anda yakin ingin logout dari admin panel?
+              </DialogDescription>
+            </DialogHeader>
+            <DialogFooter>
+              <Button
+                variant="outline"
+                onClick={() => setLogoutDialogOpen(false)}
+              >
+                Batal
+              </Button>
+              <Button variant="destructive" onClick={confirmLogout}>
+                Logout
+              </Button>
+            </DialogFooter>
+          </DialogContent>
+        </Dialog>
       </div>
+      <Breadcrumb className="mb-6">
+        <BreadcrumbList>
+          <BreadcrumbItem>
+            <BreadcrumbLink href="/admin/dashboard">Dashboard</BreadcrumbLink>
+          </BreadcrumbItem>
+        </BreadcrumbList>
+      </Breadcrumb>
       {/* Welcome Section */}
       <div className="mb-8">
         <h2 className="text-3xl font-bold mb-2">Dashboard Administrator</h2>
         <p className="text-gray-400">
           Monitor dan kelola operasional Jawara-Net
         </p>
-      </div>{' '}
-      {/* WhatsApp Quick Panel */}
-      <div className="mb-8">
-        {' '}
-        <WhatsAppQuickPanel onStatusChange={handleWhatsAppStatusChange} />
       </div>
+      {/* WhatsApp Quick Panel */}
+      {/* <div className="mb-8">
+        <WhatsAppQuickPanel onStatusChange={handleWhatsAppStatusChange} />
+      </div> */}
       {/* Panel Info User & Company */}
-      <div className="mb-8 grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div className="mb-8 grid grid-cols-1 md:grid-cols-2 gap-8">
         <Card className="bg-slate-900 border-gray-700">
           <CardHeader>
             <CardTitle className="text-white">Info Admin</CardTitle>
@@ -229,7 +287,7 @@ export default function AdminDashboard() {
         </Card>
       </div>
       {/* Stats Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-8">
         {stats.map(stat => (
           <Card key={stat.label} className="bg-slate-900 border-gray-800">
             <CardHeader>
@@ -244,7 +302,7 @@ export default function AdminDashboard() {
         ))}
       </div>
       {/* Quick Actions */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-8">
         <Card className="bg-slate-900 border-gray-700 hover:bg-slate-800 transition-colors cursor-pointer">
           <CardContent className="p-6 text-center">
             <Users className="h-12 w-12 text-blue-400 mx-auto mb-4" />
@@ -301,7 +359,7 @@ export default function AdminDashboard() {
         </Card>
       </div>
       {/* Recent Activity */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
         <Card className="bg-slate-900 border-gray-700">
           <CardHeader>
             <CardTitle className="text-white">Aktivitas Sistem</CardTitle>
@@ -368,6 +426,15 @@ export default function AdminDashboard() {
           </CardContent>
         </Card>
       </div>
-    </div>
+      {/* Floating Action Button (FAB) */}
+      <button
+        className="fixed z-40 bottom-8 right-8 bg-orange-500 hover:bg-orange-600 text-white rounded-full shadow-lg w-16 h-16 flex items-center justify-center text-3xl transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-orange-400"
+        aria-label="Tambah Data"
+        onClick={() => alert('Aksi cepat: Tambah data!')}
+        style={{ boxShadow: '0 4px 24px 0 rgba(0,0,0,0.18)' }}
+      >
+        <Plus className="w-8 h-8" />
+      </button>
+    </AdminLayout>
   )
 }

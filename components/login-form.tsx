@@ -77,7 +77,7 @@ export function LoginForm({ userType, onSuccess }: LoginFormProps) {
           password: formData.password,
         }
         const backendUrl =
-          process.env.SERVER_BACKEND_URL ??
+          process.env.NEXT_PUBLIC_SERVER_BACKEND_URL ??
           'https://backend-api.apps.pundidigitaldynamics.net'
         const response = await fetch(backendUrl + '/api/v1/auth', {
           method: 'POST',

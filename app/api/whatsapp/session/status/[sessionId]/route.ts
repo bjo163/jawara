@@ -21,7 +21,7 @@ export async function GET(
     }
 
     const backendBaseUrl =
-      process.env.SERVER_BACKEND_URL ??
+      process.env.NEXT_PUBLIC_SERVER_BACKEND_URL ??
       'https://backend-api.apps.pundidigitaldynamics.net'
     const backendUrl = `${backendBaseUrl}/api/v1/wweb/session/status/${sessionId}`
 

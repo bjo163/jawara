@@ -134,21 +134,21 @@ All 4 high priority tasks completed successfully!
 
 #### Files Updated:
 
-- `.env` - Added `SERVER_BACKEND_URL`
+- `.env` - Added `NEXT_PUBLIC_SERVER_BACKEND_URL`
 - `.env.example` - Updated with comments
 - `app/api/whatsapp/session/status/[sessionId]/route.ts` - Uses env variable
 
 #### Configuration:
 
 ```env
-SERVER_BACKEND_URL=https://backend-api.apps.pundidigitaldynamics.net
+NEXT_PUBLIC_SERVER_BACKEND_URL=https://backend-api.apps.pundidigitaldynamics.net
 ```
 
 #### Code Implementation:
 
 ```typescript
 const backendBaseUrl =
-  process.env.SERVER_BACKEND_URL ??
+  process.env.NEXT_PUBLIC_SERVER_BACKEND_URL ??
   'https://backend-api.apps.pundidigitaldynamics.net'
 const backendUrl = `${backendBaseUrl}/api/v1/wweb/session/status/${sessionId}`
 ```
