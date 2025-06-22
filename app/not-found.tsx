@@ -1,6 +1,8 @@
 // Custom 404 Not Found Page
 // Next.js custom 404 page
 
+'use client'
+
 import Link from 'next/link'
 import { Home, Search, ArrowLeft } from 'lucide-react'
 import { Button } from '@/components/ui/button'
@@ -24,8 +26,8 @@ export default function NotFoundPage() {
           Halaman Tidak Ditemukan
         </h1>
         <p className="text-gray-400 mb-8 leading-relaxed">
-          Sepertinya halaman yang Anda cari sudah dipindahkan, dihapus, atau tidak pernah ada. 
-          Mari kembali ke jalur yang benar!
+          Sepertinya halaman yang Anda cari sudah dipindahkan, dihapus, atau
+          tidak pernah ada. Mari kembali ke jalur yang benar!
         </p>
 
         {/* Action Buttons */}
@@ -36,7 +38,7 @@ export default function NotFoundPage() {
               Kembali ke Beranda
             </Button>
           </Link>
-          
+
           <button
             onClick={() => window.history.back()}
             className="w-full bg-gray-600 hover:bg-gray-700 text-white px-6 py-3 rounded-lg font-semibold transition-colors flex items-center justify-center space-x-2"
@@ -52,31 +54,37 @@ export default function NotFoundPage() {
             Halaman Populer
           </h3>
           <div className="grid grid-cols-2 gap-3">
-            <Link 
+            <Link
               href="/paket"
               className="bg-slate-900 hover:bg-slate-800 border border-gray-700 rounded-lg p-3 transition-colors"
             >
-              <div className="text-blue-400 font-semibold">💎 Paket Internet</div>
-              <div className="text-xs text-gray-400 mt-1">Pilih paket terbaik</div>
+              <div className="text-blue-400 font-semibold">
+                💎 Paket Internet
+              </div>
+              <div className="text-xs text-gray-400 mt-1">
+                Pilih paket terbaik
+              </div>
             </Link>
-            
-            <Link 
+
+            <Link
               href="/berlangganan"
               className="bg-slate-900 hover:bg-slate-800 border border-gray-700 rounded-lg p-3 transition-colors"
             >
-              <div className="text-green-400 font-semibold">🗡️ Berlangganan</div>
+              <div className="text-green-400 font-semibold">
+                🗡️ Berlangganan
+              </div>
               <div className="text-xs text-gray-400 mt-1">Daftar sekarang</div>
             </Link>
-            
-            <Link 
+
+            <Link
               href="/contact"
               className="bg-slate-900 hover:bg-slate-800 border border-gray-700 rounded-lg p-3 transition-colors"
             >
               <div className="text-orange-400 font-semibold">📞 Kontak</div>
               <div className="text-xs text-gray-400 mt-1">Hubungi kami</div>
             </Link>
-            
-            <Link 
+
+            <Link
               href="/speedtest"
               className="bg-slate-900 hover:bg-slate-800 border border-gray-700 rounded-lg p-3 transition-colors"
             >

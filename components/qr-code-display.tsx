@@ -1,5 +1,11 @@
 import { useState } from 'react'
-import { Download, RefreshCw, QrCode, Loader2, AlertTriangle } from 'lucide-react'
+import {
+  Download,
+  RefreshCw,
+  QrCode,
+  Loader2,
+  AlertTriangle,
+} from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { useQRCode } from '@/hooks/use-qr-code'
@@ -76,7 +82,9 @@ export function QRCodeDisplay({
                 onClick={() => void refresh()}
                 disabled={loading}
               >
-                <RefreshCw className={`h-4 w-4 ${loading ? 'animate-spin' : ''}`} />
+                <RefreshCw
+                  className={`h-4 w-4 ${loading ? 'animate-spin' : ''}`}
+                />
               </Button>
             )}
             {showDownload && qrCode && !imageError && (
@@ -118,10 +126,13 @@ export function QRCodeDisplay({
               <div className="w-64 h-64 bg-slate-800 border-2 border-dashed border-gray-600 flex items-center justify-center rounded-lg mb-4">
                 <div className="text-center">
                   <AlertTriangle className="h-8 w-8 text-yellow-500 mx-auto mb-2" />
-                  <p className="text-gray-400 text-sm">Failed to load QR image</p>
+                  <p className="text-gray-400 text-sm">
+                    Failed to load QR image
+                  </p>
                 </div>
               </div>
-            ) : (              <div className="bg-white p-4 rounded-lg mb-4">
+            ) : (
+              <div className="bg-white p-4 rounded-lg mb-4">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
                   src={qrCode}
@@ -132,19 +143,19 @@ export function QRCodeDisplay({
                 />
               </div>
             )}
-            
+
             <div className="text-center">
-              <p className="text-white font-medium mb-2">
-                Scan with WhatsApp
-              </p>
+              <p className="text-white font-medium mb-2">Scan with WhatsApp</p>
               <p className="text-gray-400 text-sm max-w-sm">
-                Open WhatsApp on your phone, go to Settings {'>'} Linked Devices {'>'} 
+                Open WhatsApp on your phone, go to Settings {'>'} Linked Devices{' '}
+                {'>'}
                 Link a Device, and scan this QR code.
               </p>
-              
+
               {autoRefresh && (
                 <p className="text-xs text-gray-500 mt-3">
-                  Auto-refreshing every {Math.floor(refreshInterval / 1000)} seconds
+                  Auto-refreshing every {Math.floor(refreshInterval / 1000)}{' '}
+                  seconds
                 </p>
               )}
             </div>

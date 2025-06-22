@@ -18,7 +18,8 @@ export async function GET(
         } as QRCodeResponse,
         { status: 400 }
       )
-    }    const url = `${config.serverUrl}/session/qr/${sessionId}/image`
+    }
+    const url = `${config.serverUrl}/session/qr/${sessionId}/image`
     const response = await fetch(url, {
       method: 'GET',
       headers: {
@@ -29,7 +30,7 @@ export async function GET(
     if (!response.ok) {
       const errorText = await response.text()
       console.error('QR fetch failed:', response.status, errorText)
-      
+
       return NextResponse.json(
         {
           success: false,
@@ -37,19 +38,19 @@ export async function GET(
           message: `Server responded with ${response.status}`,
         } as QRCodeResponse,
         { status: response.status }
-      )    }
+      )
+    }
 
     // Convert image to base64 data URL
     const imageBuffer = await response.arrayBuffer()
     const base64Image = Buffer.from(imageBuffer).toString('base64')
     const dataUrl = `data:image/png;base64,${base64Image}`
-    
+
     return NextResponse.json({
       success: true,
       qr: dataUrl,
       message: 'QR code retrieved successfully',
     } as QRCodeResponse)
-
   } catch (error) {
     console.error('QR fetch error:', error)
     return NextResponse.json(

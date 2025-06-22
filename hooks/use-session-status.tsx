@@ -18,11 +18,7 @@ interface UseSessionStatusReturn {
 export function useSessionStatus(
   options: UseSessionStatusOptions = {}
 ): UseSessionStatusReturn {
-  const { 
-    autoRefresh = false, 
-    refreshInterval = 5000, 
-    sessionId 
-  } = options
+  const { autoRefresh = false, refreshInterval = 5000, sessionId } = options
 
   const [status, setStatus] = useState<StatusSessionResponse | null>(null)
   const [loading, setLoading] = useState(false)

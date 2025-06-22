@@ -4,7 +4,8 @@ import './globals.css'
 
 export const metadata: Metadata = {
   title: 'Jawara-Net - Internet Nusantara',
-  description: 'Internet Service Provider yang menguasai nusantara dengan koneksi secepat kilat petir',
+  description:
+    'Internet Service Provider yang menguasai nusantara dengan koneksi secepat kilat petir',
   generator: 'Next.js',
 }
 

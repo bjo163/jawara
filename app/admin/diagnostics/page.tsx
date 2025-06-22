@@ -73,7 +73,8 @@ export default function WhatsAppDiagnostics() {
         message: 'Environment may have issues',
         details: 'Could not verify all environment variables',
       }
-    }    setResults([...tests])
+    }
+    setResults([...tests])
 
     // Test 2: API Health Check
     try {

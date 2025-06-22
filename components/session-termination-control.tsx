@@ -15,9 +15,9 @@ import {
 } from '@/components/ui/alert-dialog'
 import { Textarea } from '@/components/ui/textarea'
 import { Label } from '@/components/ui/label'
-import type { 
-  TerminationResult, 
-  TerminateSessionResponse 
+import type {
+  TerminationResult,
+  TerminateSessionResponse,
 } from '@/types/whatsapp'
 
 interface SessionTerminationControlProps {
@@ -32,60 +32,72 @@ export function SessionTerminationControl({
   currentStatus,
   disabled = false,
   onTerminationComplete,
-}: SessionTerminationControlProps) {  const [isTerminating, setIsTerminating] = useState(false)
+}: SessionTerminationControlProps) {
+  const [isTerminating, setIsTerminating] = useState(false)
   const [reason, setReason] = useState('')
   const [lastResult, setLastResult] = useState<TerminationResult | null>(null)
   const [isDialogOpen, setIsDialogOpen] = useState(false)
 
-  const canTerminate = sessionId && !disabled && 
-    currentStatus && ['working', 'scan_qr', 'starting'].includes(currentStatus)
+  const canTerminate =
+    sessionId &&
+    !disabled &&
+    currentStatus &&
+    ['working', 'scan_qr', 'starting'].includes(currentStatus)
 
   const handleTerminate = async () => {
     if (!sessionId) return
 
     setIsTerminating(true)
-    
+
     try {
-      const response = await fetch(`/api/whatsapp/session/terminate/${sessionId}`, {
-        method: 'GET',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      })
+      const response = await fetch(
+        `/api/whatsapp/session/terminate/${sessionId}`,
+        {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        }
+      )
 
       const data: TerminateSessionResponse = await response.json()
-      
+
       const result: TerminationResult = {
         success: data.success,
         sessionId,
-        message: data.message ?? (data.success ? 'Session terminated successfully' : 'Failed to terminate session'),
+        message:
+          data.message ??
+          (data.success
+            ? 'Session terminated successfully'
+            : 'Failed to terminate session'),
         timestamp: new Date(),
       }
 
       setLastResult(result)
-      
+
       if (onTerminationComplete) {
         onTerminationComplete(result)
-      }      // Close dialog on success
+      } // Close dialog on success
       if (result.success) {
         setIsDialogOpen(false)
         setReason('')
       }
-
     } catch (error) {
       const result: TerminationResult = {
         success: false,
         sessionId,
-        message: error instanceof Error ? error.message : 'Unknown error occurred',
+        message:
+          error instanceof Error ? error.message : 'Unknown error occurred',
         timestamp: new Date(),
       }
-      
+
       setLastResult(result)
-      
+
       if (onTerminationComplete) {
         onTerminationComplete(result)
       }
-    } finally {      setIsTerminating(false)
+    } finally {
+      setIsTerminating(false)
     }
   }
   const handleConfirmTermination = () => {
@@ -126,7 +138,10 @@ export function SessionTerminationControl({
         </CardTitle>
       </CardHeader>
       <CardContent className="space-y-4">
-        <div className="text-sm text-gray-400">          Current Status: <span className="text-white font-medium">
+        <div className="text-sm text-gray-400">
+          {' '}
+          Current Status:{' '}
+          <span className="text-white font-medium">
             {currentStatus ?? 'Unknown'}
           </span>
         </div>
@@ -145,7 +160,7 @@ export function SessionTerminationControl({
               </span>
             </Button>
           </AlertDialogTrigger>
-          
+
           <AlertDialogContent className="bg-slate-900 border-gray-700">
             <AlertDialogHeader>
               <AlertDialogTitle className="text-white flex items-center gap-2">
@@ -153,8 +168,9 @@ export function SessionTerminationControl({
                 Terminate WhatsApp Session
               </AlertDialogTitle>
               <AlertDialogDescription className="text-gray-300">
-                This action will terminate the active WhatsApp session. 
-                The session will be disconnected and you&apos;ll need to scan QR code again to reconnect.
+                This action will terminate the active WhatsApp session. The
+                session will be disconnected and you&apos;ll need to scan QR
+                code again to reconnect.
               </AlertDialogDescription>
             </AlertDialogHeader>
 
@@ -167,7 +183,7 @@ export function SessionTerminationControl({
                   id="reason"
                   placeholder="Enter reason for termination..."
                   value={reason}
-                  onChange={(e) => setReason(e.target.value)}
+                  onChange={e => setReason(e.target.value)}
                   className="bg-slate-800 border-gray-600 text-white placeholder-gray-400"
                   rows={3}
                 />
@@ -184,7 +200,7 @@ export function SessionTerminationControl({
             </div>
 
             <AlertDialogFooter>
-              <AlertDialogCancel 
+              <AlertDialogCancel
                 className="bg-slate-800 border-gray-600 text-white hover:bg-slate-700"
                 disabled={isTerminating}
               >
@@ -213,11 +229,13 @@ export function SessionTerminationControl({
 
         {/* Last Result Display */}
         {lastResult && (
-          <div className={`p-3 rounded border text-sm ${
-            lastResult.success 
-              ? 'bg-green-900/20 border-green-500/20 text-green-300'
-              : 'bg-red-900/20 border-red-500/20 text-red-300'
-          }`}>
+          <div
+            className={`p-3 rounded border text-sm ${
+              lastResult.success
+                ? 'bg-green-900/20 border-green-500/20 text-green-300'
+                : 'bg-red-900/20 border-red-500/20 text-red-300'
+            }`}
+          >
             <div className="font-medium">
               {lastResult.success ? '✅ Success' : '❌ Failed'}
             </div>
@@ -231,7 +249,7 @@ export function SessionTerminationControl({
         {/* Status Info */}
         {!canTerminate && sessionId && (
           <div className="text-xs text-gray-500 bg-slate-800 p-2 rounded">
-            {currentStatus === 'stopped' || currentStatus === 'failed' 
+            {currentStatus === 'stopped' || currentStatus === 'failed'
               ? 'Session is already terminated'
               : 'Session termination not available for current status'}
           </div>

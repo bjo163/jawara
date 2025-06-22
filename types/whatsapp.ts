@@ -1,5 +1,16 @@
-export type SessionStatusType = 'starting' | 'scan_qr' | 'working' | 'failed' | 'stopped'
-export type BackendStatusType = 'AUTHENTICATED' | 'DISCONNECTED' | 'QRCODE' | 'LOADING' | 'DESTROYED' | 'UNKNOWN'
+export type SessionStatusType =
+  | 'starting'
+  | 'scan_qr'
+  | 'working'
+  | 'failed'
+  | 'stopped'
+export type BackendStatusType =
+  | 'AUTHENTICATED'
+  | 'DISCONNECTED'
+  | 'QRCODE'
+  | 'LOADING'
+  | 'DESTROYED'
+  | 'UNKNOWN'
 
 export interface PingResponse {
   success: boolean
@@ -60,7 +71,7 @@ export interface WhatsAppConfig {
   sessionId: string
 }
 
-export type WhatsAppResponse<T = any> = 
+export type WhatsAppResponse<T = any> =
   | (T & { success: true })
   | WhatsAppApiError
 

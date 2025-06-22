@@ -45,10 +45,10 @@ export function useBackendStatus(
       }
 
       const data: BackendStatusResponse = await response.json()
-      
+
       // Check if status is "OK"
       const isOnline = data.status === 'OK'
-      
+
       setStatus({
         isOnline,
         isLoading: false,
@@ -59,7 +59,7 @@ export function useBackendStatus(
       return isOnline
     } catch (error) {
       let errorMessage = 'Unknown error occurred'
-      
+
       if (error instanceof Error) {
         if (error.name === 'AbortError') {
           errorMessage = 'Request timeout'

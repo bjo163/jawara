@@ -32,7 +32,8 @@ export function createAppError(
     level,
     severity: getSeverityFromLevel(level),
     timestamp: new Date(),
-    userAgent: typeof navigator !== 'undefined' ? navigator.userAgent : undefined,
+    userAgent:
+      typeof navigator !== 'undefined' ? navigator.userAgent : undefined,
     url: typeof window !== 'undefined' ? window.location.href : undefined,
     isRetryable: false,
     retryCount: 0,
@@ -68,7 +69,9 @@ export function transformError(
     )
   }
 
-  return createAppError('Unknown error occurred', category, level, { cause: error })
+  return createAppError('Unknown error occurred', category, level, {
+    cause: error,
+  })
 }
 
 // Create Component Error
@@ -100,7 +103,8 @@ export function createNetworkError(
   options: Partial<NetworkError> = {}
 ): NetworkError {
   const level: ErrorLevel = statusCode && statusCode >= 500 ? 'high' : 'medium'
-  const isRetryable = statusCode === undefined || statusCode >= 500 || statusCode === 408
+  const isRetryable =
+    statusCode === undefined || statusCode >= 500 || statusCode === 408
 
   return {
     ...createAppError(message, 'network', level),
@@ -129,7 +133,8 @@ export function createApiError(
     level = 'medium'
   }
 
-  const isRetryable = statusCode >= 500 || statusCode === 408 || statusCode === 429
+  const isRetryable =
+    statusCode >= 500 || statusCode === 408 || statusCode === 429
 
   return {
     ...createAppError(message, 'api', level),
@@ -252,13 +257,22 @@ export function requiresImmediateAttention(error: AppError): boolean {
 export function sanitizeError(error: AppError): AppError {
   // Remove sensitive data
   const sanitized = { ...error }
-  
+
   if (sanitized.metadata) {
     const metadata = { ...sanitized.metadata }
     // Remove common sensitive keys
-    const sensitiveKeys = ['password', 'token', 'key', 'secret', 'auth', 'credential']
+    const sensitiveKeys = [
+      'password',
+      'token',
+      'key',
+      'secret',
+      'auth',
+      'credential',
+    ]
     for (const key in metadata) {
-      if (sensitiveKeys.some(sensitive => key.toLowerCase().includes(sensitive))) {
+      if (
+        sensitiveKeys.some(sensitive => key.toLowerCase().includes(sensitive))
+      ) {
         metadata[key] = '[REDACTED]'
       }
     }
@@ -269,25 +283,35 @@ export function sanitizeError(error: AppError): AppError {
 }
 
 // Group errors by category
-export function groupErrorsByCategory(errors: AppError[]): Record<ErrorCategory, AppError[]> {
-  return errors.reduce((groups, error) => {
-    if (!groups[error.category]) {
-      groups[error.category] = []
-    }
-    groups[error.category].push(error)
-    return groups
-  }, {} as Record<ErrorCategory, AppError[]>)
+export function groupErrorsByCategory(
+  errors: AppError[]
+): Record<ErrorCategory, AppError[]> {
+  return errors.reduce(
+    (groups, error) => {
+      if (!groups[error.category]) {
+        groups[error.category] = []
+      }
+      groups[error.category].push(error)
+      return groups
+    },
+    {} as Record<ErrorCategory, AppError[]>
+  )
 }
 
 // Group errors by level
-export function groupErrorsByLevel(errors: AppError[]): Record<ErrorLevel, AppError[]> {
-  return errors.reduce((groups, error) => {
-    if (!groups[error.level]) {
-      groups[error.level] = []
-    }
-    groups[error.level].push(error)
-    return groups
-  }, {} as Record<ErrorLevel, AppError[]>)
+export function groupErrorsByLevel(
+  errors: AppError[]
+): Record<ErrorLevel, AppError[]> {
+  return errors.reduce(
+    (groups, error) => {
+      if (!groups[error.level]) {
+        groups[error.level] = []
+      }
+      groups[error.level].push(error)
+      return groups
+    },
+    {} as Record<ErrorLevel, AppError[]>
+  )
 }
 
 // Filter errors by time range
@@ -315,7 +339,7 @@ export interface ErrorStats {
 export function getErrorStats(errors: AppError[]): ErrorStats {
   const now = new Date()
   const lastHour = new Date(now.getTime() - 60 * 60 * 1000)
-  
+
   const stats: ErrorStats = {
     total: errors.length,
     byCategory: {} as Record<ErrorCategory, number>,
@@ -328,24 +352,26 @@ export function getErrorStats(errors: AppError[]): ErrorStats {
 
   errors.forEach(error => {
     // Count by category
-    stats.byCategory[error.category] = (stats.byCategory[error.category] || 0) + 1
-    
+    stats.byCategory[error.category] =
+      (stats.byCategory[error.category] || 0) + 1
+
     // Count by level
     stats.byLevel[error.level] = (stats.byLevel[error.level] || 0) + 1
-    
+
     // Count by severity
-    stats.bySeverity[error.severity] = (stats.bySeverity[error.severity] || 0) + 1
-    
+    stats.bySeverity[error.severity] =
+      (stats.bySeverity[error.severity] || 0) + 1
+
     // Count critical errors
     if (isCriticalError(error)) {
       stats.criticalCount++
     }
-    
+
     // Count retryable errors
     if (error.isRetryable) {
       stats.retryableCount++
     }
-    
+
     // Count recent errors
     if (error.timestamp >= lastHour) {
       stats.recentCount++

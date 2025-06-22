@@ -1,4 +1,10 @@
-import { Play, RotateCcw, CheckCircle, AlertTriangle, Loader2 } from 'lucide-react'
+import {
+  Play,
+  RotateCcw,
+  CheckCircle,
+  AlertTriangle,
+  Loader2,
+} from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
@@ -9,8 +15,8 @@ interface WhatsAppWorkflowControlProps {
   readonly onWorkflowComplete?: (result: WorkflowResult) => void
 }
 
-export function WhatsAppWorkflowControl({ 
-  onWorkflowComplete 
+export function WhatsAppWorkflowControl({
+  onWorkflowComplete,
 }: WhatsAppWorkflowControlProps) {
   const { result, loading, error, execute, reset } = useWhatsAppWorkflow()
 
@@ -21,7 +27,11 @@ export function WhatsAppWorkflowControl({
     }
   }
 
-  const getStepIcon = (step: string, isActive: boolean, isComplete: boolean) => {
+  const getStepIcon = (
+    step: string,
+    isActive: boolean,
+    isComplete: boolean
+  ) => {
     if (isActive) return <Loader2 className="h-4 w-4 animate-spin" />
     if (isComplete) return <CheckCircle className="h-4 w-4 text-green-500" />
     return <div className="h-4 w-4 rounded-full border-2 border-gray-400" />
@@ -30,11 +40,11 @@ export function WhatsAppWorkflowControl({
   const getStepStatus = (step: string) => {
     if (!result) return 'pending'
     if (result.step === step && loading) return 'active'
-    
+
     const stepOrder = ['ping', 'status', 'start', 'complete']
     const currentIndex = stepOrder.indexOf(result.step)
     const stepIndex = stepOrder.indexOf(step)
-    
+
     if (stepIndex <= currentIndex) return 'complete'
     return 'pending'
   }
@@ -58,9 +68,21 @@ export function WhatsAppWorkflowControl({
   }
 
   const steps = [
-    { key: 'ping', label: 'Server Ping', description: 'Check server connectivity' },
-    { key: 'status', label: 'Session Status', description: 'Check current session state' },
-    { key: 'start', label: 'Auto Start', description: 'Start session if needed' },
+    {
+      key: 'ping',
+      label: 'Server Ping',
+      description: 'Check server connectivity',
+    },
+    {
+      key: 'status',
+      label: 'Session Status',
+      description: 'Check current session state',
+    },
+    {
+      key: 'start',
+      label: 'Auto Start',
+      description: 'Start session if needed',
+    },
     { key: 'complete', label: 'Complete', description: 'Workflow finished' },
   ]
 
@@ -102,21 +124,24 @@ export function WhatsAppWorkflowControl({
             <span className="text-red-400 text-sm">{error}</span>
           </div>
         )}
-
-        {/* Workflow Steps */}        <div className="space-y-3">
-          {steps.map((step) => {
+        {/* Workflow Steps */}{' '}
+        <div className="space-y-3">
+          {steps.map(step => {
             const status = getStepStatus(step.key)
             const isActive = status === 'active'
             const isComplete = status === 'complete'
-            
+
             return (
               <div key={step.key} className="flex items-center gap-3">
-                {getStepIcon(step.key, isActive, isComplete)}<div className="flex-1">
+                {getStepIcon(step.key, isActive, isComplete)}
+                <div className="flex-1">
                   <div className="flex items-center gap-2">
-                    <span className={`font-medium ${getStepTextColor(isComplete, isActive)}`}>
+                    <span
+                      className={`font-medium ${getStepTextColor(isComplete, isActive)}`}
+                    >
                       {step.label}
                     </span>
-                    <Badge 
+                    <Badge
                       variant={getStepBadgeVariant(isComplete, isActive)}
                       className="text-xs"
                     >
@@ -129,7 +154,6 @@ export function WhatsAppWorkflowControl({
             )
           })}
         </div>
-
         {/* Result Display */}
         {result && (
           <div className="mt-4 p-3 bg-slate-800 border border-gray-600 rounded">
@@ -142,9 +166,7 @@ export function WhatsAppWorkflowControl({
               {result.data && (
                 <div>Data: {JSON.stringify(result.data, null, 2)}</div>
               )}
-              {result.details && (
-                <div>Details: {result.details}</div>
-              )}
+              {result.details && <div>Details: {result.details}</div>}
             </div>
           </div>
         )}

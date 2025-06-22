@@ -7,7 +7,7 @@ export async function GET() {
     // In a real implementation, this would check database connectivity,
     // external services, etc.    // For testing purposes, you can modify this to return different statuses
     const isHealthy = true // Change to false to test offline behavior
-    
+
     if (isHealthy) {
       // Get system information similar to the expected response
       const uptime = process.uptime()
@@ -16,7 +16,7 @@ export async function GET() {
       const arch = process.arch
       const hostname = os.hostname()
       const cpus = os.cpus()
-      
+
       return NextResponse.json(
         {
           status: 'OK',
@@ -26,7 +26,7 @@ export async function GET() {
             heapTotal: memoryUsage.heapTotal,
             heapUsed: memoryUsage.heapUsed,
             external: memoryUsage.external,
-            arrayBuffers: memoryUsage.arrayBuffers || 0
+            arrayBuffers: memoryUsage.arrayBuffers || 0,
           },
           platform: platform,
           arch: arch,
@@ -34,19 +34,19 @@ export async function GET() {
           cpu: cpus.map(cpu => ({
             model: cpu.model,
             speed: cpu.speed,
-            times: cpu.times
+            times: cpu.times,
           })),
           serverTime: new Date().toISOString(),
-          port: process.env.PORT ?? 3000
+          port: process.env.PORT ?? 3000,
         },
         { status: 200 }
       )
     } else {
       return NextResponse.json(
-        { 
+        {
           status: 'ERROR',
           timestamp: new Date().toISOString(),
-          error: 'Backend services are down'
+          error: 'Backend services are down',
         },
         { status: 503 }
       )
@@ -54,10 +54,10 @@ export async function GET() {
   } catch (error) {
     console.error('Status check error:', error)
     return NextResponse.json(
-      { 
+      {
         status: 'ERROR',
         timestamp: new Date().toISOString(),
-        error: 'Internal server error'
+        error: 'Internal server error',
       },
       { status: 500 }
     )

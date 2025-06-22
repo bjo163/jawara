@@ -43,9 +43,10 @@ function DefaultErrorFallback({
             Oops! Terjadi Kesalahan
           </h2>
           <p className="text-gray-400 text-sm mb-4">
-            Terjadi kesalahan pada komponen ini. Kami sudah mencatat masalah ini dan akan segera memperbaikinya.
+            Terjadi kesalahan pada komponen ini. Kami sudah mencatat masalah ini
+            dan akan segera memperbaikinya.
           </p>
-          
+
           {process.env.NODE_ENV === 'development' && (
             <details className="mt-4 text-left">
               <summary className="cursor-pointer text-sm text-gray-500 hover:text-gray-400">
@@ -81,19 +82,19 @@ function DefaultErrorFallback({
               disabled={retryCount >= maxRetries}
               className="w-full bg-blue-500 hover:bg-blue-600 disabled:bg-gray-600 disabled:cursor-not-allowed text-white px-4 py-2 rounded-lg font-medium transition-colors"
             >
-              {retryCount >= maxRetries 
-                ? `Sudah dicoba ${maxRetries}x` 
+              {retryCount >= maxRetries
+                ? `Sudah dicoba ${maxRetries}x`
                 : `Coba Lagi (${retryCount}/${maxRetries})`}
             </button>
           )}
-          
+
           <button
             onClick={resetError}
             className="w-full bg-gray-600 hover:bg-gray-700 text-white px-4 py-2 rounded-lg font-medium transition-colors"
           >
             Reset Komponen
           </button>
-          
+
           <button
             onClick={() => window.location.reload()}
             className="w-full bg-orange-500 hover:bg-orange-600 text-white px-4 py-2 rounded-lg font-medium transition-colors"
@@ -107,24 +108,27 @@ function DefaultErrorFallback({
 }
 
 // Error Boundary Class Component
-export class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundaryState> {
+export class ErrorBoundary extends Component<
+  ErrorBoundaryProps,
+  ErrorBoundaryState
+> {
   private retryTimeoutId: NodeJS.Timeout | null = null
 
   constructor(props: ErrorBoundaryProps) {
     super(props)
-    
+
     this.state = {
       hasError: false,
       error: null,
       retryCount: 0,
     }
-  }
-
+  } // eslint-disable-next-line @typescript-eslint/no-unused-vars
   static getDerivedStateFromError(error: Error): Partial<ErrorBoundaryState> {
     return {
       hasError: true,
     }
-  }  componentDidCatch(error: Error, errorInfo: ErrorInfo) {
+  }
+  componentDidCatch(error: Error, errorInfo: ErrorInfo) {
     const componentError = createComponentError(
       error,
       this.constructor.name,
@@ -141,7 +145,7 @@ export class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundarySt
     const customErrorInfo: import('@/types').ErrorInfo = {
       componentStack: errorInfo.componentStack ?? '',
     }
-    this.props.onError?.(componentError, customErrorInfo)    // Log to console in development
+    this.props.onError?.(componentError, customErrorInfo) // Log to console in development
     if (process.env.NODE_ENV === 'development') {
       console.group('🚨 Error Boundary Caught Error')
       console.error('Error:', error)
@@ -156,7 +160,11 @@ export class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundarySt
     const { hasError } = this.state
 
     // Reset if resetOnPropsChange is true and props changed
-    if (resetOnPropsChange && hasError && prevProps.children !== this.props.children) {
+    if (
+      resetOnPropsChange &&
+      hasError &&
+      prevProps.children !== this.props.children
+    ) {
       this.resetError()
       return
     }
@@ -165,9 +173,11 @@ export class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundarySt
     if (resetKeys && hasError) {
       const prevKeys = prevProps.resetKeys || []
       const currentKeys = resetKeys
-      
-      if (prevKeys.length !== currentKeys.length || 
-          prevKeys.some((key, index) => key !== currentKeys[index])) {
+
+      if (
+        prevKeys.length !== currentKeys.length ||
+        prevKeys.some((key, index) => key !== currentKeys[index])
+      ) {
         this.resetError()
       }
     }
@@ -217,8 +227,8 @@ export class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundarySt
 
   render() {
     const { hasError, error, retryCount } = this.state
-    const { 
-      children, 
+    const {
+      children,
       fallback: FallbackComponent = DefaultErrorFallback,
       enableRetry = true,
       maxRetries = 3,
@@ -255,7 +265,7 @@ export function withErrorBoundary<P extends object>(
   )
 
   WrappedComponent.displayName = `withErrorBoundary(${Component.displayName ?? Component.name})`
-  
+
   return WrappedComponent
 }
 

@@ -31,9 +31,7 @@
   "paths": {
     "/ping": {
       "get": {
-        "tags": [
-          "Various"
-        ],
+        "tags": ["Various"],
         "summary": "Health check",
         "description": "Responds to request with \"pong\" message",
         "responses": {
@@ -53,9 +51,7 @@
     },
     "/localCallbackExample": {
       "post": {
-        "tags": [
-          "Various"
-        ],
+        "tags": ["Various"],
         "summary": "Local callback",
         "description": "Used to generate a QR code and writes a log file. ONLY FOR DEVELOPMENT/TEST PURPOSES.",
         "parameters": [
@@ -108,9 +104,7 @@
     },
     "/session/getSessions": {
       "get": {
-        "tags": [
-          "Session"
-        ],
+        "tags": ["Session"],
         "summary": "Get all sessions",
         "description": "Get all sessions.",
         "responses": {
@@ -154,9 +148,7 @@
     },
     "/session/start/{sessionId}": {
       "get": {
-        "tags": [
-          "Session"
-        ],
+        "tags": ["Session"],
         "summary": "Start new session",
         "description": "Starts a session for the given session ID.",
         "parameters": [
@@ -222,9 +214,7 @@
     },
     "/session/status/{sessionId}": {
       "get": {
-        "tags": [
-          "Session"
-        ],
+        "tags": ["Session"],
         "summary": "Get session status",
         "description": "Status of the session with the given session ID.",
         "parameters": [
@@ -290,9 +280,7 @@
     },
     "/session/qr/{sessionId}": {
       "get": {
-        "tags": [
-          "Session"
-        ],
+        "tags": ["Session"],
         "summary": "Get session QR code",
         "description": "QR code of the session with the given session ID.",
         "parameters": [
@@ -351,9 +339,7 @@
     },
     "/session/qr/{sessionId}/image": {
       "get": {
-        "tags": [
-          "Session"
-        ],
+        "tags": ["Session"],
         "summary": "Get session QR code as image",
         "description": "QR code as image of the session with the given session ID.",
         "parameters": [
@@ -415,9 +401,7 @@
     },
     "/session/requestPairingCode/{sessionId}": {
       "post": {
-        "tags": [
-          "Session"
-        ],
+        "tags": ["Session"],
         "summary": "Request authentication via pairing code",
         "description": "",
         "parameters": [
@@ -515,9 +499,7 @@
     },
     "/session/restart/{sessionId}": {
       "get": {
-        "tags": [
-          "Session"
-        ],
+        "tags": ["Session"],
         "summary": "Restart session",
         "description": "Restarts the session with the given session ID.",
         "parameters": [
@@ -583,9 +565,7 @@
     },
     "/session/terminate/{sessionId}": {
       "get": {
-        "tags": [
-          "Session"
-        ],
+        "tags": ["Session"],
         "summary": "Terminate session",
         "description": "Terminates the session with the given session ID.",
         "parameters": [
@@ -651,9 +631,7 @@
     },
     "/session/terminateInactive": {
       "get": {
-        "tags": [
-          "Session"
-        ],
+        "tags": ["Session"],
         "summary": "Terminate inactive sessions",
         "description": "Terminates all inactive sessions.",
         "responses": {
@@ -697,9 +675,7 @@
     },
     "/session/terminateAll": {
       "get": {
-        "tags": [
-          "Session"
-        ],
+        "tags": ["Session"],
         "summary": "Terminate all sessions",
         "description": "Terminates all sessions.",
         "responses": {
@@ -743,9 +719,7 @@
     },
     "/session/getPageScreenshot/{sessionId}": {
       "get": {
-        "tags": [
-          "Session"
-        ],
+        "tags": ["Session"],
         "summary": "Get page screenshot",
         "description": "Screenshot of the client with the given session ID.",
         "parameters": [
@@ -807,9 +781,7 @@
     },
     "/client/getClassInfo/{sessionId}": {
       "get": {
-        "tags": [
-          "Client"
-        ],
+        "tags": ["Client"],
         "summary": "Get current connection information",
         "description": "",
         "parameters": [
@@ -878,9 +850,7 @@
     },
     "/client/acceptInvite/{sessionId}": {
       "post": {
-        "tags": [
-          "Client"
-        ],
+        "tags": ["Client"],
         "summary": "Accept an invitation to join a group",
         "description": "",
         "parameters": [
@@ -978,9 +948,7 @@
     },
     "/client/archiveChat/{sessionId}": {
       "post": {
-        "tags": [
-          "Client"
-        ],
+        "tags": ["Client"],
         "summary": "Archive the chat",
         "description": "",
         "parameters": [
@@ -1078,9 +1046,7 @@
     },
     "/client/createGroup/{sessionId}": {
       "post": {
-        "tags": [
-          "Client"
-        ],
+        "tags": ["Client"],
         "summary": "Create a new group",
         "description": "",
         "parameters": [
@@ -1198,9 +1164,7 @@
     },
     "/client/getBlockedContacts/{sessionId}": {
       "post": {
-        "tags": [
-          "Client"
-        ],
+        "tags": ["Client"],
         "summary": "Get all blocked contacts by host account",
         "description": "",
         "parameters": [
@@ -1269,9 +1233,7 @@
     },
     "/client/getChatById/{sessionId}": {
       "post": {
-        "tags": [
-          "Client"
-        ],
+        "tags": ["Client"],
         "summary": "Get the chat",
         "description": "",
         "parameters": [
@@ -1369,9 +1331,7 @@
     },
     "/client/getChatLabels/{sessionId}": {
       "post": {
-        "tags": [
-          "Client"
-        ],
+        "tags": ["Client"],
         "summary": "Get all labels assigned to the chat",
         "description": "",
         "parameters": [
@@ -1469,9 +1429,7 @@
     },
     "/client/getChats/{sessionId}": {
       "get": {
-        "tags": [
-          "Client"
-        ],
+        "tags": ["Client"],
         "summary": "Get all current chats",
         "description": "",
         "parameters": [
@@ -1540,9 +1498,7 @@
     },
     "/client/getChatsByLabelId/{sessionId}": {
       "post": {
-        "tags": [
-          "Client"
-        ],
+        "tags": ["Client"],
         "summary": "Get all chats for a specific label",
         "description": "",
         "parameters": [
@@ -1640,9 +1596,7 @@
     },
     "/client/getCommonGroups/{sessionId}": {
       "post": {
-        "tags": [
-          "Client"
-        ],
+        "tags": ["Client"],
         "summary": "Get the contact's common groups",
         "description": "Get the contact's common groups with you. Returns empty array if you don't have any common group.",
         "parameters": [
@@ -1740,9 +1694,7 @@
     },
     "/client/getContactById/{sessionId}": {
       "post": {
-        "tags": [
-          "Client"
-        ],
+        "tags": ["Client"],
         "summary": "Get the contact",
         "description": "",
         "parameters": [
@@ -1840,9 +1792,7 @@
     },
     "/client/getContacts/{sessionId}": {
       "get": {
-        "tags": [
-          "Client"
-        ],
+        "tags": ["Client"],
         "summary": "Get all current contacts",
         "description": "",
         "parameters": [
@@ -1911,9 +1861,7 @@
     },
     "/client/getInviteInfo/{sessionId}": {
       "post": {
-        "tags": [
-          "Client"
-        ],
+        "tags": ["Client"],
         "summary": "Return invite information",
         "description": "Return an object with information about the invite code",
         "parameters": [
@@ -2011,9 +1959,7 @@
     },
     "/client/getLabelById/{sessionId}": {
       "post": {
-        "tags": [
-          "Client"
-        ],
+        "tags": ["Client"],
         "summary": "Get the label",
         "description": "",
         "parameters": [
@@ -2111,9 +2057,7 @@
     },
     "/client/getLabels/{sessionId}": {
       "post": {
-        "tags": [
-          "Client"
-        ],
+        "tags": ["Client"],
         "summary": "Get all current labels",
         "description": "",
         "parameters": [
@@ -2182,9 +2126,7 @@
     },
     "/client/addOrRemoveLabels/{sessionId}": {
       "post": {
-        "tags": [
-          "Client"
-        ],
+        "tags": ["Client"],
         "summary": "Change labels in chats",
         "description": "",
         "parameters": [
@@ -2292,9 +2234,7 @@
     },
     "/client/getNumberId/{sessionId}": {
       "post": {
-        "tags": [
-          "Client"
-        ],
+        "tags": ["Client"],
         "summary": "Get the registered WhatsApp ID for a number",
         "description": "Return null if the number is not registered on WhatsApp",
         "parameters": [
@@ -2392,9 +2332,7 @@
     },
     "/client/isRegisteredUser/{sessionId}": {
       "post": {
-        "tags": [
-          "Client"
-        ],
+        "tags": ["Client"],
         "summary": "Check if a given ID is registered in WhatsApp",
         "description": "",
         "parameters": [
@@ -2492,9 +2430,7 @@
     },
     "/client/getProfilePicUrl/{sessionId}": {
       "post": {
-        "tags": [
-          "Client"
-        ],
+        "tags": ["Client"],
         "summary": "Return the contact ID's profile picture URL",
         "description": "",
         "parameters": [
@@ -2592,9 +2528,7 @@
     },
     "/client/getState/{sessionId}": {
       "get": {
-        "tags": [
-          "Client"
-        ],
+        "tags": ["Client"],
         "summary": "Get the current connection state for the client",
         "description": "",
         "parameters": [
@@ -2653,9 +2587,7 @@
     },
     "/client/markChatUnread/{sessionId}": {
       "post": {
-        "tags": [
-          "Client"
-        ],
+        "tags": ["Client"],
         "summary": "Mark the chat as unread",
         "description": "",
         "parameters": [
@@ -2753,9 +2685,7 @@
     },
     "/client/muteChat/{sessionId}": {
       "post": {
-        "tags": [
-          "Client"
-        ],
+        "tags": ["Client"],
         "summary": "Mute the chat",
         "description": "Mute this chat forever, unless a date is specified",
         "parameters": [
@@ -2863,9 +2793,7 @@
     },
     "/client/pinChat/{sessionId}": {
       "post": {
-        "tags": [
-          "Client"
-        ],
+        "tags": ["Client"],
         "summary": "Pin the chat",
         "description": "",
         "parameters": [
@@ -2963,9 +2891,7 @@
     },
     "/client/searchMessages/{sessionId}": {
       "post": {
-        "tags": [
-          "Client"
-        ],
+        "tags": ["Client"],
         "summary": "Search for messages",
         "description": "",
         "parameters": [
@@ -3079,9 +3005,7 @@
     },
     "/client/sendMessage/{sessionId}": {
       "post": {
-        "tags": [
-          "Client"
-        ],
+        "tags": ["Client"],
         "summary": "Send a message to a specific chatId",
         "description": "",
         "parameters": [
@@ -3223,10 +3147,7 @@
                     "contentType": "Poll",
                     "content": {
                       "pollName": "Cats or Dogs?",
-                      "pollOptions": [
-                        "Cats",
-                        "Dogs"
-                      ],
+                      "pollOptions": ["Cats", "Dogs"],
                       "options": {
                         "allowMultipleAnswers": true
                       }
@@ -3241,9 +3162,7 @@
     },
     "/client/sendPresenceAvailable/{sessionId}": {
       "post": {
-        "tags": [
-          "Client"
-        ],
+        "tags": ["Client"],
         "summary": "Mark the client as online",
         "description": "",
         "parameters": [
@@ -3312,9 +3231,7 @@
     },
     "/client/sendPresenceUnavailable/{sessionId}": {
       "post": {
-        "tags": [
-          "Client"
-        ],
+        "tags": ["Client"],
         "summary": "Mark the client as unavailable",
         "description": "",
         "parameters": [
@@ -3383,9 +3300,7 @@
     },
     "/client/sendSeen/{sessionId}": {
       "post": {
-        "tags": [
-          "Client"
-        ],
+        "tags": ["Client"],
         "summary": "Mark the chat as seen",
         "description": "",
         "parameters": [
@@ -3483,9 +3398,7 @@
     },
     "/client/setDisplayName/{sessionId}": {
       "post": {
-        "tags": [
-          "Client"
-        ],
+        "tags": ["Client"],
         "summary": "Set the current user",
         "description": "This is the name shown to WhatsApp users that have not added you as a contact beside your number in groups and in your profile.",
         "parameters": [
@@ -3593,9 +3506,7 @@
     },
     "/client/setProfilePicture/{sessionId}": {
       "post": {
-        "tags": [
-          "Client"
-        ],
+        "tags": ["Client"],
         "summary": "Set the current user",
         "description": "Each WaWeb Connection counts as one device, and the phone (if exists) counts as one device. So for a non-enterprise user with one WaWeb connection it should return \"2\"",
         "parameters": [
@@ -3690,9 +3601,7 @@
     },
     "/client/setStatus/{sessionId}": {
       "post": {
-        "tags": [
-          "Client"
-        ],
+        "tags": ["Client"],
         "summary": "Set the current user's status message",
         "description": "",
         "parameters": [
@@ -3790,9 +3699,7 @@
     },
     "/client/unarchiveChat/{sessionId}": {
       "post": {
-        "tags": [
-          "Client"
-        ],
+        "tags": ["Client"],
         "summary": "Changes archive state of the chat",
         "description": "",
         "parameters": [
@@ -3890,9 +3797,7 @@
     },
     "/client/unmuteChat/{sessionId}": {
       "post": {
-        "tags": [
-          "Client"
-        ],
+        "tags": ["Client"],
         "summary": "Unmute the chat",
         "description": "",
         "parameters": [
@@ -3990,9 +3895,7 @@
     },
     "/client/unpinChat/{sessionId}": {
       "post": {
-        "tags": [
-          "Client"
-        ],
+        "tags": ["Client"],
         "summary": "Unpin the chat",
         "description": "",
         "parameters": [
@@ -4090,9 +3993,7 @@
     },
     "/client/getWWebVersion/{sessionId}": {
       "get": {
-        "tags": [
-          "Client"
-        ],
+        "tags": ["Client"],
         "summary": "Return the version of WhatsApp Web currently being run",
         "description": "",
         "parameters": [
@@ -4161,9 +4062,7 @@
     },
     "/client/deleteProfilePicture/{sessionId}": {
       "delete": {
-        "tags": [
-          "Client"
-        ],
+        "tags": ["Client"],
         "summary": "Delete the current user's profile picture",
         "description": "",
         "parameters": [
@@ -4232,9 +4131,7 @@
     },
     "/client/setAutoDownloadAudio/{sessionId}": {
       "post": {
-        "tags": [
-          "Client"
-        ],
+        "tags": ["Client"],
         "summary": "Set auto load download audio flag",
         "description": "",
         "parameters": [
@@ -4332,9 +4229,7 @@
     },
     "/client/setAutoDownloadDocuments/{sessionId}": {
       "post": {
-        "tags": [
-          "Client"
-        ],
+        "tags": ["Client"],
         "summary": "Set auto load download documents flag",
         "description": "",
         "parameters": [
@@ -4432,9 +4327,7 @@
     },
     "/client/setAutoDownloadPhotos/{sessionId}": {
       "post": {
-        "tags": [
-          "Client"
-        ],
+        "tags": ["Client"],
         "summary": "Set auto load download photos flag",
         "description": "",
         "parameters": [
@@ -4532,9 +4425,7 @@
     },
     "/client/setAutoDownloadVideos/{sessionId}": {
       "post": {
-        "tags": [
-          "Client"
-        ],
+        "tags": ["Client"],
         "summary": "Set auto load download videos flag",
         "description": "",
         "parameters": [
@@ -4632,9 +4523,7 @@
     },
     "/client/syncHistory/{sessionId}": {
       "post": {
-        "tags": [
-          "Client"
-        ],
+        "tags": ["Client"],
         "summary": "Sync chat history",
         "description": "",
         "parameters": [
@@ -4732,9 +4621,7 @@
     },
     "/client/getContactDeviceCount/{sessionId}": {
       "post": {
-        "tags": [
-          "Client"
-        ],
+        "tags": ["Client"],
         "summary": "Get user device count",
         "description": "Each WaWeb Connection counts as one device, and the phone (if exists) counts as one device. So for a non-enterprise user with one WaWeb connection it should return \"2\"",
         "parameters": [
@@ -4832,9 +4719,7 @@
     },
     "/client/getCountryCode/{sessionId}": {
       "post": {
-        "tags": [
-          "Client"
-        ],
+        "tags": ["Client"],
         "summary": "Get the country code",
         "description": "",
         "parameters": [
@@ -4932,9 +4817,7 @@
     },
     "/client/getFormattedNumber/{sessionId}": {
       "post": {
-        "tags": [
-          "Client"
-        ],
+        "tags": ["Client"],
         "summary": "Get the formatted number",
         "description": "",
         "parameters": [
@@ -5032,9 +4915,7 @@
     },
     "/client/openChatWindow/{sessionId}": {
       "post": {
-        "tags": [
-          "Client"
-        ],
+        "tags": ["Client"],
         "summary": "Open the chat window",
         "description": "",
         "parameters": [
@@ -5132,9 +5013,7 @@
     },
     "/client/openChatWindowAt/{sessionId}": {
       "post": {
-        "tags": [
-          "Client"
-        ],
+        "tags": ["Client"],
         "summary": "Open the chat window to the position of the message",
         "description": "",
         "parameters": [
@@ -5232,9 +5111,7 @@
     },
     "/client/resetState/{sessionId}": {
       "post": {
-        "tags": [
-          "Client"
-        ],
+        "tags": ["Client"],
         "summary": "Force reset of connection state for the client",
         "description": "",
         "parameters": [
@@ -5303,9 +5180,7 @@
     },
     "/client/setBackgroundSync/{sessionId}": {
       "post": {
-        "tags": [
-          "Client"
-        ],
+        "tags": ["Client"],
         "summary": "Change the background synchronization setting",
         "description": "NOTE: This action will take effect after you restart the client",
         "parameters": [
@@ -5403,9 +5278,7 @@
     },
     "/chat/getClassInfo/{sessionId}": {
       "post": {
-        "tags": [
-          "Chat"
-        ],
+        "tags": ["Chat"],
         "summary": "Get the chat",
         "description": "",
         "parameters": [
@@ -5503,9 +5376,7 @@
     },
     "/chat/clearMessages/{sessionId}": {
       "post": {
-        "tags": [
-          "Chat"
-        ],
+        "tags": ["Chat"],
         "summary": "Clear all messages from the chat",
         "description": "",
         "parameters": [
@@ -5603,9 +5474,7 @@
     },
     "/chat/clearState/{sessionId}": {
       "post": {
-        "tags": [
-          "Chat"
-        ],
+        "tags": ["Chat"],
         "summary": "Stop typing or recording in chat immediately",
         "description": "",
         "parameters": [
@@ -5703,9 +5572,7 @@
     },
     "/chat/delete/{sessionId}": {
       "post": {
-        "tags": [
-          "Chat"
-        ],
+        "tags": ["Chat"],
         "summary": "Delete the chat",
         "description": "",
         "parameters": [
@@ -5803,9 +5670,7 @@
     },
     "/chat/fetchMessages/{sessionId}": {
       "post": {
-        "tags": [
-          "Chat"
-        ],
+        "tags": ["Chat"],
         "summary": "Load chat messages",
         "description": "Messages sorted from earliest to latest",
         "parameters": [
@@ -5919,9 +5784,7 @@
     },
     "/chat/getContact/{sessionId}": {
       "post": {
-        "tags": [
-          "Chat"
-        ],
+        "tags": ["Chat"],
         "summary": "Get the contact",
         "description": "",
         "parameters": [
@@ -6019,9 +5882,7 @@
     },
     "/chat/sendStateRecording/{sessionId}": {
       "post": {
-        "tags": [
-          "Chat"
-        ],
+        "tags": ["Chat"],
         "summary": "Simulate recording audio",
         "description": "Simulate recording audio in chat. This will last for 25 seconds",
         "parameters": [
@@ -6119,9 +5980,7 @@
     },
     "/chat/sendStateTyping/{sessionId}": {
       "post": {
-        "tags": [
-          "Chat"
-        ],
+        "tags": ["Chat"],
         "summary": "Simulate typing in chat",
         "description": "Simulate typing in chat. This will last for 25 seconds.",
         "parameters": [
@@ -6219,9 +6078,7 @@
     },
     "/chat/sendSeen/{sessionId}": {
       "post": {
-        "tags": [
-          "Chat"
-        ],
+        "tags": ["Chat"],
         "summary": "Set the message as seen",
         "description": "",
         "parameters": [
@@ -6319,9 +6176,7 @@
     },
     "/chat/markUnread/{sessionId}": {
       "post": {
-        "tags": [
-          "Chat"
-        ],
+        "tags": ["Chat"],
         "summary": "Mark this chat as unread",
         "description": "",
         "parameters": [
@@ -6419,9 +6274,7 @@
     },
     "/chat/syncHistory/{sessionId}": {
       "post": {
-        "tags": [
-          "Chat"
-        ],
+        "tags": ["Chat"],
         "summary": "Sync chat history",
         "description": "",
         "parameters": [
@@ -6519,9 +6372,7 @@
     },
     "/chat/getLabels/{sessionId}": {
       "post": {
-        "tags": [
-          "Chat"
-        ],
+        "tags": ["Chat"],
         "summary": "Return all labels",
         "description": "Return array of all labels assigned to this chat",
         "parameters": [
@@ -6619,9 +6470,7 @@
     },
     "/chat/changeLabels/{sessionId}": {
       "post": {
-        "tags": [
-          "Chat"
-        ],
+        "tags": ["Chat"],
         "summary": "Add or remove labels",
         "description": "",
         "parameters": [
@@ -6701,10 +6550,7 @@
                   "labelIds": {
                     "type": "array",
                     "description": "Array of (number or string)",
-                    "example": [
-                      0,
-                      1
-                    ]
+                    "example": [0, 1]
                   }
                 }
               }
@@ -6721,10 +6567,7 @@
                   "labelIds": {
                     "type": "array",
                     "description": "Array of (number or string)",
-                    "example": [
-                      0,
-                      1
-                    ]
+                    "example": [0, 1]
                   }
                 }
               }
@@ -6735,9 +6578,7 @@
     },
     "/groupChat/getClassInfo/{sessionId}": {
       "post": {
-        "tags": [
-          "Group Chat"
-        ],
+        "tags": ["Group Chat"],
         "summary": "Get the group",
         "description": "",
         "parameters": [
@@ -6835,9 +6676,7 @@
     },
     "/groupChat/addParticipants/{sessionId}": {
       "post": {
-        "tags": [
-          "Group Chat"
-        ],
+        "tags": ["Group Chat"],
         "summary": "Add the participants",
         "description": "Add a list of participants by ID to the group",
         "parameters": [
@@ -6917,18 +6756,13 @@
                   "participantIds": {
                     "type": "array",
                     "description": "Unique WhatsApp identifiers for the participants",
-                    "example": [
-                      "6281288888887@c.us"
-                    ]
+                    "example": ["6281288888887@c.us"]
                   },
                   "options": {
                     "type": "object",
                     "description": "Options for adding participants",
                     "example": {
-                      "sleep": [
-                        250,
-                        500
-                      ],
+                      "sleep": [250, 500],
                       "comment": ""
                     }
                   }
@@ -6947,18 +6781,13 @@
                   "participantIds": {
                     "type": "array",
                     "description": "Unique WhatsApp identifiers for the participants",
-                    "example": [
-                      "6281288888887@c.us"
-                    ]
+                    "example": ["6281288888887@c.us"]
                   },
                   "options": {
                     "type": "object",
                     "description": "Options for adding participants",
                     "example": {
-                      "sleep": [
-                        250,
-                        500
-                      ],
+                      "sleep": [250, 500],
                       "comment": ""
                     }
                   }
@@ -6971,9 +6800,7 @@
     },
     "/groupChat/demoteParticipants/{sessionId}": {
       "post": {
-        "tags": [
-          "Group Chat"
-        ],
+        "tags": ["Group Chat"],
         "summary": "Demote the participants",
         "description": "Demote participants by ID to regular users",
         "parameters": [
@@ -7053,9 +6880,7 @@
                   "participantIds": {
                     "type": "array",
                     "description": "Unique WhatsApp identifiers for the participants",
-                    "example": [
-                      "6281288888887@c.us"
-                    ]
+                    "example": ["6281288888887@c.us"]
                   }
                 }
               }
@@ -7072,9 +6897,7 @@
                   "participantIds": {
                     "type": "array",
                     "description": "Unique WhatsApp identifiers for the participants",
-                    "example": [
-                      "6281288888887@c.us"
-                    ]
+                    "example": ["6281288888887@c.us"]
                   }
                 }
               }
@@ -7085,9 +6908,7 @@
     },
     "/groupChat/getInviteCode/{sessionId}": {
       "post": {
-        "tags": [
-          "Group Chat"
-        ],
+        "tags": ["Group Chat"],
         "summary": "Get the invite code",
         "description": "Get the invite code for a specific group",
         "parameters": [
@@ -7185,9 +7006,7 @@
     },
     "/groupChat/leave/{sessionId}": {
       "post": {
-        "tags": [
-          "Group Chat"
-        ],
+        "tags": ["Group Chat"],
         "summary": "Leave the group",
         "description": "",
         "parameters": [
@@ -7285,9 +7104,7 @@
     },
     "/groupChat/promoteParticipants/{sessionId}": {
       "post": {
-        "tags": [
-          "Group Chat"
-        ],
+        "tags": ["Group Chat"],
         "summary": "Promote the participants",
         "description": "Promote participants by ID to admins",
         "parameters": [
@@ -7367,9 +7184,7 @@
                   "participantIds": {
                     "type": "array",
                     "description": "Unique WhatsApp identifiers for the participants",
-                    "example": [
-                      "6281288888887@c.us"
-                    ]
+                    "example": ["6281288888887@c.us"]
                   }
                 }
               }
@@ -7386,9 +7201,7 @@
                   "participantIds": {
                     "type": "array",
                     "description": "Unique WhatsApp identifiers for the participants",
-                    "example": [
-                      "6281288888887@c.us"
-                    ]
+                    "example": ["6281288888887@c.us"]
                   }
                 }
               }
@@ -7399,9 +7212,7 @@
     },
     "/groupChat/removeParticipants/{sessionId}": {
       "post": {
-        "tags": [
-          "Group Chat"
-        ],
+        "tags": ["Group Chat"],
         "summary": "Remove the participants",
         "description": "Remove a list of participants by ID to the group",
         "parameters": [
@@ -7481,9 +7292,7 @@
                   "participantIds": {
                     "type": "array",
                     "description": "Unique WhatsApp identifiers for the participants",
-                    "example": [
-                      "6281288888887@c.us"
-                    ]
+                    "example": ["6281288888887@c.us"]
                   }
                 }
               }
@@ -7500,9 +7309,7 @@
                   "participantIds": {
                     "type": "array",
                     "description": "Unique WhatsApp identifiers for the participants",
-                    "example": [
-                      "6281288888887@c.us"
-                    ]
+                    "example": ["6281288888887@c.us"]
                   }
                 }
               }
@@ -7513,9 +7320,7 @@
     },
     "/groupChat/revokeInvite/{sessionId}": {
       "post": {
-        "tags": [
-          "Group Chat"
-        ],
+        "tags": ["Group Chat"],
         "summary": "Invalidate the invite code",
         "description": "Invalidate the current group invite code and generates a new one",
         "parameters": [
@@ -7613,9 +7418,7 @@
     },
     "/groupChat/setDescription/{sessionId}": {
       "post": {
-        "tags": [
-          "Group Chat"
-        ],
+        "tags": ["Group Chat"],
         "summary": "Update the group description",
         "description": "",
         "parameters": [
@@ -7723,9 +7526,7 @@
     },
     "/groupChat/setInfoAdminsOnly/{sessionId}": {
       "post": {
-        "tags": [
-          "Group Chat"
-        ],
+        "tags": ["Group Chat"],
         "summary": "Update the info group settings",
         "description": "",
         "parameters": [
@@ -7833,9 +7634,7 @@
     },
     "/groupChat/setMessagesAdminsOnly/{sessionId}": {
       "post": {
-        "tags": [
-          "Group Chat"
-        ],
+        "tags": ["Group Chat"],
         "summary": "Update the message group settings",
         "description": "",
         "parameters": [
@@ -7943,9 +7742,7 @@
     },
     "/groupChat/setSubject/{sessionId}": {
       "post": {
-        "tags": [
-          "Group Chat"
-        ],
+        "tags": ["Group Chat"],
         "summary": "Update the group subject",
         "description": "",
         "parameters": [
@@ -8053,9 +7850,7 @@
     },
     "/groupChat/setPicture/{sessionId}": {
       "post": {
-        "tags": [
-          "Group Chat"
-        ],
+        "tags": ["Group Chat"],
         "summary": "Set the group picture",
         "description": "",
         "parameters": [
@@ -8169,9 +7964,7 @@
     },
     "/groupChat/deletePicture/{sessionId}": {
       "post": {
-        "tags": [
-          "Group Chat"
-        ],
+        "tags": ["Group Chat"],
         "summary": "Delete the group picture",
         "description": "",
         "parameters": [
@@ -8269,9 +8062,7 @@
     },
     "/groupChat/getGroupMembershipRequests/{sessionId}": {
       "post": {
-        "tags": [
-          "Group Chat"
-        ],
+        "tags": ["Group Chat"],
         "summary": "Get the membership requests",
         "description": "",
         "parameters": [
@@ -8369,9 +8160,7 @@
     },
     "/groupChat/approveGroupMembershipRequests/{sessionId}": {
       "post": {
-        "tags": [
-          "Group Chat"
-        ],
+        "tags": ["Group Chat"],
         "summary": "Approve membership request",
         "description": "",
         "parameters": [
@@ -8453,10 +8242,7 @@
                     "description": "Options for performing a membership request action",
                     "example": {
                       "requesterIds": [],
-                      "sleep": [
-                        250,
-                        500
-                      ]
+                      "sleep": [250, 500]
                     }
                   }
                 }
@@ -8476,10 +8262,7 @@
                     "description": "Options for performing a membership request action",
                     "example": {
                       "requesterIds": [],
-                      "sleep": [
-                        250,
-                        500
-                      ]
+                      "sleep": [250, 500]
                     }
                   }
                 }
@@ -8491,9 +8274,7 @@
     },
     "/groupChat/rejectGroupMembershipRequests/{sessionId}": {
       "post": {
-        "tags": [
-          "Group Chat"
-        ],
+        "tags": ["Group Chat"],
         "summary": "Reject membership request",
         "description": "",
         "parameters": [
@@ -8575,10 +8356,7 @@
                     "description": "Options for performing a membership request action",
                     "example": {
                       "requesterIds": [],
-                      "sleep": [
-                        250,
-                        500
-                      ]
+                      "sleep": [250, 500]
                     }
                   }
                 }
@@ -8598,10 +8376,7 @@
                     "description": "Options for performing a membership request action",
                     "example": {
                       "requesterIds": [],
-                      "sleep": [
-                        250,
-                        500
-                      ]
+                      "sleep": [250, 500]
                     }
                   }
                 }
@@ -8613,9 +8388,7 @@
     },
     "/message/getClassInfo/{sessionId}": {
       "post": {
-        "tags": [
-          "Message"
-        ],
+        "tags": ["Message"],
         "summary": "Get message",
         "description": "",
         "parameters": [
@@ -8723,9 +8496,7 @@
     },
     "/message/delete/{sessionId}": {
       "post": {
-        "tags": [
-          "Message"
-        ],
+        "tags": ["Message"],
         "summary": "Delete a message from the chat",
         "description": "",
         "parameters": [
@@ -8853,9 +8624,7 @@
     },
     "/message/downloadMedia/{sessionId}": {
       "post": {
-        "tags": [
-          "Message"
-        ],
+        "tags": ["Message"],
         "summary": "Download attached message media",
         "description": "",
         "parameters": [
@@ -8963,9 +8732,7 @@
     },
     "/message/downloadMediaAsData/{sessionId}": {
       "post": {
-        "tags": [
-          "Message"
-        ],
+        "tags": ["Message"],
         "summary": "Download attached message media as binary data",
         "description": "",
         "parameters": [
@@ -9073,9 +8840,7 @@
     },
     "/message/forward/{sessionId}": {
       "post": {
-        "tags": [
-          "Message"
-        ],
+        "tags": ["Message"],
         "summary": "Delete a message from the chat",
         "description": "",
         "parameters": [
@@ -9193,9 +8958,7 @@
     },
     "/message/getInfo/{sessionId}": {
       "post": {
-        "tags": [
-          "Message"
-        ],
+        "tags": ["Message"],
         "summary": "Get information about message delivery status",
         "description": "May return null if the message does not exist or is not sent by you.",
         "parameters": [
@@ -9303,9 +9066,7 @@
     },
     "/message/getMentions/{sessionId}": {
       "post": {
-        "tags": [
-          "Message"
-        ],
+        "tags": ["Message"],
         "summary": "Get the contacts mentioned",
         "description": "",
         "parameters": [
@@ -9413,9 +9174,7 @@
     },
     "/message/getOrder/{sessionId}": {
       "post": {
-        "tags": [
-          "Message"
-        ],
+        "tags": ["Message"],
         "summary": "Get the order details",
         "description": "",
         "parameters": [
@@ -9523,9 +9282,7 @@
     },
     "/message/getPayment/{sessionId}": {
       "post": {
-        "tags": [
-          "Message"
-        ],
+        "tags": ["Message"],
         "summary": "Get the payment details",
         "description": "",
         "parameters": [
@@ -9633,9 +9390,7 @@
     },
     "/message/getQuotedMessage/{sessionId}": {
       "post": {
-        "tags": [
-          "Message"
-        ],
+        "tags": ["Message"],
         "summary": "Get the quoted message",
         "description": "",
         "parameters": [
@@ -9743,9 +9498,7 @@
     },
     "/message/react/{sessionId}": {
       "post": {
-        "tags": [
-          "Message"
-        ],
+        "tags": ["Message"],
         "summary": "React with an emoji",
         "description": "",
         "parameters": [
@@ -9863,9 +9616,7 @@
     },
     "/message/reply/{sessionId}": {
       "post": {
-        "tags": [
-          "Message"
-        ],
+        "tags": ["Message"],
         "summary": "Send a message as a reply",
         "description": "",
         "parameters": [
@@ -9978,9 +9729,7 @@
     },
     "/message/star/{sessionId}": {
       "post": {
-        "tags": [
-          "Message"
-        ],
+        "tags": ["Message"],
         "summary": "Star the message",
         "description": "",
         "parameters": [
@@ -10088,9 +9837,7 @@
     },
     "/message/unstar/{sessionId}": {
       "post": {
-        "tags": [
-          "Message"
-        ],
+        "tags": ["Message"],
         "summary": "Unstar the message",
         "description": "",
         "parameters": [
@@ -10198,9 +9945,7 @@
     },
     "/message/getReactions/{sessionId}": {
       "post": {
-        "tags": [
-          "Message"
-        ],
+        "tags": ["Message"],
         "summary": "Get the reactions associated",
         "description": "",
         "parameters": [
@@ -10308,9 +10053,7 @@
     },
     "/message/getGroupMentions/{sessionId}": {
       "post": {
-        "tags": [
-          "Message"
-        ],
+        "tags": ["Message"],
         "summary": "Get groups mentioned in this message",
         "description": "",
         "parameters": [
@@ -10418,9 +10161,7 @@
     },
     "/message/edit/{sessionId}": {
       "post": {
-        "tags": [
-          "Message"
-        ],
+        "tags": ["Message"],
         "summary": "Edit the message",
         "description": "",
         "parameters": [
@@ -10544,9 +10285,7 @@
     },
     "/message/getContact/{sessionId}": {
       "post": {
-        "tags": [
-          "Message"
-        ],
+        "tags": ["Message"],
         "summary": "Get the contact",
         "description": "",
         "parameters": [
@@ -10654,9 +10393,7 @@
     },
     "/contact/getClassInfo/{sessionId}": {
       "post": {
-        "tags": [
-          "Contact"
-        ],
+        "tags": ["Contact"],
         "summary": "Get the contact",
         "description": "",
         "parameters": [
@@ -10754,9 +10491,7 @@
     },
     "/contact/block/{sessionId}": {
       "post": {
-        "tags": [
-          "Contact"
-        ],
+        "tags": ["Contact"],
         "summary": "Block contact",
         "description": "",
         "parameters": [
@@ -10854,9 +10589,7 @@
     },
     "/contact/getAbout/{sessionId}": {
       "post": {
-        "tags": [
-          "Contact"
-        ],
+        "tags": ["Contact"],
         "summary": "Get the contact's current info",
         "description": "Get the Contact's current 'about' info. Returns null if you don't have permission to read their status.",
         "parameters": [
@@ -10954,9 +10687,7 @@
     },
     "/contact/getChat/{sessionId}": {
       "post": {
-        "tags": [
-          "Contact"
-        ],
+        "tags": ["Contact"],
         "summary": "Get the chat",
         "description": "Get the chat that corresponds to the contact. Will return null when getting chat for currently logged in user.",
         "parameters": [
@@ -11054,9 +10785,7 @@
     },
     "/contact/unblock/{sessionId}": {
       "post": {
-        "tags": [
-          "Contact"
-        ],
+        "tags": ["Contact"],
         "summary": "Unblock the contact",
         "description": "Unblock the contact from WhatsApp.",
         "parameters": [
@@ -11154,9 +10883,7 @@
     },
     "/contact/getFormattedNumber/{sessionId}": {
       "post": {
-        "tags": [
-          "Contact"
-        ],
+        "tags": ["Contact"],
         "summary": "Get the formatted phone number",
         "description": "Returns the contact's formatted phone number, (12345678901@c.us) => (+1 (234) 5678-901).",
         "parameters": [
@@ -11254,9 +10981,7 @@
     },
     "/contact/getCountryCode/{sessionId}": {
       "post": {
-        "tags": [
-          "Contact"
-        ],
+        "tags": ["Contact"],
         "summary": "Get the country code",
         "description": "Returns the contact's country code, (1541859685@c.us) => (1).",
         "parameters": [
@@ -11354,9 +11079,7 @@
     },
     "/contact/getProfilePicUrl/{sessionId}": {
       "post": {
-        "tags": [
-          "Contact"
-        ],
+        "tags": ["Contact"],
         "summary": "Get the profile picture URL",
         "description": "Get the contact's profile picture URL, if privacy settings allow it.",
         "parameters": [
@@ -11454,9 +11177,7 @@
     },
     "/contact/getCommonGroups/{sessionId}": {
       "post": {
-        "tags": [
-          "Contact"
-        ],
+        "tags": ["Contact"],
         "summary": "Get the contact's common groups",
         "description": "Get the contact's common groups with you. Returns empty array if you don't have any common group.",
         "parameters": [

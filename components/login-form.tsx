@@ -37,7 +37,8 @@ export function LoginForm({ userType, onSuccess }: LoginFormProps) {
   const [isLoading, setIsLoading] = useState(false)
   const [error, setError] = useState('')
   const [success, setSuccess] = useState('')
-  const { isOnline: isBackendOnline, isLoading: isCheckingStatus } = useBackendStatus()
+  const { isOnline: isBackendOnline, isLoading: isCheckingStatus } =
+    useBackendStatus()
 
   const handleInputChange = (field: keyof LoginCredentials, value: string) => {
     setFormData((prev: LoginCredentials) => ({
@@ -237,9 +238,7 @@ export function LoginForm({ userType, onSuccess }: LoginFormProps) {
                 Memproses...
               </>
             ) : (
-              <>
-                {!isBackendOnline ? 'Server Tidak Tersedia' : 'Masuk'}
-              </>
+              <>{!isBackendOnline ? 'Server Tidak Tersedia' : 'Masuk'}</>
             )}
           </Button>
         </form>
@@ -250,8 +249,11 @@ export function LoginForm({ userType, onSuccess }: LoginFormProps) {
             Demo Credentials:
           </h4>
           <div className="space-y-2 text-xs text-gray-300">
-            {demoCredentials[userType].map((cred) => (
-              <div key={`${cred.username}-${cred.password}`} className="flex justify-between">
+            {demoCredentials[userType].map(cred => (
+              <div
+                key={`${cred.username}-${cred.password}`}
+                className="flex justify-between"
+              >
                 <span>
                   Username:{' '}
                   <code className="text-orange-400">{cred.username}</code>

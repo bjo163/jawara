@@ -6,7 +6,7 @@ export async function GET() {
   try {
     // Build ping URL
     const pingUrl = buildWhatsAppUrl('/ping')
-    
+
     // Make request to WhatsApp server
     const response = await fetch(pingUrl, {
       method: 'GET',
@@ -24,14 +24,14 @@ export async function GET() {
         details: `WhatsApp server responded with status ${response.status}`,
         code: response.status,
       }
-      
-      return NextResponse.json(errorData, { 
-        status: response.status 
+
+      return NextResponse.json(errorData, {
+        status: response.status,
       })
     }
 
     const data: PingResponse = await response.json()
-    
+
     // Validate response format
     if (typeof data.success !== 'boolean' || typeof data.message !== 'string') {
       const errorData: WhatsAppApiError = {
@@ -39,29 +39,29 @@ export async function GET() {
         error: 'Invalid response format',
         details: 'WhatsApp server returned unexpected response format',
       }
-      
-      return NextResponse.json(errorData, { 
-        status: 502 
+
+      return NextResponse.json(errorData, {
+        status: 502,
       })
     }
 
     // Return successful response
-    return NextResponse.json(data, { 
+    return NextResponse.json(data, {
       status: 200,
       headers: {
         'Cache-Control': 'no-cache, no-store, must-revalidate',
       },
     })
-
   } catch (error) {
     console.error('WhatsApp ping failed:', error)
-    
+
     let errorMessage = 'Unknown error occurred'
     let details = 'Failed to connect to WhatsApp server'
-    
+
     if (error instanceof TypeError && error.message.includes('fetch')) {
       errorMessage = 'Network connection failed'
-      details = 'Unable to reach WhatsApp server. Check server URL and network connectivity.'
+      details =
+        'Unable to reach WhatsApp server. Check server URL and network connectivity.'
     } else if (error instanceof Error) {
       if (error.name === 'TimeoutError') {
         errorMessage = 'Connection timeout'
@@ -77,9 +77,9 @@ export async function GET() {
       error: errorMessage,
       details,
     }
-    
-    return NextResponse.json(errorData, { 
-      status: 500 
+
+    return NextResponse.json(errorData, {
+      status: 500,
     })
   }
 }

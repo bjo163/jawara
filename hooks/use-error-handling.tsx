@@ -110,7 +110,8 @@ export function useApiError() {
         if (error.message.includes('fetch')) {
           statusCode = 0 // Network error
         }
-      } else if (typeof error === 'object' && error !== null) {        const errorObj = error as any
+      } else if (typeof error === 'object' && error !== null) {
+        const errorObj = error as any
         statusCode = errorObj.status ?? errorObj.statusCode ?? 500
         message = errorObj.message ?? errorObj.error ?? message
       }
@@ -135,13 +136,15 @@ export function useApiError() {
 // Hook for form validation errors
 export function useValidationError() {
   const { reportError } = useErrorContext()
-  const [validationErrors, setValidationErrors] = useState<Record<string, string>>({})
+  const [validationErrors, setValidationErrors] = useState<
+    Record<string, string>
+  >({})
 
   const addValidationError = useCallback(
     (field: string, message: string) => {
       const error = createValidationError(message, field)
       reportError(error)
-      
+
       setValidationErrors(prev => ({
         ...prev,
         [field]: message,
@@ -241,7 +244,8 @@ export function useComponentError(componentName?: string) {
   )
 
   const wrapAsync = useCallback(
-    <T extends (...args: any[]) => Promise<any>>(fn: T): T => {      return ((...args: Parameters<T>) => {
+    <T extends (...args: any[]) => Promise<any>>(fn: T): T => {
+      return ((...args: Parameters<T>) => {
         try {
           const result = fn(...args)
           if (result instanceof Promise) {
@@ -305,7 +309,17 @@ export function useErrorStats() {
     }
 
     // Count by category
-    const categories: ErrorCategory[] = ['network', 'api', 'component', 'validation', 'authentication', 'authorization', 'chunk-load', 'runtime', 'unknown']
+    const categories: ErrorCategory[] = [
+      'network',
+      'api',
+      'component',
+      'validation',
+      'authentication',
+      'authorization',
+      'chunk-load',
+      'runtime',
+      'unknown',
+    ]
     categories.forEach(category => {
       newStats.categories[category] = getErrorsByCategory(category).length
     })
@@ -347,7 +361,7 @@ export function useErrorFilter() {
     if (filters.timeRange !== 'all') {
       const now = new Date()
       const cutoff = new Date()
-      
+
       switch (filters.timeRange) {
         case 'hour':
           cutoff.setHours(now.getHours() - 1)
@@ -359,7 +373,7 @@ export function useErrorFilter() {
           cutoff.setDate(now.getDate() - 7)
           break
       }
-      
+
       if (error.timestamp < cutoff) {
         return false
       }
@@ -382,6 +396,10 @@ export function useErrorFilter() {
     filters,
     setFilters,
     filteredErrors,
-    hasFilters: Boolean(filters.category) || Boolean(filters.level) || filters.timeRange !== 'all' || Boolean(filters.search),
+    hasFilters:
+      Boolean(filters.category) ||
+      Boolean(filters.level) ||
+      filters.timeRange !== 'all' ||
+      Boolean(filters.search),
   }
 }

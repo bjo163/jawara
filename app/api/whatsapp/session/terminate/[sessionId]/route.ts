@@ -1,6 +1,9 @@
 import { NextResponse } from 'next/server'
 import { buildWhatsAppUrl, getWhatsAppHeaders } from '@/lib/whatsapp-config'
-import type { TerminateSessionResponse, WhatsAppApiError } from '@/types/whatsapp'
+import type {
+  TerminateSessionResponse,
+  WhatsAppApiError,
+} from '@/types/whatsapp'
 
 interface Params {
   sessionId: string
@@ -12,7 +15,8 @@ function validateSessionId(sessionId: string): WhatsAppApiError | null {
     return {
       success: false,
       error: 'Invalid session ID format',
-      details: 'Session ID must contain only alphanumeric characters and hyphens',
+      details:
+        'Session ID must contain only alphanumeric characters and hyphens',
       code: 422,
     }
   }
@@ -48,10 +52,7 @@ function handleHttpError(status: number): WhatsAppApiError {
   }
 }
 
-export async function GET(
-  request: Request,
-  { params }: { params: Params }
-) {
+export async function GET(request: Request, { params }: { params: Params }) {
   try {
     const { sessionId } = params
 
@@ -64,9 +65,9 @@ export async function GET(
     // Build terminate session URL and make request
     const terminateUrl = buildWhatsAppUrl(`/session/terminate/${sessionId}`)
     const headers = getWhatsAppHeaders()
-    
+
     console.log(`Terminating WhatsApp session: ${sessionId}`)
-    
+
     const response = await fetch(terminateUrl, {
       method: 'GET',
       headers,
@@ -80,7 +81,7 @@ export async function GET(
     }
 
     const data: TerminateSessionResponse = await response.json()
-    
+
     // Validate response format
     if (typeof data.success !== 'boolean') {
       const errorData: WhatsAppApiError = {
@@ -88,26 +89,26 @@ export async function GET(
         error: 'Invalid response format',
         details: 'WhatsApp server returned unexpected response format',
       }
-      
+
       return NextResponse.json(errorData, { status: 502 })
     }
 
     console.log(`Session ${sessionId} terminate result:`, data)
 
-    return NextResponse.json(data, { 
+    return NextResponse.json(data, {
       status: 200,
       headers: { 'Cache-Control': 'no-cache, no-store, must-revalidate' },
     })
-
   } catch (error) {
     console.error('WhatsApp session terminate failed:', error)
-    
+
     let errorMessage = 'Unknown error occurred'
     let details = 'Failed to terminate session'
-    
+
     if (error instanceof TypeError && error.message.includes('fetch')) {
       errorMessage = 'Network connection failed'
-      details = 'Unable to reach WhatsApp server. Check server URL and network connectivity.'
+      details =
+        'Unable to reach WhatsApp server. Check server URL and network connectivity.'
     } else if (error instanceof Error) {
       if (error.name === 'TimeoutError') {
         errorMessage = 'Connection timeout'
@@ -123,7 +124,7 @@ export async function GET(
       error: errorMessage,
       details,
     }
-    
+
     return NextResponse.json(errorData, { status: 500 })
   }
 }

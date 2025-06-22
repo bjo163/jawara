@@ -1,5 +1,5 @@
 ---
-applyTo: "**"
+applyTo: '**'
 ---
 
 # INSTRUKSI TASK & AUDIT – PROJECT KJB

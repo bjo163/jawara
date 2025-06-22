@@ -1,10 +1,10 @@
 import { getWhatsAppConfig } from './whatsapp-config'
-import type { 
-  PingResponse, 
-  StatusSessionResponse, 
+import type {
+  PingResponse,
+  StatusSessionResponse,
   StartSessionResponse,
   WhatsAppApiError,
-  SessionStatusType 
+  SessionStatusType,
 } from '@/types/whatsapp'
 
 export interface WorkflowResult {
@@ -44,8 +44,10 @@ export class WhatsAppWorkflow {
           error: 'Failed to check session status',
           details: statusResult.error,
         }
-      }      // Step 3: Auto-start session if needed
-      const needsStart = this.shouldStartSession(statusResult.data as StatusSessionResponse)
+      } // Step 3: Auto-start session if needed
+      const needsStart = this.shouldStartSession(
+        statusResult.data as StatusSessionResponse
+      )
       if (needsStart) {
         const startResult = await this.startSession()
         if (!startResult.success) {
@@ -114,7 +116,8 @@ export class WhatsAppWorkflow {
       const response = await fetch(
         `${this.baseUrl}/api/whatsapp/session/status/${config.sessionId}`
       )
-      const data: StatusSessionResponse | WhatsAppApiError = await response.json()
+      const data: StatusSessionResponse | WhatsAppApiError =
+        await response.json()
 
       if (!response.ok || !data.success) {
         return {
@@ -146,7 +149,8 @@ export class WhatsAppWorkflow {
       const response = await fetch(
         `${this.baseUrl}/api/whatsapp/session/start/${config.sessionId}`
       )
-      const data: StartSessionResponse | WhatsAppApiError = await response.json()
+      const data: StartSessionResponse | WhatsAppApiError =
+        await response.json()
 
       if (!response.ok || !data.success) {
         return {

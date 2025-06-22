@@ -1,4 +1,10 @@
-import { MessageCircle, CheckCircle, AlertTriangle, Loader2, QrCode } from 'lucide-react'
+import {
+  MessageCircle,
+  CheckCircle,
+  AlertTriangle,
+  Loader2,
+  QrCode,
+} from 'lucide-react'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
@@ -12,7 +18,8 @@ interface WhatsAppQuickPanelProps {
 
 export function WhatsAppQuickPanel({
   onStatusChange,
-}: WhatsAppQuickPanelProps) {  const {
+}: WhatsAppQuickPanelProps) {
+  const {
     data: statusData,
     isLoading,
     error,
@@ -46,7 +53,7 @@ export function WhatsAppQuickPanel({
     if (isLoading) return 'Starting...'
     if (error) return 'Error'
     if (!sessionStatus) return 'Unknown'
-    
+
     switch (sessionStatus.status) {
       case 'working':
         return 'Connected'
@@ -65,7 +72,7 @@ export function WhatsAppQuickPanel({
 
   const getStatusColor = () => {
     if (error || !sessionStatus) return 'destructive'
-    
+
     switch (sessionStatus.status) {
       case 'working':
         return 'default' as const
@@ -91,9 +98,7 @@ export function WhatsAppQuickPanel({
           </span>
           <div className="flex items-center gap-2">
             {getStatusIcon()}
-            <Badge variant={getStatusColor()}>
-              {getStatusText()}
-            </Badge>
+            <Badge variant={getStatusColor()}>{getStatusText()}</Badge>
           </div>
         </CardTitle>
       </CardHeader>
@@ -137,11 +142,10 @@ export function WhatsAppQuickPanel({
         {workflowResult && !showQRCode && (
           <div className="text-sm bg-slate-800 p-3 rounded border border-gray-600">
             <div className="font-medium text-white mb-1">
-              Workflow Status: {workflowResult.success ? '✅ Success' : '❌ Failed'}
+              Workflow Status:{' '}
+              {workflowResult.success ? '✅ Success' : '❌ Failed'}
             </div>
-            <div className="text-gray-300">
-              Step: {workflowResult.step}
-            </div>
+            <div className="text-gray-300">Step: {workflowResult.step}</div>
             {workflowResult.details && (
               <div className="text-gray-400 text-xs mt-1">
                 {workflowResult.details}
@@ -164,8 +168,10 @@ export function WhatsAppQuickPanel({
               'Refresh'
             )}
           </Button>
-          
-          {(error || sessionStatus?.status === 'failed' || sessionStatus?.status === 'stopped') && (
+
+          {(error ||
+            sessionStatus?.status === 'failed' ||
+            sessionStatus?.status === 'stopped') && (
             <Button
               variant="default"
               size="sm"
@@ -190,10 +196,15 @@ export function WhatsAppQuickPanel({
 
         {/* Quick Info */}
         <div className="text-xs text-gray-500 bg-slate-800 p-2 rounded">
-          {sessionStatus?.status === 'working' && '🟢 WhatsApp is ready for use'}
-          {sessionStatus?.status === 'scan_qr' && '📱 Open WhatsApp and scan the QR code above'}
-          {sessionStatus?.status === 'starting' && '⏳ Initializing WhatsApp session...'}
-          {(sessionStatus?.status === 'failed' || sessionStatus?.status === 'stopped') && '🔴 WhatsApp session is not active'}
+          {sessionStatus?.status === 'working' &&
+            '🟢 WhatsApp is ready for use'}
+          {sessionStatus?.status === 'scan_qr' &&
+            '📱 Open WhatsApp and scan the QR code above'}
+          {sessionStatus?.status === 'starting' &&
+            '⏳ Initializing WhatsApp session...'}
+          {(sessionStatus?.status === 'failed' ||
+            sessionStatus?.status === 'stopped') &&
+            '🔴 WhatsApp session is not active'}
           {!sessionStatus && '❓ Unable to determine session status'}
         </div>
       </CardContent>

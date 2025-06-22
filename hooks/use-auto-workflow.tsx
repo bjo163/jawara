@@ -28,22 +28,22 @@ export function useAutoWorkflow({
   onWorkflowComplete,
 }: UseAutoWorkflowProps = {}): UseAutoWorkflowReturn {
   const [hasStarted, setHasStarted] = useState(false)
-  
-  const { 
-    status: sessionStatus, 
-    loading: statusLoading, 
-    error: statusError, 
-    refresh: refreshStatus 
+
+  const {
+    status: sessionStatus,
+    loading: statusLoading,
+    error: statusError,
+    refresh: refreshStatus,
   } = useSessionStatus({
     autoRefresh: true,
     refreshInterval,
   })
 
-  const { 
-    result: workflowResult, 
-    loading: workflowLoading, 
-    error: workflowError, 
-    execute: executeWorkflow 
+  const {
+    result: workflowResult,
+    loading: workflowLoading,
+    error: workflowError,
+    execute: executeWorkflow,
   } = useWhatsAppWorkflow()
 
   const isLoading = statusLoading || workflowLoading

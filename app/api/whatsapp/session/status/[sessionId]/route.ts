@@ -5,10 +5,7 @@ interface Params {
   sessionId: string
 }
 
-export async function GET(
-  request: Request,
-  { params }: { params: Params }
-) {
+export async function GET(request: Request, { params }: { params: Params }) {
   try {
     const { sessionId } = params
 
@@ -17,14 +14,18 @@ export async function GET(
       const errorData: WhatsAppApiError = {
         success: false,
         error: 'Invalid session ID format',
-        details: 'Session ID must contain only alphanumeric characters and hyphens',
+        details:
+          'Session ID must contain only alphanumeric characters and hyphens',
         code: 422,
       }
-      return NextResponse.json(errorData, { status: 422 })    }
+      return NextResponse.json(errorData, { status: 422 })
+    }
 
-    const backendBaseUrl = process.env.SERVER_BACKEND_URL ?? 'https://backend-api.apps.pundidigitaldynamics.net'
+    const backendBaseUrl =
+      process.env.SERVER_BACKEND_URL ??
+      'https://backend-api.apps.pundidigitaldynamics.net'
     const backendUrl = `${backendBaseUrl}/api/v1/wweb/session/status/${sessionId}`
-    
+
     const response = await fetch(backendUrl, {
       method: 'GET',
       headers: {
@@ -44,21 +45,20 @@ export async function GET(
     }
 
     const data: BackendStatusResponse = await response.json()
-    
-    return NextResponse.json(data, { 
+
+    return NextResponse.json(data, {
       status: 200,
       headers: { 'Cache-Control': 'no-cache, no-store, must-revalidate' },
     })
-
   } catch (error) {
     console.error('WhatsApp session status failed:', error)
-    
+
     const errorData: WhatsAppApiError = {
       success: false,
       error: 'Network connection failed',
       details: 'Unable to reach backend server',
     }
-    
+
     return NextResponse.json(errorData, { status: 500 })
   }
 }

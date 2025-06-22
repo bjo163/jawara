@@ -4,7 +4,14 @@
 // Display error notifications with proper styling and actions
 
 import { useEffect, useState, useCallback } from 'react'
-import { X, AlertTriangle, AlertCircle, Info, Wifi, RefreshCw } from 'lucide-react'
+import {
+  X,
+  AlertTriangle,
+  AlertCircle,
+  Info,
+  Wifi,
+  RefreshCw,
+} from 'lucide-react'
 import { useErrorContext } from '@/lib/error-context'
 import type { AppError } from '@/types'
 import { formatErrorForUser, shouldRetryError } from '@/lib/error-utils'
@@ -34,7 +41,7 @@ function ErrorToast({ error, onClose, onRetry }: ErrorToastProps) {
     const timer = setTimeout(() => setIsVisible(true), 50)
     return () => clearTimeout(timer)
   }, [])
-  
+
   // Auto-close for low-level errors
   useEffect(() => {
     if (error.level === 'low' || error.category === 'validation') {
@@ -63,7 +70,7 @@ function ErrorToast({ error, onClose, onRetry }: ErrorToastProps) {
   // Get styles based on error level
   const getStyles = () => {
     const baseStyles = 'border transition-all duration-200'
-    
+
     switch (error.level) {
       case 'low':
         return `${baseStyles} bg-blue-900/90 border-blue-500/50 text-blue-100`
@@ -79,7 +86,8 @@ function ErrorToast({ error, onClose, onRetry }: ErrorToastProps) {
   }
 
   // Get network status indicator
-  const isNetworkError = error.category === 'network' || error.category === 'api'
+  const isNetworkError =
+    error.category === 'network' || error.category === 'api'
   const canRetry = shouldRetryError(error)
 
   return (
@@ -88,30 +96,25 @@ function ErrorToast({ error, onClose, onRetry }: ErrorToastProps) {
         fixed z-50 max-w-sm w-full mx-auto p-4 rounded-lg shadow-lg backdrop-blur-sm
         ${getStyles()}
         transition-all duration-200 transform
-        ${isVisible && !isLeaving 
-          ? 'translate-y-0 opacity-100 scale-100' 
-          : 'translate-y-2 opacity-0 scale-95'
+        ${
+          isVisible && !isLeaving
+            ? 'translate-y-0 opacity-100 scale-100'
+            : 'translate-y-2 opacity-0 scale-95'
         }
       `}
     >
       <div className="flex items-start space-x-3">
         {/* Icon */}
         <div className="flex-shrink-0 mt-0.5">
-          {isNetworkError ? (
-            <Wifi className="h-5 w-5" />
-          ) : (
-            getIcon()
-          )}
+          {isNetworkError ? <Wifi className="h-5 w-5" /> : getIcon()}
         </div>
 
         {/* Content */}
         <div className="flex-1 min-w-0">
           <div className="flex items-start justify-between">
             <div className="flex-1">
-              <p className="text-sm font-medium">
-                {formatErrorForUser(error)}
-              </p>
-              
+              <p className="text-sm font-medium">{formatErrorForUser(error)}</p>
+
               {process.env.NODE_ENV === 'development' && (
                 <p className="mt-1 text-xs opacity-70">
                   [{error.category}] {error.id}
@@ -140,7 +143,7 @@ function ErrorToast({ error, onClose, onRetry }: ErrorToastProps) {
                   <span>Coba Lagi</span>
                 </button>
               )}
-              
+
               {error.category === 'chunk-load' && (
                 <button
                   onClick={() => window.location.reload()}
@@ -160,13 +163,19 @@ function ErrorToast({ error, onClose, onRetry }: ErrorToastProps) {
 
 // Toast Container Component
 interface ErrorToastContainerProps {
-  readonly position?: 'top-right' | 'top-left' | 'bottom-right' | 'bottom-left' | 'top-center' | 'bottom-center'
+  readonly position?:
+    | 'top-right'
+    | 'top-left'
+    | 'bottom-right'
+    | 'bottom-left'
+    | 'top-center'
+    | 'bottom-center'
   readonly maxToasts?: number
 }
 
-export function ErrorToastContainer({ 
-  position = 'top-right', 
-  maxToasts = 5 
+export function ErrorToastContainer({
+  position = 'top-right',
+  maxToasts = 5,
 }: ErrorToastContainerProps) {
   const { errors, clearError } = useErrorContext()
   const [displayedErrors, setDisplayedErrors] = useState<Set<string>>(new Set())
@@ -176,9 +185,9 @@ export function ErrorToastContainer({
     .filter(error => {
       // Don't show if already displayed
       if (displayedErrors.has(error.id)) return false
-      
+
       // Only show errors from last 10 seconds
-      const isRecent = (Date.now() - error.timestamp.getTime()) < 10000
+      const isRecent = Date.now() - error.timestamp.getTime() < 10000
       if (!isRecent) return false
 
       // Show validation errors, network errors, and high/critical errors
@@ -203,7 +212,9 @@ export function ErrorToastContainer({
   useEffect(() => {
     const cleanupDisplayedErrors = () => {
       const activeErrorIds = new Set(errors.map(e => e.id))
-      const filteredIds = [...displayedErrors].filter(id => activeErrorIds.has(id))
+      const filteredIds = [...displayedErrors].filter(id =>
+        activeErrorIds.has(id)
+      )
       return new Set(filteredIds)
     }
 
@@ -246,10 +257,14 @@ export function ErrorToastContainer({
             key={error.id}
             error={error}
             onClose={() => clearError(error.id)}
-            onRetry={shouldRetryError(error) ? () => {
-              // Here you would implement actual retry logic
-              console.log('Retrying error:', error.id)
-            } : undefined}
+            onRetry={
+              shouldRetryError(error)
+                ? () => {
+                    // Here you would implement actual retry logic
+                    console.log('Retrying error:', error.id)
+                  }
+                : undefined
+            }
           />
         ))}
       </div>

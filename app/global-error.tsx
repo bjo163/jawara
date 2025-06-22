@@ -38,7 +38,8 @@ export default function GlobalError({ error, reset }: GlobalErrorProps) {
               Ups! Terjadi Kesalahan
             </h1>
             <p className="text-gray-400 mb-8 leading-relaxed">
-              Aplikasi mengalami masalah yang tidak terduga. Tim kami sudah mendapat laporan dan akan segera memperbaikinya.
+              Aplikasi mengalami masalah yang tidak terduga. Tim kami sudah
+              mendapat laporan dan akan segera memperbaikinya.
             </p>
 
             {/* Error Details (Development Only) */}
@@ -55,7 +56,7 @@ export default function GlobalError({ error, reset }: GlobalErrorProps) {
                         {error.message}
                       </div>
                     </div>
-                    
+
                     {error.digest && (
                       <div>
                         <strong className="text-gray-300">Digest:</strong>
@@ -64,7 +65,7 @@ export default function GlobalError({ error, reset }: GlobalErrorProps) {
                         </div>
                       </div>
                     )}
-                    
+
                     {error.stack && (
                       <div>
                         <strong className="text-gray-300">Stack Trace:</strong>
@@ -87,15 +88,15 @@ export default function GlobalError({ error, reset }: GlobalErrorProps) {
                 <RefreshCw className="w-5 h-5" />
                 <span>Coba Lagi</span>
               </button>
-              
+
               <button
-                onClick={() => window.location.href = '/'}
+                onClick={() => (window.location.href = '/')}
                 className="w-full bg-gray-600 hover:bg-gray-700 text-white px-6 py-3 rounded-lg font-semibold transition-colors flex items-center justify-center space-x-2"
               >
                 <Home className="w-5 h-5" />
                 <span>Kembali ke Beranda</span>
               </button>
-              
+
               <button
                 onClick={() => window.location.reload()}
                 className="w-full bg-orange-500 hover:bg-orange-600 text-white px-6 py-3 rounded-lg font-semibold transition-colors"

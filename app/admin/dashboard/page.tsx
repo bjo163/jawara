@@ -108,7 +108,8 @@ export default function AdminDashboard() {
       change: '+3%',
       icon: TrendingUp,
       color: 'text-orange-400',
-    },  ]
+    },
+  ]
 
   return (
     <div className="min-h-screen bg-slate-950 text-white">
@@ -136,15 +137,15 @@ export default function AdminDashboard() {
           <p className="text-gray-400">
             Monitor dan kelola operasional Jawara-Net
           </p>
-        </div>        {/* WhatsApp Quick Panel */}
-        <div className="mb-8">          <WhatsAppQuickPanel
-            onStatusChange={handleWhatsAppStatusChange}
-          />
+        </div>{' '}
+        {/* WhatsApp Quick Panel */}
+        <div className="mb-8">
+          {' '}
+          <WhatsAppQuickPanel onStatusChange={handleWhatsAppStatusChange} />
         </div>
-
         {/* Stats Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
-          {stats.map((stat) => (
+          {stats.map(stat => (
             <Card key={stat.title} className="bg-slate-900 border-gray-700">
               <CardHeader className="pb-3">
                 <CardTitle className="text-sm text-gray-400 flex items-center justify-between">
@@ -163,7 +164,6 @@ export default function AdminDashboard() {
             </Card>
           ))}
         </div>
-
         {/* Quick Actions */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
           <Card className="bg-slate-900 border-gray-700 hover:bg-slate-800 transition-colors cursor-pointer">
@@ -174,7 +174,8 @@ export default function AdminDashboard() {
               </h3>
               <p className="text-sm text-gray-400">Kelola data pelanggan</p>
             </CardContent>
-          </Card>          <Card className="bg-slate-900 border-gray-700 hover:bg-slate-800 transition-colors cursor-pointer">
+          </Card>{' '}
+          <Card className="bg-slate-900 border-gray-700 hover:bg-slate-800 transition-colors cursor-pointer">
             <CardContent className="p-6 text-center">
               <div className="relative">
                 <MessageCircle className="h-12 w-12 text-green-400 mx-auto mb-4" />
@@ -200,7 +201,6 @@ export default function AdminDashboard() {
               </p>
             </CardContent>
           </Card>
-
           <Card className="bg-slate-900 border-gray-700 hover:bg-slate-800 transition-colors cursor-pointer">
             <CardContent className="p-6 text-center">
               <BarChart3 className="h-12 w-12 text-green-400 mx-auto mb-4" />
@@ -208,7 +208,6 @@ export default function AdminDashboard() {
               <p className="text-sm text-gray-400">Laporan dan statistik</p>
             </CardContent>
           </Card>
-
           <Card className="bg-slate-900 border-gray-700 hover:bg-slate-800 transition-colors cursor-pointer">
             <CardContent className="p-6 text-center">
               <Wifi className="h-12 w-12 text-orange-400 mx-auto mb-4" />
@@ -216,7 +215,6 @@ export default function AdminDashboard() {
               <p className="text-sm text-gray-400">Status jaringan</p>
             </CardContent>
           </Card>
-
           <Card className="bg-slate-900 border-gray-700 hover:bg-slate-800 transition-colors cursor-pointer">
             <CardContent className="p-6 text-center">
               <Settings className="h-12 w-12 text-purple-400 mx-auto mb-4" />
@@ -225,7 +223,6 @@ export default function AdminDashboard() {
             </CardContent>
           </Card>
         </div>
-
         {/* Recent Activity */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
           <Card className="bg-slate-900 border-gray-700">

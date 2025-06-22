@@ -1,5 +1,11 @@
 import { useEffect } from 'react'
-import { CheckCircle, AlertTriangle, Clock, XCircle, Loader2 } from 'lucide-react'
+import {
+  CheckCircle,
+  AlertTriangle,
+  Clock,
+  XCircle,
+  Loader2,
+} from 'lucide-react'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import { QRCodeDisplay } from '@/components/qr-code-display'
@@ -64,7 +70,7 @@ export function SessionStatusIndicator({
 
   const getStatusColor = () => {
     if (error || !status) return 'destructive'
-    
+
     switch (status.status) {
       case 'working':
         return 'default' as const
@@ -112,7 +118,10 @@ export function SessionStatusIndicator({
         <div className="flex items-center gap-2">
           {getStatusIcon()}
           <div>
-            <Badge variant={getStatusColor()} className="flex items-center gap-1">
+            <Badge
+              variant={getStatusColor()}
+              className="flex items-center gap-1"
+            >
               {getStatusText()}
             </Badge>
             <div className="text-xs text-gray-500 mt-1">
@@ -120,7 +129,7 @@ export function SessionStatusIndicator({
             </div>
           </div>
         </div>
-        
+
         {showRefreshButton && (
           <Button
             variant="outline"
@@ -128,11 +137,7 @@ export function SessionStatusIndicator({
             onClick={() => void refresh()}
             disabled={loading}
           >
-            {loading ? (
-              <Loader2 className="h-3 w-3 animate-spin" />
-            ) : (
-              'Refresh'
-            )}
+            {loading ? <Loader2 className="h-3 w-3 animate-spin" /> : 'Refresh'}
           </Button>
         )}
       </div>

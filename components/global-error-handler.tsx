@@ -14,7 +14,13 @@ interface GlobalErrorHandlerProps {
   readonly children: ReactNode
   readonly options?: Partial<ErrorHandlerOptions>
   readonly enableToasts?: boolean
-  readonly toastPosition?: 'top-right' | 'top-left' | 'bottom-right' | 'bottom-left' | 'top-center' | 'bottom-center'
+  readonly toastPosition?:
+    | 'top-right'
+    | 'top-left'
+    | 'bottom-right'
+    | 'bottom-left'
+    | 'top-center'
+    | 'bottom-center'
   readonly enableBoundary?: boolean
   readonly maxToasts?: number
 }
@@ -76,10 +82,7 @@ export function GlobalErrorHandler({
     <ErrorProvider options={finalOptions}>
       {children}
       {enableToasts && (
-        <ErrorToastContainer
-          position={toastPosition}
-          maxToasts={maxToasts}
-        />
+        <ErrorToastContainer position={toastPosition} maxToasts={maxToasts} />
       )}
       <DevErrorPanel />
     </ErrorProvider>
@@ -108,7 +111,11 @@ export function GlobalErrorHandler({
 }
 
 // Convenience exports for common setups
-export function ProductionErrorHandler({ children }: { readonly children: ReactNode }) {
+export function ProductionErrorHandler({
+  children,
+}: {
+  readonly children: ReactNode
+}) {
   return (
     <GlobalErrorHandler
       options={{
@@ -124,7 +131,11 @@ export function ProductionErrorHandler({ children }: { readonly children: ReactN
   )
 }
 
-export function DevelopmentErrorHandler({ children }: { readonly children: ReactNode }) {
+export function DevelopmentErrorHandler({
+  children,
+}: {
+  readonly children: ReactNode
+}) {
   return (
     <GlobalErrorHandler
       options={{

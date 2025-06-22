@@ -1,5 +1,11 @@
 import { useEffect } from 'react'
-import { MessageCircle, CheckCircle, AlertTriangle, Loader2, QrCode } from 'lucide-react'
+import {
+  MessageCircle,
+  CheckCircle,
+  AlertTriangle,
+  Loader2,
+  QrCode,
+} from 'lucide-react'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
@@ -13,7 +19,8 @@ interface WhatsAppQuickPanelProps {
 
 export function WhatsAppQuickPanel({
   onStatusChange,
-}: WhatsAppQuickPanelProps) {  const {
+}: WhatsAppQuickPanelProps) {
+  const {
     data: statusData,
     isLoading,
     error,
@@ -43,9 +50,11 @@ export function WhatsAppQuickPanel({
       return <Loader2 className="h-5 w-5 animate-spin text-blue-400" />
     }
     if (statusData?.status === 'DISCONNECTED') {
-      return statusData?.qrCodeAvailable 
-        ? <QrCode className="h-5 w-5 text-yellow-400" />
-        : <AlertTriangle className="h-5 w-5 text-red-400" />
+      return statusData?.qrCodeAvailable ? (
+        <QrCode className="h-5 w-5 text-yellow-400" />
+      ) : (
+        <AlertTriangle className="h-5 w-5 text-red-400" />
+      )
     }
     return <MessageCircle className="h-5 w-5 text-gray-400" />
   }
@@ -53,7 +62,7 @@ export function WhatsAppQuickPanel({
     if (isLoading) return 'Checking...'
     if (error) return 'Error'
     if (!statusData) return 'Unknown'
-    
+
     switch (statusData.status) {
       case 'AUTHENTICATED':
         return 'Connected'
@@ -73,7 +82,7 @@ export function WhatsAppQuickPanel({
   }
   const getStatusColor = () => {
     if (error || !statusData) return 'destructive'
-    
+
     switch (statusData.status) {
       case 'AUTHENTICATED':
         return 'default' as const
@@ -82,7 +91,9 @@ export function WhatsAppQuickPanel({
       case 'LOADING':
         return 'outline' as const
       case 'DISCONNECTED':
-        return statusData.qrCodeAvailable ? 'secondary' as const : 'destructive' as const
+        return statusData.qrCodeAvailable
+          ? ('secondary' as const)
+          : ('destructive' as const)
       case 'DESTROYED':
         return 'destructive' as const
       case 'UNKNOWN':
@@ -92,8 +103,9 @@ export function WhatsAppQuickPanel({
     }
   }
 
-  const showQRCode = (statusData?.status === 'DISCONNECTED' && statusData?.qrCodeAvailable) || 
-                   statusData?.status === 'QRCODE'
+  const showQRCode =
+    (statusData?.status === 'DISCONNECTED' && statusData?.qrCodeAvailable) ||
+    statusData?.status === 'QRCODE'
 
   return (
     <Card className="bg-slate-900 border-gray-700">
@@ -105,9 +117,7 @@ export function WhatsAppQuickPanel({
           </span>
           <div className="flex items-center gap-2">
             {getStatusIcon()}
-            <Badge variant={getStatusColor()}>
-              {getStatusText()}
-            </Badge>
+            <Badge variant={getStatusColor()}>{getStatusText()}</Badge>
           </div>
         </CardTitle>
       </CardHeader>
@@ -118,7 +128,6 @@ export function WhatsAppQuickPanel({
             {statusData.message}
           </div>
         )}
-
         {/* Error Display */}
         {error && (
           <div className="text-sm text-red-300 bg-red-900/20 p-3 rounded border border-red-500/20">
@@ -129,7 +138,6 @@ export function WhatsAppQuickPanel({
             {error}
           </div>
         )}
-
         {/* QR Code Display */}
         {showQRCode && (
           <div className="space-y-3">
@@ -146,7 +154,6 @@ export function WhatsAppQuickPanel({
             />
           </div>
         )}
-
         {/* Action Buttons */}
         <div className="flex gap-2">
           <Button
@@ -161,15 +168,25 @@ export function WhatsAppQuickPanel({
               'Refresh'
             )}
           </Button>
-        </div>        {/* Quick Info */}
+        </div>{' '}
+        {/* Quick Info */}
         <div className="text-xs text-gray-500 bg-slate-800 p-2 rounded">
-          {statusData?.status === 'AUTHENTICATED' && '🟢 WhatsApp is ready for use'}
-          {statusData?.status === 'QRCODE' && '📱 QR code ready - please scan to connect'}
-          {statusData?.status === 'DISCONNECTED' && statusData?.qrCodeAvailable && '📱 Open WhatsApp and scan the QR code above'}
-          {statusData?.status === 'DISCONNECTED' && !statusData?.qrCodeAvailable && '🔴 WhatsApp session is disconnected'}
-          {statusData?.status === 'LOADING' && '⏳ Starting WhatsApp session...'}
-          {statusData?.status === 'DESTROYED' && '🔴 WhatsApp session terminated'}
-          {statusData?.status === 'UNKNOWN' && '❓ Status unclear, please refresh'}
+          {statusData?.status === 'AUTHENTICATED' &&
+            '🟢 WhatsApp is ready for use'}
+          {statusData?.status === 'QRCODE' &&
+            '📱 QR code ready - please scan to connect'}
+          {statusData?.status === 'DISCONNECTED' &&
+            statusData?.qrCodeAvailable &&
+            '📱 Open WhatsApp and scan the QR code above'}
+          {statusData?.status === 'DISCONNECTED' &&
+            !statusData?.qrCodeAvailable &&
+            '🔴 WhatsApp session is disconnected'}
+          {statusData?.status === 'LOADING' &&
+            '⏳ Starting WhatsApp session...'}
+          {statusData?.status === 'DESTROYED' &&
+            '🔴 WhatsApp session terminated'}
+          {statusData?.status === 'UNKNOWN' &&
+            '❓ Status unclear, please refresh'}
           {!statusData && '❓ Unable to determine session status'}
         </div>
       </CardContent>

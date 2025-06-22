@@ -3,7 +3,14 @@
 // Error Context Provider
 // Global error state management using React Context
 
-import { createContext, useContext, useCallback, useRef, useEffect, useMemo } from 'react'
+import {
+  createContext,
+  useContext,
+  useCallback,
+  useRef,
+  useEffect,
+  useMemo,
+} from 'react'
 import type { ReactNode } from 'react'
 import type {
   AppError,
@@ -97,7 +104,9 @@ export function ErrorProvider({ children, options = {} }: ErrorProviderProps) {
   // Clear specific error
   const clearError = useCallback(
     (errorId: string) => {
-      errorsRef.current = errorsRef.current.filter(error => error.id !== errorId)
+      errorsRef.current = errorsRef.current.filter(
+        error => error.id !== errorId
+      )
       notifySubscribers()
     },
     [notifySubscribers]
@@ -122,7 +131,7 @@ export function ErrorProvider({ children, options = {} }: ErrorProviderProps) {
   // Subscribe to error changes
   const subscribe = useCallback((callback: (errors: AppError[]) => void) => {
     subscribersRef.current.add(callback)
-    
+
     // Return unsubscribe function
     return () => {
       subscribersRef.current.delete(callback)
@@ -132,16 +141,27 @@ export function ErrorProvider({ children, options = {} }: ErrorProviderProps) {
   // Computed values
   const hasErrors = errorsRef.current.length > 0
   // Context value
-  const contextValue: ErrorContextValue = useMemo(() => ({
-    reportError,
-    clearError,
-    clearAllErrors,
-    errors: errorsRef.current,
-    hasErrors,
-    getErrorsByCategory,
-    getErrorsByLevel,
-    subscribe,
-  }), [reportError, clearError, clearAllErrors, hasErrors, getErrorsByCategory, getErrorsByLevel, subscribe])
+  const contextValue: ErrorContextValue = useMemo(
+    () => ({
+      reportError,
+      clearError,
+      clearAllErrors,
+      errors: errorsRef.current,
+      hasErrors,
+      getErrorsByCategory,
+      getErrorsByLevel,
+      subscribe,
+    }),
+    [
+      reportError,
+      clearError,
+      clearAllErrors,
+      hasErrors,
+      getErrorsByCategory,
+      getErrorsByLevel,
+      subscribe,
+    ]
+  )
 
   // Global error handlers
   useEffect(() => {
@@ -149,7 +169,7 @@ export function ErrorProvider({ children, options = {} }: ErrorProviderProps) {
     const handleUnhandledRejection = (event: PromiseRejectionEvent) => {
       const error = event.reason
       let message = 'Unhandled Promise rejection'
-      
+
       if (error instanceof Error) {
         message = error.message
       } else if (typeof error === 'string') {
@@ -212,21 +232,25 @@ export function ErrorProvider({ children, options = {} }: ErrorProviderProps) {
 // Custom hook to use error context
 export function useErrorContext(): ErrorContextValue {
   const context = useContext(ErrorContext)
-  
+
   if (!context) {
     throw new Error('useErrorContext must be used within an ErrorProvider')
   }
-  
+
   return context
 }
 
 // Custom hook for error reporting
 export function useErrorReporter() {
   const { reportError } = useErrorContext()
-  
+
   return {
     reportError,
-    reportNetworkError: (message: string, statusCode?: number, endpoint?: string) => {
+    reportNetworkError: (
+      message: string,
+      statusCode?: number,
+      endpoint?: string
+    ) => {
       reportError({
         id: `network_${Date.now()}`,
         message,

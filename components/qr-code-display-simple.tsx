@@ -1,5 +1,12 @@
 import { useState } from 'react'
-import { Download, RefreshCw, QrCode, Loader2, AlertTriangle } from 'lucide-react'
+import Image from 'next/image'
+import {
+  Download,
+  RefreshCw,
+  QrCode,
+  Loader2,
+  AlertTriangle,
+} from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import type { BackendStatusResponse } from '@/types/whatsapp'
@@ -26,7 +33,8 @@ export function QRCodeDisplay({
 
     try {
       const link = document.createElement('a')
-      link.href = data.qrCodeDataUrl ?? `data:image/png;base64,${data.qrCodeBase64}`
+      link.href =
+        data.qrCodeDataUrl ?? `data:image/png;base64,${data.qrCodeBase64}`
       link.download = `whatsapp-qr-${data.sessionId}.png`
       document.body.appendChild(link)
       link.click()
@@ -107,7 +115,8 @@ export function QRCodeDisplay({
 
   // Show QR code if available
   if (data?.qrCodeBase64 || data?.qrCodeDataUrl) {
-    const qrSrc = data.qrCodeDataUrl ?? `data:image/png;base64,${data.qrCodeBase64}`
+    const qrSrc =
+      data.qrCodeDataUrl ?? `data:image/png;base64,${data.qrCodeBase64}`
 
     return (
       <Card className="bg-slate-900 border-gray-700">
@@ -125,15 +134,13 @@ export function QRCodeDisplay({
                   onClick={handleRefresh}
                   disabled={isLoading}
                 >
-                  <RefreshCw className={`h-4 w-4 ${isLoading ? 'animate-spin' : ''}`} />
+                  <RefreshCw
+                    className={`h-4 w-4 ${isLoading ? 'animate-spin' : ''}`}
+                  />
                 </Button>
               )}
               {showDownload && (
-                <Button
-                  variant="ghost"
-                  size="sm"
-                  onClick={handleDownload}
-                >
+                <Button variant="ghost" size="sm" onClick={handleDownload}>
                   <Download className="h-4 w-4" />
                 </Button>
               )}
@@ -146,14 +153,18 @@ export function QRCodeDisplay({
               <div className="w-64 h-64 bg-slate-800 border border-gray-600 rounded-lg flex items-center justify-center">
                 <div className="text-center">
                   <AlertTriangle className="h-8 w-8 text-red-400 mx-auto mb-2" />
-                  <p className="text-gray-400 text-sm">Failed to load QR code</p>
+                  <p className="text-gray-400 text-sm">
+                    Failed to load QR code
+                  </p>
                 </div>
               </div>
             ) : (
-              <img
+              <Image
                 src={qrSrc}
                 alt="WhatsApp QR Code"
-                className="w-64 h-64 border border-gray-600 rounded-lg bg-white p-2"
+                width={256}
+                height={256}
+                className="border border-gray-600 rounded-lg bg-white p-2"
                 onError={handleImageError}
                 onLoad={handleImageLoad}
               />

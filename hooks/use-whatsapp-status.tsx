@@ -32,13 +32,13 @@ export function useWhatsAppStatus({
 
     try {
       const response = await fetch(`/api/whatsapp/session/status/${sessionId}`)
-      
+
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`)
       }
 
       const result = await response.json()
-        if (result.success) {
+      if (result.success) {
         setData(result)
       } else {
         setError(result.error ?? 'Failed to fetch status')
@@ -55,12 +55,12 @@ export function useWhatsAppStatus({
   // Smart refresh interval based on status
   const getRefreshInterval = useCallback(() => {
     if (!data) return 5000 // Default 5s
-    
+
     switch (data.status) {
       case 'AUTHENTICATED':
         return 30000 // 30s for connected status
       case 'LOADING':
-        return 3000  // 3s for loading status
+        return 3000 // 3s for loading status
       case 'QRCODE':
         return 10000 // 10s for QR ready
       case 'DISCONNECTED':
@@ -68,7 +68,7 @@ export function useWhatsAppStatus({
       case 'DESTROYED':
         return 60000 // 1min for destroyed
       case 'UNKNOWN':
-        return 5000  // 5s for unknown
+        return 5000 // 5s for unknown
       default:
         return 5000
     }
@@ -84,7 +84,7 @@ export function useWhatsAppStatus({
   // Smart auto-refresh effect
   useEffect(() => {
     const interval = getRefreshInterval()
-    
+
     const timer = setInterval(() => {
       void fetchStatus()
     }, interval)
