@@ -73,12 +73,11 @@ export default function WhatsAppDiagnostics() {
         message: 'Environment may have issues',
         details: 'Could not verify all environment variables',
       }
-    }
-    setResults([...tests])
+    }    setResults([...tests])
 
     // Test 2: API Health Check
     try {
-      const healthResponse = await fetch('/api/whatsapp/health')
+      const healthResponse = await fetch('/api/whatsapp/ping')
       const healthData = await healthResponse.json()
 
       if (healthData.success) {
@@ -86,8 +85,7 @@ export default function WhatsAppDiagnostics() {
           test: 'API Health Check',
           status: 'pass',
           message: 'WhatsApp service is responding',
-          details: `Response time: ${healthData.timestamp}`,
-          url: healthData.url,
+          details: `Server message: ${healthData.message}`,
         }
       } else {
         tests[1] = {
@@ -95,7 +93,6 @@ export default function WhatsAppDiagnostics() {
           status: 'fail',
           message: 'WhatsApp service is not responding',
           details: `${healthData.error} - ${healthData.details}`,
-          url: healthData.url,
         }
       }
     } catch (error: unknown) {

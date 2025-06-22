@@ -9,6 +9,7 @@ import {
   Lock,
   AlertCircle,
   CheckCircle,
+  WifiOff,
 } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
@@ -19,11 +20,12 @@ import {
   saveAuthData,
   type LoginCredentials,
 } from '@/data/auth'
+import { useBackendStatus } from '@/hooks/use-backend-status'
 import type { User } from '@/types'
 
 interface LoginFormProps {
-  userType: 'pelanggan' | 'admin'
-  onSuccess?: (user: User) => void
+  readonly userType: 'pelanggan' | 'admin'
+  readonly onSuccess?: (user: User) => void
 }
 
 export function LoginForm({ userType, onSuccess }: LoginFormProps) {
@@ -35,9 +37,10 @@ export function LoginForm({ userType, onSuccess }: LoginFormProps) {
   const [isLoading, setIsLoading] = useState(false)
   const [error, setError] = useState('')
   const [success, setSuccess] = useState('')
+  const { isOnline: isBackendOnline, isLoading: isCheckingStatus } = useBackendStatus()
 
   const handleInputChange = (field: keyof LoginCredentials, value: string) => {
-    setFormData(prev => ({
+    setFormData((prev: LoginCredentials) => ({
       ...prev,
       [field]: value,
     }))
@@ -52,6 +55,13 @@ export function LoginForm({ userType, onSuccess }: LoginFormProps) {
     setSuccess('')
 
     try {
+      // Check backend status first
+      if (!isBackendOnline) {
+        setError('Server sedang tidak tersedia. Silakan coba lagi nanti.')
+        setIsLoading(false)
+        return
+      }
+
       // Validate input
       if (!formData.username || !formData.password) {
         setError('Username dan password harus diisi')
@@ -138,6 +148,16 @@ export function LoginForm({ userType, onSuccess }: LoginFormProps) {
       </CardHeader>
 
       <CardContent className="space-y-6">
+        {/* Backend Status Warning */}
+        {!isBackendOnline && !isCheckingStatus && (
+          <div className="flex items-center space-x-2 text-amber-400 bg-amber-500/10 p-3 rounded-lg border border-amber-500/20">
+            <WifiOff className="h-4 w-4 flex-shrink-0" />
+            <span className="text-sm">
+              Server sedang tidak tersedia. Login mungkin tidak berfungsi.
+            </span>
+          </div>
+        )}
+
         <form onSubmit={handleSubmit} className="space-y-4">
           {/* Username */}
           <div className="space-y-2">
@@ -208,8 +228,8 @@ export function LoginForm({ userType, onSuccess }: LoginFormProps) {
           {/* Submit Button */}
           <Button
             type="submit"
-            className="w-full bg-gradient-to-r from-orange-500 to-red-500 hover:from-orange-600 hover:to-red-600 text-white"
-            disabled={isLoading}
+            className="w-full bg-gradient-to-r from-orange-500 to-red-500 hover:from-orange-600 hover:to-red-600 text-white disabled:opacity-50 disabled:cursor-not-allowed"
+            disabled={isLoading || !isBackendOnline}
           >
             {isLoading ? (
               <>
@@ -217,7 +237,9 @@ export function LoginForm({ userType, onSuccess }: LoginFormProps) {
                 Memproses...
               </>
             ) : (
-              'Masuk'
+              <>
+                {!isBackendOnline ? 'Server Tidak Tersedia' : 'Masuk'}
+              </>
             )}
           </Button>
         </form>
@@ -228,8 +250,8 @@ export function LoginForm({ userType, onSuccess }: LoginFormProps) {
             Demo Credentials:
           </h4>
           <div className="space-y-2 text-xs text-gray-300">
-            {demoCredentials[userType].map((cred, index) => (
-              <div key={index} className="flex justify-between">
+            {demoCredentials[userType].map((cred) => (
+              <div key={`${cred.username}-${cred.password}`} className="flex justify-between">
                 <span>
                   Username:{' '}
                   <code className="text-orange-400">{cred.username}</code>

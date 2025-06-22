@@ -83,6 +83,32 @@ export type {
   ApiRequestConfig,
 } from './api'
 
+// Error Handling
+export type {
+  AppError,
+  NetworkError,
+  ValidationError as ErrorValidationError,
+  ApiError as AppApiError,
+  ComponentError,
+  ErrorBoundaryState,
+  ErrorBoundaryProps,
+  ErrorFallbackProps,
+  ErrorContextValue,
+  ErrorHandlerOptions,
+  ErrorLogEntry,
+  ErrorReporter,
+  ErrorReporterOptions,
+  GlobalErrorConfig,
+  ErrorInfo,
+  ErrorLevel,
+  ErrorCategory,
+  ErrorSeverity,
+  ErrorRecoveryStrategy,
+  ErrorHandler,
+  ErrorFilter,
+  ErrorTransformer,
+} from './errors'
+
 // State & Widgets
 export type {
   WidgetType,

@@ -4,15 +4,17 @@ import { useState, useEffect } from 'react'
 import { Menu, X } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Logo } from '@/components/logo'
+import { useBackendStatus } from '@/hooks/use-backend-status'
 
 interface NavbarProps {
-  activeSection: string
-  onNavigate?: (section: string) => void
+  readonly activeSection: string
+  readonly onNavigate?: (section: string) => void
 }
 
 export function Navbar({ activeSection, onNavigate }: NavbarProps) {
   const [isOpen, setIsOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
+  const { isOnline: isBackendOnline } = useBackendStatus()
 
   useEffect(() => {
     const handleScroll = () => {
@@ -101,28 +103,30 @@ export function Navbar({ activeSection, onNavigate }: NavbarProps) {
           </div>
           {/* CTA Button */}
           <div className="hidden md:flex items-center space-x-4">
-            <div className="relative group">
-              <Button className="professional-button px-6 py-2 text-white font-bold cartoon-text">
-                🔐 Login
-              </Button>
-              {/* Dropdown Menu */}{' '}
-              <div className="absolute right-0 mt-2 w-48 bg-slate-950 border border-gray-800 rounded-lg shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
-                <div className="py-2">
-                  <button
-                    onClick={() => (window.location.href = '/login/pelanggan')}
-                    className="w-full text-left px-4 py-2 text-gray-300 hover:text-orange-400 hover:bg-orange-500/10 transition-colors"
-                  >
-                    👤 Login Pelanggan
-                  </button>
-                  <button
-                    onClick={() => (window.location.href = '/login/admin')}
-                    className="w-full text-left px-4 py-2 text-gray-300 hover:text-orange-400 hover:bg-orange-500/10 transition-colors"
-                  >
-                    ⚙️ Login Admin
-                  </button>
+            {isBackendOnline && (
+              <div className="relative group">
+                <Button className="professional-button px-6 py-2 text-white font-bold cartoon-text">
+                  🔐 Login
+                </Button>
+                {/* Dropdown Menu */}{' '}
+                <div className="absolute right-0 mt-2 w-48 bg-slate-950 border border-gray-800 rounded-lg shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
+                  <div className="py-2">
+                    <button
+                      onClick={() => (window.location.href = '/login/pelanggan')}
+                      className="w-full text-left px-4 py-2 text-gray-300 hover:text-orange-400 hover:bg-orange-500/10 transition-colors"
+                    >
+                      👤 Login Pelanggan
+                    </button>
+                    <button
+                      onClick={() => (window.location.href = '/login/admin')}
+                      className="w-full text-left px-4 py-2 text-gray-300 hover:text-orange-400 hover:bg-orange-500/10 transition-colors"
+                    >
+                      ⚙️ Login Admin
+                    </button>
+                  </div>
                 </div>
               </div>
-            </div>
+            )}
           </div>
           {/* Mobile menu button */}
           <div className="md:hidden">
@@ -157,23 +161,25 @@ export function Navbar({ activeSection, onNavigate }: NavbarProps) {
                   <span>{item.label}</span>
                 </button>
               ))}
-              {/* Mobile Login Buttons */}{' '}
-              <div className="pt-4 border-t border-gray-800">
-                <button
-                  onClick={() => (window.location.href = '/login/pelanggan')}
-                  className="w-full mb-2 px-4 py-3 bg-orange-600 hover:bg-orange-700 text-white font-medium rounded-lg transition-colors flex items-center justify-center space-x-2"
-                >
-                  <span>👤</span>
-                  <span>Login Pelanggan</span>
-                </button>
-                <button
-                  onClick={() => (window.location.href = '/login/admin')}
-                  className="w-full px-4 py-3 bg-red-600 hover:bg-red-700 text-white font-medium rounded-lg transition-colors flex items-center justify-center space-x-2"
-                >
-                  <span>⚙️</span>
-                  <span>Login Admin</span>
-                </button>
-              </div>
+              {/* Mobile Login Buttons */}
+              {isBackendOnline && (
+                <div className="pt-4 border-t border-gray-800">
+                  <button
+                    onClick={() => (window.location.href = '/login/pelanggan')}
+                    className="w-full mb-2 px-4 py-3 bg-orange-600 hover:bg-orange-700 text-white font-medium rounded-lg transition-colors flex items-center justify-center space-x-2"
+                  >
+                    <span>👤</span>
+                    <span>Login Pelanggan</span>
+                  </button>
+                  <button
+                    onClick={() => (window.location.href = '/login/admin')}
+                    className="w-full px-4 py-3 bg-red-600 hover:bg-red-700 text-white font-medium rounded-lg transition-colors flex items-center justify-center space-x-2"
+                  >
+                    <span>⚙️</span>
+                    <span>Login Admin</span>
+                  </button>
+                </div>
+              )}
             </div>
           </div>
         )}

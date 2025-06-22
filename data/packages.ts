@@ -39,7 +39,7 @@ export const packages: Package[] = [
     priceNumeric: 200000,
     category: 'rumah',
     features: [
-      '🏗️ Stabil buat kerja & belajar dari rumah',
+      '🏗️ Stabil buat WFH',
       '📹 Video call HD tanpa lag',
       '🎮 Gaming online smooth',
       '📱 Support 10-15 device',
@@ -63,7 +63,7 @@ export const packages: Package[] = [
     category: 'rumah',
     features: [
       '⚡ Ngabut streaming & CCTV',
-      '🎬 4K streaming tanpa buffering',
+      '🎬 4K streaming No buffering',
       '📤 Upload file besar cepat',
       '📱 Support 15-20 device',
       '🛡️ Dedicated support',
@@ -85,7 +85,7 @@ export const packages: Package[] = [
     priceNumeric: 300000,
     category: 'rumah',
     features: [
-      '🔥 Prioritas bandwidth, anti lemot 24 jam',
+      '🔥 Prioritas,No lemot 24 jam',
       '♾️ Unlimited tanpa FUP',
       '🎮 Gaming pro & streaming 4K',
       '📱 Support unlimited device',
