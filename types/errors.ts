@@ -190,7 +190,7 @@ export interface ErrorInfo {
 }
 
 // Component Type (from React)
-type ComponentType<P = {}> = React.ComponentType<P>
+type ComponentType<P = object> = React.ComponentType<P>
 
 // Utility Types
 export type ErrorHandler = (error: AppError) => void | Promise<void>
